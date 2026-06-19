@@ -58,5 +58,8 @@ window.OyunListesi = [
         isim: "DİKDÖRTGENİN ÇEVRE VE ALANINI HESAPLAMAK OYUNU",
         link: "https://bekirmatmt25.my.canva.site/dikd-rtgen-evre-ve-alan-hesaplama-oyunu"
     },
-    
+    {
+        isim: "KOORDİNAT SİSTEMİ VE DOĞRUSAL DENKLEMLER",
+        link: "./dogrusal-denklemler/index.html"
+    }
 ];

@@ -2878,17 +2878,20 @@ oyunlarButton.addEventListener('click', (e) => {
                     ae.preventDefault();
                     ae.stopPropagation();
                     let finalLink = oyun.link;
-                    // P2P Aktifse ve oyun iç bağlantıysa, Tahtaya geçiş komutu gönder
-                    if (oyun.link.includes('./') && typeof myConnection !== 'undefined' && myConnection && isConnected) {
-                        if (isTablet) {
-                            const roomCode = myConnection.peer;
+                    // Eğer iç bağlantıysa (bizim oyunumuzsa)
+                    if (oyun.link.includes('./')) {
+                        // P2P Aktifse ve Tablet ise diğer tarafa geçiş komutu gönder ve URL parametrelerini ayarla
+                        if (typeof myConnection !== 'undefined' && myConnection && isConnected && isTablet) {
+                            const roomCode = myConnection.peer || window.myRoomCode;
                             const pin = window.sessionPassword || '';
                             finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;
                             myConnection.send({ type: 'navigate_game', link: oyun.link });
-                            window.location.href = finalLink;
-                            return;
                         }
+                        // İÇ OYUNLAR HER ZAMAN AYNI SEKMEYİ GÜNCELLER (YENİ SEKME AÇMAZ)
+                        window.location.href = finalLink;
+                        return;
                     }
+                    // Dış oyunlar (Canva vb.) yeni sekmede açılır
                     window.open(finalLink, '_blank');
 
                     // Kapatma işlemi

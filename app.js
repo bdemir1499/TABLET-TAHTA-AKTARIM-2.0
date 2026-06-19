@@ -638,6 +638,22 @@ window.OyunListesi = [
         pt: "DAS DIAGONAIS AOS QUADRILÁTEROS (2)",
         ja: "対角線から四角形へ (2)",
         link: "https://bekrmatmt25.my.canva.site/kosegenlerden-dortgenlere"
+    },
+    {
+        tr: "KOORDİNAT SİSTEMİ VE DOĞRUSAL DENKLEMLER",
+        en: "COORDINATE SYSTEM AND LINEAR EQUATIONS",
+        de: "KOORDINATENSYSTEM UND LINEARE GLEICHUNGEN",
+        ar: "نظام الإحداثيات والمعادلات الخطية",
+        hi: "निर्देशांक प्रणाली और रैखिक समीकरण",
+        ms: "SISTEM KOORDINAT DAN PERSAMAAN LINEAR",
+        id: "SISTEM KOORDINAT DAN PERSAMAAN LINEAR",
+        zh: "坐标系和线性方程",
+        ru: "СИСТЕМА КООРДИНАТ И ЛИНЕЙНЫЕ УРАВНЕНИЯ",
+        es: "SISTEMA DE COORDENADAS Y ECUACIONES LINEALES",
+        fr: "SYSTÈME DE COORDONNÉES ET ÉQUATIONS LINÉAIRES",
+        pt: "SISTEMA DE COORDENADAS E EQUAÇÕES LINEARES",
+        ja: "座標系と一次方程式",
+        link: "./dogrusal-denklemler/index.html"
     }
 ];
 

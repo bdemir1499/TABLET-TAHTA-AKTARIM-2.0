@@ -439,7 +439,7 @@ function initCanvas() {
         line.setAttribute('y1', 10);
         line.setAttribute('x2', pixel.x);
         line.setAttribute('y2', CANVAS_SIZE - 10);
-        line.setAttribute('stroke', '#e5e7eb');
+        line.setAttribute('stroke', '#9ca3af');
         line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
@@ -453,7 +453,7 @@ function initCanvas() {
         line.setAttribute('y1', pixel.y);
         line.setAttribute('x2', CANVAS_SIZE - 10);
         line.setAttribute('y2', pixel.y);
-        line.setAttribute('stroke', '#e5e7eb');
+        line.setAttribute('stroke', '#9ca3af');
         line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
@@ -2261,7 +2261,7 @@ function drawScenarioGraph(scenario) {
         line.setAttribute('y1', ORIGIN.y);
         line.setAttribute('x2', x);
         line.setAttribute('y2', 50); // Tepe noktası
-        line.setAttribute('stroke', '#e5e7eb');
+        line.setAttribute('stroke', '#9ca3af');
         line.setAttribute('stroke-width', '1');
         canvas.appendChild(line);
     }
@@ -2273,7 +2273,7 @@ function drawScenarioGraph(scenario) {
         line.setAttribute('y1', y);
         line.setAttribute('x2', ORIGIN.x + xSteps * GRID_SIZE + 30);
         line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#e5e7eb');
+        line.setAttribute('stroke', '#9ca3af');
         line.setAttribute('stroke-width', '1');
         canvas.appendChild(line);
     }
@@ -2948,7 +2948,7 @@ function initializeLinearCanvas() {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', LINEAR_ORIGIN.y);
         line.setAttribute('x2', x); line.setAttribute('y2', 50);
-        line.setAttribute('stroke', '#e5e7eb'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('stroke', '#9ca3af'); line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     for (let i = 0; i <= 9; i++) {
@@ -2956,7 +2956,7 @@ function initializeLinearCanvas() {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', LINEAR_ORIGIN.x); line.setAttribute('y1', y);
         line.setAttribute('x2', LINEAR_ORIGIN.x + 9 * LINEAR_GRID); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#e5e7eb'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('stroke', '#9ca3af'); line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     linearCanvas.appendChild(gridGroup);
@@ -3276,14 +3276,14 @@ function initializeFullCanvas() {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', 0);
         line.setAttribute('x2', x); line.setAttribute('y2', FULL_SIZE);
-        line.setAttribute('stroke', '#f3f4f6'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('stroke', '#9ca3af'); line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     for (let y = startOffset; y <= FULL_SIZE; y += FULL_GRID) {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', 0); line.setAttribute('y1', y);
         line.setAttribute('x2', FULL_SIZE); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#f3f4f6'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('stroke', '#9ca3af'); line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     canvas.appendChild(gridGroup);
@@ -3727,14 +3727,14 @@ function drawFullGridForAX(scaleFactor = 1) {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', 0);
         line.setAttribute('x2', x); line.setAttribute('y2', FULL_SIZE);
-        line.setAttribute('stroke', '#f3f4f6'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('stroke', '#9ca3af'); line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     for (let y = startOffset; y <= FULL_SIZE; y += FULL_GRID) {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', 0); line.setAttribute('y1', y);
         line.setAttribute('x2', FULL_SIZE); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#f3f4f6'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('stroke', '#9ca3af'); line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     canvas.appendChild(gridGroup);
@@ -3889,7 +3889,7 @@ window.updateLinearCanvas = function(row, col, value) {
         pointCell.style.color = '#6d28d9'; pointCell.style.backgroundColor = '#f3e8ff';
     } else if (pointCell) {
         pointCell.textContent = '(?, ?)';
-        pointCell.style.color = '#6b7280'; pointCell.style.backgroundColor = '#f3f4f6';
+        pointCell.style.color = '#6b7280'; pointCell.style.backgroundColor = '#9ca3af';
     }
 
     // --- AKILLI ÖLÇEKLENDİRME ---
@@ -5362,12 +5362,12 @@ function drawSlopeGraph() {
     for(let i=0; i<=500; i+=GRID) {
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500);
-        vLine.setAttribute('stroke', '#e5e7eb');
+        vLine.setAttribute('stroke', '#9ca3af');
         gridGroup.appendChild(vLine);
         
         const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         hLine.setAttribute('x1', 0); hLine.setAttribute('y1', i); hLine.setAttribute('x2', 500); hLine.setAttribute('y2', i);
-        hLine.setAttribute('stroke', '#e5e7eb');
+        hLine.setAttribute('stroke', '#9ca3af');
         gridGroup.appendChild(hLine);
     }
     
@@ -5462,9 +5462,9 @@ function drawSlopeTriangle() {
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     for(let i=0; i<600; i+=GRID) { // Canvas genişleyebilir
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500); vLine.setAttribute('stroke', '#f3f4f6'); gridGroup.appendChild(vLine);
+        vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500); vLine.setAttribute('stroke', '#9ca3af'); gridGroup.appendChild(vLine);
         const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        hLine.setAttribute('x1', 0); hLine.setAttribute('y1', i); hLine.setAttribute('x2', 600); hLine.setAttribute('y2', i); hLine.setAttribute('stroke', '#f3f4f6'); gridGroup.appendChild(hLine);
+        hLine.setAttribute('x1', 0); hLine.setAttribute('y1', i); hLine.setAttribute('x2', 600); hLine.setAttribute('y2', i); hLine.setAttribute('stroke', '#9ca3af'); gridGroup.appendChild(hLine);
     }
     canvas.appendChild(gridGroup);
 
@@ -6980,10 +6980,10 @@ function drawSlopeUnknownGraph(q) {
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     for(let i=0; i<=600; i+=GRID) {
         const v = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        v.setAttribute('x1', i); v.setAttribute('y1', 0); v.setAttribute('x2', i); v.setAttribute('y2', 600); v.setAttribute('stroke', '#f3f4f6');
+        v.setAttribute('x1', i); v.setAttribute('y1', 0); v.setAttribute('x2', i); v.setAttribute('y2', 600); v.setAttribute('stroke', '#9ca3af');
         g.appendChild(v);
         const h = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        h.setAttribute('x1', 0); h.setAttribute('y1', i); h.setAttribute('x2', 600); h.setAttribute('y2', i); h.setAttribute('stroke', '#f3f4f6');
+        h.setAttribute('x1', 0); h.setAttribute('y1', i); h.setAttribute('x2', 600); h.setAttribute('y2', i); h.setAttribute('stroke', '#9ca3af');
         g.appendChild(h);
     }
     canvas.appendChild(g);
@@ -7744,13 +7744,13 @@ function refreshLinearGraphPoints() {
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', originX + (i * grid)); vLine.setAttribute('y1', originY);
         vLine.setAttribute('x2', originX + (i * grid)); vLine.setAttribute('y2', originY - (8 * grid));
-        vLine.setAttribute('stroke', i === 0 ? '#9ca3af' : '#f3f4f6'); vLine.setAttribute('stroke-width', i === 0 ? '2' : '1');
+        vLine.setAttribute('stroke', i === 0 ? '#9ca3af' : '#9ca3af'); vLine.setAttribute('stroke-width', i === 0 ? '2' : '1');
         linearSvg.appendChild(vLine);
 
         const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         hLine.setAttribute('x1', originX); hLine.setAttribute('y1', originY - (i * grid));
         hLine.setAttribute('x2', originX + (8 * grid)); hLine.setAttribute('y2', originY - (i * grid));
-        hLine.setAttribute('stroke', i === 0 ? '#9ca3af' : '#f3f4f6'); hLine.setAttribute('stroke-width', i === 0 ? '2' : '1');
+        hLine.setAttribute('stroke', i === 0 ? '#9ca3af' : '#9ca3af'); hLine.setAttribute('stroke-width', i === 0 ? '2' : '1');
         linearSvg.appendChild(hLine);
 
         if (i > 0) {
@@ -9199,7 +9199,7 @@ window.canliGrafikCiz = function() {
         let vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', ORJIN_X + pikselKonum); vLine.setAttribute('y1', ORJIN_Y);
         vLine.setAttribute('x2', ORJIN_X + pikselKonum); vLine.setAttribute('y2', ORJIN_Y - (EKSEN_UZUNLUGU * KARE_BOYUTU));
-        vLine.setAttribute('stroke', i===0 ? '#374151' : '#e5e7eb'); // Orijin koyu, diğerleri açık
+        vLine.setAttribute('stroke', i===0 ? '#374151' : '#9ca3af'); // Orijin koyu, diğerleri açık
         vLine.setAttribute('stroke-width', i===0 ? '2' : '1');
         canvas.appendChild(vLine);
 
@@ -9207,7 +9207,7 @@ window.canliGrafikCiz = function() {
         let hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         hLine.setAttribute('x1', ORJIN_X); hLine.setAttribute('y1', ORJIN_Y - pikselKonum);
         hLine.setAttribute('x2', ORJIN_X + (EKSEN_UZUNLUGU * KARE_BOYUTU)); hLine.setAttribute('y2', ORJIN_Y - pikselKonum);
-        hLine.setAttribute('stroke', i===0 ? '#374151' : '#e5e7eb');
+        hLine.setAttribute('stroke', i===0 ? '#374151' : '#9ca3af');
         hLine.setAttribute('stroke-width', i===0 ? '2' : '1');
         canvas.appendChild(hLine);
 
@@ -9336,7 +9336,7 @@ window.canliGrafikCiz = function() {
         let vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', ORJIN_X + pikselKonum); vLine.setAttribute('y1', ORJIN_Y);
         vLine.setAttribute('x2', ORJIN_X + pikselKonum); vLine.setAttribute('y2', ORJIN_Y - (EKSEN_UZUNLUGU * KARE_BOYUTU));
-        vLine.setAttribute('stroke', i===0 ? '#374151' : '#f3f4f6');
+        vLine.setAttribute('stroke', i===0 ? '#374151' : '#9ca3af');
         vLine.setAttribute('stroke-width', i===0 ? '2' : '1');
         canvas.appendChild(vLine);
 
@@ -9344,7 +9344,7 @@ window.canliGrafikCiz = function() {
         let hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         hLine.setAttribute('x1', ORJIN_X); hLine.setAttribute('y1', ORJIN_Y - pikselKonum);
         hLine.setAttribute('x2', ORJIN_X + (EKSEN_UZUNLUGU * KARE_BOYUTU)); hLine.setAttribute('y2', ORJIN_Y - pikselKonum);
-        hLine.setAttribute('stroke', i===0 ? '#374151' : '#f3f4f6');
+        hLine.setAttribute('stroke', i===0 ? '#374151' : '#9ca3af');
         hLine.setAttribute('stroke-width', i===0 ? '2' : '1');
         canvas.appendChild(hLine);
 

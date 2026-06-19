@@ -1,4 +1,4 @@
-﻿// En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
+// En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
 window.feedbackTimer = null; // Global zamanlayıcı
 
 
@@ -7488,6 +7488,11 @@ function showLinearGraphQuestion() {
         linearState.currentDataPoints = dataPoints;
         renderLinearTable(scenario); 
         
+        // Boş grafiği (eksenlerle birlikte) çiz
+        if (typeof canliGrafikCiz === 'function') {
+            canliGrafikCiz();
+        }
+        
     } catch (err) {
         const panel = document.getElementById('linearQuestionPanel');
         if(panel) panel.innerHTML = `<div class="bg-red-100 p-4 text-red-700 font-bold border-2 border-red-500 rounded text-center">Hata: ${err.message}</div>`;
@@ -9400,9 +9405,13 @@ window.setupStraightLineDrawing = function() {
 
     console.log("✏️ Çizim Modu: SVG Matrix sistemi aktif.");
     
+    // Temizle
     canvas.onmousedown = null;
     canvas.onmousemove = null;
     window.onmouseup = null;
+    canvas.ontouchstart = null;
+    canvas.ontouchmove = null;
+    window.ontouchend = null;
 
     let isDrawing = false;
     let tempLine = null;
@@ -9412,19 +9421,26 @@ window.setupStraightLineDrawing = function() {
         const pt = canvas.createSVGPoint();
         
         // Mouse veya Dokunmatik konumunu al
-        pt.x = e.clientX || (e.touches && e.touches[0].clientX);
-        pt.y = e.clientY || (e.touches && e.touches[0].clientY);
+        if (e.touches && e.touches.length > 0) {
+            pt.x = e.touches[0].clientX;
+            pt.y = e.touches[0].clientY;
+        } else if (e.changedTouches && e.changedTouches.length > 0) {
+            pt.x = e.changedTouches[0].clientX;
+            pt.y = e.changedTouches[0].clientY;
+        } else {
+            pt.x = e.clientX;
+            pt.y = e.clientY;
+        }
 
         // Bu büyü: Ekran koordinatlarını doğrudan SVG'nin iç koordinatlarına çevirir
-        // Ekranın zoom, scroll veya padding durumunu tamamen yok sayar
         const cursorPoint = pt.matrixTransform(canvas.getScreenCTM().inverse());
         
         return { x: cursorPoint.x, y: cursorPoint.y };
     }
 
-    // 1. TIKLAMA (Artı merkezinden başla)
-    canvas.onmousedown = function(e) {
+    const startDraw = function(e) {
         if (gameState.mode !== 'linear_graph_draw') return;
+        if (e.type.startsWith('touch') && e.cancelable) e.preventDefault();
         
         isDrawing = true;
         const coords = getPointOnSvg(e);
@@ -9447,17 +9463,16 @@ window.setupStraightLineDrawing = function() {
         canvas.appendChild(tempLine);
     };
 
-    // 2. HAREKET (İmleci milimetrik takip et)
-    canvas.onmousemove = function(e) {
+    const moveDraw = function(e) {
         if (!isDrawing || !tempLine) return;
+        if (e.type.startsWith('touch') && e.cancelable) e.preventDefault();
         
         const coords = getPointOnSvg(e);
         tempLine.setAttribute('x2', coords.x);
         tempLine.setAttribute('y2', coords.y);
     };
 
-    // 3. BIRAKMA (Son kontrol)
-    window.onmouseup = function(e) {
+    const endDraw = function(e) {
         if (!isDrawing || !tempLine) return;
         isDrawing = false;
 
@@ -9471,6 +9486,16 @@ window.setupStraightLineDrawing = function() {
 
         checkDrawingLogic(start, end);
     };
+
+    // Event dinleyicilerini ata
+    canvas.onmousedown = startDraw;
+    canvas.ontouchstart = startDraw;
+
+    canvas.onmousemove = moveDraw;
+    canvas.ontouchmove = moveDraw;
+
+    window.onmouseup = endDraw;
+    window.ontouchend = endDraw;
 
     canvas.style.cursor = 'crosshair';
 };

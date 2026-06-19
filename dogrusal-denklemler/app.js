@@ -1,3 +1,12 @@
+// 🚨 ALAN ADI KİLİDİ (DOMAIN BINDING) - ASKERİ DÜZEY KORUMA 🚨
+const gecerliAdresler = ["bdemir1499.github.io", "127.0.0.1", "localhost"];
+const mevcutAdres = window.location.hostname;
+const kacakKullanimMi = !gecerliAdresler.some(adres => mevcutAdres.includes(adres));
+if (kacakKullanimMi && mevcutAdres !== "") {
+    document.body.innerHTML = "<div style='color:red; text-align:center; margin-top:50px; font-family:sans-serif; font-size:20px; font-weight:bold;'>⛔ GÜVENLİK İHLALİ: Bu yazılım kopyalanmıştır. Lütfen orijinal adresi kullanın.</div>";
+    throw new Error("Korsan kullanım tespit edildi, sistem durduruldu!");
+}
+
 // En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
 window.feedbackTimer = null; // Global zamanlayıcı
 
@@ -9440,10 +9449,14 @@ window.setupStraightLineDrawing = function() {
 
     const startDraw = function(e) {
         if (gameState.mode !== 'linear_graph_draw') return;
-        if (e.type.startsWith('touch') && e.cancelable) e.preventDefault();
+        if (e && e.type && e.type.startsWith('touch') && e.cancelable) e.preventDefault();
         
         isDrawing = true;
         const coords = getPointOnSvg(e);
+
+        if (typeof window.sendP2PDrawEvent === 'function') {
+            window.sendP2PDrawEvent({ action: 'start', coords: coords });
+        }
 
         // Eski çizgiyi temizle
         const oldLine = document.getElementById('rubber-line');
@@ -9465,9 +9478,14 @@ window.setupStraightLineDrawing = function() {
 
     const moveDraw = function(e) {
         if (!isDrawing || !tempLine) return;
-        if (e.type.startsWith('touch') && e.cancelable) e.preventDefault();
+        if (e && e.type && e.type.startsWith('touch') && e.cancelable) e.preventDefault();
         
         const coords = getPointOnSvg(e);
+
+        if (typeof window.sendP2PDrawEvent === 'function') {
+            window.sendP2PDrawEvent({ action: 'move', coords: coords });
+        }
+
         tempLine.setAttribute('x2', coords.x);
         tempLine.setAttribute('y2', coords.y);
     };
@@ -9476,15 +9494,56 @@ window.setupStraightLineDrawing = function() {
         if (!isDrawing || !tempLine) return;
         isDrawing = false;
 
+        const end = getPointOnSvg(e);
+
+        if (typeof window.sendP2PDrawEvent === 'function') {
+            window.sendP2PDrawEvent({ action: 'end', coords: end });
+        }
+
         tempLine.removeAttribute('stroke-dasharray'); 
         
         const start = {
             x: parseFloat(tempLine.getAttribute('x1')),
             y: parseFloat(tempLine.getAttribute('y1'))
         };
-        const end = getPointOnSvg(e);
 
         checkDrawingLogic(start, end);
+    };
+
+    // P2P'den gelen çizim verilerini işleyecek fonksiyon
+    window.p2pDrawHandle = function(payload) {
+        if (payload.action === 'start') {
+            isDrawing = true;
+            const coords = payload.coords;
+            const oldLine = document.getElementById('rubber-line');
+            if (oldLine) oldLine.remove();
+
+            tempLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            tempLine.setAttribute('x1', coords.x);
+            tempLine.setAttribute('y1', coords.y);
+            tempLine.setAttribute('x2', coords.x);
+            tempLine.setAttribute('y2', coords.y);
+            tempLine.setAttribute('stroke', '#4338ca'); 
+            tempLine.setAttribute('stroke-width', '4');
+            tempLine.setAttribute('stroke-linecap', 'round');
+            tempLine.setAttribute('stroke-dasharray', '8,5'); 
+            tempLine.setAttribute('id', 'rubber-line');
+            canvas.appendChild(tempLine);
+        } else if (payload.action === 'move') {
+            if (!isDrawing || !tempLine) return;
+            const coords = payload.coords;
+            tempLine.setAttribute('x2', coords.x);
+            tempLine.setAttribute('y2', coords.y);
+        } else if (payload.action === 'end') {
+            if (!isDrawing || !tempLine) return;
+            isDrawing = false;
+            tempLine.removeAttribute('stroke-dasharray'); 
+            const start = {
+                x: parseFloat(tempLine.getAttribute('x1')),
+                y: parseFloat(tempLine.getAttribute('y1'))
+            };
+            checkDrawingLogic(start, payload.coords);
+        }
     };
 
     // Event dinleyicilerini ata

@@ -2877,7 +2877,17 @@ oyunlarButton.addEventListener('click', (e) => {
                     if (isScrolling) return;
                     ae.preventDefault();
                     ae.stopPropagation();
-                    window.open(oyun.link, '_blank');
+                    let finalLink = oyun.link;
+                    // P2P Aktifse ve oyun iç bağlantıysa, Tahtaya geçiş komutu gönder
+                    if (oyun.link.includes('./') && typeof myConnection !== 'undefined' && myConnection && isConnected) {
+                        if (isTablet) {
+                            const roomCode = myConnection.peer;
+                            const pin = window.sessionPassword || '';
+                            finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;
+                            myConnection.send({ type: 'navigate_game', link: oyun.link });
+                        }
+                    }
+                    window.open(finalLink, '_blank');
 
                     // Kapatma işlemi
                     oyunlarOptions.classList.add('hidden');
@@ -5943,6 +5953,15 @@ function setupConnectionEvents() {
         // 🚨 NİHAİ VE MATEMATİKSEL KESİN ÇÖZÜM: CSS ve Canvas HD Uyuşmazlığını Giderici 🚨
         function veriyiIsle(d) {
             if (!d) return;
+
+            // --- YENİ OYUNA P2P GEÇİŞ (TAHTA) ---
+            if (d.type === 'navigate_game' && d.link) {
+                const roomCode = typeof myRoomCode !== 'undefined' ? myRoomCode : ''; 
+                const pin = window.sessionPassword || '';
+                const finalLink = `${d.link}?role=tahta&room=${roomCode}&pin=${pin}`;
+                window.location.href = finalLink;
+                return;
+            }
 
             // --- EKRANLAR ARASI ÇÖZÜNÜRLÜK ADAPTASYONU ---
             const canvasElm = document.getElementById('drawing-canvas');

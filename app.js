@@ -2885,6 +2885,8 @@ oyunlarButton.addEventListener('click', (e) => {
                             const pin = window.sessionPassword || '';
                             finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;
                             myConnection.send({ type: 'navigate_game', link: oyun.link });
+                            window.location.href = finalLink;
+                            return;
                         }
                     }
                     window.open(finalLink, '_blank');

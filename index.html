@@ -222,6 +222,7 @@
             </div>
         </div>
 
+        <button id="btn-dogrusal" class="tool-button" style="background: rgba(93, 63, 211, 0.8) !important; color: white !important;">Doğrusal D.</button>
         <button id="btn-oyunlar" class="tool-button">Oyunlar</button>
 <div id="oyunlar-options" class="tool-options hidden" style="max-height: 400px; overflow-y: auto; padding: 10px;">
     <div style="display: flex; flex-direction: column; gap: 5px;">
@@ -362,5 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ÇÜNKÜ ARTIK BU GÖREVİ DOĞRUDAN APP.JS YAPIYOR!
 });
 </script>
+
+<!-- OYUN IFRAME OVERLAY -->
+<div id="game-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 99999; background: #000;">
+    <button id="btn-close-game" style="position: absolute; top: 20px; right: 20px; z-index: 100000; padding: 10px 20px; background: #ff4444; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: 'Fredoka', sans-serif;">❌ OYUNU KAPAT</button>
+    <iframe id="game-iframe" style="width: 100%; height: 100%; border: none;"></iframe>
+</div>
+
 </body>
 </html>

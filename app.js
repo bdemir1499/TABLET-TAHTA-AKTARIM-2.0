@@ -902,6 +902,7 @@ const gonyeButton = document.getElementById('btn-gonye');
 const aciolcerButton = document.getElementById('btn-aciolcer');
 const pergelButton = document.getElementById('btn-pergel');
 const polygonButton = document.getElementById('btn-cokgenler');
+const dogrusalButton = document.getElementById('btn-dogrusal');
 const oyunlarButton = document.getElementById('btn-oyunlar');
 const oyunlarOptions = document.getElementById('oyunlar-options');
 
@@ -2796,6 +2797,50 @@ polygonButton.addEventListener('click', () => {
 });
 
 // --- OYUNLAR MENÜSÜ: YUKARI AÇILAN, SEVİMLİ VE SİLGİ KAPATAN SİSTEM ---
+// IFRAME OYUN MANTIĞI
+if (dogrusalButton) {
+    dogrusalButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (typeof setActiveTool === 'function') setActiveTool('none');
+        
+        if (typeof myConnection !== 'undefined' && myConnection && window.isConnected) {
+            myConnection.send({ type: 'open_iframe' });
+        }
+        openGameIframe();
+    });
+}
+
+const btnCloseGame = document.getElementById('btn-close-game');
+if (btnCloseGame) {
+    btnCloseGame.addEventListener('click', () => {
+        if (typeof myConnection !== 'undefined' && myConnection && window.isConnected) {
+            myConnection.send({ type: 'close_iframe' });
+        }
+        closeGameIframe();
+    });
+}
+
+function openGameIframe() {
+    const overlay = document.getElementById('game-overlay');
+    const iframe = document.getElementById('game-iframe');
+    if (overlay && iframe) {
+        const roomCode = typeof window.myRoomCode !== 'undefined' ? window.myRoomCode : '';
+        const pin = window.sessionPassword || '';
+        const role = window.location.href.includes("tablet") ? "tablet" : "tahta";
+        iframe.src = `./dogrusal-denklemler/index.html?role=${role}&room=${roomCode}&pin=${pin}`;
+        overlay.style.display = 'block';
+    }
+}
+
+function closeGameIframe() {
+    const overlay = document.getElementById('game-overlay');
+    const iframe = document.getElementById('game-iframe');
+    if (overlay && iframe) {
+        overlay.style.display = 'none';
+        iframe.src = '';
+    }
+}
+
 oyunlarButton.addEventListener('click', (e) => {
     e.stopPropagation();
 
@@ -5971,17 +6016,13 @@ function setupConnectionEvents() {
         function veriyiIsle(d) {
             if (!d) return;
 
-            // --- YENİ OYUNA P2P GEÇİŞ (TAHTA) ---
-            if (d.type === 'navigate_game' && d.link && !window._isNavigating) { window._isNavigating = true;
-                // Tahta mesajı aldı, hemen Tablet'e "aldım, sen de geç" onayını gönder:
-                if (typeof myConnection !== 'undefined' && myConnection) {
-                    try { myConnection.send({ type: 'navigate_ack' }); } catch(e) { console.error('ACK Gonderilemedi:', e); }
-                }
-                const roomCode = typeof myRoomCode !== 'undefined' ? myRoomCode : ''; 
-                const pin = window.sessionPassword || '';
-                const finalLink = `${d.link}?role=tahta&room=${roomCode}&pin=${pin}`;
-                // PC'nin yönlenmesini çok hafif geciktir ki ACK mesajı yola çıkabilsin
-                try{window.location.href = finalLink;}catch(e){console.error(e);}
+            // --- YENİ OYUNA P2P GEÇİŞ (TAHTA/TABLET IFRAME) ---
+            if (d.type === 'open_iframe') {
+                openGameIframe();
+                return;
+            }
+            if (d.type === 'close_iframe') {
+                closeGameIframe();
                 return;
             }
 

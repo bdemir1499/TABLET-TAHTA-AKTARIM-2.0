@@ -136,6 +136,15 @@ function handleIncomingData(data) {
     if (data.type === 'go_back') {
         window.location.href = '../index.html';
     } 
+    else if (data.type === 'force_start_game') {
+        const btn = document.getElementById('startGameBtn');
+        if (btn) {
+            const oldPE = btn.style.pointerEvents;
+            btn.style.pointerEvents = 'auto';
+            btn.click();
+            btn.style.pointerEvents = oldPE;
+        }
+    }
     else if (data.type === 'sync_click') {
         const el = document.querySelector(data.path);
         if (el) {

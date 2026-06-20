@@ -5754,6 +5754,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 window.sessionPassword = passwordInput;
                 document.getElementById('connection-status').innerText = "Bağlanıyor ⏳";
+                window._isExplicitTablet = true;
 
                 // Bağlantıyı başlat (Şifreyi kriptografik metadata olarak gönderiyoruz)
                 myConnection = myPeer.connect(targetCode, {

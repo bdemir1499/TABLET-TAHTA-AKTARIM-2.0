@@ -3119,7 +3119,7 @@ document.getElementById('undoBtn').addEventListener('click', function() {
 // ==========================================
 // OYUNU BAŞLAT BUTONU (FABRİKA AYARLARINA DÖNÜŞ)
 // ==========================================
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
     const startGameBtn = document.getElementById('startGameBtn');
     const splashScreen = document.getElementById('splashScreen');
     const appElement = document.getElementById('app');
@@ -3133,6 +3133,11 @@ window.addEventListener('load', function() {
             splashScreen.style.display = 'none';
             appElement.classList.remove('hidden');
             appElement.style.display = 'flex';
+
+            // Ağ üzerinden KESİN başlatma emri gönder (Gölge Senkronizasyon Bypass)
+            if (typeof myConnection !== 'undefined' && myConnection && isConnected) {
+                myConnection.send({ type: 'force_start_game' });
+            }
 
             // 2. TÜM EKRANLARI VE MENÜLERİ KAPAT
             if (typeof clearAllScreens === 'function') {

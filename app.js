@@ -2885,12 +2885,18 @@ oyunlarButton.addEventListener('click', (e) => {
                             const roomCode = myConnection.peer || window.myRoomCode;
                             const pin = window.sessionPassword || '';
                             finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;
+                            
+                            window._pendingNavigation = finalLink;
                             myConnection.send({ type: 'navigate_game', link: oyun.link });
                             
-                            // MESAJIN GİTMESİ İÇİN 500ms BEKLE (CRITICAL RACE CONDITION FIX)
+                            // ACK (Onay) GELMESİNİ BEKLE. Gelmezse 1500ms sonra zorla git (Ağ zayıfsa)
                             setTimeout(() => {
-                                window.location.href = finalLink;
-                            }, 500);
+                                if (window._pendingNavigation) {
+                                    const gLink = window._pendingNavigation;
+                                    window._pendingNavigation = null;
+                                    window.location.href = gLink;
+                                }
+                            }, 1500);
                             return;
                         }
                         // İÇ OYUNLAR HER ZAMAN AYNI SEKMEYİ GÜNCELLER (YENİ SEKME AÇMAZ)
@@ -5967,10 +5973,25 @@ function setupConnectionEvents() {
 
             // --- YENİ OYUNA P2P GEÇİŞ (TAHTA) ---
             if (d.type === 'navigate_game' && d.link) {
+                // Tahta mesajı aldı, hemen Tablet'e "aldım, sen de geç" onayını gönder:
+                if (typeof myConnection !== 'undefined' && myConnection) {
+                    myConnection.send({ type: 'navigate_ack' });
+                }
                 const roomCode = typeof myRoomCode !== 'undefined' ? myRoomCode : ''; 
                 const pin = window.sessionPassword || '';
                 const finalLink = `${d.link}?role=tahta&room=${roomCode}&pin=${pin}`;
-                window.location.href = finalLink;
+                // PC'nin yönlenmesini çok hafif geciktir ki ACK mesajı yola çıkabilsin
+                setTimeout(() => { window.location.href = finalLink; }, 100);
+                return;
+            }
+
+            // --- TABLET ONAYI ALDIYSA GEÇİŞİ TAMAMLA ---
+            if (d.type === 'navigate_ack') {
+                if (window._pendingNavigation) {
+                    const goLink = window._pendingNavigation;
+                    window._pendingNavigation = null;
+                    window.location.href = goLink;
+                }
                 return;
             }
 

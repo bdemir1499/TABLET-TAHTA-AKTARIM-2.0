@@ -3201,6 +3201,10 @@ window.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(window.feedbackTimer);
                 window.feedbackTimer = null;
             }
+            if (typeof window.roundTimer !== 'undefined' && window.roundTimer) {
+                clearTimeout(window.roundTimer);
+                window.roundTimer = null;
+            }
             const fb = document.getElementById('feedback');
             if(fb) fb.style.opacity = '0';
 
@@ -4246,6 +4250,7 @@ function clearAllScreens() {
 
 // clearAllScreens fonksiyonunun içine şu satırı ekle:
 if (window.feedbackTimer) clearTimeout(window.feedbackTimer);
+if (window.roundTimer) clearTimeout(window.roundTimer); // BUG FIX: Devam eden eski oyunların setTimeout'larını iptal et
 const fb = document.getElementById('feedback');
 if (fb) fb.style.opacity = '0';
 
@@ -5045,7 +5050,7 @@ function checkSlopeAnswer() {
              document.getElementById('checkBtn').disabled = true;
              if (typeof animateStairsShow === 'function') animateStairsShow();
         } else {
-            setTimeout(() => {
+            window.roundTimer = setTimeout(() => {
                 slopeState.currentQuestion++;
                 if (slopeState.activeMode === 'graph') {
                     if (typeof startSlopeGraphRound === 'function') startSlopeGraphRound();
@@ -6051,7 +6056,7 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
     });
 
     // 5 Saniye sonra diğer soruya geç
-    setTimeout(() => {
+    window.roundTimer = setTimeout(() => {
         slopeState.currentQuestion++;
         startSlopeInclineRound();
     }, 5000);

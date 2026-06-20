@@ -55,11 +55,12 @@ if (userRole === 'tahta' && roomCode) {
     // TABLET: Odaya bağlanan taraf (Client)
     myPeer = new Peer(askeriKalkan);
 
-    myPeer.on('open', (id) => {
+    function connectToTahtaGame() {
         console.log("Tablet P2P Hazır. Bağlanılıyor:", roomCode);
         
         myConnection = myPeer.connect(roomCode + '-game', {
-            metadata: { password: sessionPin }
+            metadata: { password: sessionPin },
+            reliable: true
         });
 
         myConnection.on('open', () => {
@@ -69,6 +70,23 @@ if (userRole === 'tahta' && roomCode) {
         });
         
         myConnection.on('data', handleIncomingData);
+
+        myConnection.on('close', () => {
+            isConnected = false;
+        });
+    }
+
+    myPeer.on('open', (id) => {
+        // Tahtanın iframe'i ve odayı kurması için ufak bir avans ver (Race condition engeli)
+        setTimeout(connectToTahtaGame, 1000);
+    });
+
+    myPeer.on('error', (err) => {
+        // Eğer tahta henüz hazır değilse, tekrar dene
+        if (err.type === 'peer-unavailable') {
+            console.log("Tahta henüz oyunu açmadı, 2 saniye sonra tekrar deneniyor...");
+            setTimeout(connectToTahtaGame, 2000);
+        }
     });
 }
 

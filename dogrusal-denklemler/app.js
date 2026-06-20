@@ -10,6 +10,32 @@ if (kacakKullanimMi && mevcutAdres !== "") {
 // En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
 window.feedbackTimer = null; // Global zamanlayıcı
 
+// ==========================================
+// --- GÖLGE SENKRONİZASYON İÇİN ORTAK AKIL (PRNG) ---
+// ==========================================
+// Orijinal rastgeleliği sakla (Gerçek rastgele bir başlangıç şifresi üretmek için)
+const nativeRandom = Math.random;
+
+// Tabletin ilk açılışında tamamen eşsiz bir şifre (seed) belirle
+let gameSeed = Math.floor(nativeRandom() * 1000000000);
+
+window.setGameSeed = function(seed) {
+    gameSeed = seed;
+    console.log("🎲 Ortak Akıl (Rastgelelik) Şifresi Ayarlandı:", seed);
+};
+
+// Math.random() fonksiyonunu deterministik PRNG fonksiyonumuzla (Mulberry32) eziyoruz
+Math.random = function() {
+    let t = gameSeed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+};
+
+window.generateTrueRandomSeed = function() {
+    return Math.floor(nativeRandom() * 1000000000);
+};
+
 
 const defaultConfig = {
     game_title: "Koordinat Sistemi, Doğrusal İlişkiler, Doğruların Grafikleri, Doğru Denklemleri, Eğim, Dönüşüm Geometrisi",

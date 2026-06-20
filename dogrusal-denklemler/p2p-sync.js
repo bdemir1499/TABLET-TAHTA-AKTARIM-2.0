@@ -66,6 +66,14 @@ if (userRole === 'tahta' && roomCode) {
         myConnection.on('open', () => {
             console.log("Tahtaya bağlantı sağlandı!");
             isConnected = true;
+            
+            // 1. Rastgelelik şifresi (seed) üret ve Tahtaya gönder
+            const newSeed = typeof window.generateTrueRandomSeed === 'function' ? window.generateTrueRandomSeed() : Math.floor(Math.random() * 1000000);
+            if (typeof window.setGameSeed === 'function') {
+                window.setGameSeed(newSeed);
+            }
+            myConnection.send({ type: 'sync_seed', seed: newSeed });
+
             setupShadowSyncSender(); // Tablet hareketleri dinlemeye başlasın
         });
         
@@ -136,6 +144,11 @@ function handleIncomingData(data) {
     if (data.type === 'go_back') {
         window.location.href = '../index.html';
     } 
+    else if (data.type === 'sync_seed') {
+        if (typeof window.setGameSeed === 'function') {
+            window.setGameSeed(data.seed);
+        }
+    }
     else if (data.type === 'force_start_game') {
         const btn = document.getElementById('startGameBtn');
         if (btn) {
@@ -158,7 +171,7 @@ function handleIncomingData(data) {
     else if (data.type === 'sync_draw') {
         // Çizim işlemi (app.js içerisindeki p2pDrawHandle fonksiyonu karşılayacak)
         if (typeof window.p2pDrawHandle === 'function') {
-            window.p2pDrawHandle(data);
+            window.p2pDrawHandle(data.payload);
         }
     }
 }

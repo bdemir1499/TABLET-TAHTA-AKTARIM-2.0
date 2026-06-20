@@ -207,6 +207,12 @@ function handleIncomingData(data) {
             window.p2pDrawHandle(data.payload);
         }
     }
+    else if (data.type === 'sync_canvas_point') {
+        // Nokta ekleme işlemi (Dönüşüm, Koordinat modu)
+        if (typeof window.p2pAddPointToCanvas === 'function') {
+            window.p2pAddPointToCanvas(data.coord);
+        }
+    }
 }
 
 // Çizim için genel gönderici fonksiyon (app.js içinden çağrılacak)

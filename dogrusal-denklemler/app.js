@@ -1056,39 +1056,17 @@ function applyReflection(points) {
 }
 
 
-// Universal handler for adding points - works on all devices and OS
-function addPointToCanvas(clientX, clientY) {
+// Çizimi gerçekleştiren ana fonksiyon
+function drawLogicalPoint(coord) {
     if (!gameState.mode) return;
-
-
-    // For placeToPoint mode, ignore canvas clicks
     if (gameState.mode === 'placeToPoint') return;
-
-
-    // For pointToPlace mode, allow only one click
     if (gameState.mode === 'pointToPlace') {
         if (gameState.userClicks.length >= 1) return;
     } else if (gameState.originalShape && gameState.userClicks.length >= gameState.originalShape.points.length) {
         return;
     }
 
-
-    // Use SVG's built-in coordinate transformation
-    const pt = canvas.createSVGPoint();
-    pt.x = clientX;
-    pt.y = clientY;
-
-
-    // Transform screen coordinates to SVG coordinates
-    const svgP = pt.matrixTransform(canvas.getScreenCTM().inverse());
-
-
-    const coord = pixelToCoord(svgP.x, svgP.y);
-
-
     gameState.userClicks.push(coord);
-
-
     const pixel = coordToPixel(coord.x, coord.y);
     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     circle.setAttribute('cx', pixel.x);
@@ -1099,7 +1077,6 @@ function addPointToCanvas(clientX, clientY) {
     circle.setAttribute('stroke-width', 2);
     canvas.appendChild(circle);
 
-
     const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     label.setAttribute('x', pixel.x + 8);
     label.setAttribute('y', pixel.y - 8);
@@ -1109,12 +1086,9 @@ function addPointToCanvas(clientX, clientY) {
     label.textContent = `(${coord.x},${coord.y})`;
     canvas.appendChild(label);
 
-
     updateUI();
 
-
     document.getElementById('undoBtn').disabled = false;
-
 
     if (gameState.mode === 'pointToPlace' && gameState.userClicks.length === 1) {
         document.getElementById('checkBtn').disabled = false;
@@ -1122,6 +1096,36 @@ function addPointToCanvas(clientX, clientY) {
         document.getElementById('checkBtn').disabled = false;
     }
 }
+
+// P2P üzerinden gelen koordinatı çiz
+window.p2pAddPointToCanvas = function(coord) {
+    drawLogicalPoint(coord);
+};
+
+// Universal handler for adding points - works on all devices and OS
+function addPointToCanvas(clientX, clientY) {
+    if (!gameState.mode) return;
+
+    // Use SVG's built-in coordinate transformation
+    const pt = canvas.createSVGPoint();
+    pt.x = clientX;
+    pt.y = clientY;
+
+    // Transform screen coordinates to SVG coordinates
+    const svgP = pt.matrixTransform(canvas.getScreenCTM().inverse());
+
+    const coord = pixelToCoord(svgP.x, svgP.y);
+
+    // GÖLGE SENKRONİZASYON: Tablet, Tahtaya mantıksal koordinatı göndersin
+    if (typeof userRole !== 'undefined' && userRole === 'tablet' && typeof window.myConnection !== 'undefined' && window.myConnection && window.isConnected) {
+        window.myConnection.send({ type: 'sync_canvas_point', coord: coord });
+    }
+
+    drawLogicalPoint(coord);
+}
+
+
+
 
 
 // Mouse handler for PC, Pardus, and desktop systems

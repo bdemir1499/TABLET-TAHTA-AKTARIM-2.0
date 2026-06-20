@@ -2824,7 +2824,7 @@ function openGameIframe() {
     const overlay = document.getElementById('game-overlay');
     const iframe = document.getElementById('game-iframe');
     if (overlay && iframe) {
-        const role = window.location.href.includes("tablet") ? "tablet" : "tahta";
+        const role = (window.location.href.includes("tablet") || window._isExplicitTablet) ? "tablet" : "tahta";
         const roomCode = (role === 'tablet' && typeof myConnection !== 'undefined' && myConnection && myConnection.peer) 
             ? myConnection.peer 
             : (typeof myRoomCode !== 'undefined' ? myRoomCode : '');
@@ -2928,7 +2928,7 @@ oyunlarButton.addEventListener('click', (e) => {
                     // Eğer iç bağlantıysa (bizim oyunumuzsa)
                     if (oyun.link.includes('./')) {
                         // P2P Aktifse ve Tablet ise diğer tarafa geçiş komutu gönder ve URL parametrelerini ayarla
-                        if (typeof myConnection !== 'undefined' && myConnection && isConnected && isTablet) {
+                        if (typeof myConnection !== 'undefined' && myConnection && isConnected && (isTablet || window._isExplicitTablet)) {
                             const roomCode = myConnection.peer || myRoomCode;
                             const pin = window.sessionPassword || '';
                             finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;

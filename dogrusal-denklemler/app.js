@@ -1542,10 +1542,10 @@ function checkAnswer() {
 
 
             if (progress < 1) {
-                requestAnimationFrame(animateTransformation);
+                window.animationFrameId = requestAnimationFrame(animateTransformation);
             } else {
                 // Animation complete - show the final transformed shape with dashed line
-                setTimeout(() => {
+                window.roundTimer = setTimeout(() => {
                     const finalGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
 
@@ -4251,6 +4251,7 @@ function clearAllScreens() {
 // clearAllScreens fonksiyonunun içine şu satırı ekle:
 if (window.feedbackTimer) clearTimeout(window.feedbackTimer);
 if (window.roundTimer) clearTimeout(window.roundTimer); // BUG FIX: Devam eden eski oyunların setTimeout'larını iptal et
+if (window.animationFrameId) cancelAnimationFrame(window.animationFrameId); // BUG FIX: Devam eden animasyonları iptal et
 const fb = document.getElementById('feedback');
 if (fb) fb.style.opacity = '0';
 
@@ -6009,7 +6010,7 @@ function animateStairsShow() {
 
         // Süre bitmediyse bir sonraki kareyi iste
         if (progress < 1) {
-            requestAnimationFrame(frame);
+            window.animationFrameId = requestAnimationFrame(frame);
         } else {
             // 4. ANİMASYON BİTTİ, YAZILARI GÖSTER
             showTextLabels(targetX, targetY, totalW, totalH, q, START_X);
@@ -6017,7 +6018,7 @@ function animateStairsShow() {
     }
 
     // Motoru Çalıştır
-    requestAnimationFrame(frame);
+    window.animationFrameId = requestAnimationFrame(frame);
 }
 
 // Yazıları Gösteren Yardımcı Fonksiyon

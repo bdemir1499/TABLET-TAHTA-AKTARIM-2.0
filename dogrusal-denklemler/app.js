@@ -3125,7 +3125,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const appElement = document.getElementById('app');
 
     if (startGameBtn && splashScreen && appElement) {
-        startGameBtn.addEventListener('click', function() {
+        startGameBtn.addEventListener('click', function(e) {
             console.log('🚀 Oyun Başlatılıyor... (Tam Sıfırlama)');
 
             // 1. Giriş Ekranını Kapat, Uygulamayı Aç
@@ -3135,7 +3135,8 @@ window.addEventListener('DOMContentLoaded', function() {
             appElement.style.display = 'flex';
 
             // Ağ üzerinden KESİN başlatma emri gönder (Gölge Senkronizasyon Bypass)
-            if (typeof myConnection !== 'undefined' && myConnection && isConnected) {
+            // SADECE fiziksel tıklamalarda (e.isTrusted) gönder ki sonsuz döngüye girmesin!
+            if (e && e.isTrusted && typeof myConnection !== 'undefined' && myConnection && isConnected) {
                 myConnection.send({ type: 'force_start_game' });
             }
 

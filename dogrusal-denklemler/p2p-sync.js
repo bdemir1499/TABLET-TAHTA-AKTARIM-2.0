@@ -221,3 +221,9 @@ window.sendP2PDrawEvent = function(payload) {
         myConnection.send({ type: 'sync_draw', payload: payload });
     }
 };
+
+window.sendP2PCanvasPointEvent = function(coord) {
+    if (userRole === 'tablet' && myConnection && isConnected) {
+        myConnection.send({ type: 'sync_canvas_point', coord: coord });
+    }
+};

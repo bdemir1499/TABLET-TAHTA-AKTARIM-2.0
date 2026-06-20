@@ -1117,8 +1117,8 @@ function addPointToCanvas(clientX, clientY) {
     const coord = pixelToCoord(svgP.x, svgP.y);
 
     // GÖLGE SENKRONİZASYON: Tablet, Tahtaya mantıksal koordinatı göndersin
-    if (typeof userRole !== 'undefined' && userRole === 'tablet' && typeof window.myConnection !== 'undefined' && window.myConnection && window.isConnected) {
-        window.myConnection.send({ type: 'sync_canvas_point', coord: coord });
+    if (typeof window.sendP2PCanvasPointEvent === 'function') {
+        window.sendP2PCanvasPointEvent(coord);
     }
 
     drawLogicalPoint(coord);

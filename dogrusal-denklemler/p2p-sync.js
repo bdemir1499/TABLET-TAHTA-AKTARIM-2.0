@@ -74,7 +74,24 @@ if (userRole === 'tahta' && roomCode) {
             }
             myConnection.send({ type: 'sync_seed', seed: newSeed });
 
-            setupShadowSyncSender(); // Tablet hareketleri dinlemeye başlasın
+            // Tablet hareketleri dinlemeye başlasın (Eğer bağlantıdan önce başlamadıysa)
+            if (typeof setupShadowSyncSender === 'function' && !window.shadowSyncStarted) {
+                setupShadowSyncSender();
+            }
+
+            // 2. Bekleyen (bağlantı kurulmadan önce tıklanan) butonları tahtaya gönder
+            if (window.pendingClicks && window.pendingClicks.length > 0) {
+                window.pendingClicks.forEach(path => {
+                    myConnection.send({ type: 'sync_click', path: path });
+                });
+                window.pendingClicks = []; // Temizle
+            }
+            
+            // 3. Eğer tablet zaten oyuna girdiyse (bağlantı kurulana kadar hızlı davrandıysa) Tahtayı zorla oyuna sok
+            const splashScreen = document.getElementById('splashScreen');
+            if (splashScreen && splashScreen.classList.contains('hidden')) {
+                myConnection.send({ type: 'force_start_game' });
+            }
         });
         
         myConnection.on('data', handleIncomingData);
@@ -125,16 +142,32 @@ function getElementPath(el) {
 }
 
 // Tablet Üzerinde Dinleyicileri Kur
+window.pendingClicks = [];
+window.shadowSyncStarted = false;
+
 function setupShadowSyncSender() {
+    if (window.shadowSyncStarted) return;
+    window.shadowSyncStarted = true;
+
     // Tüm tıklamaları dinle
     document.addEventListener('click', (e) => {
         if (!e.isTrusted) return; // Sadece gerçek kullanıcı tıklamalarını al (kodsal tıklamaları yoksay)
         
         const path = getElementPath(e.target);
-        if (path && myConnection && isConnected) {
-            myConnection.send({ type: 'sync_click', path: path });
+        if (path) {
+            if (myConnection && isConnected) {
+                myConnection.send({ type: 'sync_click', path: path });
+            } else {
+                // Eğer bağlantı henüz hazır değilse kuyruğa al
+                window.pendingClicks.push(path);
+            }
         }
     }, true); // Capture phase (öne geç)
+}
+
+// Tablet sayfa yüklendiği gibi tıklamaları dinlemeye başlasın ki erken tıklamalar kaçmasın
+if (typeof userRole !== 'undefined' && userRole === 'tablet') {
+    setupShadowSyncSender();
 }
 
 // Tahta Üzerinde Gelen Veriyi İşle

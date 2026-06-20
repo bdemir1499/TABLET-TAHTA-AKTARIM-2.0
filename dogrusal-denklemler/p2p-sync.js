@@ -34,6 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '../index.html';
         };
         document.body.appendChild(btn);
+
+        // TAHTA ise Açılış Ekranını (Splash Screen) otomatik geç
+        if (userRole === 'tahta') {
+            const splashScreen = document.getElementById('splashScreen');
+            const appElement = document.getElementById('app');
+            if (splashScreen && appElement) {
+                splashScreen.classList.add('hidden');
+                splashScreen.style.display = 'none';
+                appElement.classList.remove('hidden');
+                appElement.style.display = 'flex';
+            }
+        }
     }
 });
 

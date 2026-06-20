@@ -2827,7 +2827,7 @@ function openGameIframe() {
         const role = window.location.href.includes("tablet") ? "tablet" : "tahta";
         const roomCode = (role === 'tablet' && typeof myConnection !== 'undefined' && myConnection && myConnection.peer) 
             ? myConnection.peer 
-            : (typeof window.myRoomCode !== 'undefined' ? window.myRoomCode : '');
+            : (typeof myRoomCode !== 'undefined' ? myRoomCode : '');
         const pin = window.sessionPassword || '';
         iframe.src = `./dogrusal-denklemler/index.html?role=${role}&room=${roomCode}&pin=${pin}`;
         overlay.style.display = 'block';
@@ -2929,7 +2929,7 @@ oyunlarButton.addEventListener('click', (e) => {
                     if (oyun.link.includes('./')) {
                         // P2P Aktifse ve Tablet ise diğer tarafa geçiş komutu gönder ve URL parametrelerini ayarla
                         if (typeof myConnection !== 'undefined' && myConnection && isConnected && isTablet) {
-                            const roomCode = myConnection.peer || window.myRoomCode;
+                            const roomCode = myConnection.peer || myRoomCode;
                             const pin = window.sessionPassword || '';
                             finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;
                             

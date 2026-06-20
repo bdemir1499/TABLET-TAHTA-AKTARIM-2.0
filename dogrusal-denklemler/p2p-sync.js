@@ -20,21 +20,9 @@ const userRole = urlParams.get('role'); // 'tahta' veya 'tablet'
 const roomCode = urlParams.get('room');
 const sessionPin = urlParams.get('pin');
 
-// Geri Dön Butonu Ekle
+// Geri Dön Butonu İptal Edildi (Iframe üzerinden yönetiliyor)
 document.addEventListener('DOMContentLoaded', () => {
     if (userRole) {
-        const btn = document.createElement('button');
-        btn.innerHTML = "🔙 Ana Ekrana Dön";
-        btn.style.cssText = "position:fixed; top:10px; left:10px; z-index:9999; padding:10px 15px; background:#ef4444; color:white; font-weight:bold; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.3); border:none; cursor:pointer;";
-        btn.onclick = () => {
-            // P2P ile diğer tarafı da geri döndür
-            if (myConnection && isConnected) {
-                myConnection.send({ type: 'go_back' });
-            }
-            window.location.href = '../index.html';
-        };
-        document.body.appendChild(btn);
-
         // TAHTA ise Açılış Ekranını (Splash Screen) otomatik geç
         if (userRole === 'tahta') {
             const splashScreen = document.getElementById('splashScreen');

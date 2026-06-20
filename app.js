@@ -2824,9 +2824,11 @@ function openGameIframe() {
     const overlay = document.getElementById('game-overlay');
     const iframe = document.getElementById('game-iframe');
     if (overlay && iframe) {
-        const roomCode = typeof window.myRoomCode !== 'undefined' ? window.myRoomCode : '';
-        const pin = window.sessionPassword || '';
         const role = window.location.href.includes("tablet") ? "tablet" : "tahta";
+        const roomCode = (role === 'tablet' && typeof myConnection !== 'undefined' && myConnection && myConnection.peer) 
+            ? myConnection.peer 
+            : (typeof window.myRoomCode !== 'undefined' ? window.myRoomCode : '');
+        const pin = window.sessionPassword || '';
         iframe.src = `./dogrusal-denklemler/index.html?role=${role}&room=${roomCode}&pin=${pin}`;
         overlay.style.display = 'block';
     }

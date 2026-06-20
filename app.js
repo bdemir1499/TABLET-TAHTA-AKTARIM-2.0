@@ -5972,7 +5972,7 @@ function setupConnectionEvents() {
             if (!d) return;
 
             // --- YENİ OYUNA P2P GEÇİŞ (TAHTA) ---
-            if (d.type === 'navigate_game' && d.link) {
+            if (d.type === 'navigate_game' && d.link) { window._isNavigating = true;
                 // Tahta mesajı aldı, hemen Tablet'e "aldım, sen de geç" onayını gönder:
                 if (typeof myConnection !== 'undefined' && myConnection) {
                     myConnection.send({ type: 'navigate_ack' });
@@ -5986,7 +5986,7 @@ function setupConnectionEvents() {
             }
 
             // --- TABLET ONAYI ALDIYSA GEÇİŞİ TAMAMLA ---
-            if (d.type === 'navigate_ack') {
+            if (d.type === 'navigate_ack') { window._isNavigating = true;
                 if (window._pendingNavigation) {
                     const goLink = window._pendingNavigation;
                     window._pendingNavigation = null;
@@ -6867,7 +6867,7 @@ if (!data || !data.type) return;
             statusEl.style.color = "#ff4444";
         }
         // Bağlantı koptuğunda sayfayı yenilemek en garantili çözümdür:
-        setTimeout(() => { location.reload(); }, 2000);
+        setTimeout(() => { if (!window._isNavigating) { location.reload(); } }, 2000);
     });
 
     // --- SİHİRLİ EŞİTLEME (İKİ PENCERE İÇİN ISRARCI VE ZIRHLI VERSİYON) ---

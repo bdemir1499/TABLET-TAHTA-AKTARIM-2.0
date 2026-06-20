@@ -36,8 +36,10 @@
 
 /* Input alanlarına metin seçim izni geri ver */
 input, textarea {
-    -webkit-user-select: text;
-    user-select: text;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    touch-action: auto !important;
+    pointer-events: auto !important;
 }
 
 /* =========================================

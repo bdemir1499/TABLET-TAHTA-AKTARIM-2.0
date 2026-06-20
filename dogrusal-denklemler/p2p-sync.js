@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // P2P Başlat
 if (userRole === 'tahta' && roomCode) {
     // TAHTA: Odayı kuran taraf (Host)
-    myPeer = new Peer(roomCode, askeriKalkan);
+    myPeer = new Peer(roomCode + '-game', askeriKalkan);
 
     myPeer.on('open', (id) => {
         console.log("Tahta P2P Hazır. Oda Kodu:", id);
@@ -70,7 +70,7 @@ if (userRole === 'tahta' && roomCode) {
     myPeer.on('open', (id) => {
         console.log("Tablet P2P Hazır. Bağlanılıyor:", roomCode);
         
-        myConnection = myPeer.connect(roomCode, {
+        myConnection = myPeer.connect(roomCode + '-game', {
             metadata: { password: sessionPin }
         });
 

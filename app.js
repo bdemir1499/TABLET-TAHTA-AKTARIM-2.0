@@ -2886,6 +2886,12 @@ oyunlarButton.addEventListener('click', (e) => {
                             const pin = window.sessionPassword || '';
                             finalLink = `${oyun.link}?role=tablet&room=${roomCode}&pin=${pin}`;
                             myConnection.send({ type: 'navigate_game', link: oyun.link });
+                            
+                            // MESAJIN GİTMESİ İÇİN 500ms BEKLE (CRITICAL RACE CONDITION FIX)
+                            setTimeout(() => {
+                                window.location.href = finalLink;
+                            }, 500);
+                            return;
                         }
                         // İÇ OYUNLAR HER ZAMAN AYNI SEKMEYİ GÜNCELLER (YENİ SEKME AÇMAZ)
                         window.location.href = finalLink;

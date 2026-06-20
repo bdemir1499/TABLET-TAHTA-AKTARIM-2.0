@@ -22,19 +22,7 @@ const sessionPin = urlParams.get('pin');
 
 // Geri Dön Butonu İptal Edildi (Iframe üzerinden yönetiliyor)
 document.addEventListener('DOMContentLoaded', () => {
-    if (userRole) {
-        // TAHTA ise Açılış Ekranını (Splash Screen) otomatik geç
-        if (userRole === 'tahta') {
-            const splashScreen = document.getElementById('splashScreen');
-            const appElement = document.getElementById('app');
-            if (splashScreen && appElement) {
-                splashScreen.classList.add('hidden');
-                splashScreen.style.display = 'none';
-                appElement.classList.remove('hidden');
-                appElement.style.display = 'flex';
-            }
-        }
-    }
+    // Splash screen (açılış ekranı) artık Tahta'da da gösterilecek
 });
 
 // P2P Başlat

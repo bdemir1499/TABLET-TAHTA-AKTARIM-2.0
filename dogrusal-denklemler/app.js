@@ -9225,7 +9225,7 @@ window.setupStraightLineDrawing = function() {
     }
 
     const startDraw = function(e) {
-        if (gameState.mode !== 'linear_graph_draw') return;
+        if (!['linear_graph_draw', 'x_eq_a', 'y_eq_b', 'y_eq_ax'].includes(gameState.mode)) return;
         if (e && e.type && e.type.startsWith('touch') && e.cancelable) e.preventDefault();
         
         isDrawing = true;
@@ -9249,6 +9249,7 @@ window.setupStraightLineDrawing = function() {
         tempLine.setAttribute('stroke-linecap', 'round');
         tempLine.setAttribute('stroke-dasharray', '8,5'); 
         tempLine.setAttribute('id', 'rubber-line');
+        tempLine.classList.add('user-drawn-line');
         
         canvas.appendChild(tempLine);
     };
@@ -9284,7 +9285,17 @@ window.setupStraightLineDrawing = function() {
             y: parseFloat(tempLine.getAttribute('y1'))
         };
 
-        checkDrawingLogic(start, end);
+        if (['x_eq_a', 'y_eq_b', 'y_eq_ax'].includes(gameState.mode)) {
+            linearState.drawnPoints = [start, end];
+            const checkBtn = document.getElementById('checkBtn');
+            if (checkBtn) {
+                checkBtn.disabled = false;
+                checkBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'hidden');
+                checkBtn.style.display = 'block';
+            }
+        } else {
+            checkDrawingLogic(start, end);
+        }
     };
 
     // P2P'den gelen çizim verilerini işleyecek fonksiyon
@@ -9305,6 +9316,7 @@ window.setupStraightLineDrawing = function() {
             tempLine.setAttribute('stroke-linecap', 'round');
             tempLine.setAttribute('stroke-dasharray', '8,5'); 
             tempLine.setAttribute('id', 'rubber-line');
+            tempLine.classList.add('user-drawn-line');
             canvas.appendChild(tempLine);
         } else if (payload.action === 'move') {
             if (!isDrawing || !tempLine) return;
@@ -9319,7 +9331,17 @@ window.setupStraightLineDrawing = function() {
                 x: parseFloat(tempLine.getAttribute('x1')),
                 y: parseFloat(tempLine.getAttribute('y1'))
             };
-            checkDrawingLogic(start, payload.coords);
+            if (['x_eq_a', 'y_eq_b', 'y_eq_ax'].includes(gameState.mode)) {
+                linearState.drawnPoints = [start, payload.coords];
+                const checkBtn = document.getElementById('checkBtn');
+                if (checkBtn) {
+                    checkBtn.disabled = false;
+                    checkBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'hidden');
+                    checkBtn.style.display = 'block';
+                }
+            } else {
+                checkDrawingLogic(start, payload.coords);
+            }
         }
     };
 

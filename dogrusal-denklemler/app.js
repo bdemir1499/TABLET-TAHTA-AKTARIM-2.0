@@ -2219,8 +2219,19 @@ function showGraphQuestion() {
     const optionsContainer = document.getElementById('graphQuestionOptions');
     optionsContainer.innerHTML = '';
     
-    // Shuffle options
-    const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+    // Deterministic shuffle (Fisher-Yates with a simple seed based on question text)
+    // Bu sayede tablet ve tahtada (farklı tarayıcı motorları olsa bile) şıklar KESİNLİKLE aynı sırada çıkar.
+    const shuffledOptions = [...question.options];
+    let seed = 0;
+    for (let i = 0; i < question.text.length; i++) {
+        seed += question.text.charCodeAt(i);
+    }
+    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        seed = (seed * 9301 + 49297) % 233280;
+        const j = Math.floor((seed / 233280) * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+    }
+
     shuffledOptions.forEach(option => {
         const btn = document.createElement('button');
         btn.className = 'option-button px-2 py-1.5 bg-white border-2 border-purple-400 text-purple-900 rounded-lg text-xs font-bold hover:bg-purple-50 transition-all';

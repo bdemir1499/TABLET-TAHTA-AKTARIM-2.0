@@ -2965,28 +2965,37 @@ document.getElementById('tableConfirmBtn').addEventListener('click', function() 
 
 function initializeLinearCanvas() {
     const linearCanvas = document.getElementById('linearCanvas');
-    linearCanvas.innerHTML = '';
+    linearCanvas.innerHTML = ''; // Temizle
+    
+    // Y-Ekseni ölçeğini sıfırla
+    if(typeof linearState !== 'undefined') linearState.yScale = 1;
 
-    const LINEAR_SIZE = 500;
     const LINEAR_GRID = 50;
     const LINEAR_ORIGIN = { x: 50, y: 450 };
+    const EKSEN_UZUNLUGU = 8; // 8 kare çizelim
 
     // --- IZGARA ---
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    for (let i = 0; i <= 9; i++) {
+    
+    // Dikey çizgiler
+    for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
         const x = LINEAR_ORIGIN.x + i * LINEAR_GRID;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', LINEAR_ORIGIN.y);
-        line.setAttribute('x2', x); line.setAttribute('y2', 50);
-        line.setAttribute('stroke', '#6b7280'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('x2', x); line.setAttribute('y2', LINEAR_ORIGIN.y - (EKSEN_UZUNLUGU * LINEAR_GRID));
+        line.setAttribute('stroke', '#e5e7eb'); // Çok hafif gri
+        line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
-    for (let i = 0; i <= 9; i++) {
+    
+    // Yatay çizgiler
+    for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
         const y = LINEAR_ORIGIN.y - i * LINEAR_GRID;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', LINEAR_ORIGIN.x); line.setAttribute('y1', y);
-        line.setAttribute('x2', LINEAR_ORIGIN.x + 9 * LINEAR_GRID); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#6b7280'); line.setAttribute('stroke-width', '1');
+        line.setAttribute('x2', LINEAR_ORIGIN.x + (EKSEN_UZUNLUGU * LINEAR_GRID)); line.setAttribute('y2', y);
+        line.setAttribute('stroke', '#e5e7eb');
+        line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     linearCanvas.appendChild(gridGroup);
@@ -2994,61 +3003,57 @@ function initializeLinearCanvas() {
     // --- EKSENLER ---
     const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     xAxis.setAttribute('x1', LINEAR_ORIGIN.x); xAxis.setAttribute('y1', LINEAR_ORIGIN.y);
-    xAxis.setAttribute('x2', LINEAR_ORIGIN.x + 9 * LINEAR_GRID); xAxis.setAttribute('y2', LINEAR_ORIGIN.y);
+    xAxis.setAttribute('x2', LINEAR_ORIGIN.x + EKSEN_UZUNLUGU * LINEAR_GRID); xAxis.setAttribute('y2', LINEAR_ORIGIN.y);
     xAxis.setAttribute('stroke', '#374151'); xAxis.setAttribute('stroke-width', '3');
     linearCanvas.appendChild(xAxis);
 
     const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     yAxis.setAttribute('x1', LINEAR_ORIGIN.x); yAxis.setAttribute('y1', LINEAR_ORIGIN.y);
-    yAxis.setAttribute('x2', LINEAR_ORIGIN.x); yAxis.setAttribute('y2', 50);
+    yAxis.setAttribute('x2', LINEAR_ORIGIN.x); yAxis.setAttribute('y2', LINEAR_ORIGIN.y - EKSEN_UZUNLUGU * LINEAR_GRID);
     yAxis.setAttribute('stroke', '#374151'); yAxis.setAttribute('stroke-width', '3');
     linearCanvas.appendChild(yAxis);
 
     // Oklar
     const xArrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    xArrow.setAttribute('points', `${LINEAR_ORIGIN.x + 9 * LINEAR_GRID},${LINEAR_ORIGIN.y} ${LINEAR_ORIGIN.x + 9 * LINEAR_GRID - 10},${LINEAR_ORIGIN.y - 5} ${LINEAR_ORIGIN.x + 9 * LINEAR_GRID - 10},${LINEAR_ORIGIN.y + 5}`);
+    xArrow.setAttribute('points', `${LINEAR_ORIGIN.x + EKSEN_UZUNLUGU * LINEAR_GRID},${LINEAR_ORIGIN.y} ${LINEAR_ORIGIN.x + EKSEN_UZUNLUGU * LINEAR_GRID - 10},${LINEAR_ORIGIN.y - 5} ${LINEAR_ORIGIN.x + EKSEN_UZUNLUGU * LINEAR_GRID - 10},${LINEAR_ORIGIN.y + 5}`);
     xArrow.setAttribute('fill', '#374151');
     linearCanvas.appendChild(xArrow);
 
     const yArrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    yArrow.setAttribute('points', `${LINEAR_ORIGIN.x},50 ${LINEAR_ORIGIN.x - 5},60 ${LINEAR_ORIGIN.x + 5},60`);
+    yArrow.setAttribute('points', `${LINEAR_ORIGIN.x},${LINEAR_ORIGIN.y - EKSEN_UZUNLUGU * LINEAR_GRID} ${LINEAR_ORIGIN.x - 5},${LINEAR_ORIGIN.y - EKSEN_UZUNLUGU * LINEAR_GRID + 10} ${LINEAR_ORIGIN.x + 5},${LINEAR_ORIGIN.y - EKSEN_UZUNLUGU * LINEAR_GRID + 10}`);
     yArrow.setAttribute('fill', '#374151');
     linearCanvas.appendChild(yArrow);
 
     // X Ekseni Sayıları
-    for (let i = 0; i <= 9; i++) {
+    for (let i = 1; i <= EKSEN_UZUNLUGU; i++) {
         const x = LINEAR_ORIGIN.x + i * LINEAR_GRID;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', x); text.setAttribute('y', LINEAR_ORIGIN.y + 20);
-        text.setAttribute('text-anchor', 'middle'); text.setAttribute('font-size', '14');
-        text.setAttribute('font-weight', 'bold'); text.setAttribute('fill', '#1f2937');
+        text.setAttribute('text-anchor', 'middle'); text.setAttribute('font-size', '13');
+        text.setAttribute('font-weight', 'bold'); text.setAttribute('fill', '#4b5563');
         text.textContent = i;
         linearCanvas.appendChild(text);
     }
 
-    // Y Ekseni Sayıları (Sadece Tablodakiler)
-    const yValuesToDisplay = [];
-    for (let i = 0; i < Math.min(4, linearState.tableData.length); i++) {
-        const val = linearState.tableData[i].calcY;
-        if (val !== undefined && !isNaN(val) && isFinite(val)) {
-            yValuesToDisplay.push(val);
-        }
+    // Y Ekseni Sayıları (Dinamik güncellenebilmesi için ID veriyoruz)
+    for (let i = 1; i <= EKSEN_UZUNLUGU; i++) {
+        const y = LINEAR_ORIGIN.y - i * LINEAR_GRID;
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('id', 'linear_y_label_' + i);
+        text.setAttribute('x', LINEAR_ORIGIN.x - 15); text.setAttribute('y', y + 4);
+        text.setAttribute('text-anchor', 'end'); text.setAttribute('font-size', '13');
+        text.setAttribute('font-weight', 'bold'); text.setAttribute('fill', '#4b5563');
+        text.textContent = i;
+        linearCanvas.appendChild(text);
     }
-    yValuesToDisplay.forEach(yVal => {
-        const scaledY = yVal / linearState.yScale;
-        if (scaledY >= 0 && scaledY <= 9) {
-            const y = LINEAR_ORIGIN.y - scaledY * LINEAR_GRID;
-            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', LINEAR_ORIGIN.x - 25); text.setAttribute('y', y + 5);
-            text.setAttribute('text-anchor', 'middle'); text.setAttribute('font-size', '13');
-            text.setAttribute('font-weight', 'bold'); text.setAttribute('fill', '#1f2937');
-            const displayValue = Math.round(yVal * 100) / 100;
-            text.textContent = displayValue;
-            linearCanvas.appendChild(text);
-        }
-    });
-
-    // (Eski pointerdown/move/up kodları buradan SİLİNDİ)
+    
+    // Orijin '0'
+    const text0 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text0.setAttribute('x', LINEAR_ORIGIN.x - 15); text0.setAttribute('y', LINEAR_ORIGIN.y + 20);
+    text0.setAttribute('text-anchor', 'end'); text0.setAttribute('font-size', '13');
+    text0.setAttribute('font-weight', 'bold'); text0.setAttribute('fill', '#4b5563');
+    text0.textContent = '0';
+    linearCanvas.appendChild(text0);
 }
 
 
@@ -8965,13 +8970,15 @@ function canliGrafikCiz() {
     const eskiNoktalar = canvas.querySelectorAll('.user-preview-dot');
     eskiNoktalar.forEach(dot => dot.remove());
 
-    // Koordinat Sistemi Ayarları (Oyun motorunla uyumlu)
+    // Koordinat Sistemi Ayarları
     const ORJIN_X = 50;
     const ORJIN_Y = 450;
-    const BIRIM = 50; // Her kare 50px
-    const SCALE = (typeof linearState !== 'undefined' && linearState.yScale) ? linearState.yScale : 1;
+    const BIRIM = 50; 
+    
+    // 1. Maksimum Y Değerini Bul (Ölçekleme için)
+    let maxY = 0;
+    let noktalarToDraw = [];
 
-    // Tablodaki Tüm Dolu Satırları Oku
     for (let i = 0; i < 5; i++) {
         const xKutu = document.getElementById('table_input_x_' + i);
         const yKutu = document.getElementById('table_input_y_' + i);
@@ -8980,31 +8987,69 @@ function canliGrafikCiz() {
             let valX = xKutu.textContent.replace('?', '').trim();
             let valY = yKutu.textContent.replace('?', '').trim();
 
-            // Eğer "150 - 1x10 = 140" formatındaysa sadece = sonrasını al
             if (valX.includes('=')) valX = valX.split('=').pop().trim();
             if (valY.includes('=')) valY = valY.split('=').pop().trim();
 
             if (valX !== '' && valY !== '' && !isNaN(valX) && !isNaN(valY)) {
                 let x = parseFloat(valX);
                 let y = parseFloat(valY);
-
-                // Koordinata Çevir
-                let cx = ORJIN_X + (x * BIRIM);     // X sağa artar
-                let cy = ORJIN_Y - (y * BIRIM);     // Y yukarı artar (SVG'de eksi)
-
-                // Noktayı Çiz (Görsel)
-                const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                dot.setAttribute('cx', cx);
-                dot.setAttribute('cy', cy);
-                dot.setAttribute('r', 6);
-                dot.setAttribute('fill', '#f59e0b'); // Turuncu renk (Henüz onaylanmamış)
-                dot.setAttribute('stroke', 'white');
-                dot.setAttribute('stroke-width', '2');
-                dot.classList.add('user-preview-dot'); // Temizlemek için sınıf
-                canvas.appendChild(dot);
+                maxY = Math.max(maxY, Math.abs(y));
+                noktalarToDraw.push({x, y});
             }
         }
     }
+
+    // 2. Ölçeği Hesapla
+    let stepY = 1;
+    if (maxY > 8) {
+        let hamStep = maxY / 8;
+        if (hamStep <= 2) stepY = 2;
+        else if (hamStep <= 5) stepY = 5;
+        else if (hamStep <= 10) stepY = 10;
+        else if (hamStep <= 20) stepY = 20;
+        else if (hamStep <= 50) stepY = 50;
+        else stepY = Math.ceil(hamStep / 10) * 10;
+    }
+    
+    if (typeof linearState !== 'undefined') linearState.yScale = stepY;
+
+    // 3. Y Ekseni Etiketlerini Güncelle (Mevcut grafiği SİLMEDEN)
+    for (let i = 1; i <= 8; i++) {
+        const label = document.getElementById('linear_y_label_' + i);
+        if (label) {
+            label.textContent = i * stepY;
+        }
+    }
+
+    // 4. Noktaları Çiz
+    noktalarToDraw.forEach(p => {
+        let cx = ORJIN_X + (p.x * BIRIM);
+        let cy = ORJIN_Y - ((p.y / stepY) * BIRIM);
+
+        // Grafik dışına taşmaları engellemek için opsiyonel kontrol
+        if (cy >= 0 && cy <= ORJIN_Y) {
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('cx', cx);
+            dot.setAttribute('cy', cy);
+            dot.setAttribute('r', 6);
+            dot.setAttribute('fill', '#f59e0b');
+            dot.setAttribute('stroke', 'white');
+            dot.setAttribute('stroke-width', '2');
+            dot.classList.add('user-preview-dot');
+            canvas.appendChild(dot);
+            
+            // Koordinat etiketi ekle (opsiyonel ama şık durur)
+            const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            lbl.setAttribute('x', cx + 10);
+            lbl.setAttribute('y', cy - 10);
+            lbl.setAttribute('font-size', '11');
+            lbl.setAttribute('fill', '#4b5563');
+            lbl.setAttribute('font-weight', 'bold');
+            lbl.textContent = `(${p.x}, ${p.y})`;
+            lbl.classList.add('user-preview-dot');
+            canvas.appendChild(lbl);
+        }
+    });
 }
 
 // ---------------------------------------------------------
@@ -9177,281 +9222,7 @@ function styleWrong(el) {
     el.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
 }
 
-// =================================================================
-// 🧠 AKILLI GRAFİK MOTORU (AUTO-SCALE)
-// =================================================================
-// Bu fonksiyon, tablodaki en büyük değere göre grafiği yeniden ölçekler.
-
-window.canliGrafikCiz = function() {
-    console.log("🎨 Grafik Ölçekleniyor ve Çiziliyor...");
-    const canvas = document.getElementById('linearCanvas');
-    if (!canvas) return;
-
-    // 1. TABLODAKİ MAKSİMUM DEĞERİ BUL
-    let maxVal = 0;
-    let noktalar = []; // Geçerli noktaları burada toplayalım
-
-    for (let i = 0; i < 10; i++) {
-        const xKutu = document.getElementById('table_input_x_' + i);
-        const yKutu = document.getElementById('table_input_y_' + i);
-
-        if (xKutu && yKutu) {
-            let valX = xKutu.textContent.replace('?', '').trim();
-            let valY = yKutu.textContent.replace('?', '').trim();
-
-            if (valX !== '' && valY !== '' && !isNaN(valX) && !isNaN(valY)) {
-                let x = parseFloat(valX);
-                let y = parseFloat(valY);
-                
-                // En büyük mutlak değeri bul (Negatifler de grafiği büyütmeli)
-                maxVal = Math.max(maxVal, Math.abs(x), Math.abs(y));
-                noktalar.push({x: x, y: y});
-            }
-        }
-    }
-
-    // 2. ÖLÇEK BELİRLE (STEP HESAPLAMA)
-    // Grafiğimizde yaklaşık 8-10 karelik yer var.
-    // Eğer max değer 8 ise, her kare 1 birim olsun.
-    // Eğer max değer 80 ise, her kare 10 birim olsun.
-    
-    let step = 1;
-    if (maxVal > 8) {
-        let hamStep = maxVal / 8; 
-        // Sayıları güzelleştir (1, 2, 5, 10, 20, 50 katları gibi)
-        if (hamStep <= 2) step = 2;
-        else if (hamStep <= 5) step = 5;
-        else if (hamStep <= 10) step = 10;
-        else step = Math.ceil(hamStep / 10) * 10; // 20, 30, 40...
-    }
-
-    // Global State'e kaydet (Çizgi çizerken lazım olacak)
-    if(typeof linearState !== 'undefined') linearState.currentScaleStep = step;
-
-    // 3. TUVALİ TEMİZLE VE YENİDEN ÇİZ
-    canvas.innerHTML = ''; // Her şeyi sil
-    canvas.setAttribute('viewBox', '0 0 500 500');
-
-    // Sabitler
-    const ORJIN_X = 50;  // Sol alt köşe başlangıcı (L şeklinde grafik için)
-    const ORJIN_Y = 450; 
-    const KARE_BOYUTU = 50; // Piksel cinsinden kare boyutu
-    const EKSEN_UZUNLUGU = 9; // Kaç kare çizilsin?
-
-    // --- A) IZGARAYI VE SAYILARI ÇİZ ---
-    for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
-        // Hesaplanan sayı değeri (0, 10, 20... veya 0, 1, 2...)
-        let labelDeger = i * step;
-        let pikselKonum = i * KARE_BOYUTU;
-
-        // Dikey Çizgiler (X Ekseni Izgarası)
-        let vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        vLine.setAttribute('x1', ORJIN_X + pikselKonum); vLine.setAttribute('y1', ORJIN_Y);
-        vLine.setAttribute('x2', ORJIN_X + pikselKonum); vLine.setAttribute('y2', ORJIN_Y - (EKSEN_UZUNLUGU * KARE_BOYUTU));
-        vLine.setAttribute('stroke', '#6b7280'); // Orijin koyu, diğerleri açık
-        vLine.setAttribute('stroke-width', i===0 ? '2' : '1');
-        canvas.appendChild(vLine);
-
-        // Yatay Çizgiler (Y Ekseni Izgarası)
-        let hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        hLine.setAttribute('x1', ORJIN_X); hLine.setAttribute('y1', ORJIN_Y - pikselKonum);
-        hLine.setAttribute('x2', ORJIN_X + (EKSEN_UZUNLUGU * KARE_BOYUTU)); hLine.setAttribute('y2', ORJIN_Y - pikselKonum);
-        hLine.setAttribute('stroke', '#6b7280');
-        hLine.setAttribute('stroke-width', i===0 ? '2' : '1');
-        canvas.appendChild(hLine);
-
-        // Sayıları Yaz (0 hariç)
-        if (i > 0) {
-            // X Ekseni Sayıları
-            let textX = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            textX.setAttribute('x', ORJIN_X + pikselKonum); 
-            textX.setAttribute('y', ORJIN_Y + 20);
-            textX.setAttribute('text-anchor', 'middle');
-            textX.setAttribute('font-size', '12');
-            textX.setAttribute('fill', '#6b7280');
-            textX.textContent = labelDeger;
-            canvas.appendChild(textX);
-
-            // Y Ekseni Sayıları
-            let textY = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            textY.setAttribute('x', ORJIN_X - 10); 
-            textY.setAttribute('y', ORJIN_Y - pikselKonum + 4);
-            textY.setAttribute('text-anchor', 'end');
-            textY.setAttribute('font-size', '12');
-            textY.setAttribute('fill', '#6b7280');
-            textY.textContent = labelDeger;
-            canvas.appendChild(textY);
-        }
-    }
-    
-    // Orijin "0" Yazısı
-    let textO = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    textO.setAttribute('x', ORJIN_X - 10); textO.setAttribute('y', ORJIN_Y + 20);
-    textO.textContent = "0";
-    textO.setAttribute('fill', '#6b7280');
-    textO.setAttribute('font-weight', 'bold');
-    canvas.appendChild(textO);
-
-    // --- B) NOKTALARI ÇİZ ---
-    noktalar.forEach(p => {
-        // Koordinat Dönüşümü: (Değer / Step) * KareBoyutu
-        // Örn: Değer=20, Step=10 ise -> 2. kareye (100px) git.
-        let cx = ORJIN_X + (p.x / step) * KARE_BOYUTU;
-        let cy = ORJIN_Y - (p.y / step) * KARE_BOYUTU;
-
-        // Nokta (Turuncu Önizleme)
-        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dot.setAttribute('cx', cx);
-        dot.setAttribute('cy', cy);
-        dot.setAttribute('r', 6);
-        dot.setAttribute('fill', '#f59e0b'); // Turuncu
-        dot.setAttribute('stroke', 'white');
-        dot.setAttribute('stroke-width', '2');
-        dot.classList.add('user-preview-dot');
-        
-        // Animasyonlu giriş
-        dot.innerHTML = `<animate attributeName="r" from="0" to="6" dur="0.3s" fill="freeze" />`;
-        
-        canvas.appendChild(dot);
-    });
-};
-
-// =================================================================
-// 📏 SADECE Y-EKSENİ ÖLÇEKLERİ (AUTO-SCALE Y ONLY)
-// =================================================================
-
-window.canliGrafikCiz = function() {
-    console.log("🎨 Grafik: Y-Ekseni Ölçekleniyor...");
-    const canvas = document.getElementById('linearCanvas');
-    if (!canvas) return;
-
-    // 1. TABLODAKİ MAKSİMUM Y DEĞERİNİ BUL
-    let maxY = 0;
-    let noktalar = []; 
-
-    for (let i = 0; i < 10; i++) {
-        const xKutu = document.getElementById('table_input_x_' + i);
-        const yKutu = document.getElementById('table_input_y_' + i);
-
-        if (xKutu && yKutu) {
-            let valX = xKutu.textContent.replace('?', '').trim();
-            let valY = yKutu.textContent.replace('?', '').trim();
-
-            if (valX !== '' && valY !== '' && !isNaN(valX) && !isNaN(valY)) {
-                let x = parseFloat(valX);
-                let y = parseFloat(valY);
-                
-                // Sadece Y için maksimum değeri takip et
-                maxY = Math.max(maxY, Math.abs(y));
-                noktalar.push({x: x, y: y});
-            }
-        }
-    }
-
-    // 2. Y-EKSENİ İÇİN ÖLÇEK BELİRLE (X her zaman 1 kalacak)
-    let stepY = 1;
-    if (maxY > 8) {
-        let hamStepY = maxY / 8; 
-        if (hamStepY <= 2) stepY = 2;
-        else if (hamStepY <= 5) stepY = 5;
-        else if (hamStepY <= 10) stepY = 10;
-        else if (hamStepY <= 20) stepY = 20;
-        else if (hamStepY <= 25) stepY = 25;
-        else if (hamStepY <= 50) stepY = 50;
-        else if (hamStepY <= 100) stepY = 100;
-        else stepY = Math.ceil(hamStepY / 10) * 10;
-    }
-
-    // Hafızaya kaydet (Çizim kontrolü için çok kritik!)
-    if(typeof linearState !== 'undefined') {
-        linearState.yScale = stepY; 
-        linearState.xScale = 1; // X sabit 1
-    }
-
-    // 3. ÇİZİM ALANINI HAZIRLA
-    canvas.innerHTML = ''; 
-    canvas.setAttribute('viewBox', '0 0 500 500');
-
-    const ORJIN_X = 50;
-    const ORJIN_Y = 450; 
-    const KARE_BOYUTU = 50; 
-    const EKSEN_UZUNLUGU = 8; 
-
-    // --- A) IZGARA VE EKSEN ETİKETLERİNİ ÇİZ ---
-    for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
-        let pikselKonum = i * KARE_BOYUTU;
-
-        // DIKEY IZGARA (X ekseni değerleri için - Her zaman 1'er 1'er artar)
-        let vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        vLine.setAttribute('x1', ORJIN_X + pikselKonum); vLine.setAttribute('y1', ORJIN_Y);
-        vLine.setAttribute('x2', ORJIN_X + pikselKonum); vLine.setAttribute('y2', ORJIN_Y - (EKSEN_UZUNLUGU * KARE_BOYUTU));
-        vLine.setAttribute('stroke', '#6b7280');
-        vLine.setAttribute('stroke-width', i===0 ? '2' : '1');
-        canvas.appendChild(vLine);
-
-        // YATAY IZGARA (Y ekseni değerleri için - Dinamik ölçekli)
-        let hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        hLine.setAttribute('x1', ORJIN_X); hLine.setAttribute('y1', ORJIN_Y - pikselKonum);
-        hLine.setAttribute('x2', ORJIN_X + (EKSEN_UZUNLUGU * KARE_BOYUTU)); hLine.setAttribute('y2', ORJIN_Y - pikselKonum);
-        hLine.setAttribute('stroke', '#6b7280');
-        hLine.setAttribute('stroke-width', i===0 ? '2' : '1');
-        canvas.appendChild(hLine);
-
-        if (i > 0) {
-            // X Etiketleri (1, 2, 3...)
-            let textX = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            textX.setAttribute('x', ORJIN_X + pikselKonum); 
-            textX.setAttribute('y', ORJIN_Y + 20);
-            textX.setAttribute('text-anchor', 'middle');
-            textX.setAttribute('font-size', '12');
-            textX.setAttribute('font-weight', 'bold');
-            textX.setAttribute('fill', '#6b7280');
-            textX.textContent = i; // Sabit 1-8 arası
-            canvas.appendChild(textX);
-
-            // Y Etiketleri (Ölçeklenmiş: 10, 20, 30... gibi)
-            let textY = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            textY.setAttribute('x', ORJIN_X - 10); 
-            textY.setAttribute('y', ORJIN_Y - pikselKonum + 4);
-            textY.setAttribute('text-anchor', 'end');
-            textY.setAttribute('font-size', '12');
-            textY.setAttribute('font-weight', 'bold');
-            textY.setAttribute('fill', '#6b7280');
-            textY.textContent = i * stepY; 
-            canvas.appendChild(textY);
-        }
-    }
-
-    // --- B) NOKTALARI ÇİZ ---
-    noktalar.forEach(p => {
-        // X koordinatı her zaman 1 birim üzerinden hesaplanır
-        let cx = ORJIN_X + (p.x * KARE_BOYUTU);
-        // Y koordinatı dinamik ölçek (stepY) üzerinden hesaplanır
-        let cy = ORJIN_Y - (p.y / stepY) * KARE_BOYUTU;
-
-        // Sadece grafik alanı içindeyse çiz (Taşmaları engellemek için opsiyonel)
-        if (cx >= ORJIN_X && cy <= ORJIN_Y) {
-            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            dot.setAttribute('cx', cx);
-            dot.setAttribute('cy', cy);
-            dot.setAttribute('r', 7);
-            dot.setAttribute('fill', '#f59e0b');
-            dot.setAttribute('stroke', 'white');
-            dot.setAttribute('stroke-width', '2');
-            dot.classList.add('user-preview-dot');
-            canvas.appendChild(dot);
-            
-            // Koordinat Balonu (Küçük yazı)
-            const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            label.setAttribute('x', cx + 10); label.setAttribute('y', cy - 10);
-            label.setAttribute('font-size', '11');
-            label.setAttribute('fill', '#4b5563');
-            label.textContent = `(${p.x}, ${p.y})`;
-            label.classList.add('user-preview-dot'); // Temizlenirken gitsin
-            canvas.appendChild(label);
-        }
-    });
-};
+// Diğer canliGrafikCiz fonksiyonları temizlendi. Üstteki nihai versiyon kullanılacak.
 
 // ==========================================
 // 🎯 SVG MATRIX COORDINATE SYSTEM (v5 - KESİN ÇÖZÜM)

@@ -2058,7 +2058,20 @@ document.getElementById('graphToQuestionBtn').addEventListener('click', function
     startGraphToQuestion();
 });
 
+function resetLinearQuestionPanel() {
+    const panel = document.getElementById('linearQuestionPanel');
+    if (panel && panel.parentElement === document.body) {
+        const slopePanel = document.getElementById('slopeQuestionPanel');
+        if(slopePanel) slopePanel.parentElement.insertBefore(panel, slopePanel);
+    }
+    if (panel) {
+        panel.style.cssText = '';
+        panel.className = 'bg-gradient-to-br from-purple-100 to-indigo-100 border-2 border-purple-400 rounded-lg p-3 hidden w-full min-h-[100px] flex-col justify-center items-center';
+    }
+}
+
 function startLinearQuestion() {
+    resetLinearQuestionPanel();
     // 1. Önce ekrandaki eski bildirimi temizle
     const feedback = document.getElementById('feedback');
     feedback.style.opacity = '0';
@@ -2156,6 +2169,7 @@ function startGraphToQuestion() {
 // Y = ax + b Modunu Başlat
 function startYeqAXplusBRound() {
     console.log("Y=ax+b Modu Başlıyor...");
+    resetLinearQuestionPanel();
     
     // 1. Eski bildirimleri temizle
     const feedback = document.getElementById('feedback');
@@ -4418,6 +4432,7 @@ function decimalToFraction(val) {
 // 1. Modu Başlatan Fonksiyon
 function startYeqAXRound() {
     console.log("Y=ax Modu Başlıyor...");
+    resetLinearQuestionPanel();
     
     // Eski bildirimleri temizle
     const feedback = document.getElementById('feedback');

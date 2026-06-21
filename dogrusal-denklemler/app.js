@@ -7799,6 +7799,7 @@ function refreshLinearGraphPoints() {
     // HAYATİ: Çizim motorunun farenin yerini doğru bulması için ölçeği hafızaya kaydet
     if (typeof linearState !== 'undefined') {
         linearState.yScale = scaleY;
+        linearState.xScale = scaleX;
     }
 
     // 1. Bölge Izgara (0'dan 8'e kadar, çünkü 8*50=400px tam sığar)
@@ -9003,6 +9004,10 @@ window.confirmTableAndStartDrawing = function() {
             m = scenario.m;
             b = scenario.b;
         } 
+        else if (scenario.rate !== undefined && scenario.initialValue !== undefined) {
+            m = scenario.rate;
+            b = scenario.initialValue;
+        }
         // B) Verilmemişse, senaryodaki "Points" listesinden hesapla
         else {
             let rawData = scenario.points || scenario.tableData || (scenario.lines ? scenario.lines[0].points : []);
@@ -9029,6 +9034,9 @@ window.confirmTableAndStartDrawing = function() {
     }
 
     console.log(`📏 Bulunan Formül: y = ${m}x + ${b}`);
+    if (m !== null && typeof linearState !== 'undefined') {
+        linearState.correctM = m;
+    }
 
     // 2. Tablodaki Değerleri Kontrol Et
     let hepsiDogru = true;
@@ -9320,23 +9328,34 @@ window.setupStraightLineDrawing = function() {
 function checkDrawingLogic(start, end) {
     // Mevcut dinamik ölçeği al
     const stepY = (typeof linearState !== 'undefined') ? (linearState.yScale || 1) : 1;
+    const stepX = (typeof linearState !== 'undefined') ? (linearState.xScale || 1) : 1;
     
     // Çizgi noktalarını matematiksel değere çevir
-    const v1 = { x: (start.x - 50) / 50, y: (450 - start.y) / 50 * stepY };
-    const v2 = { x: (end.x - 50) / 50, y: (450 - end.y) / 50 * stepY };
+    const v1 = { x: (start.x - 50) / 50 * stepX, y: (450 - start.y) / 50 * stepY };
+    const v2 = { x: (end.x - 50) / 50 * stepX, y: (450 - end.y) / 50 * stepY };
 
     // Senaryodaki gerçek eğimi hesapla
-    const scenario = linearState.currentScenario;
-    const data = scenario.points || scenario.tableData || (scenario.lines ? scenario.lines[0].points : []);
-    let p1 = data[0]; let p2 = data[1];
-    let sX1 = p1.x || p1[0]; let sY1 = p1.y || p1[1];
-    let sX2 = p2.x || p2[0]; let sY2 = p2.y || p2[1];
-    const correctM = (sY2 - sY1) / (sX2 - sX1);
+    let correctM = (typeof linearState !== 'undefined') ? linearState.correctM : undefined;
+    
+    if (correctM === undefined) {
+        const scenario = (typeof linearState !== 'undefined') ? linearState.currentScenario : null;
+        if (scenario && scenario.rate !== undefined) {
+            correctM = scenario.rate;
+        } else if (scenario) {
+            const data = scenario.points || scenario.tableData || (scenario.lines ? scenario.lines[0].points : []);
+            if (data && data.length >= 2) {
+                let p1 = data[0]; let p2 = data[1];
+                let sX1 = p1.x || p1[0]; let sY1 = p1.y || p1[1];
+                let sX2 = p2.x || p2[0]; let sY2 = p2.y || p2[1];
+                correctM = (sY2 - sY1) / (sX2 - sX1);
+            }
+        }
+    }
     
     const userM = (v2.y - v1.y) / (v2.x - v1.x);
 
     // EĞİM KONTROLÜ
-    if (Math.abs(userM - correctM) < 0.4) {
+    if (correctM !== undefined && !isNaN(correctM) && Math.abs(userM - correctM) < 0.4) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
         document.getElementById('rubber-line').setAttribute('stroke', '#10b981'); // Yeşil
 

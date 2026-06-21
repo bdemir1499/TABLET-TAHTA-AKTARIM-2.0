@@ -2251,19 +2251,6 @@ function drawScenarioGraph(scenario) {
     const canvas = document.getElementById('graphQuestionCanvas');
     canvas.innerHTML = '';
     
-    // --- YENİ AYARLAR (Daha geniş alan) ---
-    const CANVAS_WIDTH = 700;
-    const CANVAS_HEIGHT = 600;
-    
-    // Canvas'ı ölçekle (Responsive)
-    canvas.setAttribute('viewBox', `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`);
-    canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-    
-    // Orijini biraz daha içeri al (Yazılar sığsın diye)
-    // x: 100 (Soldan boşluk), y: 500 (Yukarıdan boşluk - Grafik tabanı)
-    const ORIGIN = { x: 100, y: 500 }; 
-    const GRID_SIZE = 50;
-    
     const isTwoLineScenario = scenario.lines !== undefined;
 
     // Y Ekseni Hesaplamaları
@@ -2273,14 +2260,29 @@ function drawScenarioGraph(scenario) {
         yMax = scenario.yMax;
         ySteps = Math.ceil((yMax - yMin) / scenario.yStep);
     } else {
-        yMin = scenario.yStart;
+        yMin = scenario.yStart || 0;
         yMax = scenario.yMax;
         ySteps = Math.ceil((yMax - yMin) / scenario.yStep) + 1;
     }
 
     // X Ekseni Hesaplamaları
     const xStep = scenario.xStep || 1;
-    const xSteps = scenario.xMax / xStep;
+    const xSteps = Math.ceil(scenario.xMax / xStep);
+
+    // --- DİNAMİK AYARLAR ---
+    const GRID_SIZE = 50;
+    const paddingLeft = 100;
+    const paddingRight = 100;
+    const paddingTop = 80;
+    const paddingBottom = 80;
+
+    const CANVAS_WIDTH = paddingLeft + (xSteps * GRID_SIZE) + paddingRight;
+    const CANVAS_HEIGHT = paddingTop + (ySteps * GRID_SIZE) + paddingBottom;
+    const ORIGIN = { x: paddingLeft, y: CANVAS_HEIGHT - paddingBottom };
+
+    // Canvas'ı ölçekle (Responsive)
+    canvas.setAttribute('viewBox', `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`);
+    canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
     // --- IZGARA ÇİZİMİ ---
     // Dikey Çizgiler

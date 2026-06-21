@@ -9053,6 +9053,9 @@ window.confirmTableAndStartDrawing = function() {
         if (txtX === '' || txtY === '') continue;
         doluSatirSayisi++;
 
+        if (txtX.includes('=')) txtX = txtX.split('=').pop().trim();
+        if (txtY.includes('=')) txtY = txtY.split('=').pop().trim();
+
         let userX = parseFloat(txtX);
         let userY = parseFloat(txtY);
         let rowCorrect = false;

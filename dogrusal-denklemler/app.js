@@ -2164,15 +2164,17 @@ function startYeqAXplusBRound() {
 
     gameState.mode = 'y_eq_ax_plus_b';
     
-    // Rastgele Eğim ve Sabit
+    // Rastgele Eğim ve Sabit (Senkronize)
     const slopes = [1, -1, 2, -2, 3, -3]; 
     const intercepts = [-4, -3, -2, -1, 1, 2, 3, 4];
 
-    let newSlope, newIntercept;
-    do { 
-        newSlope = slopes[Math.floor(Math.random() * slopes.length)];
-        newIntercept = intercepts[Math.floor(Math.random() * intercepts.length)];
-    } while (newSlope === gameState.targetSlope && newIntercept === gameState.targetIntercept);
+    window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
+    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
+    let sIndex = (seedVal + window.gameLogicCounter * 17) % slopes.length;
+    let iIndex = (seedVal + window.gameLogicCounter * 19) % intercepts.length;
+
+    let newSlope = slopes[sIndex];
+    let newIntercept = intercepts[iIndex];
     
     gameState.targetSlope = newSlope;
     gameState.targetIntercept = newIntercept;
@@ -3489,11 +3491,12 @@ function startXeqARound() {
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     if(document.getElementById('drawInstructionText')) document.getElementById('drawInstructionText').classList.remove('hidden');
     
-    // 6. Soru Mantığı
+    // 6. Soru Mantığı (Senkronize)
     const targets = [4, -3, 2, -5, 3, -2, 5, -4];
-    let newTarget;
-    do { newTarget = targets[Math.floor(Math.random() * targets.length)]; } 
-    while (newTarget === gameState.targetLineValue && targets.length > 1);
+    window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
+    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
+    let tIndex = (seedVal + window.gameLogicCounter * 7) % targets.length;
+    let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
     // 7. METNİ GÜNCELLE
@@ -3562,11 +3565,12 @@ function startYeqBRound() {
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     if(document.getElementById('drawInstructionText')) document.getElementById('drawInstructionText').classList.remove('hidden');
     
-    // 6. Soru Mantığı
+    // 6. Soru Mantığı (Senkronize)
     const targets = [3, -2, 4, -3, 2, -5, 5, -4];
-    let newTarget;
-    do { newTarget = targets[Math.floor(Math.random() * targets.length)]; } 
-    while (newTarget === gameState.targetLineValue && targets.length > 1);
+    window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
+    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
+    let tIndex = (seedVal + window.gameLogicCounter * 11) % targets.length;
+    let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
     // 7. METNİ GÜNCELLE
@@ -4410,11 +4414,12 @@ function startYeqAXRound() {
 
     gameState.mode = 'y_eq_ax';
     
-    // Rastgele Eğim Belirle
+    // Rastgele Eğim Belirle (Senkronize)
     const slopes = [2, -2, 3, -3]; 
-    let newSlope;
-    do { newSlope = slopes[Math.floor(Math.random() * slopes.length)]; } 
-    while (newSlope === gameState.targetSlope);
+    window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
+    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
+    let sIndex = (seedVal + window.gameLogicCounter * 13) % slopes.length;
+    let newSlope = slopes[sIndex];
     gameState.targetSlope = newSlope;
     
     // UI (Arayüz) Hazırla

@@ -2812,6 +2812,66 @@ else if (activeInputTarget === 'slope_intercept') {
 });
 
 
+// --- Y=AX MODE OVERRIDE FOR NUMPAD CLOSE ---
+// We use a capturing event listener on the document to intercept the click
+// BEFORE the 3-second rogue interval listener can stop propagation!
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'numPadClose' && gameState.mode === 'y_eq_ax') {
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        
+        console.log("y=ax moduna özel Tamam tuşu yakalandı!");
+        
+        if (!linearState.currentCell) return;
+        const { row, col } = linearState.currentCell;
+        const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        
+        if (cell) {
+            const display = document.getElementById('currentInput');
+            let formula = display ? display.textContent.trim() : linearState.currentInputValue;
+            let calculatedResult = formula;
+            
+            try {
+                if (typeof evaluateMathExpression === 'function') {
+                    if (col === 'y') {
+                        const xVal = linearState.tableData[row].x; 
+                        calculatedResult = evaluateMathExpression(formula, xVal);
+                    } else {
+                        calculatedResult = evaluateMathExpression(formula, 0);
+                    }
+                }
+                
+                if (isNaN(calculatedResult) || !isFinite(calculatedResult)) throw new Error('Invalid');
+                
+                const displayResult = (typeof decimalToFraction === 'function') ? decimalToFraction(calculatedResult) : calculatedResult;
+                
+                if (col === 'x') linearState.tableData[row].x = calculatedResult;
+                if (col === 'y') linearState.tableData[row].y = calculatedResult;
+                linearState.tableData[row].calcY = calculatedResult;
+                
+                cell.textContent = displayResult;
+                
+                if (typeof updateLinearCanvas === 'function') {
+                    updateLinearCanvas(row, col, calculatedResult);
+                }
+                
+            } catch(err) {
+                console.log("Hesaplama hatası", err);
+                cell.textContent = formula;
+            }
+        }
+        
+        // Hide panel
+        document.getElementById('numberPad').classList.add('hidden');
+        linearState.currentInputValue = '';
+        if(document.getElementById('currentInput')) {
+            document.getElementById('currentInput').textContent = '';
+        }
+        linearState.currentCell = null;
+    }
+}, true); // TRUE = Capturing phase!
+
 function drawCoordinatePoint(row) {
     const linearCanvas = document.getElementById('linearCanvas');
     const rowData = linearState.tableData[row];

@@ -8232,7 +8232,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 // Sayılar ve Nokta
                 else {
-                    display.textContent += val;
+                    if (display.textContent.trim() === 'Değer girin' || display.textContent.trim() === '?') {
+                        display.textContent = val;
+                    } else {
+                        display.textContent += val;
+                    }
                 }
                 
                 // State'i güncelle

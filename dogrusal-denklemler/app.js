@@ -1317,8 +1317,8 @@ function checkGraphAnswer() {
 
 function checkAnswer() {
     // Check if we're in linear mode
-    if (gameState.mode === 'questionToGraph') {
-        checkLinearGraph();
+    if (gameState.mode === 'questionToGraph' || gameState.mode === 'linear_graph_draw' || gameState.mode === 'linear_graph_table') {
+        if (gameState.mode === 'questionToGraph') checkLinearGraph();
         return;
     }
 
@@ -9439,21 +9439,24 @@ function finalDogrulamaYap() {
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         if (kutu.id.startsWith('table_input_y_')) {
             const satir = kutu.id.split('_')[3];
-            const xVal = document.getElementById('table_input_x_' + satir).textContent.trim();
-            const yVal = kutu.textContent.trim();
-            if (xVal !== '?' && yVal !== '?') {
-                noktalar.push({ x: parseFloat(xVal), y: parseFloat(yVal) });
+            let xT = document.getElementById('table_input_x_' + satir).textContent.trim();
+            let yT = kutu.textContent.trim();
+            if (xT !== '?' && yT !== '?') {
+                if (xT.includes('=')) xT = xT.split('=').pop().trim();
+                if (yT.includes('=')) yT = yT.split('=').pop().trim();
+                noktalar.push({ x: parseFloat(xT), y: parseFloat(yT) });
             }
         }
     });
 
     // Çizginin matematiksel eğimini ve sabitini (y = mx + b) bul
-    const stepY = (typeof linearState !== 'undefined') ? linearState.yScale : 1;
+    const stepY = (typeof linearState !== 'undefined') ? (linearState.yScale || 1) : 1;
+    const stepX = (typeof linearState !== 'undefined') ? (linearState.xScale || 1) : 1;
     const ORJIN_X = 50; const ORJIN_Y = 450; const KARE = 50;
 
-    const x1 = (parseFloat(userLine.getAttribute('x1')) - ORJIN_X) / KARE;
+    const x1 = (parseFloat(userLine.getAttribute('x1')) - ORJIN_X) / KARE * stepX;
     const y1 = (ORJIN_Y - parseFloat(userLine.getAttribute('y1'))) / KARE * stepY;
-    const x2 = (parseFloat(userLine.getAttribute('x2')) - ORJIN_X) / KARE;
+    const x2 = (parseFloat(userLine.getAttribute('x2')) - ORJIN_X) / KARE * stepX;
     const y2 = (ORJIN_Y - parseFloat(userLine.getAttribute('y2'))) / KARE * stepY;
 
     const m = (y2 - y1) / (x2 - x1);

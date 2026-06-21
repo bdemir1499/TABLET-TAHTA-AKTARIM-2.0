@@ -3607,7 +3607,7 @@ function checkVerticalLine() {
             userLine.setAttribute('stroke-width', '6'); 
         }
         
-        setTimeout(() => { startXeqARound(); }, 2000);
+        window.roundTimer = setTimeout(() => { startXeqARound(); }, 2000);
     } else {
         playErrorSound();
         const feedback = document.getElementById('feedback');
@@ -3671,7 +3671,7 @@ function checkHorizontalLine() {
             userLine.setAttribute('stroke-width', '6'); 
         }
         
-        setTimeout(() => { startYeqBRound(); }, 2000);
+        window.roundTimer = setTimeout(() => { startYeqBRound(); }, 2000);
     } else {
         playErrorSound();
         const feedback = document.getElementById('feedback');
@@ -5288,7 +5288,7 @@ function startSlopeGraphRound() {
             feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-8 rounded-2xl shadow-2xl font-bold text-center bg-green-500 text-white z-[9999] border-4 border-white animate-bounce';
             feedback.style.opacity = '1';
             playSuccessSound();
-            setTimeout(() => { feedback.style.opacity = '0'; slopeState.currentQuestion++; startSlopeGraphRound(); }, 3000);
+            window.roundTimer = setTimeout(() => { feedback.style.opacity = '0'; slopeState.currentQuestion++; startSlopeGraphRound(); }, 3000);
         });
     }
 
@@ -5675,7 +5675,7 @@ let q = slopeState.questions[slopeState.currentQuestion];
             document.getElementById('checkBtn').disabled = true;
             if (typeof animateStairsShow === 'function') animateStairsShow();
         } else {
-            setTimeout(() => {
+            window.roundTimer = setTimeout(() => {
                 slopeState.currentQuestion++;
                 // Hangi moddaysak onun başlatıcısını çağır
                 if (slopeState.activeMode === 'graph') {

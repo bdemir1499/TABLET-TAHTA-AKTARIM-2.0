@@ -2066,7 +2066,7 @@ function resetLinearQuestionPanel() {
     }
     if (panel) {
         panel.style.cssText = '';
-        panel.className = 'bg-gradient-to-br from-purple-100 to-indigo-100 border-2 border-purple-400 rounded-lg p-3 hidden w-full min-h-[100px] flex-col justify-center items-center';
+        panel.className = 'bg-gradient-to-br from-purple-100 to-indigo-100 border-2 border-purple-400 rounded-lg p-3 hidden w-64 min-h-[100px] flex-col justify-center items-center';
     }
 }
 

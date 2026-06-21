@@ -2169,9 +2169,13 @@ function startYeqAXplusBRound() {
     const intercepts = [-4, -3, -2, -1, 1, 2, 3, 4];
 
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
-    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
-    let sIndex = (seedVal + window.gameLogicCounter * 17) % slopes.length;
-    let iIndex = (seedVal + window.gameLogicCounter * 19) % intercepts.length;
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomCode = urlParams.get('room') || '123';
+    let roomSeed = 0;
+    for (let i = 0; i < roomCode.length; i++) roomSeed += roomCode.charCodeAt(i);
+
+    let sIndex = (roomSeed + window.gameLogicCounter * 17) % slopes.length;
+    let iIndex = (roomSeed + window.gameLogicCounter * 19) % intercepts.length;
 
     let newSlope = slopes[sIndex];
     let newIntercept = intercepts[iIndex];
@@ -3494,8 +3498,12 @@ function startXeqARound() {
     // 6. Soru Mantığı (Senkronize)
     const targets = [4, -3, 2, -5, 3, -2, 5, -4];
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
-    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
-    let tIndex = (seedVal + window.gameLogicCounter * 7) % targets.length;
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomCode = urlParams.get('room') || '123';
+    let roomSeed = 0;
+    for (let i = 0; i < roomCode.length; i++) roomSeed += roomCode.charCodeAt(i);
+
+    let tIndex = (roomSeed + window.gameLogicCounter * 7) % targets.length;
     let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
@@ -3568,8 +3576,12 @@ function startYeqBRound() {
     // 6. Soru Mantığı (Senkronize)
     const targets = [3, -2, 4, -3, 2, -5, 5, -4];
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
-    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
-    let tIndex = (seedVal + window.gameLogicCounter * 11) % targets.length;
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomCode = urlParams.get('room') || '123';
+    let roomSeed = 0;
+    for (let i = 0; i < roomCode.length; i++) roomSeed += roomCode.charCodeAt(i);
+
+    let tIndex = (roomSeed + window.gameLogicCounter * 11) % targets.length;
     let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
@@ -4417,8 +4429,12 @@ function startYeqAXRound() {
     // Rastgele Eğim Belirle (Senkronize)
     const slopes = [2, -2, 3, -3]; 
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
-    let seedVal = typeof gameSeed !== 'undefined' ? gameSeed : 1;
-    let sIndex = (seedVal + window.gameLogicCounter * 13) % slopes.length;
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomCode = urlParams.get('room') || '123';
+    let roomSeed = 0;
+    for (let i = 0; i < roomCode.length; i++) roomSeed += roomCode.charCodeAt(i);
+
+    let sIndex = (roomSeed + window.gameLogicCounter * 13) % slopes.length;
     let newSlope = slopes[sIndex];
     gameState.targetSlope = newSlope;
     

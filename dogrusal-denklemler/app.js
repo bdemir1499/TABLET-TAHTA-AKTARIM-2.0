@@ -7540,6 +7540,9 @@ function showLinearGraphQuestion() {
         renderLinearTable(scenario); 
         
         // Boş grafiği (eksenlerle birlikte) çiz
+        if (typeof initializeLinearCanvas === 'function') {
+            initializeLinearCanvas();
+        }
         if (typeof canliGrafikCiz === 'function') {
             canliGrafikCiz();
         }
@@ -7680,18 +7683,18 @@ function renderLinearTable(scenario) {
     let dataPoints = linearState.currentDataPoints;
 
     let html = `
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-indigo-100 flex flex-col w-full min-w-[300px]">
+        <div class="bg-white p-2 rounded-xl shadow-sm border border-indigo-100 flex flex-col w-full">
             <div class="mb-4">
                 <h3 class="font-bold text-indigo-800 text-sm mb-1">Soru:</h3>
-                <p class="text-sm text-gray-800 font-medium bg-indigo-50 p-3 rounded-lg border border-indigo-100 shadow-inner leading-relaxed">
+                <p class="text-sm text-gray-800 font-medium bg-indigo-50 p-2 rounded-lg border border-indigo-100 shadow-inner leading-relaxed">
                     ${questionText}
                 </p>
             </div>
-            <table class="w-full text-sm mb-4 border-collapse">
+            <table class="w-full text-xs mb-4 border-collapse">
                 <thead>
                     <tr class="bg-indigo-600 text-white">
-                        <th class="border border-indigo-700 p-2 text-center w-1/2 rounded-tl-lg">${xLabel}</th>
-                        <th class="border border-indigo-700 p-2 text-center w-1/2 rounded-tr-lg">${yLabel}</th>
+                        <th class="border border-indigo-700 p-1 text-center w-1/2 rounded-tl-lg">${xLabel}</th>
+                        <th class="border border-indigo-700 p-1 text-center w-1/2 rounded-tr-lg">${yLabel}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -7700,17 +7703,17 @@ function renderLinearTable(scenario) {
     dataPoints.forEach((row, idx) => {
         html += `
             <tr>
-                <td class="border border-indigo-200 p-2 text-center bg-gray-50">
+                <td class="border border-indigo-200 p-1 text-center bg-gray-50">
                     <div id="table_input_x_${idx}" 
                          onclick="openTableInput('table_input_x_${idx}')"
-                         class="table-input-cell cursor-pointer bg-white border-2 border-dashed border-indigo-300 rounded p-1 min-h-[36px] flex items-center justify-center font-bold text-indigo-600 hover:bg-indigo-50 hover:border-indigo-500 transition-all text-lg shadow-sm w-full">
+                         class="table-input-cell cursor-pointer bg-white border-2 border-dashed border-indigo-300 rounded p-1 min-h-[30px] flex items-center justify-center font-bold text-indigo-600 hover:bg-indigo-50 hover:border-indigo-500 transition-all text-sm shadow-sm w-full">
                         ?
                     </div>
                 </td>
-                <td class="border border-indigo-200 p-2 text-center">
+                <td class="border border-indigo-200 p-1 text-center">
                     <div id="table_input_y_${idx}" 
                          onclick="openTableInput('table_input_y_${idx}')"
-                         class="table-input-cell cursor-pointer bg-white border-2 border-dashed border-indigo-300 rounded p-1 min-h-[36px] flex items-center justify-center font-bold text-indigo-600 hover:bg-indigo-50 hover:border-indigo-500 transition-all text-lg shadow-sm w-full">
+                         class="table-input-cell cursor-pointer bg-white border-2 border-dashed border-indigo-300 rounded p-1 min-h-[30px] flex items-center justify-center font-bold text-indigo-600 hover:bg-indigo-50 hover:border-indigo-500 transition-all text-sm shadow-sm w-full">
                         ?
                     </div>
                 </td>
@@ -8976,6 +8979,10 @@ function canliGrafikCiz() {
         if (xKutu && yKutu) {
             let valX = xKutu.textContent.replace('?', '').trim();
             let valY = yKutu.textContent.replace('?', '').trim();
+
+            // Eğer "150 - 1x10 = 140" formatındaysa sadece = sonrasını al
+            if (valX.includes('=')) valX = valX.split('=').pop().trim();
+            if (valY.includes('=')) valY = valY.split('=').pop().trim();
 
             if (valX !== '' && valY !== '' && !isNaN(valX) && !isNaN(valY)) {
                 let x = parseFloat(valX);
@@ -10755,7 +10762,16 @@ window.openTableInput = function(targetId) {
                             // Basit matematik çözücü
                             let cleanExpr = rawValue.replace(/x|×/g, '*').replace(/÷/g, '/').replace(/,/g, '.');
                             let solved = new Function(`return ${cleanExpr}`)();
-                            finalValue = (solved !== null && !isNaN(solved)) ? solved : rawValue;
+                            if (solved !== null && !isNaN(solved)) {
+                                // Sadece bir sayı değilse ve içinde işlem karakteri varsa '= X' ekle
+                                if (/[+\-*/]/.test(cleanExpr) && rawValue !== solved.toString()) {
+                                    finalValue = `${rawValue} = ${solved}`;
+                                } else {
+                                    finalValue = solved;
+                                }
+                            } else {
+                                finalValue = rawValue;
+                            }
                         } catch(err) { finalValue = rawValue; }
                     }
 

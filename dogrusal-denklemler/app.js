@@ -2812,6 +2812,23 @@ else if (activeInputTarget === 'slope_intercept') {
 });
 
 
+// --- Y=AX MODE OVERRIDE FOR NUMBER BUTTONS ---
+document.addEventListener('click', function(e) {
+    if (gameState.mode !== 'y_eq_ax') return;
+    
+    const btn = e.target.closest ? e.target.closest('.num-btn') : null;
+    if (btn) {
+        const display = document.getElementById('currentInput');
+        if (display && (display.textContent.trim() === 'Değer girin' || display.textContent.trim() === '?')) {
+            display.textContent = '';
+            if (typeof linearState !== 'undefined') {
+                linearState.currentInputValue = '';
+            }
+        }
+    }
+}, true);
+
+
 // --- Y=AX MODE OVERRIDE FOR NUMPAD CLOSE ---
 // We use a capturing event listener on the document to intercept the click
 // BEFORE the 3-second rogue interval listener can stop propagation!
@@ -2858,7 +2875,9 @@ document.addEventListener('click', function(e) {
                 
             } catch(err) {
                 console.log("Hesaplama hatası", err);
-                cell.textContent = formula;
+                if (formula !== 'Değer girin' && formula !== '?') {
+                    cell.textContent = formula;
+                }
             }
         }
         
@@ -8232,11 +8251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 // Sayılar ve Nokta
                 else {
-                    if (display.textContent.trim() === 'Değer girin' || display.textContent.trim() === '?') {
-                        display.textContent = val;
-                    } else {
-                        display.textContent += val;
-                    }
+                    display.textContent += val;
                 }
                 
                 // State'i güncelle

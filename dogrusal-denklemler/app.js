@@ -4974,6 +4974,7 @@ function startSlopeInclineRound() {
         `;
         document.getElementById('slopeAnswerBox').addEventListener('click', function() {
             activeInputTarget = 'slope_simple';
+            window.MASTER_TARGET = 'slopeAnswerBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = 'Değer girin';
             document.getElementById('numberPad').classList.remove('hidden');
@@ -4996,12 +4997,14 @@ function startSlopeInclineRound() {
         `;
         document.getElementById('slopeNumBox').addEventListener('click', function() {
             activeInputTarget = 'slope_conv_num';
+            window.MASTER_TARGET = 'slopeNumBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = 'Toplam Dikey';
             document.getElementById('numberPad').classList.remove('hidden');
         });
         document.getElementById('slopeDenomBox').addEventListener('click', function() {
             activeInputTarget = 'slope_conv_denom';
+            window.MASTER_TARGET = 'slopeDenomBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = 'Toplam Yatay';
             document.getElementById('numberPad').classList.remove('hidden');
@@ -5066,6 +5069,7 @@ function startSlopeInclineRound() {
         const uBox = document.getElementById('unknownBox');
         if(uBox) uBox.addEventListener('click', function() {
             activeInputTarget = 'slope_unknown';
+            window.MASTER_TARGET = 'unknownBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = 'Değer girin';
             document.getElementById('numberPad').classList.remove('hidden');
@@ -5074,6 +5078,7 @@ function startSlopeInclineRound() {
         const numBox = document.getElementById('slopeNumBox');
         if(numBox) numBox.addEventListener('click', function() {
             activeInputTarget = 'slope_conv_num'; 
+            window.MASTER_TARGET = 'slopeNumBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = 'Payı gir';
             document.getElementById('numberPad').classList.remove('hidden');
@@ -5082,6 +5087,7 @@ function startSlopeInclineRound() {
         const denomBox = document.getElementById('slopeDenomBox');
         if(denomBox) denomBox.addEventListener('click', function() {
             activeInputTarget = 'slope_conv_denom';
+            window.MASTER_TARGET = 'slopeDenomBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = 'Paydayı gir';
             document.getElementById('numberPad').classList.remove('hidden');
@@ -10034,6 +10040,15 @@ window.openTableInput = function(targetId) {
                     targetBox.textContent = finalValue;
                     targetBox.style.backgroundColor = "white";
                     targetBox.style.borderColor = "#e0e7ff";
+
+                    // --- YAMA: KONTROL BUTONUNU AÇ (Eğik Düzlem Kutuları İçin) ---
+                    if (['slopeAnswerBox', 'unknownBox', 'slopeNumBox', 'slopeDenomBox'].includes(window.MASTER_TARGET)) {
+                        const checkBtn = document.getElementById('checkBtn');
+                        if (checkBtn) {
+                            checkBtn.disabled = false;
+                            checkBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        }
+                    }
 
                     // --- HAFIZAYA (State) İŞLE ---
                     if (window.MASTER_TARGET.startsWith('table_input_')) {

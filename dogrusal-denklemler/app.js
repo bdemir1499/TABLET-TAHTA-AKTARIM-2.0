@@ -9355,7 +9355,7 @@ window.setupStraightLineDrawing = function() {
     }
 
     const startDraw = function(e) {
-        if (!['linear_graph_draw', 'x_eq_a', 'y_eq_b', 'y_eq_ax'].includes(gameState.mode)) return;
+        if (!['linear_graph_draw', 'x_eq_a', 'y_eq_b', 'y_eq_ax', 'y_eq_ax_plus_b'].includes(gameState.mode)) return;
         if (e && e.type && e.type.startsWith('touch') && e.cancelable) e.preventDefault();
         
         isDrawing = true;
@@ -9415,7 +9415,7 @@ window.setupStraightLineDrawing = function() {
             y: parseFloat(tempLine.getAttribute('y1'))
         };
 
-        if (['x_eq_a', 'y_eq_b', 'y_eq_ax'].includes(gameState.mode)) {
+        if (['x_eq_a', 'y_eq_b', 'y_eq_ax', 'y_eq_ax_plus_b'].includes(gameState.mode)) {
             linearState.drawnPoints = [start, end];
             const checkBtn = document.getElementById('checkBtn');
             if (checkBtn) {

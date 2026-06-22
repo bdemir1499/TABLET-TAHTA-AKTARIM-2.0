@@ -6580,7 +6580,6 @@ if (confirmBtn) {
         const numPad = document.getElementById('numberPad');
         if (numPad) {
             numPad.classList.add('hidden'); // Gizle
-            numPad.style.display = 'none';  // Zorla gizle
         }
         
         // Input değerini sıfırla
@@ -7516,7 +7515,6 @@ if (confirmBtn) {
             
             // 2. Sonra temiz bir şekilde gizliyoruz.
             numPad.classList.add('hidden');
-            numPad.style.display = 'none';
         }
         
         // --- TEMİZLİK ---

@@ -4969,7 +4969,7 @@ function startSlopeInclineRound() {
                 <span class="text-lg block mb-2">Eğimi Hesapla</span>
                 <span class="text-sm text-gray-500 font-normal">Dikey / Yatay</span>
             </div>
-            <div id="slopeAnswerBox" class="w-32 h-14 border-2 border-dashed border-indigo-400 rounded-xl flex items-center justify-center text-2xl font-bold text-indigo-600 bg-indigo-50 cursor-pointer hover:bg-indigo-100 transition-all shadow-sm">?</div>
+            <div id="slopeAnswerBox" class="w-48 h-14 border-2 border-dashed border-indigo-400 rounded-xl flex items-center justify-center text-2xl font-bold text-indigo-600 bg-indigo-50 cursor-pointer hover:bg-indigo-100 transition-all shadow-sm">?</div>
             <div class="text-xs text-gray-400 text-center">Kutuya tıkla ve değeri gir<br>(Örn: 4÷7)</div>
         `;
         document.getElementById('slopeAnswerBox').addEventListener('click', function() {
@@ -10024,6 +10024,10 @@ window.openTableInput = function(targetId) {
                             let cleanExpr = rawValue.replace(/x|×/g, '*').replace(/÷/g, '/').replace(/,/g, '.');
                             let solved = new Function(`return ${cleanExpr}`)();
                             if (solved !== null && !isNaN(solved)) {
+                                // Ondalık kısmı varsa en fazla 2 basamak göster
+                                if (solved % 1 !== 0) {
+                                    solved = parseFloat(solved.toFixed(2));
+                                }
                                 // Sadece bir sayı değilse ve içinde işlem karakteri varsa '= X' ekle
                                 if (/[+\-*/]/.test(cleanExpr) && rawValue !== solved.toString()) {
                                     finalValue = `${rawValue} = ${solved}`;

@@ -5409,6 +5409,11 @@ function startSlopeGraphRound() {
                     const displayVal = linearState.currentInputValue;
                     box.textContent = displayVal === '' ? '?' : displayVal;
                     box.style.color = displayVal === '' ? '' : '#4338ca';
+                    
+                    const currentInput = document.getElementById('currentInput');
+                    if (currentInput) {
+                        currentInput.textContent = displayVal;
+                    }
                 }
             }
         });

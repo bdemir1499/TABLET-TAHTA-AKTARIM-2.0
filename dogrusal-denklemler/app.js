@@ -4988,9 +4988,9 @@ function startSlopeInclineRound() {
             </div>
             <div class="flex items-center justify-center gap-4 text-2xl font-bold font-mono">
                 <div class="flex flex-col items-center gap-1">
-                    <div id="slopeNumBox" class="w-12 h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
+                    <div id="slopeNumBox" class="min-w-[80px] h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
                     <div class="border-b-2 border-indigo-900 w-full"></div>
-                    <div id="slopeDenomBox" class="w-12 h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
+                    <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
                 </div>
             </div>
             <div class="text-xs text-gray-400 text-center mt-3">Toplam Dikey / Toplam Yatay</div>
@@ -5017,9 +5017,9 @@ function startSlopeInclineRound() {
         if (q.slopeDisplay === '0,5') {
             leftSideHTML = `
                 <div class="flex flex-col items-center gap-1">
-                    <div id="slopeNumBox" class="w-12 h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
+                    <div id="slopeNumBox" class="min-w-[80px] h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
                     <div class="border-b-2 border-indigo-900 w-full"></div>
-                    <div id="slopeDenomBox" class="w-12 h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
+                    <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
                 </div>`;
             instructionText = "0,5'i kesre çevir (Örn: 1/2), sonra x'i bul";
         } 
@@ -5035,11 +5035,11 @@ function startSlopeInclineRound() {
         }
 
         let topContent = q.unknown === 'vertical' ? 
-            `<div id="unknownBox" class="w-12 h-10 border-2 border-dashed border-orange-500 bg-orange-50 text-orange-600 rounded cursor-pointer flex items-center justify-center hover:bg-orange-100">?</div>` : 
+            `<div id="unknownBox" class="min-w-[80px] h-10 border-2 border-dashed border-orange-500 bg-orange-50 text-orange-600 rounded cursor-pointer flex items-center justify-center hover:bg-orange-100">?</div>` : 
             `<span class="text-indigo-900">${q.h}</span>`;
 
         let bottomContent = q.unknown === 'horizontal' ? 
-            `<div id="unknownBox" class="w-12 h-10 border-2 border-dashed border-orange-500 bg-orange-50 text-orange-600 rounded cursor-pointer flex items-center justify-center hover:bg-orange-100">?</div>` : 
+            `<div id="unknownBox" class="min-w-[80px] h-10 border-2 border-dashed border-orange-500 bg-orange-50 text-orange-600 rounded cursor-pointer flex items-center justify-center hover:bg-orange-100">?</div>` : 
             `<span class="text-indigo-900">${q.w}</span>`;
 
         panelContent.innerHTML = `
@@ -5344,15 +5344,15 @@ function startSlopeGraphRound() {
                 ${slopeInfo}
                 <div class="flex items-center justify-center gap-3 mt-2">
                     <div class="flex flex-col items-center gap-1">
-                        <div class="w-12 h-10 bg-gray-200 text-gray-600 rounded flex items-center justify-center font-bold text-lg select-none">${targetVar}</div>
+                        <div class="min-w-[80px] h-10 bg-gray-200 text-gray-600 rounded flex items-center justify-center font-bold text-lg select-none">${targetVar}</div>
                         <div class="border-b-4 border-indigo-900 w-12 rounded-full my-1 opacity-80"></div>
-                        <div id="leftDenomBox" class="w-12 h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
+                        <div id="leftDenomBox" class="min-w-[80px] h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
                     </div>
                     <div class="text-2xl font-bold text-indigo-900">=</div>
                     <div class="flex flex-col items-center gap-1">
-                        <div id="slopeNumBox" class="w-12 h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
+                        <div id="slopeNumBox" class="min-w-[80px] h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
                         <div class="border-b-4 border-indigo-900 w-12 rounded-full my-1 opacity-80"></div>
-                        <div id="slopeDenomBox" class="w-12 h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
+                        <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
                     </div>
                 </div>
                 <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatık: <span class="text-red-500 font-bold text-sm">(-)</span></div>
@@ -6449,17 +6449,17 @@ window.startSlopeTwoPointsRound = function() {
                 
                 <div class="flex flex-col items-center">
                     <div class="flex items-center gap-1 mb-1">
-                        <div id="box_y2" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_y2" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                         <span class="text-xl font-bold text-gray-400">-</span>
-                        <div id="box_y1" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_y1" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                     </div>
                     
                     <div class="w-full h-1 bg-indigo-900 rounded-full my-0.5 opacity-80"></div>
                     
                     <div class="flex items-center gap-1 mt-1">
-                        <div id="box_x2" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_x2" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                         <span class="text-xl font-bold text-gray-400">-</span>
-                        <div id="box_x1" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_x1" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                     </div>
                 </div>
             </div>
@@ -6738,15 +6738,15 @@ window.startSlopeTwoPointsRound = function() {
                 <div class="text-3xl font-bold text-indigo-800 italic font-serif">m =</div>
                 <div class="flex flex-col items-center">
                     <div class="flex items-center gap-1 mb-1">
-                        <div id="box_y2" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_y2" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                         <span class="text-xl font-bold text-gray-400">-</span>
-                        <div id="box_y1" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_y1" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                     </div>
                     <div class="w-full h-1 bg-indigo-900 rounded-full my-0.5 opacity-80"></div>
                     <div class="flex items-center gap-1 mt-1">
-                        <div id="box_x2" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_x2" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                         <span class="text-xl font-bold text-gray-400">-</span>
-                        <div id="box_x1" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
+                        <div id="box_x1" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer hover:border-indigo-600 text-indigo-700">?</div>
                     </div>
                 </div>
             </div>
@@ -7149,15 +7149,15 @@ window.startSlopeTwoPointsRound = function() {
                     <div class="text-3xl font-bold text-indigo-800 italic font-serif">m =</div>
                     <div class="flex flex-col items-center">
                         <div class="flex items-center gap-1 mb-1">
-                            <div id="box_y2" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
+                            <div id="box_y2" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
                             <span class="text-xl font-bold text-gray-400">-</span>
-                            <div id="box_y1" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
+                            <div id="box_y1" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
                         </div>
                         <div class="w-full h-1 bg-indigo-900 rounded-full my-0.5 opacity-80"></div>
                         <div class="flex items-center gap-1 mt-1">
-                            <div id="box_x2" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
+                            <div id="box_x2" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
                             <span class="text-xl font-bold text-gray-400">-</span>
-                            <div id="box_x1" class="w-12 h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
+                            <div id="box_x1" class="min-w-[80px] h-10 bg-white border-2 border-dashed border-indigo-400 rounded flex items-center justify-center font-bold text-lg cursor-pointer text-indigo-700">?</div>
                         </div>
                     </div>
                 </div>

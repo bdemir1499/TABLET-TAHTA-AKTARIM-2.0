@@ -4976,7 +4976,7 @@ function startSlopeInclineRound() {
             activeInputTarget = 'slope_simple';
             window.MASTER_TARGET = 'slopeAnswerBox';
             linearState.currentInputValue = '';
-            document.getElementById('currentInput').textContent = 'Değer girin';
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
 
@@ -4999,14 +4999,14 @@ function startSlopeInclineRound() {
             activeInputTarget = 'slope_conv_num';
             window.MASTER_TARGET = 'slopeNumBox';
             linearState.currentInputValue = '';
-            document.getElementById('currentInput').textContent = 'Toplam Dikey';
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
         document.getElementById('slopeDenomBox').addEventListener('click', function() {
             activeInputTarget = 'slope_conv_denom';
             window.MASTER_TARGET = 'slopeDenomBox';
             linearState.currentInputValue = '';
-            document.getElementById('currentInput').textContent = 'Toplam Yatay';
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
     } else {
@@ -5071,7 +5071,7 @@ function startSlopeInclineRound() {
             activeInputTarget = 'slope_unknown';
             window.MASTER_TARGET = 'unknownBox';
             linearState.currentInputValue = '';
-            document.getElementById('currentInput').textContent = 'Değer girin';
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
 
@@ -5080,7 +5080,7 @@ function startSlopeInclineRound() {
             activeInputTarget = 'slope_conv_num'; 
             window.MASTER_TARGET = 'slopeNumBox';
             linearState.currentInputValue = '';
-            document.getElementById('currentInput').textContent = 'Payı gir';
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
 
@@ -5089,7 +5089,7 @@ function startSlopeInclineRound() {
             activeInputTarget = 'slope_conv_denom';
             window.MASTER_TARGET = 'slopeDenomBox';
             linearState.currentInputValue = '';
-            document.getElementById('currentInput').textContent = 'Paydayı gir';
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
     }

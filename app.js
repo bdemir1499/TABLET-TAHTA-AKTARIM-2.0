@@ -2797,16 +2797,38 @@ polygonButton.addEventListener('click', () => {
 });
 
 // --- OYUNLAR MENÜSÜ: YUKARI AÇILAN, SEVİMLİ VE SİLGİ KAPATAN SİSTEM ---
-// IFRAME OYUN MANTIĞI
+// DOĞRUSAL DENKLEMLER OYUNU MANTIĞI (P2P DESTEKLİ)
 if (dogrusalButton) {
     dogrusalButton.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         if (typeof setActiveTool === 'function') setActiveTool('none');
         
-        if (typeof myConnection !== 'undefined' && myConnection && window.isConnected) {
-            myConnection.send({ type: 'open_iframe' });
+        let finalLink = "./dogrusal-denklemler/index.html";
+        
+        // P2P Aktifse ve Tablet ise diğer tarafa geçiş komutu gönder ve URL parametrelerini ayarla
+        const isTablet = window.location.href.includes("tablet") || window._isExplicitTablet;
+        if (typeof myConnection !== 'undefined' && myConnection && window.isConnected && isTablet) {
+            const roomCode = myConnection.peer || window.myRoomCode;
+            const pin = window.sessionPassword || '';
+            finalLink = `${finalLink}?role=tablet&room=${roomCode}&pin=${pin}`;
+            
+            window._pendingNavigation = finalLink;
+            myConnection.send({ type: 'navigate_game', link: "./dogrusal-denklemler/index.html" });
+            
+            // ACK (Onay) GELMESİNİ BEKLE. Gelmezse 1500ms sonra zorla git (Ağ zayıfsa)
+            setTimeout(() => {
+                if (window._pendingNavigation) {
+                    const gLink = window._pendingNavigation;
+                    window._pendingNavigation = null;
+                    window.location.href = gLink;
+                }
+            }, 1500);
+            return;
         }
-        openGameIframe();
+        
+        // İÇ OYUNLAR HER ZAMAN AYNI SEKMEYİ GÜNCELLER (YENİ SEKME AÇMAZ)
+        window.location.href = finalLink;
     });
 }
 

@@ -5399,15 +5399,9 @@ function startSlopeGraphRound() {
             if (!btn) return;
             let val = btn.textContent.trim();
             if (val === 'Tamam' || btn.id === 'confirmInputBtn') { closePanelAndEnableCheck(); return; }
-            const isDelete = btn.querySelector('.fa-backspace') || val === 'Sil' || val === 'C' || btn.getAttribute('data-value') === 'clear';
-            if (isDelete) {
-                linearState.currentInputValue = linearState.currentInputValue.slice(0, -1);
-            } else if (val !== 'İptal') {
-                let inputChar = btn.getAttribute('data-value') || val;
-                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam') {
-                    linearState.currentInputValue += inputChar;
-                }
-            }
+            const isDelete = btn.querySelector('.fa-backspace') || val === 'Sil' || val === 'C';
+            if (isDelete) linearState.currentInputValue = linearState.currentInputValue.slice(0, -1);
+            else if (!isNaN(val) || val === '-') linearState.currentInputValue += val;
 
             if (currentActiveBoxId) {
                 const box = document.getElementById(currentActiveBoxId);
@@ -5475,14 +5469,21 @@ function startSlopeGraphRound() {
             const feedback = document.getElementById('feedback');
             const displayResult = typeof calculatedVal === 'number' && Number.isInteger(calculatedVal) ? calculatedVal : (calculatedVal ? calculatedVal.toFixed(2) : calculatedVal);
 
-            feedback.innerHTML = `
-                <div class="text-4xl mb-2">🎉</div><div class="font-bold text-2xl">Tebrikler!</div>
-                <div class="text-lg mt-2 font-mono bg-white text-purple-700 px-4 py-1 rounded">${finalMessage.split('=')[0]} = ${displayResult}</div>
-            `;
-            feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-8 rounded-2xl shadow-2xl font-bold text-center bg-green-500 text-white z-[9999] border-4 border-white animate-bounce';
-            feedback.style.opacity = '1';
-            playSuccessSound();
-            window.roundTimer = setTimeout(() => { feedback.style.opacity = '0'; slopeState.currentQuestion++; startSlopeGraphRound(); }, 3000);
+            if (calculatedVal === q.correctAnswer) {
+                feedback.innerHTML = `
+                    <div class="text-4xl mb-2">🎉</div><div class="font-bold text-2xl">Tebrikler!</div>
+                    <div class="text-lg mt-2 font-mono bg-white text-purple-700 px-4 py-1 rounded">${finalMessage.split('=')[0]} = ${displayResult}</div>
+                `;
+                feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-8 rounded-2xl shadow-2xl font-bold text-center bg-green-500 text-white z-[9999] border-4 border-white animate-bounce';
+                feedback.style.opacity = '1';
+                playSuccessSound();
+                window.roundTimer = setTimeout(() => { feedback.style.opacity = '0'; slopeState.currentQuestion++; startSlopeGraphRound(); }, 3000);
+            } else {
+                feedback.innerHTML = `<div class="text-4xl mb-2">❌</div><div class="font-bold text-2xl">Yanlış! Tekrar Dene.</div>`;
+                feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-8 rounded-2xl shadow-2xl font-bold text-center bg-red-500 text-white z-[9999] border-4 border-white animate-bounce';
+                feedback.style.opacity = '1';
+                setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
+            }
         });
     }
 
@@ -5493,9 +5494,9 @@ function startSlopeGraphRound() {
             activeInputTarget = targetName;
             currentActiveBoxId = boxId;
             window.MASTER_TARGET = boxId;
-            linearState.currentInputValue = ''; 
-            box.textContent = '?'; box.style.color = '';
-            document.getElementById('currentInput').textContent = '';
+            linearState.currentInputValue = box.textContent === '?' ? '' : box.textContent; 
+            document.getElementById('currentInput').textContent = linearState.currentInputValue || '';
+            box.style.color = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
     }
@@ -5536,21 +5537,6 @@ function startSlopeGraphRound() {
         // 3. Eksenler
         ctx.strokeStyle = "#374151"; ctx.lineWidth = 3; ctx.beginPath();
         ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
-
-        // 3.5 Eksen Numaraları
-        ctx.fillStyle = '#6b7280';
-        ctx.font = '10px Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        for(let i = 0; i <= w; i += scale) {
-            let unit = (i - cx) / scale;
-            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, i, cy + 12);
-        }
-        ctx.textAlign = 'right';
-        for(let i = 0; i <= h; i += scale) {
-            let unit = -(i - cy) / scale;
-            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, cx - 6, i);
-        }
 
         // 4. KIRMIZI DOĞRU (b'den 5'e YUKARI çıkan çizgi)
         // b noktası (Y ekseni, aşağıda) -> cy + 15*scale
@@ -9176,7 +9162,6 @@ setTimeout(function() {
 // C. CANLI GRAFİK ÇİZCİ (HER SAYI GİRİŞİNDE ÇALIŞIR)
 // ---------------------------------------------------------
 function canliGrafikCiz() {
-    if (typeof gameState !== 'undefined' && gameState.mode && gameState.mode.startsWith('slope_')) return;
     console.log("🎨 Grafik Güncelleniyor (refreshLinearGraphPoints'e yönlendirildi)...");
     if (typeof refreshLinearGraphPoints === 'function') {
         refreshLinearGraphPoints();

@@ -67,12 +67,11 @@ if (userRole === 'tahta' && roomCode) {
             console.log("Tahtaya bağlantı sağlandı!");
             isConnected = true;
             
-            // 1. Rastgelelik şifresi (seed) üret ve Tahtaya gönder
-            const newSeed = typeof window.generateTrueRandomSeed === 'function' ? window.generateTrueRandomSeed() : Math.floor(Math.random() * 1000000);
-            if (typeof window.setGameSeed === 'function') {
-                window.setGameSeed(newSeed);
-            }
-            myConnection.send({ type: 'sync_seed', seed: newSeed });
+            // 1. Orijinal Rastgelelik Şifresini (seed) Tahtaya gönder
+            // Tablet kendi seed'ini sıfırlamaz, kaldığı yerden devam eder.
+            // Tahta ise en baştan başlayıp bekleyen tıklamaları simüle ederek Tablet ile aynı duruma gelir.
+            const seedToSend = typeof window.getInitialGameSeed === 'function' ? window.getInitialGameSeed() : (typeof window.gameSeed !== 'undefined' ? window.gameSeed : Math.floor(Math.random() * 1000000));
+            myConnection.send({ type: 'sync_seed', seed: seedToSend });
 
             // Tablet hareketleri dinlemeye başlasın (Eğer bağlantıdan önce başlamadıysa)
             if (typeof setupShadowSyncSender === 'function' && !window.shadowSyncStarted) {

@@ -6051,6 +6051,20 @@ function setupConnectionEvents() {
                 return;
             }
 
+            // --- YENİ OYUNA P2P GEÇİŞ (TAHTA) ---
+            if (d.type === 'navigate_game' && d.link && !window._isNavigating) { window._isNavigating = true;
+                // Tahta mesajı aldı, hemen Tablet'e "aldım, sen de geç" onayını gönder:
+                if (typeof myConnection !== 'undefined' && myConnection) {
+                    try { myConnection.send({ type: 'navigate_ack' }); } catch(e) { console.error('ACK Gonderilemedi:', e); }
+                }
+                const roomCode = typeof myRoomCode !== 'undefined' ? myRoomCode : ''; 
+                const pin = window.sessionPassword || '';
+                const finalLink = `${d.link}?role=tahta&room=${roomCode}&pin=${pin}`;
+                // PC'nin yönlenmesini çok hafif geciktir ki ACK mesajı yola çıkabilsin
+                try { window.location.href = finalLink; } catch(e) { console.error(e); }
+                return;
+            }
+
             // --- TABLET ONAYI ALDIYSA GEÇİŞİ TAMAMLA ---
             if (d.type === 'navigate_ack') { window._isNavigating = true;
                 if (window._pendingNavigation) {

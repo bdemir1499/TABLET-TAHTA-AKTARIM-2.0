@@ -2816,7 +2816,7 @@ else if (activeInputTarget === 'slope_intercept') {
 
 // --- Y=AX MODE OVERRIDE FOR NUMBER BUTTONS ---
 document.addEventListener('click', function(e) {
-    if (gameState.mode !== 'y_eq_ax') return;
+    if (gameState.mode !== 'y_eq_ax' && gameState.mode !== 'y_eq_ax_plus_b') return;
     
     const btn = e.target.closest ? e.target.closest('.num-btn') : null;
     if (btn) {
@@ -2835,7 +2835,7 @@ document.addEventListener('click', function(e) {
 // We use a capturing event listener on the document to intercept the click
 // BEFORE the 3-second rogue interval listener can stop propagation!
 document.addEventListener('click', function(e) {
-    if (e.target && e.target.id === 'numPadClose' && gameState.mode === 'y_eq_ax') {
+    if (e.target && e.target.id === 'numPadClose' && (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b')) {
         e.stopPropagation();
         e.stopImmediatePropagation();
         e.preventDefault();
@@ -3871,7 +3871,7 @@ if (!window.originalInitializeLinearCanvas) {
 }
 
 window.initializeLinearCanvas = function() {
-    if (gameState.mode === 'y_eq_ax' || gameState.mode === 'x_eq_a' || gameState.mode === 'y_eq_b') {
+    if (gameState.mode === 'y_eq_ax' || gameState.mode === 'x_eq_a' || gameState.mode === 'y_eq_b' || gameState.mode === 'y_eq_ax_plus_b') {
         drawFullGridForAX(); 
     } else {
         if(window.originalInitializeLinearCanvas) window.originalInitializeLinearCanvas();

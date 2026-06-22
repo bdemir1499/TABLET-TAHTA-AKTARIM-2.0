@@ -5072,7 +5072,12 @@ function startSlopeInclineRound() {
             window.MASTER_TARGET = 'unknownBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = '';
-            document.getElementById('numberPad').classList.remove('hidden');
+            const pad = document.getElementById('numberPad');
+            if (pad) {
+                pad.classList.remove('hidden');
+                pad.style.display = 'flex';
+                pad.style.zIndex = '999999';
+            }
         });
 
         const numBox = document.getElementById('slopeNumBox');
@@ -5081,7 +5086,12 @@ function startSlopeInclineRound() {
             window.MASTER_TARGET = 'slopeNumBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = '';
-            document.getElementById('numberPad').classList.remove('hidden');
+            const pad = document.getElementById('numberPad');
+            if (pad) {
+                pad.classList.remove('hidden');
+                pad.style.display = 'flex';
+                pad.style.zIndex = '999999';
+            }
         });
 
         const denomBox = document.getElementById('slopeDenomBox');
@@ -5090,7 +5100,12 @@ function startSlopeInclineRound() {
             window.MASTER_TARGET = 'slopeDenomBox';
             linearState.currentInputValue = '';
             document.getElementById('currentInput').textContent = '';
-            document.getElementById('numberPad').classList.remove('hidden');
+            const pad = document.getElementById('numberPad');
+            if (pad) {
+                pad.classList.remove('hidden');
+                pad.style.display = 'flex';
+                pad.style.zIndex = '999999';
+            }
         });
     }
 

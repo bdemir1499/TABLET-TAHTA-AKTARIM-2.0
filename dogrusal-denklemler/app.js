@@ -1,13 +1,13 @@
-﻿// ğŸš¨ ALAN ADI KÄ°LÄ°DÄ° (DOMAIN BINDING) - ASKERÄ° DÃœZEY KORUMA ğŸš¨
+﻿// ÄŸÅ¸Å¡Â¨ ALAN ADI KÃ„Â°LÃ„Â°DÃ„Â° (DOMAIN BINDING) - ASKERÃ„Â° DÃƒÅ“ZEY KORUMA ÄŸÅ¸Å¡Â¨
 const gecerliAdresler = ["bdemir1499.github.io", "127.0.0.1", "localhost"];
 const mevcutAdres = window.location.hostname;
 const kacakKullanimMi = !gecerliAdresler.some(adres => mevcutAdres.includes(adres));
 if (kacakKullanimMi && mevcutAdres !== "") {
-    document.body.innerHTML = "<div style='color:red; text-align:center; margin-top:50px; font-family:sans-serif; font-size:20px; font-weight:bold;'>â›” GÃœVENLÄ°K Ä°HLALÄ°: Bu yazÄ±lÄ±m kopyalanmÄ±ÅŸtÄ±r. LÃ¼tfen orijinal adresi kullanÄ±n.</div>";
-    throw new Error("Korsan kullanÄ±m tespit edildi, sistem durduruldu!");
+    document.body.innerHTML = "<div style='color:red; text-align:center; margin-top:50px; font-family:sans-serif; font-size:20px; font-weight:bold;'>Ã¢â€ºâ€ GÃƒÅ“VENLÃ„Â°K Ã„Â°HLALÃ„Â°: Bu yazÃ„Â±lÃ„Â±m kopyalanmÃ„Â±Ã…Å¸tÃ„Â±r. LÃƒÂ¼tfen orijinal adresi kullanÃ„Â±n.</div>";
+    throw new Error("Korsan kullanÃ„Â±m tespit edildi, sistem durduruldu!");
 }
 
-// --- SAYFAYI YENÄ°LEYÄ°NCE (F5) ANA UYGULAMAYA DÃ–N (ARTÄ°STLÄ°K YAPMASIN) ---
+// --- SAYFAYI YENÃ„Â°LEYÃ„Â°NCE (F5) ANA UYGULAMAYA DÃƒâ€“N (ARTÃ„Â°STLÃ„Â°K YAPMASIN) ---
 const navEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
 const isReload = (navEntry && navEntry.type === "reload") || (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
 
@@ -15,21 +15,21 @@ if (isReload) {
     window.location.href = '../index.html';
 }
 
-// En tepeye, diÄŸer deÄŸiÅŸkenlerin (gameState vb.) yanÄ±na ekle:
-window.feedbackTimer = null; // Global zamanlayÄ±cÄ±
+// En tepeye, diÃ„Å¸er deÃ„Å¸iÃ…Å¸kenlerin (gameState vb.) yanÃ„Â±na ekle:
+window.feedbackTimer = null; // Global zamanlayÃ„Â±cÃ„Â±
 
 // ==========================================
-// --- GÃ–LGE SENKRONÄ°ZASYON Ä°Ã‡Ä°N ORTAK AKIL (PRNG) ---
+// --- GÃƒâ€“LGE SENKRONÃ„Â°ZASYON Ã„Â°Ãƒâ€¡Ã„Â°N ORTAK AKIL (PRNG) ---
 // ==========================================
-// Orijinal rastgeleliÄŸi sakla (GerÃ§ek rastgele bir baÅŸlangÄ±Ã§ ÅŸifresi Ã¼retmek iÃ§in)
+// Orijinal rastgeleliÃ„Å¸i sakla (GerÃƒÂ§ek rastgele bir baÃ…Å¸langÃ„Â±ÃƒÂ§ Ã…Å¸ifresi ÃƒÂ¼retmek iÃƒÂ§in)
 const nativeRandom = Math.random;
 
-// Tabletin ilk aÃ§Ä±lÄ±ÅŸÄ±nda tamamen eÅŸsiz bir ÅŸifre (seed) belirle
+// Tabletin ilk aÃƒÂ§Ã„Â±lÃ„Â±Ã…Å¸Ã„Â±nda tamamen eÃ…Å¸siz bir Ã…Å¸ifre (seed) belirle
 let gameSeed = Math.floor(nativeRandom() * 1000000000);
 
 window.setGameSeed = function(seed) {
     gameSeed = seed;
-    console.log("ğŸ² Ortak AkÄ±l (Rastgelelik) Åifresi AyarlandÄ±:", seed);
+    console.log("ÄŸÅ¸ÂÂ² Ortak AkÃ„Â±l (Rastgelelik) Ã…Âifresi AyarlandÃ„Â±:", seed);
 };
 
 // Math.random() fonksiyonunu deterministik PRNG fonksiyonumuzla (Mulberry32) eziyoruz
@@ -46,11 +46,11 @@ window.generateTrueRandomSeed = function() {
 
 
 const defaultConfig = {
-    game_title: "Koordinat Sistemi, DoÄŸrusal Ä°liÅŸkiler, DoÄŸrularÄ±n Grafikleri, DoÄŸru Denklemleri, EÄŸim, DÃ¶nÃ¼ÅŸÃ¼m Geometrisi",
-    instructions_text: "DÃ¶nÃ¼ÅŸÃ¼m tÃ¼rÃ¼nÃ¼ seÃ§ ve ÅŸeklin yeni kÃ¶ÅŸelerini iÅŸaretle",
-    translation_button: "Ã–teleme",
-    reflection_button: "YansÄ±ma",
-    new_shape_button: "Yeni Åekil",
+    game_title: "Koordinat Sistemi, DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler, DoÃ„Å¸rularÃ„Â±n Grafikleri, DoÃ„Å¸ru Denklemleri, EÃ„Å¸im, DÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m Geometrisi",
+    instructions_text: "DÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m tÃƒÂ¼rÃƒÂ¼nÃƒÂ¼ seÃƒÂ§ ve Ã…Å¸eklin yeni kÃƒÂ¶Ã…Å¸elerini iÃ…Å¸aretle",
+    translation_button: "Ãƒâ€“teleme",
+    reflection_button: "YansÃ„Â±ma",
+    new_shape_button: "Yeni Ã…Âekil",
     undo_button: "Geri Al",
     check_button: "Kontrol Et",
     primary_color: "#6366f1",
@@ -102,7 +102,7 @@ let linearState = {
 const linearQuestions = [
     {
         id: 1,
-        text: "Elif'in kumbarasÄ±nda 80 lira parasÄ± vardÄ±r ve her hafta kumbarasÄ±na 20 lira atmaktadÄ±r. GeÃ§en hafta sayÄ±sÄ± (x) ve kumbarada biriken para miktarÄ± (y) arasÄ±ndaki iliÅŸkinin tablo ve grafiÄŸini Ã§iziniz.",
+        text: "Elif'in kumbarasÃ„Â±nda 80 lira parasÃ„Â± vardÃ„Â±r ve her hafta kumbarasÃ„Â±na 20 lira atmaktadÃ„Â±r. GeÃƒÂ§en hafta sayÃ„Â±sÃ„Â± (x) ve kumbarada biriken para miktarÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
         xLabel: "Hafta (x)",
         yLabel: "Para (y)",
         initialValue: 80,
@@ -111,7 +111,7 @@ const linearQuestions = [
     },
     {
         id: 2,
-        text: "Bir otobÃ¼s her durakta 5 yolcu alÄ±yor. Durak sayÄ±sÄ± (x) ve otobÃ¼steki toplam yolcu sayÄ±sÄ± (y) arasÄ±ndaki iliÅŸkinin tablo ve grafiÄŸini Ã§iziniz.",
+        text: "Bir otobÃƒÂ¼s her durakta 5 yolcu alÃ„Â±yor. Durak sayÃ„Â±sÃ„Â± (x) ve otobÃƒÂ¼steki toplam yolcu sayÃ„Â±sÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
         xLabel: "Durak (x)",
         yLabel: "Yolcu (y)",
         initialValue: 0,
@@ -120,7 +120,7 @@ const linearQuestions = [
     },
     {
         id: 3,
-        text: "Bir kitaplÄ±kta 150 kitap vardÄ±r. Her ay 10 kitap satÄ±lmaktadÄ±r. GeÃ§en ay sayÄ±sÄ± (x) ve kalan kitap sayÄ±sÄ± (y) arasÄ±ndaki iliÅŸkinin tablo ve grafiÄŸini Ã§iziniz.",
+        text: "Bir kitaplÃ„Â±kta 150 kitap vardÃ„Â±r. Her ay 10 kitap satÃ„Â±lmaktadÃ„Â±r. GeÃƒÂ§en ay sayÃ„Â±sÃ„Â± (x) ve kalan kitap sayÃ„Â±sÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
         xLabel: "Ay (x)",
         yLabel: "Kitap (y)",
         initialValue: 150,
@@ -129,8 +129,8 @@ const linearQuestions = [
     },
     {
         id: 4,
-        text: "Ahmet her gÃ¼n 3 km koÅŸmaktadÄ±r. GÃ¼n sayÄ±sÄ± (x) ve toplam koÅŸulan mesafe (y) arasÄ±ndaki iliÅŸkinin tablo ve grafiÄŸini Ã§iziniz.",
-        xLabel: "GÃ¼n (x)",
+        text: "Ahmet her gÃƒÂ¼n 3 km koÃ…Å¸maktadÃ„Â±r. GÃƒÂ¼n sayÃ„Â±sÃ„Â± (x) ve toplam koÃ…Å¸ulan mesafe (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
+        xLabel: "GÃƒÂ¼n (x)",
         yLabel: "Mesafe (y)",
         initialValue: 0,
         rate: 3,
@@ -138,7 +138,7 @@ const linearQuestions = [
     },
     {
         id: 5,
-        text: "Bir su deposunda 200 litre su vardÄ±r. Her saat 15 litre su kullanÄ±lmaktadÄ±r. GeÃ§en saat sayÄ±sÄ± (x) ve depodaki su miktarÄ± (y) arasÄ±ndaki iliÅŸkinin tablo ve grafiÄŸini Ã§iziniz.",
+        text: "Bir su deposunda 200 litre su vardÃ„Â±r. Her saat 15 litre su kullanÃ„Â±lmaktadÃ„Â±r. GeÃƒÂ§en saat sayÃ„Â±sÃ„Â± (x) ve depodaki su miktarÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
         xLabel: "Saat (x)",
         yLabel: "Su (y)",
         initialValue: 200,
@@ -147,8 +147,8 @@ const linearQuestions = [
     },
     {
         id: 6,
-        text: "Bir aÄŸaÃ§ her yÄ±l 12 cm bÃ¼yÃ¼mektedir. YÄ±l sayÄ±sÄ± (x) ve aÄŸacÄ±n boyu (y) arasÄ±ndaki iliÅŸkinin tablo ve grafiÄŸini Ã§iziniz.",
-        xLabel: "YÄ±l (x)",
+        text: "Bir aÃ„Å¸aÃƒÂ§ her yÃ„Â±l 12 cm bÃƒÂ¼yÃƒÂ¼mektedir. YÃ„Â±l sayÃ„Â±sÃ„Â± (x) ve aÃ„Å¸acÃ„Â±n boyu (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
+        xLabel: "YÃ„Â±l (x)",
         yLabel: "Boy (cm) (y)",
         initialValue: 0,
         rate: 12,
@@ -162,9 +162,9 @@ const graphToQuestionScenarios = [
     {
         id: 1,
         graphType: 'plant_growth',
-        mainQuestion: 'Yandaki grafikte bir fidanÄ±n aylara gÃ¶re boy deÄŸiÅŸimi verilmiÅŸtir. Buna gÃ¶re;',
+        mainQuestion: 'Yandaki grafikte bir fidanÃ„Â±n aylara gÃƒÂ¶re boy deÃ„Å¸iÃ…Å¸imi verilmiÃ…Å¸tir. Buna gÃƒÂ¶re;',
         yAxisLabel: 'Bitkinin Boyu (cm)',
-        xAxisLabel: 'SÃ¼re (ay)',
+        xAxisLabel: 'SÃƒÂ¼re (ay)',
         yStart: 25,
         yStep: 3,
         yMax: 40,
@@ -180,31 +180,31 @@ const graphToQuestionScenarios = [
         questions: [
             {
                 id: 'a',
-                text: 'a) Fidan dikildiÄŸinde boyu kaÃ§ santimetredir?',
+                text: 'a) Fidan dikildiÃ„Å¸inde boyu kaÃƒÂ§ santimetredir?',
                 correctAnswer: '25 cm',
                 options: ['25 cm', '28 cm', '22 cm', '30 cm']
             },
             {
                 id: 'b',
-                text: 'b) Bu fidan bir ayda kaÃ§ cm uzamaktadÄ±r?',
+                text: 'b) Bu fidan bir ayda kaÃƒÂ§ cm uzamaktadÃ„Â±r?',
                 correctAnswer: '3 cm',
                 options: ['3 cm', '2 cm', '4 cm', '5 cm']
             },
             {
                 id: 'c',
-                text: 'c) Bu fidanÄ±n boyu (y) ve sÃ¼reye (x) baÄŸlÄ± doÄŸrusal denklemini yazÄ±nÄ±z.',
+                text: 'c) Bu fidanÃ„Â±n boyu (y) ve sÃƒÂ¼reye (x) baÃ„Å¸lÃ„Â± doÃ„Å¸rusal denklemini yazÃ„Â±nÃ„Â±z.',
                 correctAnswer: 'y = 3x + 25',
                 options: ['y = 3x + 25', 'y = 2x + 25', 'y = 3x + 28', 'y = 4x + 25']
             },
             {
                 id: 'd',
-                text: 'd) 10. ayÄ±n sonunda fidanÄ±n boyu kaÃ§ cm dir?',
+                text: 'd) 10. ayÃ„Â±n sonunda fidanÃ„Â±n boyu kaÃƒÂ§ cm dir?',
                 correctAnswer: '55 cm',
                 options: ['55 cm', '58 cm', '52 cm', '60 cm']
             },
             {
                 id: 'e',
-                text: 'e) KaÃ§ ay sonra fidanÄ±n boyu 85 cm dir?',
+                text: 'e) KaÃƒÂ§ ay sonra fidanÃ„Â±n boyu 85 cm dir?',
                 correctAnswer: '20 ay',
                 options: ['20 ay', '18 ay', '22 ay', '25 ay']
             }
@@ -213,9 +213,9 @@ const graphToQuestionScenarios = [
     {
         id: 2,
         graphType: 'water_tank',
-        mainQuestion: 'Yandaki grafikte iÃ§inde 200 ton su olan bir havuzdan tarla sulamak iÃ§in saatlere gÃ¶re alÄ±nan su miktarÄ± verilmiÅŸtir. Buna gÃ¶re;',
+        mainQuestion: 'Yandaki grafikte iÃƒÂ§inde 200 ton su olan bir havuzdan tarla sulamak iÃƒÂ§in saatlere gÃƒÂ¶re alÃ„Â±nan su miktarÃ„Â± verilmiÃ…Å¸tir. Buna gÃƒÂ¶re;',
         yAxisLabel: 'Havuzdaki Su (ton)',
-        xAxisLabel: 'SÃ¼re (saat)',
+        xAxisLabel: 'SÃƒÂ¼re (saat)',
         yMin: 160,
         yMax: 200,
         yStep: 5,
@@ -230,31 +230,31 @@ const graphToQuestionScenarios = [
         questions: [
             {
                 id: 'a',
-                text: 'a) BaÅŸlangÄ±Ã§ta havuzda kaÃ§ ton su vardÄ±r?',
+                text: 'a) BaÃ…Å¸langÃ„Â±ÃƒÂ§ta havuzda kaÃƒÂ§ ton su vardÃ„Â±r?',
                 correctAnswer: '200 ton',
                 options: ['200 ton', '190 ton', '210 ton', '195 ton']
             },
             {
                 id: 'b',
-                text: 'b) Her saat kaÃ§ ton su alÄ±nmaktadÄ±r?',
+                text: 'b) Her saat kaÃƒÂ§ ton su alÃ„Â±nmaktadÃ„Â±r?',
                 correctAnswer: '5 ton',
                 options: ['5 ton', '4 ton', '6 ton', '10 ton']
             },
             {
                 id: 'c',
-                text: 'c) Havuzdaki su miktarÄ± (y) ve sÃ¼reye (x) baÄŸlÄ± doÄŸrusal denklemini yazÄ±nÄ±z.',
+                text: 'c) Havuzdaki su miktarÃ„Â± (y) ve sÃƒÂ¼reye (x) baÃ„Å¸lÃ„Â± doÃ„Å¸rusal denklemini yazÃ„Â±nÃ„Â±z.',
                 correctAnswer: 'y = -5x + 200',
                 options: ['y = -5x + 200', 'y = -4x + 200', 'y = 5x + 200', 'y = -10x + 200']
             },
             {
                 id: 'd',
-                text: 'd) 12. saatin sonunda havuzda kaÃ§ ton su kalÄ±r?',
+                text: 'd) 12. saatin sonunda havuzda kaÃƒÂ§ ton su kalÃ„Â±r?',
                 correctAnswer: '140 ton',
                 options: ['140 ton', '130 ton', '150 ton', '145 ton']
             },
             {
                 id: 'e',
-                text: 'e) KaÃ§ saat sonra havuzda 100 ton su kalÄ±r?',
+                text: 'e) KaÃƒÂ§ saat sonra havuzda 100 ton su kalÃ„Â±r?',
                 correctAnswer: '20 saat',
                 options: ['20 saat', '18 saat', '22 saat', '24 saat']
             }
@@ -263,7 +263,7 @@ const graphToQuestionScenarios = [
     {
         id: 3,
         graphType: 'two_cars_fuel',
-        mainQuestion: 'AÅŸaÄŸÄ±daki grafikte aynÄ± anda harekete baÅŸlayan iki aracÄ±n deposundaki benzinin zamana baÄŸlÄ± deÄŸiÅŸimi gÃ¶sterilmiÅŸtir. Buna gÃ¶re;',
+        mainQuestion: 'AÃ…Å¸aÃ„Å¸Ã„Â±daki grafikte aynÃ„Â± anda harekete baÃ…Å¸layan iki aracÃ„Â±n deposundaki benzinin zamana baÃ„Å¸lÃ„Â± deÃ„Å¸iÃ…Å¸imi gÃƒÂ¶sterilmiÃ…Å¸tir. Buna gÃƒÂ¶re;',
         yAxisLabel: 'Benzin (L)',
         xAxisLabel: 'Zaman (saat)',
         yMin: 0,
@@ -274,7 +274,7 @@ const graphToQuestionScenarios = [
         lines: [
             {
                 color: '#3b82f6',
-                name: 'Mavi AraÃ§',
+                name: 'Mavi AraÃƒÂ§',
                 points: [
                     {x: 0, y: 80},
                     {x: 8, y: 0}
@@ -282,7 +282,7 @@ const graphToQuestionScenarios = [
             },
             {
                 color: '#ef4444',
-                name: 'KÄ±rmÄ±zÄ± AraÃ§',
+                name: 'KÃ„Â±rmÃ„Â±zÃ„Â± AraÃƒÂ§',
                 points: [
                     {x: 0, y: 40},
                     {x: 20, y: 0}
@@ -292,7 +292,7 @@ const graphToQuestionScenarios = [
         questions: [
             {
                 id: 'a',
-                text: 'KaÃ§Ä±ncÄ± saat sonunda araÃ§larÄ±n depolarÄ±ndaki kalan yakÄ±t miktarlarÄ± eÅŸit olur?',
+                text: 'KaÃƒÂ§Ã„Â±ncÃ„Â± saat sonunda araÃƒÂ§larÃ„Â±n depolarÃ„Â±ndaki kalan yakÃ„Â±t miktarlarÃ„Â± eÃ…Å¸it olur?',
                 correctAnswer: '5. saat',
                 options: ['4. saat', '5. saat', '3. saat', '6. saat']
             }
@@ -301,9 +301,9 @@ const graphToQuestionScenarios = [
     {
         id: 4,
         graphType: 'article_reading',
-        mainQuestion: 'Mustafa okumasÄ± gereken 400 makaleden her gÃ¼n eÅŸit sayÄ±da makale seÃ§ip okuyor. Buna gÃ¶re aÅŸaÄŸÄ±daki grafiÄŸe bakarak tÃ¼m makalelerin kaÃ§ gÃ¼nde biteceÄŸini bulunuz?',
-        yAxisLabel: 'Makale SayÄ±sÄ±',
-        xAxisLabel: 'GÃ¼n',
+        mainQuestion: 'Mustafa okumasÃ„Â± gereken 400 makaleden her gÃƒÂ¼n eÃ…Å¸it sayÃ„Â±da makale seÃƒÂ§ip okuyor. Buna gÃƒÂ¶re aÃ…Å¸aÃ„Å¸Ã„Â±daki grafiÃ„Å¸e bakarak tÃƒÂ¼m makalelerin kaÃƒÂ§ gÃƒÂ¼nde biteceÃ„Å¸ini bulunuz?',
+        yAxisLabel: 'Makale SayÃ„Â±sÃ„Â±',
+        xAxisLabel: 'GÃƒÂ¼n',
         yMin: 0,
         yMax: 400,
         yStep: 50,
@@ -318,7 +318,7 @@ const graphToQuestionScenarios = [
                     {x: 50, y: 200},
                     {x: 80, y: 80}
                 ],
-                label: 'Kalan Makale SayÄ±sÄ±',
+                label: 'Kalan Makale SayÃ„Â±sÃ„Â±',
                 labelPosition: 'end'
             },
             {
@@ -329,25 +329,25 @@ const graphToQuestionScenarios = [
                     {x: 50, y: 200},
                     {x: 80, y: 320}
                 ],
-                label: 'Okunan Makale SayÄ±sÄ±',
+                label: 'Okunan Makale SayÃ„Â±sÃ„Â±',
                 labelPosition: 'end'
             }
         ],
         questions: [
             {
                 id: 'a',
-                text: 'TÃ¼m makaleler kaÃ§ gÃ¼nde biter?',
-                correctAnswer: '100 gÃ¼n',
-                options: ['100 gÃ¼n', '80 gÃ¼n', '90 gÃ¼n', '120 gÃ¼n']
+                text: 'TÃƒÂ¼m makaleler kaÃƒÂ§ gÃƒÂ¼nde biter?',
+                correctAnswer: '100 gÃƒÂ¼n',
+                options: ['100 gÃƒÂ¼n', '80 gÃƒÂ¼n', '90 gÃƒÂ¼n', '120 gÃƒÂ¼n']
             }
         ]
     },
     {
         id: 5,
         graphType: 'taxi_fare',
-        mainQuestion: 'AÅŸaÄŸÄ±da A ve B ÅŸehirlerindeki taksi Ã¼cret tarifelerine iliÅŸkin iki doÄŸrusal grafik verilmiÅŸtir. Bu iki ÅŸehirde 20 km yol giden taksilere Ã¶denecek Ã¼cretler arasÄ±ndaki fark kaÃ§ liradÄ±r?',
-        yAxisLabel: 'Ãœcret (TL)',
-        xAxisLabel: 'AlÄ±nan Yol (km)',
+        mainQuestion: 'AÃ…Å¸aÃ„Å¸Ã„Â±da A ve B Ã…Å¸ehirlerindeki taksi ÃƒÂ¼cret tarifelerine iliÃ…Å¸kin iki doÃ„Å¸rusal grafik verilmiÃ…Å¸tir. Bu iki Ã…Å¸ehirde 20 km yol giden taksilere ÃƒÂ¶denecek ÃƒÂ¼cretler arasÃ„Â±ndaki fark kaÃƒÂ§ liradÃ„Â±r?',
+        yAxisLabel: 'ÃƒÅ“cret (TL)',
+        xAxisLabel: 'AlÃ„Â±nan Yol (km)',
         yMin: 0,
         yMax: 100,
         yStep: 10,
@@ -356,31 +356,31 @@ const graphToQuestionScenarios = [
         lines: [
             {
                 color: '#3b82f6',
-                name: 'B Åehri',
+                name: 'B Ã…Âehri',
                 points: [
                     {x: 0, y: 50},
                     {x: 4, y: 60},
                     {x: 16, y: 90}
                 ],
-                label: 'B ÅEHRÄ°',
+                label: 'B Ã…ÂEHRÃ„Â°',
                 labelPosition: 'end'
             },
             {
                 color: '#ef4444',
-                name: 'A Åehri',
+                name: 'A Ã…Âehri',
                 points: [
                     {x: 0, y: 45},
                     {x: 4, y: 60},
                     {x: 12, y: 90}
                 ],
-                label: 'A ÅEHRÄ°',
+                label: 'A Ã…ÂEHRÃ„Â°',
                 labelPosition: 'end'
             }
         ],
         questions: [
             {
                 id: 'a',
-                text: 'Bu iki ÅŸehirde 20 km yol giden taksilere Ã¶denecek Ã¼cretler arasÄ±ndaki fark kaÃ§ liradÄ±r?',
+                text: 'Bu iki Ã…Å¸ehirde 20 km yol giden taksilere ÃƒÂ¶denecek ÃƒÂ¼cretler arasÃ„Â±ndaki fark kaÃƒÂ§ liradÃ„Â±r?',
                 correctAnswer: '20 TL',
                 options: ['10 TL', '15 TL', '20 TL', '5 TL']
             }
@@ -649,34 +649,34 @@ function showSlopeContent(type) {
     panel.classList.remove("hidden");
     answerBox.textContent = "?";
 
-    // EÄŸer elementler bulunamazsa hata vermesin
+    // EÃ„Å¸er elementler bulunamazsa hata vermesin
     if (!titleSpan || !infoText) {
-        console.warn("slopeQuestionPanel iÃ§inde gerekli span bulunamadÄ±!");
+        console.warn("slopeQuestionPanel iÃƒÂ§inde gerekli span bulunamadÃ„Â±!");
         return;
     }
 
     switch(type) {
         case "incline":
-            titleSpan.textContent = "EÄŸik DÃ¼zlem Sorusu";
-            infoText.textContent = "EÄŸim = Dikey / Yatay (Ã¶rneÄŸin: yÃ¼kseklik / taban uzunluÄŸu)";
+            titleSpan.textContent = "EÃ„Å¸ik DÃƒÂ¼zlem Sorusu";
+            infoText.textContent = "EÃ„Å¸im = Dikey / Yatay (ÃƒÂ¶rneÃ„Å¸in: yÃƒÂ¼kseklik / taban uzunluÃ„Å¸u)";
             break;
         case "graph":
-            titleSpan.textContent = "Grafikten EÄŸim Sorusu";
-            infoText.textContent = "Grafikte iki nokta seÃ§ â†’ (y2 - y1) / (x2 - x1)";
+            titleSpan.textContent = "Grafikten EÃ„Å¸im Sorusu";
+            infoText.textContent = "Grafikte iki nokta seÃƒÂ§ Ã¢â€ â€™ (y2 - y1) / (x2 - x1)";
             break;
         case "twoPoints":
-            titleSpan.textContent = "Ä°ki Noktadan EÄŸim Sorusu";
-            infoText.textContent = "FormÃ¼l: m = (y2 - y1) / (x2 - x1)";
+            titleSpan.textContent = "Ã„Â°ki Noktadan EÃ„Å¸im Sorusu";
+            infoText.textContent = "FormÃƒÂ¼l: m = (y2 - y1) / (x2 - x1)";
             break;
         case "equation":
-            titleSpan.textContent = "Denklemden EÄŸim Sorusu";
-            infoText.textContent = "y = ax + b denkleminde eÄŸim katsayÄ±sÄ± aâ€™dÄ±r.";
+            titleSpan.textContent = "Denklemden EÃ„Å¸im Sorusu";
+            infoText.textContent = "y = ax + b denkleminde eÃ„Å¸im katsayÃ„Â±sÃ„Â± aÃ¢â‚¬â„¢dÃ„Â±r.";
             break;
     }
 }
 
 
-// Butonlara tÄ±klama olaylarÄ±nÄ± baÄŸla
+// Butonlara tÃ„Â±klama olaylarÃ„Â±nÃ„Â± baÃ„Å¸la
 document.getElementById("btnSlopeIncline").addEventListener("click", () => showSlopeContent("incline"));
 document.getElementById("btnSlopeGraph").addEventListener("click", () => showSlopeContent("graph"));
 document.getElementById("btnSlopeTwoPoints").addEventListener("click", () => showSlopeContent("twoPoints"));
@@ -1064,7 +1064,7 @@ function applyReflection(points) {
 }
 
 
-// Ã‡izimi gerÃ§ekleÅŸtiren ana fonksiyon
+// Ãƒâ€¡izimi gerÃƒÂ§ekleÃ…Å¸tiren ana fonksiyon
 function drawLogicalPoint(coord) {
     if (!gameState.mode) return;
     if (gameState.mode === 'placeToPoint') return;
@@ -1105,7 +1105,7 @@ function drawLogicalPoint(coord) {
     }
 }
 
-// P2P Ã¼zerinden gelen koordinatÄ± Ã§iz
+// P2P ÃƒÂ¼zerinden gelen koordinatÃ„Â± ÃƒÂ§iz
 window.p2pAddPointToCanvas = function(coord) {
     drawLogicalPoint(coord);
 };
@@ -1124,7 +1124,7 @@ function addPointToCanvas(clientX, clientY) {
 
     const coord = pixelToCoord(svgP.x, svgP.y);
 
-    // GÃ–LGE SENKRONÄ°ZASYON: Tablet, Tahtaya mantÄ±ksal koordinatÄ± gÃ¶ndersin
+    // GÃƒâ€“LGE SENKRONÃ„Â°ZASYON: Tablet, Tahtaya mantÃ„Â±ksal koordinatÃ„Â± gÃƒÂ¶ndersin
     if (typeof window.sendP2PCanvasPointEvent === 'function') {
         window.sendP2PCanvasPointEvent(coord);
     }
@@ -1167,16 +1167,16 @@ function handleCanvasPointer(e) {
 
 
 function checkLinearGraph() {
-    // 1. Ã‡izgi var mÄ± kontrol et (Sadece 2 nokta olmalÄ±)
+    // 1. Ãƒâ€¡izgi var mÃ„Â± kontrol et (Sadece 2 nokta olmalÃ„Â±)
     if (linearState.drawnPoints.length !== 2) {
         showFeedback(false);
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'LÃ¼tfen grafiÄŸi Ã§iziniz! (Ä°ki nokta arasÄ±na Ã§izgi Ã§ekin)';
+        feedback.textContent = 'LÃƒÂ¼tfen grafiÃ„Å¸i ÃƒÂ§iziniz! (Ã„Â°ki nokta arasÃ„Â±na ÃƒÂ§izgi ÃƒÂ§ekin)';
         feedback.style.opacity = '1';
         return;
     }
 
-    // 2. Tablodaki geÃ§erli noktalarÄ± al
+    // 2. Tablodaki geÃƒÂ§erli noktalarÃ„Â± al
     const validPoints = [];
     for (let i = 0; i < Math.min(4, linearState.tableData.length); i++) {
         const row = linearState.tableData[i];
@@ -1184,7 +1184,7 @@ function checkLinearGraph() {
             const xVal = parseFloat(row.x);
             const yVal = row.calcY;
             if (!isNaN(xVal) && !isNaN(yVal) && isFinite(yVal)) {
-                // Sadece grid sÄ±nÄ±rlarÄ± iÃ§indekileri al
+                // Sadece grid sÃ„Â±nÃ„Â±rlarÃ„Â± iÃƒÂ§indekileri al
                 const scaledY = yVal / linearState.yScale;
                 if (scaledY >= 0 && scaledY <= 9 && xVal >= 0 && xVal <= 9) {
                     validPoints.push({ x: xVal, scaledY: scaledY });
@@ -1197,14 +1197,14 @@ function checkLinearGraph() {
         showFeedback(false); return;
     }
 
-    // 3. Ã‡izilen Ã§izgiyi al (P1 ve P2)
+    // 3. Ãƒâ€¡izilen ÃƒÂ§izgiyi al (P1 ve P2)
     const p1 = linearState.drawnPoints[0];
     const p2 = linearState.drawnPoints[1];
 
-    // 4. Her bir tablo noktasÄ±nÄ±n Ã§izilen Ã§izgiye uzaklÄ±ÄŸÄ±nÄ± kontrol et
+    // 4. Her bir tablo noktasÃ„Â±nÃ„Â±n ÃƒÂ§izilen ÃƒÂ§izgiye uzaklÃ„Â±Ã„Å¸Ã„Â±nÃ„Â± kontrol et
     let allPointsCovered = true;
     
-    // Ã‡izgi denklemi veya uzaklÄ±k hesabÄ± iÃ§in vektÃ¶r hesabÄ±
+    // Ãƒâ€¡izgi denklemi veya uzaklÃ„Â±k hesabÃ„Â± iÃƒÂ§in vektÃƒÂ¶r hesabÃ„Â±
     // Line defined by p1 and p2. Distance from point p0 to line p1p2.
     // Distance = |(y2-y1)x0 - (x2-x1)y0 + x2y1 - y2x1| / sqrt((y2-y1)^2 + (x2-x1)^2)
     
@@ -1212,17 +1212,17 @@ function checkLinearGraph() {
     const x2 = p2.x, y2 = p2.y;
     const denominator = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
 
-    if (denominator === 0) { allPointsCovered = false; } // Nokta Ã§izmiÅŸ
+    if (denominator === 0) { allPointsCovered = false; } // Nokta ÃƒÂ§izmiÃ…Å¸
     else {
         for (let point of validPoints) {
-            // Tablo noktasÄ±nÄ± piksele Ã§evir
+            // Tablo noktasÃ„Â±nÃ„Â± piksele ÃƒÂ§evir
             const p0 = linearCoordToPixel(point.x, point.scaledY);
             
-            // UzaklÄ±k formÃ¼lÃ¼
+            // UzaklÃ„Â±k formÃƒÂ¼lÃƒÂ¼
             const numerator = Math.abs((y2 - y1) * p0.x - (x2 - x1) * p0.y + x2 * y1 - y2 * x1);
             const distance = numerator / denominator;
 
-            // Tolerans (Ã¶rneÄŸin 15 piksel)
+            // Tolerans (ÃƒÂ¶rneÃ„Å¸in 15 piksel)
             if (distance > 20) {
                 allPointsCovered = false;
                 break;
@@ -1230,12 +1230,12 @@ function checkLinearGraph() {
         }
     }
 
-    // 5. SonuÃ§
+    // 5. SonuÃƒÂ§
     if (allPointsCovered) {
         playSuccessSound();
         showFeedback(true);
         
-        // Ã‡izgiyi yeÅŸil yap
+        // Ãƒâ€¡izgiyi yeÃ…Å¸il yap
         const userLine = document.querySelector('.user-drawn-line');
         if (userLine) { 
             userLine.setAttribute('stroke', '#10b981'); 
@@ -1249,10 +1249,10 @@ function checkLinearGraph() {
         playErrorSound();
         showFeedback(false);
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'Ã‡izgin tablodaki noktalardan geÃ§miyor! Tekrar dene.';
+        feedback.textContent = 'Ãƒâ€¡izgin tablodaki noktalardan geÃƒÂ§miyor! Tekrar dene.';
         feedback.style.opacity = '1';
         
-        // YanlÄ±ÅŸ Ã§izgiyi sil
+        // YanlÃ„Â±Ã…Å¸ ÃƒÂ§izgiyi sil
         document.querySelectorAll('.user-drawn-line').forEach(line => line.remove());
         linearState.drawnPoints = [];
     }
@@ -1290,7 +1290,7 @@ function checkGraphAnswer() {
             } else {
                 // All questions completed
                 const feedback = document.getElementById('feedback');
-                feedback.textContent = 'Tebrikler! TÃ¼m sorularÄ± tamamladÄ±n! ğŸ‰ğŸŠ';
+                feedback.textContent = 'Tebrikler! TÃƒÂ¼m sorularÃ„Â± tamamladÃ„Â±n! ÄŸÅ¸Ââ€°ÄŸÅ¸ÂÅ ';
                 feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-xl shadow-2xl font-bold text-center transition-all bg-green-500 text-white text-2xl success-animation';
                 feedback.style.opacity = '1';
                 setTimeout(() => {
@@ -1654,56 +1654,56 @@ function checkAnswer() {
 
 
 // ==========================================
-// GERÄ° BÄ°LDÄ°RÄ°M FONKSÄ°YONU (KESÄ°N Ã‡Ã–ZÃœM)
+// GERÃ„Â° BÃ„Â°LDÃ„Â°RÃ„Â°M FONKSÃ„Â°YONU (KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M)
 // ==========================================
 function showFeedback(correct) {
     const feedback = document.getElementById('feedback');
     if (!feedback) return;
 
-    // 1. Ã–NCEKÄ° SAYACI Ä°PTAL ET (Ã‡ok Ã–nemli!)
-    // EÄŸer ekranda zaten bir yazÄ± varsa ve kapanmayÄ± bekliyorsa, o emri iptal et.
+    // 1. Ãƒâ€“NCEKÃ„Â° SAYACI Ã„Â°PTAL ET (Ãƒâ€¡ok Ãƒâ€“nemli!)
+    // EÃ„Å¸er ekranda zaten bir yazÃ„Â± varsa ve kapanmayÃ„Â± bekliyorsa, o emri iptal et.
     if (window.feedbackTimer) {
         clearTimeout(window.feedbackTimer);
         window.feedbackTimer = null;
     }
 
-    // 2. MesajÄ± ve Rengi Ayarla
-    feedback.textContent = correct ? 'Harika! MÃ¼kemmel! ğŸ‰' : 'Tekrar dene. KÃ¶ÅŸeleri kontrol et. ğŸ”';
+    // 2. MesajÃ„Â± ve Rengi Ayarla
+    feedback.textContent = correct ? 'Harika! MÃƒÂ¼kemmel! ÄŸÅ¸Ââ€°' : 'Tekrar dene. KÃƒÂ¶Ã…Å¸eleri kontrol et. ÄŸÅ¸â€Â';
     
-    // Sabit classlar (Animasyon ve konum iÃ§in)
+    // Sabit classlar (Animasyon ve konum iÃƒÂ§in)
     const baseClass = "fixed bottom-4 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-xl shadow-2xl font-bold text-center transition-opacity duration-500 z-[9999]";
     const colorClass = correct ? "bg-green-500 text-white text-2xl" : "bg-red-500 text-white text-lg";
     
     feedback.className = `${baseClass} ${colorClass}`;
 
-    // 3. GÃ¶rÃ¼nÃ¼r Yap
-    // (requestAnimationFrame, tarayÄ±cÄ±nÄ±n stil deÄŸiÅŸimini yakalamasÄ±nÄ± saÄŸlar)
+    // 3. GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r Yap
+    // (requestAnimationFrame, tarayÃ„Â±cÃ„Â±nÃ„Â±n stil deÃ„Å¸iÃ…Å¸imini yakalamasÃ„Â±nÃ„Â± saÃ„Å¸lar)
     requestAnimationFrame(() => {
         feedback.style.opacity = '1';
-        feedback.style.pointerEvents = 'auto'; // TÄ±klanabilir olsun (seÃ§im engellemesin diye)
+        feedback.style.pointerEvents = 'auto'; // TÃ„Â±klanabilir olsun (seÃƒÂ§im engellemesin diye)
     });
 
-    // 4. YENÄ° SAYAÃ‡ BAÅLAT (3 Saniye Sonra Kapat)
+    // 4. YENÃ„Â° SAYAÃƒâ€¡ BAÃ…ÂLAT (3 Saniye Sonra Kapat)
     window.feedbackTimer = setTimeout(() => {
         feedback.style.opacity = '0';
-        feedback.style.pointerEvents = 'none'; // Kaybolunca arkadaki butonlara engel olmasÄ±n
+        feedback.style.pointerEvents = 'none'; // Kaybolunca arkadaki butonlara engel olmasÃ„Â±n
     }, 3000);
 }
 
 
 function updateUI() {
-    const modeText = gameState.mode === 'translation' ? 'Ã–teleme' :
-                     gameState.mode === 'reflection' ? 'YansÄ±ma' :
-                     gameState.mode === 'pointToPlace' ? 'Nokta â†’ Yer' :
-                    gameState.mode === 'placeToPoint' ? 'Yer â†’ Nokta' : 'SeÃ§im yapÄ±n';
+    const modeText = gameState.mode === 'translation' ? 'Ãƒâ€“teleme' :
+                     gameState.mode === 'reflection' ? 'YansÃ„Â±ma' :
+                     gameState.mode === 'pointToPlace' ? 'Nokta Ã¢â€ â€™ Yer' :
+                    gameState.mode === 'placeToPoint' ? 'Yer Ã¢â€ â€™ Nokta' : 'SeÃƒÂ§im yapÃ„Â±n';
     document.getElementById('currentMode').textContent = modeText;
 
 
     const shapeNames = {
         'point': 'Nokta',
-        'segment': 'DoÄŸru ParÃ§asÄ±',
-        'triangle': 'ÃœÃ§gen',
-        'quadrilateral': 'DÃ¶rtgen'
+        'segment': 'DoÃ„Å¸ru ParÃƒÂ§asÃ„Â±',
+        'triangle': 'ÃƒÅ“ÃƒÂ§gen',
+        'quadrilateral': 'DÃƒÂ¶rtgen'
     };
     document.getElementById('currentShape').textContent =
         gameState.shapeType ? shapeNames[gameState.shapeType] : '-';
@@ -1723,15 +1723,15 @@ function updateUI() {
     if (gameState.mode === 'translation' && gameState.translationVector) {
         const dx = gameState.translationVector.dx;
         const dy = gameState.translationVector.dy;
-        const xDirection = dx > 0 ? 'saÄŸa' : dx < 0 ? 'sola' : '';
-        const yDirection = dy > 0 ? 'yukarÄ±' : dy < 0 ? 'aÅŸaÄŸÄ±' : '';
+        const xDirection = dx > 0 ? 'saÃ„Å¸a' : dx < 0 ? 'sola' : '';
+        const yDirection = dy > 0 ? 'yukarÃ„Â±' : dy < 0 ? 'aÃ…Å¸aÃ„Å¸Ã„Â±' : '';
 
 
-        let message = 'ğŸ“ Åekli ';
+        let message = 'ÄŸÅ¸â€œÂ Ã…Âekli ';
         if (dx !== 0) message += `X ekseninde ${Math.abs(dx)} birim ${xDirection}`;
         if (dx !== 0 && dy !== 0) message += ' ve ';
         if (dy !== 0) message += `Y ekseninde ${Math.abs(dy)} birim ${yDirection}`;
-        message += ' Ã¶telemelisin!';
+        message += ' ÃƒÂ¶telemelisin!';
 
 
         transformText.textContent = message;
@@ -1739,19 +1739,19 @@ function updateUI() {
         coordinateOptions.classList.add('hidden');
     } else if (gameState.mode === 'reflection' && gameState.reflectionAxis) {
         const axis = gameState.reflectionAxis === 'x' ? 'X' : 'Y';
-        transformText.textContent = `ğŸª Åekli ${axis} eksenine gÃ¶re yansÄ±tmalÄ±sÄ±n!`;
+        transformText.textContent = `ÄŸÅ¸ÂªÂ Ã…Âekli ${axis} eksenine gÃƒÂ¶re yansÃ„Â±tmalÃ„Â±sÃ„Â±n!`;
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.add('hidden');
     } else if (gameState.mode === 'pointToPlace' && gameState.targetPoint) {
-        transformText.textContent = `ğŸ“ (${gameState.targetPoint.x}, ${gameState.targetPoint.y}) koordinatÄ±nÄ±n yerini tÄ±klayarak gÃ¶ster!`;
+        transformText.textContent = `ÄŸÅ¸â€œÂ (${gameState.targetPoint.x}, ${gameState.targetPoint.y}) koordinatÃ„Â±nÃ„Â±n yerini tÃ„Â±klayarak gÃƒÂ¶ster!`;
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.add('hidden');
     } else if (gameState.mode === 'placeToPoint') {
-        transformText.textContent = 'ğŸ“ AÅŸaÄŸÄ±daki seÃ§eneklerden mavi noktanÄ±n koordinatÄ±nÄ± seÃ§!';
+        transformText.textContent = 'ÄŸÅ¸â€œÂ AÃ…Å¸aÃ„Å¸Ã„Â±daki seÃƒÂ§eneklerden mavi noktanÃ„Â±n koordinatÃ„Â±nÃ„Â± seÃƒÂ§!';
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.remove('hidden');
     } else if (gameState.mode && !gameState.translationVector && !gameState.reflectionAxis && !gameState.targetPoint) {
-        transformText.textContent = 'ğŸ¯ "Yeni Åekil" butonuna tÄ±klayarak baÅŸla!';
+        transformText.textContent = 'ÄŸÅ¸ÂÂ¯ "Yeni Ã…Âekil" butonuna tÃ„Â±klayarak baÃ…Å¸la!';
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.add('hidden');
     } else {
@@ -1765,7 +1765,7 @@ function startNewRound() {
     if (!gameState.mode) {
         showFeedback(false);
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'Ã–nce bir dÃ¶nÃ¼ÅŸÃ¼m tÃ¼rÃ¼ seÃ§! ğŸ¯';
+        feedback.textContent = 'Ãƒâ€“nce bir dÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m tÃƒÂ¼rÃƒÂ¼ seÃƒÂ§! ÄŸÅ¸ÂÂ¯';
         feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-semibold text-center transition-all bg-yellow-500 text-white';
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -1793,7 +1793,7 @@ function startNewRound() {
         const x = validCoords[Math.floor(Math.random() * validCoords.length)];
         const y = validCoords[Math.floor(Math.random() * validCoords.length)];
         gameState.targetPoint = { x, y };
-        gameState.shapeType = 'Nokta YerleÅŸtirme';
+        gameState.shapeType = 'Nokta YerleÃ…Å¸tirme';
 
 
         document.getElementById('checkBtn').disabled = true;
@@ -1897,13 +1897,13 @@ function startNewRound() {
 document.getElementById('translationBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
     
-    // 2. Normal Canvas'Ä± geri getir (Ã‡Ã¼nkÃ¼ grafik modlarÄ± bunu gizlemiÅŸ olabilir)
+    // 2. Normal Canvas'Ã„Â± geri getir (Ãƒâ€¡ÃƒÂ¼nkÃƒÂ¼ grafik modlarÃ„Â± bunu gizlemiÃ…Å¸ olabilir)
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
     gameState.mode = 'translation';
     
-    // Buton stillerini gÃ¼ncelle
+    // Buton stillerini gÃƒÂ¼ncelle
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('selected-button'));
     this.classList.add('selected-button');
     
@@ -1915,7 +1915,7 @@ document.getElementById('translationBtn').addEventListener('click', function() {
 document.getElementById('reflectionBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
 
-    // 2. Normal Canvas'Ä± geri getir
+    // 2. Normal Canvas'Ã„Â± geri getir
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
@@ -1932,7 +1932,7 @@ document.getElementById('reflectionBtn').addEventListener('click', function() {
 document.getElementById('pointToPlaceBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
 
-    // 2. Normal Canvas'Ä± geri getir
+    // 2. Normal Canvas'Ã„Â± geri getir
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
@@ -1948,7 +1948,7 @@ document.getElementById('pointToPlaceBtn').addEventListener('click', function() 
 document.getElementById('placeToPointBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
 
-    // 2. Normal Canvas'Ä± geri getir
+    // 2. Normal Canvas'Ã„Â± geri getir
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
@@ -1963,50 +1963,50 @@ document.getElementById('placeToPointBtn').addEventListener('click', function() 
 
 
 // =========================================================
-// DOÄRUSAL Ä°LÄ°ÅKÄ°LER BUTONU (GARANTÄ°LÄ° AÃ‡MA Ã‡Ã–ZÃœMÃœ)
+// DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER BUTONU (GARANTÃ„Â°LÃ„Â° AÃƒâ€¡MA Ãƒâ€¡Ãƒâ€“ZÃƒÅ“MÃƒÅ“)
 // =========================================================
 var btnLinear = document.getElementById('linearRelationsBtn');
 
 if (btnLinear) {
-    // 1. Butonu klonlayarak Ã¼zerindeki tÃ¼m eski/hatalÄ± kodlarÄ± temizle
+    // 1. Butonu klonlayarak ÃƒÂ¼zerindeki tÃƒÂ¼m eski/hatalÃ„Â± kodlarÃ„Â± temizle
     var newBtnLinear = btnLinear.cloneNode(true);
     btnLinear.parentNode.replaceChild(newBtnLinear, btnLinear);
 
-    // 2. TÄ±klama olayÄ±nÄ± sÄ±fÄ±rdan yaz
+    // 2. TÃ„Â±klama olayÃ„Â±nÃ„Â± sÃ„Â±fÃ„Â±rdan yaz
     newBtnLinear.addEventListener('click', function() {
-        console.log("ğŸ”˜ DoÄŸrusal Ä°liÅŸkiler butonuna tÄ±klandÄ±.");
+        console.log("ÄŸÅ¸â€Ëœ DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler butonuna tÃ„Â±klandÃ„Â±.");
         
         const subButtons = document.getElementById('linearSubButtons');
         if (!subButtons) {
-            console.error("âŒ HATA: linearSubButtons ID'li element bulunamadÄ±!");
+            console.error("Ã¢ÂÅ’ HATA: linearSubButtons ID'li element bulunamadÃ„Â±!");
             return;
         }
 
-        // Åu an kapalÄ± mÄ±? (Hem class hem style kontrolÃ¼)
+        // Ã…Âu an kapalÃ„Â± mÃ„Â±? (Hem class hem style kontrolÃƒÂ¼)
         const isClosed = subButtons.classList.contains('hidden') || subButtons.style.display === 'none';
 
-        // 1. Ã–nce ekranÄ± temizle (Bu her ÅŸeyi kapatÄ±r)
+        // 1. Ãƒâ€“nce ekranÃ„Â± temizle (Bu her Ã…Å¸eyi kapatÃ„Â±r)
         if (typeof clearAllScreens === 'function') {
             clearAllScreens();
         }
 
-        // 2. EÄŸer menÃ¼ Ã¶nceden kapalÄ±ysa, ÅŸimdi ZORLA AÃ‡
+        // 2. EÃ„Å¸er menÃƒÂ¼ ÃƒÂ¶nceden kapalÃ„Â±ysa, Ã…Å¸imdi ZORLA AÃƒâ€¡
         if (isClosed) {
-            // Class'Ä± kaldÄ±r
+            // Class'Ã„Â± kaldÃ„Â±r
             subButtons.classList.remove('hidden');
             
-            // Stili zorla uygula (CSS !important etkisi yaratÄ±r)
+            // Stili zorla uygula (CSS !important etkisi yaratÃ„Â±r)
             subButtons.style.cssText = "display: flex !important; flex-wrap: wrap; justify-content: center; gap: 10px;";
             
-            // Butonu seÃ§ili yap
+            // Butonu seÃƒÂ§ili yap
             this.classList.add('selected-button');
-            console.log("âœ… MenÃ¼ aÃ§Ä±ldÄ± (Zorla).");
+            console.log("Ã¢Å“â€¦ MenÃƒÂ¼ aÃƒÂ§Ã„Â±ldÃ„Â± (Zorla).");
         } 
         else {
-            console.log("ğŸ”» MenÃ¼ kapatÄ±ldÄ±.");
+            console.log("ÄŸÅ¸â€Â» MenÃƒÂ¼ kapatÃ„Â±ldÃ„Â±.");
         }
 
-        // 3. DiÄŸer ana butonlarÄ±n seÃ§im efektlerini temizle
+        // 3. DiÃ„Å¸er ana butonlarÃ„Â±n seÃƒÂ§im efektlerini temizle
         const otherBtns = ['translationBtn', 'reflectionBtn', 'pointToPlaceBtn', 'placeToPointBtn', 'slopeBtn', 'lineGraphsBtn'];
         otherBtns.forEach(id => {
             const b = document.getElementById(id);
@@ -2015,54 +2015,54 @@ if (btnLinear) {
     });
 }
 
-// SORU -> GRAFÄ°K BUTONU
+// SORU -> GRAFÃ„Â°K BUTONU
 document.getElementById('questionToGraphBtn').addEventListener('click', function() {
-    // Ã–nce ekranÄ± temizle
+    // Ãƒâ€“nce ekranÃ„Â± temizle
     clearAllScreens(); 
     
     // Modu ayarla
     gameState.mode = 'questionToGraph';
     
-    // Alt menÃ¼yÃ¼ aÃ§Ä±k tut (clearAllScreens kapatmÄ±ÅŸ olabilir, geri aÃ§alÄ±m)
+    // Alt menÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut (clearAllScreens kapatmÃ„Â±Ã…Å¸ olabilir, geri aÃƒÂ§alÃ„Â±m)
     document.getElementById('linearSubButtons').classList.remove('hidden');
 
-    // *** KRÄ°TÄ°K KISIM: DiÄŸer iÃ§eriÄŸi GÄ°ZLE, bunu GÃ–STER ***
-    document.getElementById('graphQuestionContainer').classList.add('hidden'); // DiÄŸerini kapat
+    // *** KRÃ„Â°TÃ„Â°K KISIM: DiÃ„Å¸er iÃƒÂ§eriÃ„Å¸i GÃ„Â°ZLE, bunu GÃƒâ€“STER ***
+    document.getElementById('graphQuestionContainer').classList.add('hidden'); // DiÃ„Å¸erini kapat
     
     const linearContainer = document.getElementById('linearContainer');
-    linearContainer.classList.remove('hidden'); // Bunu aÃ§
+    linearContainer.classList.remove('hidden'); // Bunu aÃƒÂ§
     linearContainer.style.display = 'flex';
     
-    // Canvas ve Tabloyu hazÄ±rla
+    // Canvas ve Tabloyu hazÃ„Â±rla
     const linearCanvas = document.getElementById('linearCanvas');
     linearCanvas.style.display = 'block';
     document.getElementById('dataTable').parentElement.style.display = 'flex';
     document.getElementById('tableConfirmBtn').style.display = 'block';
 
-    // Oyunu baÅŸlat
+    // Oyunu baÃ…Å¸lat
     startLinearQuestion();
 });
 
 
-// GRAFÄ°K -> SORU BUTONU
+// GRAFÃ„Â°K -> SORU BUTONU
 document.getElementById('graphToQuestionBtn').addEventListener('click', function() {
-    // 1. Ã–nceki her ÅŸeyi (Yer-Nokta dahil) temizle
+    // 1. Ãƒâ€“nceki her Ã…Å¸eyi (Yer-Nokta dahil) temizle
     clearAllScreens();
     
     // 2. Modu ayarla
     gameState.mode = 'graphToQuestion';
 
-    // 3. Alt menÃ¼yÃ¼ aÃ§Ä±k tut (DoÄŸrusal Ä°liÅŸkiler menÃ¼sÃ¼)
+    // 3. Alt menÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut (DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler menÃƒÂ¼sÃƒÂ¼)
     document.getElementById('linearSubButtons').classList.remove('hidden');
 
-    // 4. Bu modun container'Ä±nÄ± aÃ§
+    // 4. Bu modun container'Ã„Â±nÃ„Â± aÃƒÂ§
     const graphContainer = document.getElementById('graphQuestionContainer');
     if (graphContainer) {
         graphContainer.classList.remove('hidden');
-        graphContainer.style.display = 'flex'; // GÃ¶rÃ¼nÃ¼r yap
+        graphContainer.style.display = 'flex'; // GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
     }
     
-    // 5. Oyunu baÅŸlat
+    // 5. Oyunu baÃ…Å¸lat
     startGraphToQuestion();
 });
 
@@ -2080,7 +2080,7 @@ function resetLinearQuestionPanel() {
 
 function startLinearQuestion() {
     resetLinearQuestionPanel();
-    // 1. Ã–nce ekrandaki eski bildirimi temizle
+    // 1. Ãƒâ€“nce ekrandaki eski bildirimi temizle
     const feedback = document.getElementById('feedback');
     feedback.style.opacity = '0';
     feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-semibold text-center transition-all opacity-0 pointer-events-none';
@@ -2146,7 +2146,7 @@ function startGraphToQuestion() {
     // If all scenarios used, show completion message
     if (linearState.usedScenarioIds.length >= graphToQuestionScenarios.length) {
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'ğŸ‰ SorularÄ±mÄ±z bu kadar! Tebrikler! ğŸŠ';
+        feedback.textContent = 'ÄŸÅ¸Ââ€° SorularÃ„Â±mÃ„Â±z bu kadar! Tebrikler! ÄŸÅ¸ÂÅ ';
         feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-xl shadow-2xl font-bold text-center transition-all bg-purple-500 text-white text-2xl success-animation';
         feedback.style.opacity = '1';
 
@@ -2174,9 +2174,9 @@ function startGraphToQuestion() {
 }
 
 
-// Y = ax + b Modunu BaÅŸlat
+// Y = ax + b Modunu BaÃ…Å¸lat
 function startYeqAXplusBRound() {
-    console.log("Y=ax+b Modu BaÅŸlÄ±yor...");
+    console.log("Y=ax+b Modu BaÃ…Å¸lÃ„Â±yor...");
     resetLinearQuestionPanel();
     
     // 1. Eski bildirimleri temizle
@@ -2186,7 +2186,7 @@ function startYeqAXplusBRound() {
 
     gameState.mode = 'y_eq_ax_plus_b';
     
-    // Rastgele EÄŸim ve Sabit (Senkronize)
+    // Rastgele EÃ„Å¸im ve Sabit (Senkronize)
     const slopes = [1, -1, 2, -2, 3, -3]; 
     const intercepts = [-4, -3, -2, -1, 1, 2, 3, 4];
 
@@ -2205,7 +2205,7 @@ function startYeqAXplusBRound() {
     gameState.targetSlope = newSlope;
     gameState.targetIntercept = newIntercept;
     
-    // UI HazÄ±rla
+    // UI HazÃ„Â±rla
     document.getElementById('linearQuestionPanel').classList.remove('hidden');
     document.getElementById('linearContainer').classList.remove('hidden');
     document.getElementById('linearContainer').style.display = 'flex';
@@ -2215,7 +2215,7 @@ function startYeqAXplusBRound() {
     document.getElementById('drawInstructionText').classList.add('hidden');
     
     const sign = newIntercept > 0 ? '+' : ''; 
-    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x ${sign}${newIntercept}. Tabloyu doldurarak grafiÄŸi Ã§iziniz.`;
+    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x ${sign}${newIntercept}. Tabloyu doldurarak grafiÃ„Å¸i ÃƒÂ§iziniz.`;
 
     initializeLearningTable(); 
     drawFullGridForAX(); 
@@ -2233,7 +2233,7 @@ function startYeqAXplusBRound() {
 }
 
 function showGraphQuestion() {
-    // 1. Ã–nce ekrandaki eski bildirimi temizle
+    // 1. Ãƒâ€“nce ekrandaki eski bildirimi temizle
     const feedback = document.getElementById('feedback');
     feedback.style.opacity = '0';
     feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-semibold text-center transition-all opacity-0 pointer-events-none';
@@ -2250,7 +2250,7 @@ function showGraphQuestion() {
     optionsContainer.innerHTML = '';
     
     // Deterministic shuffle (Fisher-Yates with a simple seed based on question text)
-    // Bu sayede tablet ve tahtada (farklÄ± tarayÄ±cÄ± motorlarÄ± olsa bile) ÅŸÄ±klar KESÄ°NLÄ°KLE aynÄ± sÄ±rada Ã§Ä±kar.
+    // Bu sayede tablet ve tahtada (farklÃ„Â± tarayÃ„Â±cÃ„Â± motorlarÃ„Â± olsa bile) Ã…Å¸Ã„Â±klar KESÃ„Â°NLÃ„Â°KLE aynÃ„Â± sÃ„Â±rada ÃƒÂ§Ã„Â±kar.
     const shuffledOptions = [...question.options];
     let seed = 0;
     for (let i = 0; i < question.text.length; i++) {
@@ -2294,7 +2294,7 @@ function drawScenarioGraph(scenario) {
     
     const isTwoLineScenario = scenario.lines !== undefined;
 
-    // Y Ekseni HesaplamalarÄ±
+    // Y Ekseni HesaplamalarÃ„Â±
     let ySteps, yMin, yMax;
     if (scenario.yMin !== undefined && scenario.yMax !== undefined) {
         yMin = scenario.yMin;
@@ -2306,11 +2306,11 @@ function drawScenarioGraph(scenario) {
         ySteps = Math.ceil((yMax - yMin) / scenario.yStep) + 1;
     }
 
-    // X Ekseni HesaplamalarÄ±
+    // X Ekseni HesaplamalarÃ„Â±
     const xStep = scenario.xStep || 1;
     const xSteps = Math.ceil(scenario.xMax / xStep);
 
-    // --- DÄ°NAMÄ°K AYARLAR ---
+    // --- DÃ„Â°NAMÃ„Â°K AYARLAR ---
     const GRID_SIZE = 50;
     const paddingLeft = 100;
     const paddingRight = 100;
@@ -2321,24 +2321,24 @@ function drawScenarioGraph(scenario) {
     const CANVAS_HEIGHT = paddingTop + (ySteps * GRID_SIZE) + paddingBottom;
     const ORIGIN = { x: paddingLeft, y: CANVAS_HEIGHT - paddingBottom };
 
-    // Canvas'Ä± Ã¶lÃ§ekle (Responsive)
+    // Canvas'Ã„Â± ÃƒÂ¶lÃƒÂ§ekle (Responsive)
     canvas.setAttribute('viewBox', `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`);
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
-    // --- IZGARA Ã‡Ä°ZÄ°MÄ° ---
-    // Dikey Ã‡izgiler
+    // --- IZGARA Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
+    // Dikey Ãƒâ€¡izgiler
     for (let i = 0; i <= xSteps; i++) {
         const x = ORIGIN.x + i * GRID_SIZE;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x);
         line.setAttribute('y1', ORIGIN.y);
         line.setAttribute('x2', x);
-        line.setAttribute('y2', 50); // Tepe noktasÄ±
+        line.setAttribute('y2', 50); // Tepe noktasÃ„Â±
         line.setAttribute('stroke', '#6b7280');
         line.setAttribute('stroke-width', '1');
         canvas.appendChild(line);
     }
-    // Yatay Ã‡izgiler
+    // Yatay Ãƒâ€¡izgiler
     for (let i = 0; i <= ySteps; i++) {
         const y = ORIGIN.y - i * GRID_SIZE;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -2375,10 +2375,10 @@ function drawScenarioGraph(scenario) {
     yArrow.setAttribute('fill', '#374151');
     canvas.appendChild(yArrow);
 
-    // --- EKSEN Ä°SÄ°MLERÄ° (Daha uzaÄŸa konumlandÄ±rÄ±ldÄ±) ---
+    // --- EKSEN Ã„Â°SÃ„Â°MLERÃ„Â° (Daha uzaÃ„Å¸a konumlandÃ„Â±rÃ„Â±ldÃ„Â±) ---
     const xLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     xLabel.setAttribute('x', ORIGIN.x + (xSteps * GRID_SIZE) / 2);
-    xLabel.setAttribute('y', ORIGIN.y + 50); // AÅŸaÄŸÄ±ya Ã¶telendi
+    xLabel.setAttribute('y', ORIGIN.y + 50); // AÃ…Å¸aÃ„Å¸Ã„Â±ya ÃƒÂ¶telendi
     xLabel.setAttribute('text-anchor', 'middle');
     xLabel.setAttribute('font-size', '16');
     xLabel.setAttribute('font-weight', 'bold');
@@ -2387,9 +2387,9 @@ function drawScenarioGraph(scenario) {
     canvas.appendChild(xLabel);
 
     const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    // DÃ¶ndÃ¼rÃ¼lmÃ¼ÅŸ metin (Dikey yazÄ±)
+    // DÃƒÂ¶ndÃƒÂ¼rÃƒÂ¼lmÃƒÂ¼Ã…Å¸ metin (Dikey yazÃ„Â±)
     yLabel.setAttribute('transform', `rotate(-90, ${ORIGIN.x - 60}, ${ORIGIN.y - (ySteps * GRID_SIZE) / 2})`);
-    yLabel.setAttribute('x', ORIGIN.x - 60); // Sola Ã¶telendi
+    yLabel.setAttribute('x', ORIGIN.x - 60); // Sola ÃƒÂ¶telendi
     yLabel.setAttribute('y', ORIGIN.y - (ySteps * GRID_SIZE) / 2);
     yLabel.setAttribute('text-anchor', 'middle');
     yLabel.setAttribute('font-size', '16');
@@ -2399,7 +2399,7 @@ function drawScenarioGraph(scenario) {
     canvas.appendChild(yLabel);
 
     // --- SAYILAR ---
-    // X Eksen SayÄ±larÄ±
+    // X Eksen SayÃ„Â±larÃ„Â±
     for (let i = 0; i <= xSteps; i++) {
         const x = ORIGIN.x + i * GRID_SIZE;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -2413,7 +2413,7 @@ function drawScenarioGraph(scenario) {
         canvas.appendChild(text);
     }
 
-    // Y Eksen SayÄ±larÄ±
+    // Y Eksen SayÃ„Â±larÃ„Â±
     const yValuesToShow = new Set();
     if (isTwoLineScenario) {
         scenario.lines.forEach(line => line.points.forEach(p => yValuesToShow.add(p.y)));
@@ -2428,9 +2428,9 @@ function drawScenarioGraph(scenario) {
 
         if (y >= 30 && y <= ORIGIN.y) {
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', ORIGIN.x - 15); // SayÄ±lar eksenin hemen solunda
+            text.setAttribute('x', ORIGIN.x - 15); // SayÃ„Â±lar eksenin hemen solunda
             text.setAttribute('y', y + 5);
-            text.setAttribute('text-anchor', 'end'); // SaÄŸa yasla
+            text.setAttribute('text-anchor', 'end'); // SaÃ„Å¸a yasla
             text.setAttribute('font-size', '13');
             text.setAttribute('font-weight', 'bold');
             text.setAttribute('fill', '#1f2937');
@@ -2439,10 +2439,10 @@ function drawScenarioGraph(scenario) {
         }
     });
 
-    // --- Ã‡Ä°ZGÄ°LERÄ°N Ã‡Ä°ZÄ°MÄ° ---
+    // --- Ãƒâ€¡Ã„Â°ZGÃ„Â°LERÃ„Â°N Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
     if (isTwoLineScenario) {
         scenario.lines.forEach(lineData => {
-            // Ã‡izgi parÃ§alarÄ±
+            // Ãƒâ€¡izgi parÃƒÂ§alarÃ„Â±
             for (let i = 0; i < lineData.points.length - 1; i++) {
                 const p1 = lineData.points[i];
                 const p2 = lineData.points[i + 1];
@@ -2489,7 +2489,7 @@ function drawScenarioGraph(scenario) {
             }
         });
     } else {
-        // Tek Ã‡izgi MantÄ±ÄŸÄ±
+        // Tek Ãƒâ€¡izgi MantÃ„Â±Ã„Å¸Ã„Â±
         for (let i = 0; i < scenario.points.length - 1; i++) {
             const p1 = scenario.points[i];
             const p2 = scenario.points[i + 1];
@@ -2579,7 +2579,7 @@ function openNumberPad(row, col) {
     linearState.currentInputValue = linearState.tableData[row][col] || '';
 
 
-    document.getElementById('currentInput').textContent = linearState.currentInputValue || 'DeÄŸer girin';
+    document.getElementById('currentInput').textContent = linearState.currentInputValue || 'DeÃ„Å¸er girin';
     document.getElementById('numberPad').classList.remove('hidden');
 }
 
@@ -2587,8 +2587,8 @@ function openNumberPad(row, col) {
 // Number pad handlers
 document.querySelectorAll('.num-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
-        e.preventDefault(); // Mobilde ve akÄ±llÄ± tahtada Ã§ift dokunmayÄ± engeller
-        e.stopImmediatePropagation(); // Kodun iki kere Ã§alÄ±ÅŸmasÄ±nÄ± KESÄ°N OLARAK durdurur
+        e.preventDefault(); // Mobilde ve akÃ„Â±llÃ„Â± tahtada ÃƒÂ§ift dokunmayÃ„Â± engeller
+        e.stopImmediatePropagation(); // Kodun iki kere ÃƒÂ§alÃ„Â±Ã…Å¸masÃ„Â±nÃ„Â± KESÃ„Â°N OLARAK durdurur
 
         const value = this.dataset.value;
 
@@ -2598,44 +2598,44 @@ document.querySelectorAll('.num-btn').forEach(btn => {
             linearState.currentInputValue += value;
         }
 
-        document.getElementById('currentInput').textContent = linearState.currentInputValue || 'DeÄŸer girin';
+        document.getElementById('currentInput').textContent = linearState.currentInputValue || 'DeÃ„Å¸er girin';
     });
 });
 
 // ==========================================
-// GELÄ°ÅMÄ°Å MATEMATÄ°KSEL Ä°ÅLEM VE DENKLEM Ã‡Ã–ZÃœCÃœ (AKILLI SÃœRÃœM)
+// GELÃ„Â°Ã…ÂMÃ„Â°Ã…Â MATEMATÃ„Â°KSEL Ã„Â°Ã…ÂLEM VE DENKLEM Ãƒâ€¡Ãƒâ€“ZÃƒÅ“CÃƒÅ“ (AKILLI SÃƒÅ“RÃƒÅ“M)
 // ==========================================
 function evaluateMathExpression(formula, contextVal) {
     if (!formula) return '';
     
-    // 1. Temizlik ve StandartlaÅŸtÄ±rma
+    // 1. Temizlik ve StandartlaÃ…Å¸tÃ„Â±rma
     let expr = formula.toString().toLowerCase()
-        .replace(/\s+/g, '')       // BoÅŸluklarÄ± sil
-        .replace(/Ã—/g, '*')        // Ã‡arpÄ± -> *
-        .replace(/Ã·/g, '/')        // BÃ¶lme -> /
-        .replace(/,/g, '.');       // VirgÃ¼l -> .
+        .replace(/\s+/g, '')       // BoÃ…Å¸luklarÃ„Â± sil
+        .replace(/Ãƒâ€”/g, '*')        // Ãƒâ€¡arpÃ„Â± -> *
+        .replace(/ÃƒÂ·/g, '/')        // BÃƒÂ¶lme -> /
+        .replace(/,/g, '.');       // VirgÃƒÂ¼l -> .
     
-    // 2. YazÄ±m dÃ¼zeltme: "2x" -> "2*x"
+    // 2. YazÃ„Â±m dÃƒÂ¼zeltme: "2x" -> "2*x"
     expr = expr.replace(/(\d)x/g, '$1*x'); 
 
-    // --- SENARYO A: X'i Ã‡Ã¶zmeye Ã‡alÄ±ÅŸÄ±yoruz (Denklem Modu) ---
-    // EÄŸer ifade iÃ§inde '=' varsa VE 'x' harfi geÃ§iyorsa
+    // --- SENARYO A: X'i Ãƒâ€¡ÃƒÂ¶zmeye Ãƒâ€¡alÃ„Â±Ã…Å¸Ã„Â±yoruz (Denklem Modu) ---
+    // EÃ„Å¸er ifade iÃƒÂ§inde '=' varsa VE 'x' harfi geÃƒÂ§iyorsa
     if (expr.includes('=') && expr.includes('x')) {
         try {
             const parts = expr.split('=');
             let lhsStr = parts[0]; 
             let rhsStr = parts[1]; 
 
-            // EÄŸer tersten yazÄ±ldÄ±ysa (3x-4 = 0) dÃ¼zelt
+            // EÃ„Å¸er tersten yazÃ„Â±ldÃ„Â±ysa (3x-4 = 0) dÃƒÂ¼zelt
             if (lhsStr.includes('x') && !rhsStr.includes('x')) {
                 [lhsStr, rhsStr] = [rhsStr, lhsStr];
             }
 
-            // Sol tarafÄ± hesapla (Bu kÄ±sÄ±m hata verirse Scenario B'ye dÃ¼ÅŸer)
-            // Ã–rn: lhsStr="y" ise burasÄ± patlar ve catch'e gider (Ä°stediÄŸimiz bu)
+            // Sol tarafÃ„Â± hesapla (Bu kÃ„Â±sÃ„Â±m hata verirse Scenario B'ye dÃƒÂ¼Ã…Å¸er)
+            // Ãƒâ€“rn: lhsStr="y" ise burasÃ„Â± patlar ve catch'e gider (Ã„Â°stediÃ„Å¸imiz bu)
             const targetY = new Function('return ' + lhsStr)();
 
-            // SaÄŸ taraf testi (x=0 ve x=1 iÃ§in)
+            // SaÃ„Å¸ taraf testi (x=0 ve x=1 iÃƒÂ§in)
             const exprAt0 = rhsStr.replace(/x/g, '(0)'); 
             const yAt0 = new Function('return ' + exprAt0)();
 
@@ -2645,12 +2645,12 @@ function evaluateMathExpression(formula, contextVal) {
             const slope = yAt1 - yAt0;
             const intercept = yAt0;
             
-            // EÄŸim Ã§ok kÃ¼Ã§Ã¼kse Ã§Ã¶zÃ¼lemez
-            if (Math.abs(slope) < 0.000001) throw new Error("EÄŸim sÄ±fÄ±r"); 
+            // EÃ„Å¸im ÃƒÂ§ok kÃƒÂ¼ÃƒÂ§ÃƒÂ¼kse ÃƒÂ§ÃƒÂ¶zÃƒÂ¼lemez
+            if (Math.abs(slope) < 0.000001) throw new Error("EÃ„Å¸im sÃ„Â±fÃ„Â±r"); 
 
             let solvedX = (targetY - intercept) / slope;
             
-            // Yuvarlama (4/3 gibi durumlar iÃ§in hassasiyet koruma)
+            // Yuvarlama (4/3 gibi durumlar iÃƒÂ§in hassasiyet koruma)
             if (Math.abs(Math.round(solvedX) - solvedX) < 0.0001) {
                 solvedX = Math.round(solvedX);
             }
@@ -2658,16 +2658,16 @@ function evaluateMathExpression(formula, contextVal) {
             return solvedX;
 
         } catch (e) {
-            // Denklem Ã§Ã¶zÃ¼lemedi (Ã¶rn: "y=..." yazÄ±ldÄ±), normal hesaplamaya devam et
-            // Konsola hata basmÄ±yoruz ki kullanÄ±cÄ± gÃ¶rmesin, sessizce B planÄ±na geÃ§iyoruz.
+            // Denklem ÃƒÂ§ÃƒÂ¶zÃƒÂ¼lemedi (ÃƒÂ¶rn: "y=..." yazÃ„Â±ldÃ„Â±), normal hesaplamaya devam et
+            // Konsola hata basmÃ„Â±yoruz ki kullanÃ„Â±cÃ„Â± gÃƒÂ¶rmesin, sessizce B planÃ„Â±na geÃƒÂ§iyoruz.
         }
     }
 
     // --- SENARYO B: Normal Hesaplama (Yedek Plan) ---
-    // x yerine verilen deÄŸeri koy
+    // x yerine verilen deÃ„Å¸eri koy
     expr = expr.replace(/x/g, `(${contextVal})`);
 
-    // EÅŸittir varsa saÄŸ tarafÄ± al
+    // EÃ…Å¸ittir varsa saÃ„Å¸ tarafÃ„Â± al
     if (expr.includes('=')) {
         expr = expr.split('=')[1];
     }
@@ -2683,13 +2683,13 @@ function evaluateMathExpression(formula, contextVal) {
 
 
 // ==========================================
-// NUMPAD TAMAM BUTONU (FÄ°NAL VE DÃœZELTÄ°LMÄ°Å)
+// NUMPAD TAMAM BUTONU (FÃ„Â°NAL VE DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â)
 // ==========================================
 document.getElementById('numPadClose').addEventListener('click', function() {
-    console.log("Tamam'a basÄ±ldÄ±. Hedef:", activeInputTarget);
+    console.log("Tamam'a basÃ„Â±ldÃ„Â±. Hedef:", activeInputTarget);
 
     try {
-        // 1. BASÄ°T EÄÄ°M KUTUSU
+        // 1. BASÃ„Â°T EÃ„ÂÃ„Â°M KUTUSU
         if (activeInputTarget === 'slope_simple') {
             const val = linearState.currentInputValue;
             if(val) {
@@ -2702,7 +2702,7 @@ document.getElementById('numPadClose').addEventListener('click', function() {
             activeInputTarget = null;
         }
 
-        // 2. BÄ°LÄ°NMEYEN KENAR KUTUSU (X)
+        // 2. BÃ„Â°LÃ„Â°NMEYEN KENAR KUTUSU (X)
         else if (activeInputTarget === 'slope_unknown') {
             const val = linearState.currentInputValue;
             if(val) {
@@ -2726,23 +2726,23 @@ else if (activeInputTarget === 'slope_intercept') {
              activeInputTarget = null;
         }
         
-        // 3. EÄÄ°M DÃ–NÃœÅÃœM: PAY KUTUSU (Merdiven ve 0,5 Sorusu Ä°Ã§in)
+        // 3. EÃ„ÂÃ„Â°M DÃƒâ€“NÃƒÅ“Ã…ÂÃƒÅ“M: PAY KUTUSU (Merdiven ve 0,5 Sorusu Ã„Â°ÃƒÂ§in)
         else if (activeInputTarget === 'slope_conv_num') {
             const val = linearState.currentInputValue;
             if(val) {
                 document.getElementById('slopeNumBox').textContent = val;
-                // --- EKLENEN SATIR: BUTONU AKTÄ°F ET ---
+                // --- EKLENEN SATIR: BUTONU AKTÃ„Â°F ET ---
                 document.getElementById('checkBtn').disabled = false;
             }
             activeInputTarget = null;
         }
 
-        // 4. EÄÄ°M DÃ–NÃœÅÃœM: PAYDA KUTUSU (Merdiven ve 0,5 Sorusu Ä°Ã§in)
+        // 4. EÃ„ÂÃ„Â°M DÃƒâ€“NÃƒÅ“Ã…ÂÃƒÅ“M: PAYDA KUTUSU (Merdiven ve 0,5 Sorusu Ã„Â°ÃƒÂ§in)
         else if (activeInputTarget === 'slope_conv_denom') {
             const val = linearState.currentInputValue;
             if(val) {
                 document.getElementById('slopeDenomBox').textContent = val;
-                // --- EKLENEN SATIR: BUTONU AKTÄ°F ET ---
+                // --- EKLENEN SATIR: BUTONU AKTÃ„Â°F ET ---
                 document.getElementById('checkBtn').disabled = false;
             }
             activeInputTarget = null;
@@ -2765,7 +2765,7 @@ else if (activeInputTarget === 'slope_intercept') {
                         }
                     }
 
-// --- YENÄ° EÅÄ°TLÄ°K KUTULARI ---
+// --- YENÃ„Â° EÃ…ÂÃ„Â°TLÃ„Â°K KUTULARI ---
         else if (['eq_left_num', 'eq_left_denom', 'eq_right_num', 'eq_right_denom'].includes(activeInputTarget)) {
              const val = linearState.currentInputValue;
              if(val) {
@@ -2811,7 +2811,7 @@ else if (activeInputTarget === 'slope_intercept') {
             }
         }
     } catch (e) {
-        console.error("NumPad iÅŸlem hatasÄ±:", e);
+        console.error("NumPad iÃ…Å¸lem hatasÃ„Â±:", e);
     } finally {
         document.getElementById('numberPad').classList.add('hidden');
         linearState.currentInputValue = '';
@@ -2829,7 +2829,7 @@ document.addEventListener('click', function(e) {
     const btn = e.target.closest ? e.target.closest('.num-btn') : null;
     if (btn) {
         const display = document.getElementById('currentInput');
-        if (display && (display.textContent.trim() === 'DeÄŸer girin' || display.textContent.trim() === '?')) {
+        if (display && (display.textContent.trim() === 'DeÃ„Å¸er girin' || display.textContent.trim() === '?')) {
             display.textContent = '';
             if (typeof linearState !== 'undefined') {
                 linearState.currentInputValue = '';
@@ -2848,7 +2848,7 @@ document.addEventListener('click', function(e) {
         e.stopImmediatePropagation();
         e.preventDefault();
         
-        console.log("y=ax moduna Ã¶zel Tamam tuÅŸu yakalandÄ±!");
+        console.log("y=ax moduna ÃƒÂ¶zel Tamam tuÃ…Å¸u yakalandÃ„Â±!");
         
         if (!linearState.currentCell) return;
         const { row, col } = linearState.currentCell;
@@ -2884,8 +2884,8 @@ document.addEventListener('click', function(e) {
                 }
                 
             } catch(err) {
-                console.log("Hesaplama hatasÄ±", err);
-                if (formula !== 'DeÄŸer girin' && formula !== '?') {
+                console.log("Hesaplama hatasÃ„Â±", err);
+                if (formula !== 'DeÃ„Å¸er girin' && formula !== '?') {
                     cell.textContent = formula;
                 }
             }
@@ -2935,7 +2935,7 @@ function drawCoordinatePoint(row) {
             circle.classList.add(`point-${row}`);
             linearCanvas.appendChild(circle);
 
-            // --- YENÄ°LÄ°K BURADA: NoktanÄ±n yanÄ±ndaki (x,y) yazÄ±sÄ±nÄ± kesirli yap ---
+            // --- YENÃ„Â°LÃ„Â°K BURADA: NoktanÃ„Â±n yanÃ„Â±ndaki (x,y) yazÃ„Â±sÃ„Â±nÃ„Â± kesirli yap ---
             const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             label.setAttribute('x', pixel.x + 12);
             label.setAttribute('y', pixel.y - 12);
@@ -2943,7 +2943,7 @@ function drawCoordinatePoint(row) {
             label.setAttribute('font-weight', 'bold');
             label.setAttribute('fill', '#6d28d9');
             
-            // Hem X hem Y iÃ§in kesir dÃ¶nÃ¼ÅŸÃ¼mÃ¼ yapÄ±yoruz
+            // Hem X hem Y iÃƒÂ§in kesir dÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼mÃƒÂ¼ yapÃ„Â±yoruz
             const displayXVal = decimalToFraction(xVal);
             const displayYVal = decimalToFraction(yVal);
             
@@ -2955,7 +2955,7 @@ function drawCoordinatePoint(row) {
 }
 
 function recalculateYScale(maxYValue) {
-    // Mevcut Y deÄŸerlerini topla
+    // Mevcut Y deÃ„Å¸erlerini topla
     const allYValues = [];
     for (let i = 0; i < linearState.tableData.length; i++) {
         const val = linearState.tableData[i].calcY;
@@ -2972,7 +2972,7 @@ function recalculateYScale(maxYValue) {
 
     const actualMaxY = Math.max(...allYValues, maxYValue || 0);
 
-    // Ã–lÃ§ekleme mantÄ±ÄŸÄ± (AynÄ± kalÄ±yor)
+    // Ãƒâ€“lÃƒÂ§ekleme mantÃ„Â±Ã„Å¸Ã„Â± (AynÃ„Â± kalÃ„Â±yor)
     const niceScales = [1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 250, 300, 400, 500, 750, 1000];
     let scaleFound = false;
     for (let scale of niceScales) {
@@ -2992,7 +2992,7 @@ function recalculateYScale(maxYValue) {
         linearState.maxY = 9 * linearState.yScale;
     }
 
-    // Yeniden Ã‡izim
+    // Yeniden Ãƒâ€¡izim
     initializeLinearCanvas();
 
     for (let i = 0; i < linearState.tableData.length; i++) {
@@ -3031,7 +3031,7 @@ function recalculateYScale(maxYValue) {
                 circle.classList.add(`y-marker-${i}`);
                 linearCanvas.appendChild(circle);
 
-                // --- YENÄ°LÄ°K BURADA: Ã–lÃ§ekleme sonrasÄ± Y etiketi ---
+                // --- YENÃ„Â°LÃ„Â°K BURADA: Ãƒâ€“lÃƒÂ§ekleme sonrasÃ„Â± Y etiketi ---
                 const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 yLabel.setAttribute('x', pixel.x - 35);
                 yLabel.setAttribute('y', pixel.y - 10);
@@ -3039,7 +3039,7 @@ function recalculateYScale(maxYValue) {
                 yLabel.setAttribute('font-weight', 'bold');
                 yLabel.setAttribute('fill', '#059669');
                 
-                // decimalToFraction kullanÄ±mÄ±
+                // decimalToFraction kullanÃ„Â±mÃ„Â±
                 const displayYVal = decimalToFraction(yVal);
                 yLabel.textContent = `${displayYVal}`;
                 
@@ -3078,7 +3078,7 @@ document.getElementById('tableConfirmBtn').addEventListener('click', function() 
         cell.style.opacity = '0.6';
     });
     
-    // *** YENÄ° EKLENEN KISIM: Lastik Ã‡izgi AracÄ±nÄ± BaÅŸlat ***
+    // *** YENÃ„Â° EKLENEN KISIM: Lastik Ãƒâ€¡izgi AracÃ„Â±nÃ„Â± BaÃ…Å¸lat ***
     setupStraightLineDrawing(); 
 
     this.disabled = true;
@@ -3089,38 +3089,38 @@ function initializeLinearCanvas() {
     const linearCanvas = document.getElementById('linearCanvas');
     linearCanvas.innerHTML = ''; // Temizle
     
-    // viewBox'u JavaScript Ã¼zerinden kesin olarak camelCase olarak ayarla
+    // viewBox'u JavaScript ÃƒÂ¼zerinden kesin olarak camelCase olarak ayarla
     linearCanvas.setAttribute('viewBox', '0 0 500 500');
-    linearCanvas.style.backgroundColor = '#f8fafc'; // Arka planÄ±n beyaz/farklÄ± olduÄŸunu anlamak iÃ§in Ã§ok hafif mavi
+    linearCanvas.style.backgroundColor = '#f8fafc'; // Arka planÃ„Â±n beyaz/farklÃ„Â± olduÃ„Å¸unu anlamak iÃƒÂ§in ÃƒÂ§ok hafif mavi
 
-    // Y-Ekseni Ã¶lÃ§eÄŸini sÄ±fÄ±rla
+    // Y-Ekseni ÃƒÂ¶lÃƒÂ§eÃ„Å¸ini sÃ„Â±fÃ„Â±rla
     if(typeof linearState !== 'undefined') linearState.yScale = 1;
 
     const LINEAR_GRID = 50;
     const LINEAR_ORIGIN = { x: 50, y: 450 };
-    const EKSEN_UZUNLUGU = 8; // 8 kare Ã§izelim
+    const EKSEN_UZUNLUGU = 8; // 8 kare ÃƒÂ§izelim
 
     // --- IZGARA ---
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     
-    // Dikey Ã§izgiler
+    // Dikey ÃƒÂ§izgiler
     for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
         const x = LINEAR_ORIGIN.x + i * LINEAR_GRID;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', LINEAR_ORIGIN.y);
         line.setAttribute('x2', x); line.setAttribute('y2', LINEAR_ORIGIN.y - (EKSEN_UZUNLUGU * LINEAR_GRID));
-        line.setAttribute('stroke', '#d1d5db'); // DAHA BELÄ°RGÄ°N GRÄ°
+        line.setAttribute('stroke', '#d1d5db'); // DAHA BELÃ„Â°RGÃ„Â°N GRÃ„Â°
         line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     
-    // Yatay Ã§izgiler
+    // Yatay ÃƒÂ§izgiler
     for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
         const y = LINEAR_ORIGIN.y - i * LINEAR_GRID;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', LINEAR_ORIGIN.x); line.setAttribute('y1', y);
         line.setAttribute('x2', LINEAR_ORIGIN.x + (EKSEN_UZUNLUGU * LINEAR_GRID)); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#d1d5db'); // DAHA BELÄ°RGÄ°N GRÄ°
+        line.setAttribute('stroke', '#d1d5db'); // DAHA BELÃ„Â°RGÃ„Â°N GRÃ„Â°
         line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
@@ -3130,14 +3130,14 @@ function initializeLinearCanvas() {
     const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     xAxis.setAttribute('x1', LINEAR_ORIGIN.x); xAxis.setAttribute('y1', LINEAR_ORIGIN.y);
     xAxis.setAttribute('x2', LINEAR_ORIGIN.x + EKSEN_UZUNLUGU * LINEAR_GRID + 20); xAxis.setAttribute('y2', LINEAR_ORIGIN.y);
-    xAxis.setAttribute('stroke', '#111827'); // SÄ°YAH
+    xAxis.setAttribute('stroke', '#111827'); // SÃ„Â°YAH
     xAxis.setAttribute('stroke-width', '3');
     linearCanvas.appendChild(xAxis);
 
     const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     yAxis.setAttribute('x1', LINEAR_ORIGIN.x); yAxis.setAttribute('y1', LINEAR_ORIGIN.y);
     yAxis.setAttribute('x2', LINEAR_ORIGIN.x); yAxis.setAttribute('y2', LINEAR_ORIGIN.y - EKSEN_UZUNLUGU * LINEAR_GRID - 20);
-    yAxis.setAttribute('stroke', '#111827'); // SÄ°YAH
+    yAxis.setAttribute('stroke', '#111827'); // SÃ„Â°YAH
     yAxis.setAttribute('stroke-width', '3');
     linearCanvas.appendChild(yAxis);
 
@@ -3152,7 +3152,7 @@ function initializeLinearCanvas() {
     yArrow.setAttribute('fill', '#111827');
     linearCanvas.appendChild(yArrow);
 
-    // X Ekseni SayÄ±larÄ±
+    // X Ekseni SayÃ„Â±larÃ„Â±
     for (let i = 1; i <= EKSEN_UZUNLUGU; i++) {
         const x = LINEAR_ORIGIN.x + i * LINEAR_GRID;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -3163,7 +3163,7 @@ function initializeLinearCanvas() {
         linearCanvas.appendChild(text);
     }
 
-    // Y Ekseni SayÄ±larÄ± (Dinamik gÃ¼ncellenebilmesi iÃ§in ID veriyoruz)
+    // Y Ekseni SayÃ„Â±larÃ„Â± (Dinamik gÃƒÂ¼ncellenebilmesi iÃƒÂ§in ID veriyoruz)
     for (let i = 1; i <= EKSEN_UZUNLUGU; i++) {
         const y = LINEAR_ORIGIN.y - i * LINEAR_GRID;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -3280,7 +3280,7 @@ document.getElementById('undoBtn').addEventListener('click', function() {
 
 
 // ==========================================
-// OYUNU BAÅLAT BUTONU (FABRÄ°KA AYARLARINA DÃ–NÃœÅ)
+// OYUNU BAÃ…ÂLAT BUTONU (FABRÃ„Â°KA AYARLARINA DÃƒâ€“NÃƒÅ“Ã…Â)
 // ==========================================
 window.addEventListener('DOMContentLoaded', function() {
     const startGameBtn = document.getElementById('startGameBtn');
@@ -3289,27 +3289,27 @@ window.addEventListener('DOMContentLoaded', function() {
 
     if (startGameBtn && splashScreen && appElement) {
         startGameBtn.addEventListener('click', function(e) {
-            console.log('ğŸš€ Oyun BaÅŸlatÄ±lÄ±yor... (Tam SÄ±fÄ±rlama)');
+            console.log('ÄŸÅ¸Å¡â‚¬ Oyun BaÃ…Å¸latÃ„Â±lÃ„Â±yor... (Tam SÃ„Â±fÃ„Â±rlama)');
 
-            // 1. GiriÅŸ EkranÄ±nÄ± Kapat, UygulamayÄ± AÃ§
+            // 1. GiriÃ…Å¸ EkranÃ„Â±nÃ„Â± Kapat, UygulamayÃ„Â± AÃƒÂ§
             splashScreen.classList.add('hidden');
             splashScreen.style.display = 'none';
             appElement.classList.remove('hidden');
             appElement.style.display = 'flex';
 
-            // AÄŸ Ã¼zerinden KESÄ°N baÅŸlatma emri gÃ¶nder (GÃ¶lge Senkronizasyon Bypass)
-            // SADECE fiziksel tÄ±klamalarda (e.isTrusted) gÃ¶nder ki sonsuz dÃ¶ngÃ¼ye girmesin!
+            // AÃ„Å¸ ÃƒÂ¼zerinden KESÃ„Â°N baÃ…Å¸latma emri gÃƒÂ¶nder (GÃƒÂ¶lge Senkronizasyon Bypass)
+            // SADECE fiziksel tÃ„Â±klamalarda (e.isTrusted) gÃƒÂ¶nder ki sonsuz dÃƒÂ¶ngÃƒÂ¼ye girmesin!
             if (e && e.isTrusted && typeof myConnection !== 'undefined' && myConnection && isConnected) {
                 myConnection.send({ type: 'force_start_game' });
             }
 
-            // 2. TÃœM EKRANLARI VE MENÃœLERÄ° KAPAT
+            // 2. TÃƒÅ“M EKRANLARI VE MENÃƒÅ“LERÃ„Â° KAPAT
             if (typeof clearAllScreens === 'function') {
                 clearAllScreens();
             }
 
             // 3. OYUN DURUMLARINI (STATE) SIFIRLA
-            // Bu kÄ±sÄ±m Ã§ok Ã¶nemli, oyunun "devam ettiÄŸini" sanmasÄ±nÄ± engeller.
+            // Bu kÃ„Â±sÃ„Â±m ÃƒÂ§ok ÃƒÂ¶nemli, oyunun "devam ettiÃ„Å¸ini" sanmasÃ„Â±nÃ„Â± engeller.
             
             // Genel Durum
             if (typeof gameState !== 'undefined') {
@@ -3320,20 +3320,20 @@ window.addEventListener('DOMContentLoaded', function() {
                 gameState.transformedShape = null;
             }
 
-            // EÄŸim Modu Durumu (Sorunun kaynaÄŸÄ± burasÄ± olabilir)
+            // EÃ„Å¸im Modu Durumu (Sorunun kaynaÃ„Å¸Ã„Â± burasÃ„Â± olabilir)
             if (typeof slopeState !== 'undefined') {
                 slopeState.currentQuestion = 0;
-                slopeState.activeMode = null; // Hangi modda olduÄŸunu unuttur
+                slopeState.activeMode = null; // Hangi modda olduÃ„Å¸unu unuttur
             }
 
-            // DoÄŸrusal Ä°liÅŸkiler Durumu
+            // DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler Durumu
             if (typeof linearState !== 'undefined') {
                 linearState.currentQuestion = null;
                 linearState.drawnPoints = [];
                 linearState.isDrawing = false;
             }
 
-            // ZamanlayÄ±cÄ±larÄ± Durdur
+            // ZamanlayÃ„Â±cÃ„Â±larÃ„Â± Durdur
             if (typeof window.feedbackTimer !== 'undefined' && window.feedbackTimer) {
                 clearTimeout(window.feedbackTimer);
                 window.feedbackTimer = null;
@@ -3345,10 +3345,10 @@ window.addEventListener('DOMContentLoaded', function() {
             const fb = document.getElementById('feedback');
             if(fb) fb.style.opacity = '0';
 
-            // 4. BUTON EFEKTLERÄ°NÄ° TEMÄ°ZLE
+            // 4. BUTON EFEKTLERÃ„Â°NÃ„Â° TEMÃ„Â°ZLE
             document.querySelectorAll('.nav-btn, button').forEach(btn => {
                 btn.classList.remove('selected-button');
-                // TÃ¼m renk halkalarÄ±nÄ± sil
+                // TÃƒÂ¼m renk halkalarÃ„Â±nÃ„Â± sil
                 btn.classList.remove(
                     'ring-2', 'ring-offset-1', 
                     'ring-orange-500', 'ring-cyan-500', 'ring-blue-500', 
@@ -3357,32 +3357,32 @@ window.addEventListener('DOMContentLoaded', function() {
                 );
             });
 
-            // 5. NORMAL CANVAS'I (BOÅ IZGARA) GÃ–STER
-            // DiÄŸer Ã¶zel modlar kapandÄ±ÄŸÄ± iÃ§in kullanÄ±cÄ± boÅŸlukta kalmasÄ±n.
+            // 5. NORMAL CANVAS'I (BOÃ…Â IZGARA) GÃƒâ€“STER
+            // DiÃ„Å¸er ÃƒÂ¶zel modlar kapandÃ„Â±Ã„Å¸Ã„Â± iÃƒÂ§in kullanÃ„Â±cÃ„Â± boÃ…Å¸lukta kalmasÃ„Â±n.
             const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
             if (regularCanvas) {
                 regularCanvas.style.display = 'flex';
                 if (typeof initCanvas === 'function') initCanvas();
             }
 
-            console.log("âœ… Oyun Fabrika AyarlarÄ±na DÃ¶ndÃ¼.");
+            console.log("Ã¢Å“â€¦ Oyun Fabrika AyarlarÃ„Â±na DÃƒÂ¶ndÃƒÂ¼.");
         });
     }
 });
 
 
 
-// --- DoÄŸru Grafikleri Buton MantÄ±ÄŸÄ± ---
+// --- DoÃ„Å¸ru Grafikleri Buton MantÃ„Â±Ã„Å¸Ã„Â± ---
 document.getElementById('lineGraphsBtn').addEventListener('click', function() {
     const subButtons = document.getElementById('lineGraphSubButtons');
     
-    // AÃ§Ä±k mÄ± kapalÄ± mÄ± kontrolÃ¼ (Toggle mantÄ±ÄŸÄ±)
+    // AÃƒÂ§Ã„Â±k mÃ„Â± kapalÃ„Â± mÃ„Â± kontrolÃƒÂ¼ (Toggle mantÃ„Â±Ã„Å¸Ã„Â±)
     const isHidden = subButtons.classList.contains('hidden');
 
-    // 1. EkranÄ± temizle
+    // 1. EkranÃ„Â± temizle
     clearAllScreens();
 
-    // 2. Duruma gÃ¶re aÃ§ veya kapa
+    // 2. Duruma gÃƒÂ¶re aÃƒÂ§ veya kapa
     if (isHidden) {
         subButtons.classList.remove('hidden');
         this.classList.add('selected-button');
@@ -3391,11 +3391,11 @@ document.getElementById('lineGraphsBtn').addEventListener('click', function() {
         this.classList.remove('selected-button');
     }
 
-    // 3. DiÄŸer menÃ¼yÃ¼ (DoÄŸrusal Ä°liÅŸkiler) kapat
+    // 3. DiÃ„Å¸er menÃƒÂ¼yÃƒÂ¼ (DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler) kapat
     document.getElementById('linearSubButtons').classList.add('hidden');
     document.getElementById('linearRelationsBtn').classList.remove('selected-button');
 
-    // 4. DiÄŸer ana buton seÃ§imlerini kaldÄ±r
+    // 4. DiÃ„Å¸er ana buton seÃƒÂ§imlerini kaldÃ„Â±r
     document.getElementById('translationBtn').classList.remove('selected-button');
     document.getElementById('reflectionBtn').classList.remove('selected-button');
     document.getElementById('pointToPlaceBtn').classList.remove('selected-button');
@@ -3410,26 +3410,26 @@ graphSubIds.forEach(id => {
     const btn = document.getElementById(id);
     if (btn) {
         btn.addEventListener('click', function() {
-            // Hepsinin seÃ§imini kaldÄ±r
+            // Hepsinin seÃƒÂ§imini kaldÃ„Â±r
             graphSubIds.forEach(btnId => {
                 const b = document.getElementById(btnId);
                 if (b) b.classList.remove('ring-2', 'ring-offset-1', 'ring-cyan-500');
             });
-            // TÄ±klanana ekle
+            // TÃ„Â±klanana ekle
             this.classList.add('ring-2', 'ring-offset-1', 'ring-cyan-500');
         });
     }
 });
 // ==========================================
-// YENÄ° Ã–ZELLÄ°KLER: X=a ve Y=b (HÄ°ZALI IZGARA)
+// YENÃ„Â° Ãƒâ€“ZELLÃ„Â°KLER: X=a ve Y=b (HÃ„Â°ZALI IZGARA)
 // ==========================================
 
-// 1. TAM KOORDÄ°NAT SÄ°STEMÄ°NÄ° Ã‡Ä°ZEN FONKSÄ°YON (Ã‡izim kodlarÄ± kaldÄ±rÄ±ldÄ±, sadece Ä±zgara)
+// 1. TAM KOORDÃ„Â°NAT SÃ„Â°STEMÃ„Â°NÃ„Â° Ãƒâ€¡Ã„Â°ZEN FONKSÃ„Â°YON (Ãƒâ€¡izim kodlarÃ„Â± kaldÃ„Â±rÃ„Â±ldÃ„Â±, sadece Ã„Â±zgara)
 function initializeFullCanvas() {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = ''; 
 
-    // EkranÄ± sabitle
+    // EkranÃ„Â± sabitle
     canvas.setAttribute('viewBox', '0 0 500 500');
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     canvas.style.width = '100%';
@@ -3444,7 +3444,7 @@ function initializeFullCanvas() {
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     const startOffset = CENTER_X % FULL_GRID;
     
-    // Ã‡izgiler
+    // Ãƒâ€¡izgiler
     for (let x = startOffset; x <= FULL_SIZE; x += FULL_GRID) {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', 0);
@@ -3500,7 +3500,7 @@ function initializeFullCanvas() {
     canvas.appendChild(origin);
 }
 
-    // --- Ã‡Ä°ZÄ°M Ä°ÅLEVÄ° ---
+    // --- Ãƒâ€¡Ã„Â°ZÃ„Â°M Ã„Â°Ã…ÂLEVÃ„Â° ---
     let isMouseDown = false;
     let lastPoint = null;
 
@@ -3551,18 +3551,18 @@ function startXeqARound() {
     const feedback = document.getElementById('feedback');
     if(feedback) feedback.style.opacity = '0';
 
-    // 2. PANELÄ° BUL VE HAPÄ°STEN KURTAR (ANA GÃ–VDEYE TAÅI)
+    // 2. PANELÃ„Â° BUL VE HAPÃ„Â°STEN KURTAR (ANA GÃƒâ€“VDEYE TAÃ…ÂI)
     const panel = document.getElementById('linearQuestionPanel');
     
-    // EÄŸer panel bir ÅŸeyin iÃ§indeyse, onu oradan Ã§Ä±karÄ±p doÄŸrudan body'ye ekle
+    // EÃ„Å¸er panel bir Ã…Å¸eyin iÃƒÂ§indeyse, onu oradan ÃƒÂ§Ã„Â±karÃ„Â±p doÃ„Å¸rudan body'ye ekle
     if (panel.parentElement !== document.body) {
         document.body.appendChild(panel);
     }
     
     panel.classList.remove('hidden');
 
-    // 3. KONUMLANDIR (TEPEYE SABÄ°TLE)
-    // position: absolute yerine fixed kullanÄ±yoruz ki sayfa kaysa bile tepede kalsÄ±n
+    // 3. KONUMLANDIR (TEPEYE SABÃ„Â°TLE)
+    // position: absolute yerine fixed kullanÃ„Â±yoruz ki sayfa kaysa bile tepede kalsÃ„Â±n
     panel.style.cssText = `
         position: fixed !important; 
         top: 200px !important; 
@@ -3579,11 +3579,11 @@ function startXeqARound() {
         box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
     `;
 
-    // 4. Ä°Ã‡ERÄ°ÄÄ° YENÄ°DEN YAZ
-    // Soru metni div'ini sÄ±fÄ±rdan oluÅŸturuyoruz
-    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazÄ±rlanÄ±yor...</div>';
+    // 4. Ã„Â°Ãƒâ€¡ERÃ„Â°Ã„ÂÃ„Â° YENÃ„Â°DEN YAZ
+    // Soru metni div'ini sÃ„Â±fÃ„Â±rdan oluÃ…Å¸turuyoruz
+    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazÃ„Â±rlanÃ„Â±yor...</div>';
 
-    // 5. Grafik AlanÄ±nÄ± Ayarla
+    // 5. Grafik AlanÃ„Â±nÃ„Â± Ayarla
     const linearContainer = document.getElementById('linearContainer');
     linearContainer.classList.remove('hidden');
     linearContainer.style.display = 'block';
@@ -3591,14 +3591,14 @@ function startXeqARound() {
     linearContainer.style.width = '600px';
     linearContainer.style.height = '600px';
     linearContainer.style.margin = '0 auto';
-    linearContainer.style.overflow = 'visible'; // TaÅŸarsa da gÃ¶rÃ¼nsÃ¼n
+    linearContainer.style.overflow = 'visible'; // TaÃ…Å¸arsa da gÃƒÂ¶rÃƒÂ¼nsÃƒÂ¼n
 
     // Gereksizleri Gizle
     if(document.getElementById('dataTable')) document.getElementById('dataTable').parentElement.style.display = 'none';
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     if(document.getElementById('drawInstructionText')) document.getElementById('drawInstructionText').classList.remove('hidden');
     
-    // 6. Soru MantÄ±ÄŸÄ± (Senkronize)
+    // 6. Soru MantÃ„Â±Ã„Å¸Ã„Â± (Senkronize)
     const targets = [4, -3, 2, -5, 3, -2, 5, -4];
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
     const urlParams = new URLSearchParams(window.location.search);
@@ -3610,11 +3610,11 @@ function startXeqARound() {
     let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
-    // 7. METNÄ° GÃœNCELLE
+    // 7. METNÃ„Â° GÃƒÅ“NCELLE
     const qText = document.getElementById('questionText');
-    if(qText) qText.textContent = `AÅŸaÄŸÄ±daki koordinat sisteminde x = ${newTarget} doÄŸrusunu Ã§iziniz.`;
+    if(qText) qText.textContent = `AÃ…Å¸aÃ„Å¸Ã„Â±daki koordinat sisteminde x = ${newTarget} doÃ„Å¸rusunu ÃƒÂ§iziniz.`;
     
-    // 8. HazÄ±rlÄ±k
+    // 8. HazÃ„Â±rlÃ„Â±k
     initializeFullCanvas();
     linearState.drawnPoints = []; 
     if(document.getElementById('checkBtn')) document.getElementById('checkBtn').disabled = true; 
@@ -3631,10 +3631,10 @@ function startYeqBRound() {
     const feedback = document.getElementById('feedback');
     if(feedback) feedback.style.opacity = '0';
 
-    // 2. PANELÄ° BUL VE HAPÄ°STEN KURTAR
+    // 2. PANELÃ„Â° BUL VE HAPÃ„Â°STEN KURTAR
     const panel = document.getElementById('linearQuestionPanel');
     
-    // Body'ye taÅŸÄ±
+    // Body'ye taÃ…Å¸Ã„Â±
     if (panel.parentElement !== document.body) {
         document.body.appendChild(panel);
     }
@@ -3658,10 +3658,10 @@ function startYeqBRound() {
         box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
     `;
 
-    // 4. Ä°Ã‡ERÄ°ÄÄ° YENÄ°DEN YAZ
-    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazÄ±rlanÄ±yor...</div>';
+    // 4. Ã„Â°Ãƒâ€¡ERÃ„Â°Ã„ÂÃ„Â° YENÃ„Â°DEN YAZ
+    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazÃ„Â±rlanÃ„Â±yor...</div>';
 
-    // 5. Grafik AlanÄ±nÄ± Ayarla
+    // 5. Grafik AlanÃ„Â±nÃ„Â± Ayarla
     const linearContainer = document.getElementById('linearContainer');
     linearContainer.classList.remove('hidden');
     linearContainer.style.display = 'block';
@@ -3676,7 +3676,7 @@ function startYeqBRound() {
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     if(document.getElementById('drawInstructionText')) document.getElementById('drawInstructionText').classList.remove('hidden');
     
-    // 6. Soru MantÄ±ÄŸÄ± (Senkronize)
+    // 6. Soru MantÃ„Â±Ã„Å¸Ã„Â± (Senkronize)
     const targets = [3, -2, 4, -3, 2, -5, 5, -4];
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
     const urlParams = new URLSearchParams(window.location.search);
@@ -3688,11 +3688,11 @@ function startYeqBRound() {
     let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
-    // 7. METNÄ° GÃœNCELLE
+    // 7. METNÃ„Â° GÃƒÅ“NCELLE
     const qText = document.getElementById('questionText');
-    if(qText) qText.textContent = `AÅŸaÄŸÄ±daki koordinat sisteminde y = ${newTarget} doÄŸrusunu Ã§iziniz.`;
+    if(qText) qText.textContent = `AÃ…Å¸aÃ„Å¸Ã„Â±daki koordinat sisteminde y = ${newTarget} doÃ„Å¸rusunu ÃƒÂ§iziniz.`;
     
-    // 8. HazÄ±rlÄ±k
+    // 8. HazÃ„Â±rlÃ„Â±k
     initializeFullCanvas();
     linearState.drawnPoints = []; 
     if(document.getElementById('checkBtn')) document.getElementById('checkBtn').disabled = true;
@@ -3702,12 +3702,12 @@ function startYeqBRound() {
 
 
 
-// X=a KONTROLÃœ (2 Nokta MantÄ±ÄŸÄ±)
+// X=a KONTROLÃƒÅ“ (2 Nokta MantÃ„Â±Ã„Å¸Ã„Â±)
 function checkVerticalLine() {
     const targetX = gameState.targetLineValue;
     const drawnPoints = linearState.drawnPoints;
     
-    // Sadece 2 nokta olmalÄ± (BaÅŸlangÄ±Ã§ ve BitiÅŸ)
+    // Sadece 2 nokta olmalÃ„Â± (BaÃ…Å¸langÃ„Â±ÃƒÂ§ ve BitiÃ…Å¸)
     if (drawnPoints.length !== 2) { 
         showFeedback(false); 
         return; 
@@ -3720,30 +3720,30 @@ function checkVerticalLine() {
     const CENTER_X = 250;
     const CENTER_Y = 250;
 
-    // KoordinatlarÄ± grid sistemine Ã§evir
+    // KoordinatlarÃ„Â± grid sistemine ÃƒÂ§evir
     const x1 = (p1.x - CENTER_X) / FULL_GRID;
     const x2 = (p2.x - CENTER_X) / FULL_GRID;
     
-    // Y koordinatlarÄ± (uzunluk kontrolÃ¼ iÃ§in)
+    // Y koordinatlarÃ„Â± (uzunluk kontrolÃƒÂ¼ iÃƒÂ§in)
     const y1 = (CENTER_Y - p1.y) / FULL_GRID;
     const y2 = (CENTER_Y - p2.y) / FULL_GRID;
 
-    // 1. Konum DoÄŸru mu? (Ä°ki noktanÄ±n da X'i hedefe yakÄ±n olmalÄ±)
+    // 1. Konum DoÃ„Å¸ru mu? (Ã„Â°ki noktanÃ„Â±n da X'i hedefe yakÃ„Â±n olmalÃ„Â±)
     // Tolerans 0.5 birim
     const isX1Correct = Math.abs(x1 - targetX) < 0.5;
     const isX2Correct = Math.abs(x2 - targetX) < 0.5;
 
-    // 2. Ã‡izgi Dikey mi? (X deÄŸerleri birbirine yakÄ±n mÄ±)
+    // 2. Ãƒâ€¡izgi Dikey mi? (X deÃ„Å¸erleri birbirine yakÃ„Â±n mÃ„Â±)
     const isVertical = Math.abs(x1 - x2) < 0.5;
 
-    // 3. Ã‡izgi Yeterince Uzun mu? (En az 3 birim boyunda olsun)
+    // 3. Ãƒâ€¡izgi Yeterince Uzun mu? (En az 3 birim boyunda olsun)
     const isLongEnough = Math.abs(y1 - y2) > 3;
 
     if (isX1Correct && isX2Correct && isVertical && isLongEnough) {
         playSuccessSound(); 
         showFeedback(true);
         
-        // BaÅŸarÄ±lÄ± Ã§izgiyi yeÅŸile boya ve kalÄ±nlaÅŸtÄ±r
+        // BaÃ…Å¸arÃ„Â±lÃ„Â± ÃƒÂ§izgiyi yeÃ…Å¸ile boya ve kalÃ„Â±nlaÃ…Å¸tÃ„Â±r
         const userLine = document.querySelector('.user-drawn-line');
         if (userLine) { 
             userLine.setAttribute('stroke', '#10b981'); 
@@ -3755,21 +3755,21 @@ function checkVerticalLine() {
         playErrorSound();
         const feedback = document.getElementById('feedback');
         
-        if (!isVertical) feedback.textContent = `Dik bir Ã§izgi (x=${targetX}) Ã§izmelisin!`;
-        else if (!isX1Correct) feedback.textContent = `Ã‡izgiyi x=${targetX} noktasÄ±ndan geÃ§irmelisin!`;
-        else if (!isLongEnough) feedback.textContent = "Ã‡izgi Ã§ok kÄ±sa, biraz daha uzat!";
-        else feedback.textContent = "YanlÄ±ÅŸ oldu, tekrar dene.";
+        if (!isVertical) feedback.textContent = `Dik bir ÃƒÂ§izgi (x=${targetX}) ÃƒÂ§izmelisin!`;
+        else if (!isX1Correct) feedback.textContent = `Ãƒâ€¡izgiyi x=${targetX} noktasÃ„Â±ndan geÃƒÂ§irmelisin!`;
+        else if (!isLongEnough) feedback.textContent = "Ãƒâ€¡izgi ÃƒÂ§ok kÃ„Â±sa, biraz daha uzat!";
+        else feedback.textContent = "YanlÃ„Â±Ã…Å¸ oldu, tekrar dene.";
         
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
         
-        // YanlÄ±ÅŸ Ã§izgiyi sil
+        // YanlÃ„Â±Ã…Å¸ ÃƒÂ§izgiyi sil
         document.querySelectorAll('.user-drawn-line').forEach(el => el.remove());
         linearState.drawnPoints = [];
     }
 }
 
-// Y=b KONTROLÃœ (2 Nokta MantÄ±ÄŸÄ±)
+// Y=b KONTROLÃƒÅ“ (2 Nokta MantÃ„Â±Ã„Å¸Ã„Â±)
 function checkHorizontalLine() {
     const targetY = gameState.targetLineValue;
     const drawnPoints = linearState.drawnPoints;
@@ -3786,19 +3786,19 @@ function checkHorizontalLine() {
     const CENTER_X = 250;
     const CENTER_Y = 250;
 
-    // Y koordinatlarÄ±nÄ± Ã§evir
+    // Y koordinatlarÃ„Â±nÃ„Â± ÃƒÂ§evir
     const y1 = (CENTER_Y - p1.y) / FULL_GRID;
     const y2 = (CENTER_Y - p2.y) / FULL_GRID;
     
-    // X koordinatlarÄ± (uzunluk kontrolÃ¼ iÃ§in)
+    // X koordinatlarÃ„Â± (uzunluk kontrolÃƒÂ¼ iÃƒÂ§in)
     const x1 = (p1.x - CENTER_X) / FULL_GRID;
     const x2 = (p2.x - CENTER_X) / FULL_GRID;
 
-    // 1. Konum DoÄŸru mu? (Ä°ki noktanÄ±n da Y'si hedefe yakÄ±n olmalÄ±)
+    // 1. Konum DoÃ„Å¸ru mu? (Ã„Â°ki noktanÃ„Â±n da Y'si hedefe yakÃ„Â±n olmalÃ„Â±)
     const isY1Correct = Math.abs(y1 - targetY) < 0.5;
     const isY2Correct = Math.abs(y2 - targetY) < 0.5;
 
-    // 2. Ã‡izgi Yatay mÄ±? (Y deÄŸerleri birbirine yakÄ±n mÄ±)
+    // 2. Ãƒâ€¡izgi Yatay mÃ„Â±? (Y deÃ„Å¸erleri birbirine yakÃ„Â±n mÃ„Â±)
     const isHorizontal = Math.abs(y1 - y2) < 0.5;
 
     // 3. Uzunluk
@@ -3819,10 +3819,10 @@ function checkHorizontalLine() {
         playErrorSound();
         const feedback = document.getElementById('feedback');
         
-        if (!isHorizontal) feedback.textContent = `Yatay bir Ã§izgi (y=${targetY}) Ã§izmelisin!`;
-        else if (!isY1Correct) feedback.textContent = `Ã‡izgiyi y=${targetY} noktasÄ±ndan geÃ§irmelisin!`;
-        else if (!isLongEnough) feedback.textContent = "Ã‡izgi Ã§ok kÄ±sa, biraz daha uzat!";
-        else feedback.textContent = "YanlÄ±ÅŸ oldu, tekrar dene.";
+        if (!isHorizontal) feedback.textContent = `Yatay bir ÃƒÂ§izgi (y=${targetY}) ÃƒÂ§izmelisin!`;
+        else if (!isY1Correct) feedback.textContent = `Ãƒâ€¡izgiyi y=${targetY} noktasÃ„Â±ndan geÃƒÂ§irmelisin!`;
+        else if (!isLongEnough) feedback.textContent = "Ãƒâ€¡izgi ÃƒÂ§ok kÃ„Â±sa, biraz daha uzat!";
+        else feedback.textContent = "YanlÃ„Â±Ã…Å¸ oldu, tekrar dene.";
         
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -3870,10 +3870,10 @@ if (btnYeqB) {
 }
 
 // ==========================================
-// YENÄ° Ã–ZELLÄ°K: Y = ax MODU (TABLOYU BÄ°REBÄ°R OKUYAN SÃœRÃœM)
+// YENÃ„Â° Ãƒâ€“ZELLÃ„Â°K: Y = ax MODU (TABLOYU BÃ„Â°REBÃ„Â°R OKUYAN SÃƒÅ“RÃƒÅ“M)
 // ==========================================
 
-// 1. ESKÄ° Ã‡Ä°ZÄ°M FONKSÄ°YONUNU DEVRE DIÅI BIRAK
+// 1. ESKÃ„Â° Ãƒâ€¡Ã„Â°ZÃ„Â°M FONKSÃ„Â°YONUNU DEVRE DIÃ…ÂI BIRAK
 if (!window.originalInitializeLinearCanvas) {
     window.originalInitializeLinearCanvas = window.initializeLinearCanvas;
 }
@@ -3886,23 +3886,23 @@ window.initializeLinearCanvas = function() {
     }
 };
 
-// GRAFÄ°K IZGARASINI Ã‡Ä°ZEN FONKSÄ°YON (Ã–lÃ§ekli)
+// GRAFÃ„Â°K IZGARASINI Ãƒâ€¡Ã„Â°ZEN FONKSÃ„Â°YON (Ãƒâ€“lÃƒÂ§ekli)
 function drawFullGridForAX(scaleFactor = 1) {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = ''; 
 
-    // EkranÄ± sabitle
+    // EkranÃ„Â± sabitle
     canvas.setAttribute('viewBox', '0 0 500 500');
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     canvas.style.width = '100%';
     canvas.style.height = '100%';
 
     const FULL_SIZE = 500;
-    const FULL_GRID = 40; // Her karenin piksel geniÅŸliÄŸi (sabit)
+    const FULL_GRID = 40; // Her karenin piksel geniÃ…Å¸liÃ„Å¸i (sabit)
     const CENTER_X = 250;
     const CENTER_Y = 250;
 
-    // --- IZGARA Ã‡Ä°ZGÄ°LERÄ° ---
+    // --- IZGARA Ãƒâ€¡Ã„Â°ZGÃ„Â°LERÃ„Â° ---
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     const startOffset = CENTER_X % FULL_GRID;
     
@@ -3937,17 +3937,17 @@ function drawFullGridForAX(scaleFactor = 1) {
     axisGroup.appendChild(yAxis);
     canvas.appendChild(axisGroup);
 
-    // --- SAYILAR (Ã–LÃ‡EÄE GÃ–RE) ---
-    // Her Ã§izgi 1 birim deÄŸil, 'scaleFactor' kadar birimdir.
+    // --- SAYILAR (Ãƒâ€“LÃƒâ€¡EÃ„ÂE GÃƒâ€“RE) ---
+    // Her ÃƒÂ§izgi 1 birim deÃ„Å¸il, 'scaleFactor' kadar birimdir.
     for (let i = -6; i <= 6; i++) {
         if (i === 0) continue;
         const pos = CENTER_X + (i * FULL_GRID);
         
-        // GÃ¶sterilecek sayÄ± deÄŸeri
+        // GÃƒÂ¶sterilecek sayÃ„Â± deÃ„Å¸eri
         const displayNum = i * scaleFactor;
 
         if (pos > 10 && pos < FULL_SIZE - 10) {
-            // X Ekseni SayÄ±larÄ±
+            // X Ekseni SayÃ„Â±larÃ„Â±
             const textX = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             textX.setAttribute('x', pos); textX.setAttribute('y', CENTER_Y + 20);
             textX.setAttribute('text-anchor', 'middle'); textX.setAttribute('font-size', '12');
@@ -3955,12 +3955,12 @@ function drawFullGridForAX(scaleFactor = 1) {
             textX.textContent = displayNum;
             canvas.appendChild(textX);
             
-            // Y Ekseni SayÄ±larÄ±
+            // Y Ekseni SayÃ„Â±larÃ„Â±
             const textY = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             textY.setAttribute('x', CENTER_X - 15); textY.setAttribute('y', pos + 5);
             textY.setAttribute('text-anchor', 'middle'); textY.setAttribute('font-size', '12');
             textY.setAttribute('font-weight', 'bold'); 
-            textY.textContent = -displayNum; // Y ekseni yukarÄ± doÄŸru pozitiftir ama SVG'de yukarÄ± gidildikÃ§e piksel azalÄ±r
+            textY.textContent = -displayNum; // Y ekseni yukarÃ„Â± doÃ„Å¸ru pozitiftir ama SVG'de yukarÃ„Â± gidildikÃƒÂ§e piksel azalÃ„Â±r
             canvas.appendChild(textY);
         }
     }
@@ -3974,12 +3974,12 @@ function initializeLearningTable() {
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
     
-    // Hem 'y_eq_ax' HEM DE 'y_eq_ax_plus_b' modlarÄ± iÃ§in Ã¶zel tablo
+    // Hem 'y_eq_ax' HEM DE 'y_eq_ax_plus_b' modlarÃ„Â± iÃƒÂ§in ÃƒÂ¶zel tablo
     if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') {
         
         document.getElementById('xHeader').textContent = "x";
         
-        // BaÅŸlÄ±k metnini moda gÃ¶re ayarla
+        // BaÃ…Å¸lÃ„Â±k metnini moda gÃƒÂ¶re ayarla
         if (gameState.mode === 'y_eq_ax') {
             document.getElementById('yHeader').textContent = `y = ${gameState.targetSlope}x`;
         } else {
@@ -3987,7 +3987,7 @@ function initializeLearningTable() {
             document.getElementById('yHeader').textContent = `y = ${gameState.targetSlope}x ${sign}${gameState.targetIntercept}`;
         }
         
-        // 3. SÃ¼tun BaÅŸlÄ±ÄŸÄ± (Nokta)
+        // 3. SÃƒÂ¼tun BaÃ…Å¸lÃ„Â±Ã„Å¸Ã„Â± (Nokta)
         let thirdHeader = document.getElementById('pointHeader');
         if (!thirdHeader) {
             const trHead = document.querySelector('#dataTable thead tr');
@@ -3999,23 +3999,23 @@ function initializeLearningTable() {
         thirdHeader.textContent = "Nokta (x,y)";
         thirdHeader.style.display = 'table-cell';
 
-        // 4 SatÄ±r OluÅŸtur
+        // 4 SatÃ„Â±r OluÃ…Å¸tur
         for (let i = 0; i < 4; i++) {
             const row = document.createElement('tr');
             
-            // X HÃ¼cresi
+            // X HÃƒÂ¼cresi
             const xCell = document.createElement('td');
             xCell.className = 'border-2 border-purple-400 px-2 py-2 text-center font-bold text-lg cursor-pointer hover:bg-purple-100';
             xCell.dataset.row = i; xCell.dataset.col = 'x';
             xCell.addEventListener('click', () => openNumberPad(i, 'x'));
             
-            // Y HÃ¼cresi
+            // Y HÃƒÂ¼cresi
             const yCell = document.createElement('td');
             yCell.className = 'border-2 border-purple-400 px-2 py-2 text-center font-bold text-lg cursor-pointer hover:bg-purple-100';
             yCell.dataset.row = i; yCell.dataset.col = 'y';
             yCell.addEventListener('click', () => openNumberPad(i, 'y'));
             
-            // Nokta HÃ¼cresi (Otomatik)
+            // Nokta HÃƒÂ¼cresi (Otomatik)
             const pointCell = document.createElement('td');
             pointCell.className = 'border-2 border-purple-400 px-2 py-2 text-center font-bold text-lg bg-gray-100 text-gray-600';
             pointCell.id = `point-cell-${i}`;
@@ -4027,7 +4027,7 @@ function initializeLearningTable() {
             tbody.appendChild(row);
         }
     } else {
-        // DiÄŸer modlar iÃ§in eski standart tablo
+        // DiÃ„Å¸er modlar iÃƒÂ§in eski standart tablo
         const thirdHeader = document.getElementById('pointHeader');
         if (thirdHeader) thirdHeader.style.display = 'none';
 
@@ -4058,14 +4058,14 @@ function initializeLearningTable() {
 window.updateLinearCanvas = function(row, col, value) {
     if (gameState.mode !== 'y_eq_ax' && gameState.mode !== 'y_eq_ax_plus_b') return;
 
-    // 1. Tablo Verisini GÃ¼ncelle (Metin olarak)
+    // 1. Tablo Verisini GÃƒÂ¼ncelle (Metin olarak)
     const tableRows = document.getElementById('tableBody').querySelectorAll('tr');
     const currentRow = tableRows[row];
     let xText = currentRow.children[0].textContent.trim();
     let yText = currentRow.children[1].textContent.trim();
     if (yText.includes('=')) yText = yText.split('=')[1].trim();
 
-    // 3. SÃ¼tun (Nokta) GÃ¼ncellemesi
+    // 3. SÃƒÂ¼tun (Nokta) GÃƒÂ¼ncellemesi
     const pointCell = document.getElementById(`point-cell-${row}`);
     if (xText !== '' && yText !== '' && pointCell) {
         pointCell.textContent = `(${xText}, ${yText})`;
@@ -4075,8 +4075,8 @@ window.updateLinearCanvas = function(row, col, value) {
         pointCell.style.color = '#6b7280'; pointCell.style.backgroundColor = '#9ca3af';
     }
 
-    // --- AKILLI Ã–LÃ‡EKLENDÄ°RME ---
-    // Tablodaki tÃ¼m verileri topla
+    // --- AKILLI Ãƒâ€“LÃƒâ€¡EKLENDÃ„Â°RME ---
+    // Tablodaki tÃƒÂ¼m verileri topla
     let maxAbsValue = 0;
     let pointsData = [];
     let validPointsCount = 0;
@@ -4092,14 +4092,14 @@ window.updateLinearCanvas = function(row, col, value) {
         if (!isNaN(xVal) && !isNaN(yVal)) {
             pointsData.push({x: xVal, y: yVal});
             validPointsCount++;
-            // En bÃ¼yÃ¼k deÄŸeri bul (negatifler pozitif yapÄ±lÄ±p bakÄ±lÄ±r)
+            // En bÃƒÂ¼yÃƒÂ¼k deÃ„Å¸eri bul (negatifler pozitif yapÃ„Â±lÃ„Â±p bakÃ„Â±lÃ„Â±r)
             maxAbsValue = Math.max(maxAbsValue, Math.abs(xVal), Math.abs(yVal));
         }
     });
 
-    // Ã–lÃ§eÄŸi Belirle (VarsayÄ±lan 1)
-    // Ekranda merkezin saÄŸÄ±na doÄŸru yaklaÅŸÄ±k 6 Ã§izgi var.
-    // EÄŸer sayÄ± 6'dan bÃ¼yÃ¼kse sÄ±ÄŸmaz, Ã¶lÃ§eÄŸi bÃ¼yÃ¼tmeliyiz.
+    // Ãƒâ€“lÃƒÂ§eÃ„Å¸i Belirle (VarsayÃ„Â±lan 1)
+    // Ekranda merkezin saÃ„Å¸Ã„Â±na doÃ„Å¸ru yaklaÃ…Å¸Ã„Â±k 6 ÃƒÂ§izgi var.
+    // EÃ„Å¸er sayÃ„Â± 6'dan bÃƒÂ¼yÃƒÂ¼kse sÃ„Â±Ã„Å¸maz, ÃƒÂ¶lÃƒÂ§eÃ„Å¸i bÃƒÂ¼yÃƒÂ¼tmeliyiz.
     let scaleFactor = 1;
     if (maxAbsValue > 6) scaleFactor = 2;
     if (maxAbsValue > 12) scaleFactor = 5;
@@ -4107,35 +4107,35 @@ window.updateLinearCanvas = function(row, col, value) {
     if (maxAbsValue > 60) scaleFactor = 20;
     if (maxAbsValue > 120) scaleFactor = 50;
 
-    // Bu Ã¶lÃ§ek deÄŸerini global bir yere kaydet (Ã‡izgi kontrolÃ¼nde lazÄ±m olacak)
+    // Bu ÃƒÂ¶lÃƒÂ§ek deÃ„Å¸erini global bir yere kaydet (Ãƒâ€¡izgi kontrolÃƒÂ¼nde lazÃ„Â±m olacak)
     linearState.axisScale = scaleFactor;
 
-    // 2. GrafiÄŸi Yeni Ã–lÃ§ekle Ã‡iz
+    // 2. GrafiÃ„Å¸i Yeni Ãƒâ€“lÃƒÂ§ekle Ãƒâ€¡iz
     drawFullGridForAX(scaleFactor);
 
-    // 3. NoktalarÄ± YerleÅŸtir
+    // 3. NoktalarÃ„Â± YerleÃ…Å¸tir
     const linearCanvas = document.getElementById('linearCanvas');
     const CENTER_X = 250; 
     const CENTER_Y = 250; 
     const FULL_GRID = 40; 
 
-    // Eski noktalarÄ± temizle
+    // Eski noktalarÃ„Â± temizle
     document.querySelectorAll("circle[class*='point-'], text[class*='point-'], line[class*='guide-']").forEach(el => el.remove());
 
     pointsData.forEach(p => {
-        // KOORDÄ°NAT HESABI:
-        // (DeÄŸer / Ã–lÃ§ek) * IzgaraBÃ¼yÃ¼klÃ¼ÄŸÃ¼
-        // Ã–rn: DeÄŸer 20, Ã–lÃ§ek 5 ise -> 4 kare gider.
+        // KOORDÃ„Â°NAT HESABI:
+        // (DeÃ„Å¸er / Ãƒâ€“lÃƒÂ§ek) * IzgaraBÃƒÂ¼yÃƒÂ¼klÃƒÂ¼Ã„Å¸ÃƒÂ¼
+        // Ãƒâ€“rn: DeÃ„Å¸er 20, Ãƒâ€“lÃƒÂ§ek 5 ise -> 4 kare gider.
         const pixelX = CENTER_X + ((p.x / scaleFactor) * FULL_GRID);
         const pixelY = CENTER_Y - ((p.y / scaleFactor) * FULL_GRID);
 
-        // Rehber Ã‡izgiler
+        // Rehber Ãƒâ€¡izgiler
         const guideX = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         guideX.setAttribute('x1', pixelX); guideX.setAttribute('y1', pixelY);
         guideX.setAttribute('x2', pixelX); guideX.setAttribute('y2', CENTER_Y);
         guideX.setAttribute('stroke', '#ef4444'); guideX.setAttribute('stroke-width', '2');
         guideX.setAttribute('stroke-dasharray', '4,4');
-        guideX.style.pointerEvents = 'none'; // TÄ±klama hatasÄ±nÄ± engelle
+        guideX.style.pointerEvents = 'none'; // TÃ„Â±klama hatasÃ„Â±nÃ„Â± engelle
         linearCanvas.appendChild(guideX);
 
         const guideY = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -4143,7 +4143,7 @@ window.updateLinearCanvas = function(row, col, value) {
         guideY.setAttribute('x2', CENTER_X); guideY.setAttribute('y2', pixelY);
         guideY.setAttribute('stroke', '#ef4444'); guideY.setAttribute('stroke-width', '2');
         guideY.setAttribute('stroke-dasharray', '4,4');
-        guideY.style.pointerEvents = 'none'; // TÄ±klama hatasÄ±nÄ± engelle
+        guideY.style.pointerEvents = 'none'; // TÃ„Â±klama hatasÃ„Â±nÃ„Â± engelle
         linearCanvas.appendChild(guideY);
 
         // Nokta
@@ -4152,7 +4152,7 @@ window.updateLinearCanvas = function(row, col, value) {
         circle.setAttribute('r', 8); 
         circle.setAttribute('fill', '#8b5cf6');
         circle.setAttribute('stroke', 'white'); circle.setAttribute('stroke-width', '2');
-        circle.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI Ä°Ã‡Ä°N EKLENDÄ°
+        circle.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI Ã„Â°Ãƒâ€¡Ã„Â°N EKLENDÃ„Â°
         linearCanvas.appendChild(circle);
 
         // Etiket
@@ -4164,23 +4164,23 @@ window.updateLinearCanvas = function(row, col, value) {
         const displayX = decimalToFraction(p.x);
         const displayY = decimalToFraction(p.y);
         label.textContent = `(${displayX}, ${displayY})`;
-        label.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI Ä°Ã‡Ä°N EKLENDÄ°
+        label.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI Ã„Â°Ãƒâ€¡Ã„Â°N EKLENDÃ„Â°
         linearCanvas.appendChild(label);
     });
 
-    // Buton KontrolÃ¼
+    // Buton KontrolÃƒÂ¼
     const feedback = document.getElementById('feedback');
     const confirmBtn = document.getElementById('tableConfirmBtn');
 
     if (validPointsCount >= 2) {
         const allSame = pointsData.every(p => p.x === pointsData[0].x && p.y === pointsData[0].y);
         if (allSame) {
-            feedback.textContent = "âš ï¸ Noktalar Ã¼st Ã¼ste! FarklÄ± deÄŸerler ver.";
+            feedback.textContent = "Ã¢Å¡Â Ã¯Â¸Â Noktalar ÃƒÂ¼st ÃƒÂ¼ste! FarklÃ„Â± deÃ„Å¸erler ver.";
             feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-bold bg-orange-500 text-white';
             feedback.style.opacity = '1';
             confirmBtn.disabled = true; confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
         } else {
-            feedback.textContent = "âœ… Harika! 'TAMAM' butonuna bas ve Ã§izimi yap.";
+            feedback.textContent = "Ã¢Å“â€¦ Harika! 'TAMAM' butonuna bas ve ÃƒÂ§izimi yap.";
             feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-bold bg-green-500 text-white';
             feedback.style.opacity = '1';
             confirmBtn.disabled = false; confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -4190,7 +4190,7 @@ window.updateLinearCanvas = function(row, col, value) {
     }
 };
 
-// 6. LASTÄ°K Ã‡Ä°ZGÄ° ARACI
+// 6. LASTÃ„Â°K Ãƒâ€¡Ã„Â°ZGÃ„Â° ARACI
 function setupStraightLineDrawing() {
     const canvas = document.getElementById('linearCanvas');
     const newCanvas = canvas.cloneNode(true);
@@ -4207,8 +4207,8 @@ function setupStraightLineDrawing() {
         try {
             newCanvas.setPointerCapture(e.pointerId);
         } catch(err) {
-            console.warn("Pointer capture hatasÄ±:", err);
-            // Tablette hata verse bile Ã§izime devam et
+            console.warn("Pointer capture hatasÃ„Â±:", err);
+            // Tablette hata verse bile ÃƒÂ§izime devam et
         }
         const pt = newCanvas.createSVGPoint();
         pt.x = e.clientX; pt.y = e.clientY;
@@ -4276,11 +4276,11 @@ function checkStraightLine() {
 
     const CENTER_X = 250, CENTER_Y = 250, FULL_GRID = 40;
     
-    // YENÄ°LÄ°K BURADA: O anki Ã¶lÃ§ek katsayÄ±sÄ±nÄ± kullan (Yoksa 1 kabul et)
+    // YENÃ„Â°LÃ„Â°K BURADA: O anki ÃƒÂ¶lÃƒÂ§ek katsayÃ„Â±sÃ„Â±nÃ„Â± kullan (Yoksa 1 kabul et)
     const currentScale = linearState.axisScale || 1;
 
-    // Koordinat dÃ¶nÃ¼ÅŸÃ¼mÃ¼nde 'currentScale' ile Ã§arpÄ±yoruz
-    // FormÃ¼l: (PikselFarkÄ± / GridBoyutu) * Ã–lÃ§ek
+    // Koordinat dÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼mÃƒÂ¼nde 'currentScale' ile ÃƒÂ§arpÃ„Â±yoruz
+    // FormÃƒÂ¼l: (PikselFarkÃ„Â± / GridBoyutu) * Ãƒâ€“lÃƒÂ§ek
     const x1 = ((p1.x - CENTER_X) / FULL_GRID) * currentScale;
     const y1 = ((CENTER_Y - p1.y) / FULL_GRID) * currentScale;
     const x2 = ((p2.x - CENTER_X) / FULL_GRID) * currentScale;
@@ -4289,17 +4289,17 @@ function checkStraightLine() {
     const drawnSlope = (y2 - y1) / (x2 - x1);
     const drawnIntercept = y1 - (drawnSlope * x1); 
     
-    // Kontroller (Ã‡ok Daha GeniÅŸ ToleranslÄ± - Tablet Parmak Ã‡izimi Ä°Ã§in)
+    // Kontroller (Ãƒâ€¡ok Daha GeniÃ…Å¸ ToleranslÃ„Â± - Tablet Parmak Ãƒâ€¡izimi Ã„Â°ÃƒÂ§in)
     let slopeTolerance = 1.0;
     if (Math.abs(targetSlope) >= 2) slopeTolerance = 1.5;
     if (Math.abs(targetSlope) >= 3) slopeTolerance = 2.0;
     
-    let interceptTolerance = 1.5 * currentScale; // Ã–lÃ§ek arttÄ±kÃ§a hata payÄ± artar
+    let interceptTolerance = 1.5 * currentScale; // Ãƒâ€“lÃƒÂ§ek arttÃ„Â±kÃƒÂ§a hata payÃ„Â± artar
     
     const isSlopeCorrect = Math.abs(drawnSlope - targetSlope) <= slopeTolerance;
     const isInterceptCorrect = Math.abs(drawnIntercept - targetIntercept) <= interceptTolerance;
     
-    // Uzunluk kontrolÃ¼ (Piksel bazÄ±nda yapalÄ±m ki Ã¶lÃ§ekten etkilenmesin)
+    // Uzunluk kontrolÃƒÂ¼ (Piksel bazÃ„Â±nda yapalÃ„Â±m ki ÃƒÂ¶lÃƒÂ§ekten etkilenmesin)
     // En az 40 piksel (1 kare) uzunluk olsun
     const pixelDist = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
     const isLongEnough = pixelDist > 40;
@@ -4310,7 +4310,7 @@ function checkStraightLine() {
         if (userLine) { userLine.setAttribute('stroke', '#10b981'); userLine.setAttribute('stroke-width', '6'); }
         
         setTimeout(() => { 
-            // Yeni soruya geÃ§erken Ã¶lÃ§eÄŸi sÄ±fÄ±rla
+            // Yeni soruya geÃƒÂ§erken ÃƒÂ¶lÃƒÂ§eÃ„Å¸i sÃ„Â±fÃ„Â±rla
             linearState.axisScale = 1; 
             if (gameState.mode === 'y_eq_ax_plus_b') startYeqAXplusBRound();
             else startYeqAXRound();
@@ -4320,11 +4320,11 @@ function checkStraightLine() {
         const feedback = document.getElementById('feedback');
         
         if (!isInterceptCorrect) {
-             feedback.textContent = `Ã‡izgi Y eksenini ${targetIntercept} noktasÄ±nda kesmeli!`;
+             feedback.textContent = `Ãƒâ€¡izgi Y eksenini ${targetIntercept} noktasÃ„Â±nda kesmeli!`;
         } else if (!isSlopeCorrect) {
-            feedback.textContent = "EÄŸim yanlÄ±ÅŸ! NoktalarÄ± birleÅŸtir.";
+            feedback.textContent = "EÃ„Å¸im yanlÃ„Â±Ã…Å¸! NoktalarÃ„Â± birleÃ…Å¸tir.";
         } else if (!isLongEnough) {
-            feedback.textContent = "Ã‡izgi Ã§ok kÄ±sa!";
+            feedback.textContent = "Ãƒâ€¡izgi ÃƒÂ§ok kÃ„Â±sa!";
         }
         
         feedback.style.opacity = '1';
@@ -4376,7 +4376,7 @@ if (checkBtn) {
         if (gameState.mode === 'x_eq_a') { if(typeof checkVerticalLine === 'function') checkVerticalLine(); }
         else if (gameState.mode === 'y_eq_b') { if(typeof checkHorizontalLine === 'function') checkHorizontalLine(); }
         else if (gameState.mode === 'y_eq_ax') { checkStraightLine(); }
-// checkBtn listener iÃ§inde:
+// checkBtn listener iÃƒÂ§inde:
 else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') { 
     checkStraightLine(); 
 }
@@ -4387,7 +4387,7 @@ else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') {
 }
 
 function clearGeometryUI() {
-    // 1. Koordinat butonlarÄ±nÄ± (Yer -> Nokta) gizle
+    // 1. Koordinat butonlarÃ„Â±nÃ„Â± (Yer -> Nokta) gizle
     document.getElementById('coordinateOptions').classList.add('hidden');
     
     // 2. Geometri bilgi kutusunu gizle
@@ -4396,9 +4396,9 @@ function clearGeometryUI() {
     // 3. Bildirimleri temizle
     document.getElementById('feedback').style.opacity = '0';
     
-    // 4. Standart Geometri Canvas'Ä±nÄ± gizle (EÄŸer aÃ§Ä±ksa)
-    // Not: Linear modlar kendi canvaslarÄ±nÄ± veya containerlarÄ±nÄ± aÃ§tÄ±ÄŸÄ± iÃ§in
-    // bu genellikle otomatik gizlenir ama garantiye alalÄ±m.
+    // 4. Standart Geometri Canvas'Ã„Â±nÃ„Â± gizle (EÃ„Å¸er aÃƒÂ§Ã„Â±ksa)
+    // Not: Linear modlar kendi canvaslarÃ„Â±nÃ„Â± veya containerlarÃ„Â±nÃ„Â± aÃƒÂ§tÃ„Â±Ã„Å¸Ã„Â± iÃƒÂ§in
+    // bu genellikle otomatik gizlenir ama garantiye alalÃ„Â±m.
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) {
         regularCanvas.style.display = 'none';
@@ -4407,28 +4407,28 @@ function clearGeometryUI() {
 
 
 // ==========================================
-// KESÄ°N TEMÄ°ZLÄ°K FONKSÄ°YONU (NÃœKLEER SEÃ‡ENEK)
+// KESÃ„Â°N TEMÃ„Â°ZLÃ„Â°K FONKSÃ„Â°YONU (NÃƒÅ“KLEER SEÃƒâ€¡ENEK)
 // ==========================================
 function clearAllScreens() {
 
-// clearAllScreens fonksiyonunun iÃ§ine ÅŸu satÄ±rÄ± ekle:
+// clearAllScreens fonksiyonunun iÃƒÂ§ine Ã…Å¸u satÃ„Â±rÃ„Â± ekle:
 if (window.feedbackTimer) clearTimeout(window.feedbackTimer);
-if (window.roundTimer) clearTimeout(window.roundTimer); // BUG FIX: Devam eden eski oyunlarÄ±n setTimeout'larÄ±nÄ± iptal et
-if (window.animationFrameId) cancelAnimationFrame(window.animationFrameId); // BUG FIX: Devam eden animasyonlarÄ± iptal et
+if (window.roundTimer) clearTimeout(window.roundTimer); // BUG FIX: Devam eden eski oyunlarÃ„Â±n setTimeout'larÃ„Â±nÃ„Â± iptal et
+if (window.animationFrameId) cancelAnimationFrame(window.animationFrameId); // BUG FIX: Devam eden animasyonlarÃ„Â± iptal et
 const fb = document.getElementById('feedback');
 if (fb) fb.style.opacity = '0';
 
 
-    // 1. GÄ°ZLENMESÄ° GEREKEN TÃœM ID'LERÄ°N LÄ°STESÄ°
+    // 1. GÃ„Â°ZLENMESÃ„Â° GEREKEN TÃƒÅ“M ID'LERÃ„Â°N LÃ„Â°STESÃ„Â°
     const idsToHide = [
-        // Alt MenÃ¼ler
+        // Alt MenÃƒÂ¼ler
         'transformSubButtons',
         'coordinateSubButtons',
         'linearSubButtons',
         'lineGraphSubButtons',
         'slopeSubButtons',
         
-        // Ä°Ã§erik Panelleri ve Containerlar
+        // Ã„Â°ÃƒÂ§erik Panelleri ve Containerlar
         'linearContainer',
         'graphQuestionContainer',
         'linearQuestionPanel',
@@ -4442,18 +4442,18 @@ if (fb) fb.style.opacity = '0';
         'tableConfirmBtn'
     ];
 
-    // 2. HEPSÄ°NÄ° TEK TEK BUL VE GÄ°ZLE
+    // 2. HEPSÃ„Â°NÃ„Â° TEK TEK BUL VE GÃ„Â°ZLE
     idsToHide.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
             el.classList.add('hidden');       // Tailwind gizlemesi
-            el.style.display = 'none';        // CSS zorla gizleme (Ã–nemli!)
+            el.style.display = 'none';        // CSS zorla gizleme (Ãƒâ€“nemli!)
             el.style.removeProperty('display'); // Veya inline stili tamamen sil (daha temiz)
             el.classList.add('hidden'); // Tekrar garantiye al
         }
     });
 
-    // 3. TABLOYU Ã–ZEL OLARAK GÄ°ZLE (Wrapper'Ä± ile birlikte)
+    // 3. TABLOYU Ãƒâ€“ZEL OLARAK GÃ„Â°ZLE (Wrapper'Ã„Â± ile birlikte)
     const dataTable = document.getElementById('dataTable');
     if (dataTable) {
         dataTable.style.display = 'none';
@@ -4462,11 +4462,11 @@ if (fb) fb.style.opacity = '0';
         }
     }
 
-    // 4. GERÄ° BÄ°LDÄ°RÄ°MÄ° SÄ°L
+    // 4. GERÃ„Â° BÃ„Â°LDÃ„Â°RÃ„Â°MÃ„Â° SÃ„Â°L
     const feedback = document.getElementById('feedback');
     if (feedback) feedback.style.opacity = '0';
 
-    // 5. TÃœM BUTON EFEKTLERÄ°NÄ° SÄ°L (Halkalar vb.)
+    // 5. TÃƒÅ“M BUTON EFEKTLERÃ„Â°NÃ„Â° SÃ„Â°L (Halkalar vb.)
     document.querySelectorAll('.nav-btn, button').forEach(btn => {
         btn.classList.remove('selected-button');
         btn.classList.remove(
@@ -4477,8 +4477,8 @@ if (fb) fb.style.opacity = '0';
         );
     });
 
-    // 6. ANA GEOMETRÄ° CANVAS'INI GÄ°ZLE (VarsayÄ±lan olarak)
-    // Bunu sadece "DÃ¶nÃ¼ÅŸÃ¼m Geometrisi" modlarÄ± geri aÃ§acak.
+    // 6. ANA GEOMETRÃ„Â° CANVAS'INI GÃ„Â°ZLE (VarsayÃ„Â±lan olarak)
+    // Bunu sadece "DÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m Geometrisi" modlarÃ„Â± geri aÃƒÂ§acak.
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) {
         regularCanvas.style.display = 'none'; 
@@ -4488,55 +4488,55 @@ if (fb) fb.style.opacity = '0';
 
 
 // ==========================================
-// DÃœZEN DÃœZELTME: GRAFÄ°K -> SORU EKRANI
+// DÃƒÅ“ZEN DÃƒÅ“ZELTME: GRAFÃ„Â°K -> SORU EKRANI
 // ==========================================
-// Sol paneli (Soru kÄ±smÄ±) geniÅŸlet, grafiÄŸi sÄ±kÄ±ÅŸtÄ±rma
+// Sol paneli (Soru kÃ„Â±smÃ„Â±) geniÃ…Å¸let, grafiÃ„Å¸i sÃ„Â±kÃ„Â±Ã…Å¸tÃ„Â±rma
 document.addEventListener('DOMContentLoaded', function() {
     const graphContainer = document.getElementById('graphQuestionContainer');
     if (graphContainer) {
-        // Sol panel (Soru metni ve ÅŸÄ±klar)
+        // Sol panel (Soru metni ve Ã…Å¸Ã„Â±klar)
         const leftPanel = graphContainer.children[0];
-        // w-64 (sabit) yerine w-1/3 veya w-2/5 (oransal) yapÄ±yoruz
+        // w-64 (sabit) yerine w-1/3 veya w-2/5 (oransal) yapÃ„Â±yoruz
         leftPanel.classList.remove('w-64'); 
         leftPanel.classList.add('w-1/3', 'min-w-[300px]', 'p-2'); 
         
-        // SaÄŸ panel (Grafik)
+        // SaÃ„Å¸ panel (Grafik)
         const rightPanel = graphContainer.children[1];
         rightPanel.classList.add('p-2');
     }
 });
 
 // ==========================================
-// ONDALIK SAYIYI KESRE Ã‡EVÄ°RME (1.33 -> 4/3)
+// ONDALIK SAYIYI KESRE Ãƒâ€¡EVÃ„Â°RME (1.33 -> 4/3)
 // ==========================================
 function decimalToFraction(val) {
     if (val === undefined || isNaN(val)) return "";
     
-    // Zaten tam sayÄ±ysa direkt dÃ¶ndÃ¼r (Ã–rn: 5)
+    // Zaten tam sayÃ„Â±ysa direkt dÃƒÂ¶ndÃƒÂ¼r (Ãƒâ€“rn: 5)
     if (Math.abs(val - Math.round(val)) < 0.0001) {
         return Math.round(val).toString();
     }
 
-    // PaydayÄ± 2'den 100'e kadar dene (Okul matematiÄŸi iÃ§in yeterli)
+    // PaydayÃ„Â± 2'den 100'e kadar dene (Okul matematiÃ„Å¸i iÃƒÂ§in yeterli)
     for (let d = 2; d <= 100; d++) {
         let n = val * d;
-        // EÄŸer payda ile Ã§arpÄ±nca tam sayÄ±ya Ã§ok yaklaÅŸÄ±yorsa bulduk demektir
+        // EÃ„Å¸er payda ile ÃƒÂ§arpÃ„Â±nca tam sayÃ„Â±ya ÃƒÂ§ok yaklaÃ…Å¸Ã„Â±yorsa bulduk demektir
         if (Math.abs(n - Math.round(n)) < 0.0001) {
             return `${Math.round(n)}/${d}`;
         }
     }
     
-    // EÄŸer basit bir kesir bulunamazsa, virgÃ¼lden sonra 2 basamak gÃ¶ster
+    // EÃ„Å¸er basit bir kesir bulunamazsa, virgÃƒÂ¼lden sonra 2 basamak gÃƒÂ¶ster
     return val.toFixed(2);
 }
 
 // ==========================================
-// Y=AX MODU Ä°Ã‡Ä°N EKSÄ°K KODLAR (RESTORASYON)
+// Y=AX MODU Ã„Â°Ãƒâ€¡Ã„Â°N EKSÃ„Â°K KODLAR (RESTORASYON)
 // ==========================================
 
-// 1. Modu BaÅŸlatan Fonksiyon
+// 1. Modu BaÃ…Å¸latan Fonksiyon
 function startYeqAXRound() {
-    console.log("Y=ax Modu BaÅŸlÄ±yor...");
+    console.log("Y=ax Modu BaÃ…Å¸lÃ„Â±yor...");
     resetLinearQuestionPanel();
     
     // Eski bildirimleri temizle
@@ -4546,7 +4546,7 @@ function startYeqAXRound() {
 
     gameState.mode = 'y_eq_ax';
     
-    // Rastgele EÄŸim Belirle (Senkronize)
+    // Rastgele EÃ„Å¸im Belirle (Senkronize)
     const slopes = [2, -2, 3, -3]; 
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
     const urlParams = new URLSearchParams(window.location.search);
@@ -4558,7 +4558,7 @@ function startYeqAXRound() {
     let newSlope = slopes[sIndex];
     gameState.targetSlope = newSlope;
     
-    // UI (ArayÃ¼z) HazÄ±rla
+    // UI (ArayÃƒÂ¼z) HazÃ„Â±rla
     document.getElementById('linearQuestionPanel').classList.remove('hidden');
     document.getElementById('linearContainer').classList.remove('hidden');
     document.getElementById('linearContainer').style.display = 'flex';
@@ -4567,16 +4567,16 @@ function startYeqAXRound() {
     document.getElementById('dataTable').style.display = 'block';
     document.getElementById('drawInstructionText').classList.add('hidden');
     
-    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x. Tabloyu doldurarak grafiÄŸi Ã§iziniz.`;
+    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x. Tabloyu doldurarak grafiÃ„Å¸i ÃƒÂ§iziniz.`;
 
-    // Tabloyu oluÅŸtur
+    // Tabloyu oluÃ…Å¸tur
     initializeLearningTable();
     
-    // GrafiÄŸi varsayÄ±lan Ã¶lÃ§ekle (1) Ã§iz
+    // GrafiÃ„Å¸i varsayÃ„Â±lan ÃƒÂ¶lÃƒÂ§ekle (1) ÃƒÂ§iz
     linearState.axisScale = 1; 
     drawFullGridForAX(1);
     
-    // HafÄ±zayÄ± Temizle 
+    // HafÃ„Â±zayÃ„Â± Temizle 
     linearState.drawnPoints = []; 
     linearState.tableData = Array(4).fill(null).map(() => ({x: '', y: '', calcY: undefined}));
     
@@ -4586,56 +4586,56 @@ function startYeqAXRound() {
     confirmBtn.classList.add('opacity-50', 'cursor-not-allowed'); 
     document.getElementById('checkBtn').disabled = true;
     
-    // Ã‡izim aracÄ±nÄ± hazÄ±rla
+    // Ãƒâ€¡izim aracÃ„Â±nÃ„Â± hazÃ„Â±rla
     setupStraightLineDrawing();
 }
 
-// 2. Buton TÄ±klama OlayÄ± (Listener)
+// 2. Buton TÃ„Â±klama OlayÃ„Â± (Listener)
 var btnYeqAX = document.getElementById('btnYeqAX');
 if (btnYeqAX) {
     var newBtnAX = btnYeqAX.cloneNode(true);
     btnYeqAX.parentNode.replaceChild(newBtnAX, btnYeqAX);
     newBtnAX.addEventListener('click', function() {
         gameState.mode = 'y_eq_ax';
-        // DiÄŸer butonlarÄ±n seÃ§im halkasÄ±nÄ± kaldÄ±r
+        // DiÃ„Å¸er butonlarÃ„Â±n seÃƒÂ§im halkasÃ„Â±nÃ„Â± kaldÃ„Â±r
         document.querySelectorAll('#lineGraphSubButtons button').forEach(b => b.classList.remove('ring-2', 'ring-offset-1', 'ring-cyan-500'));
         // Bu butona halka ekle
         this.classList.add('ring-2', 'ring-offset-1', 'ring-cyan-500');
         
-        // DiÄŸer ekranlarÄ± gizle
+        // DiÃ„Å¸er ekranlarÃ„Â± gizle
         var regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'none';
         document.getElementById('graphQuestionContainer').classList.add('hidden');
         
-        // Modu baÅŸlat
+        // Modu baÃ…Å¸lat
         startYeqAXRound();
     });
 }
 
 
 // ==========================================
-// EÄÄ°M ANA BUTONU (SADECE MENÃœYÃœ AÃ‡AR)
+// EÃ„ÂÃ„Â°M ANA BUTONU (SADECE MENÃƒÅ“YÃƒÅ“ AÃƒâ€¡AR)
 // ==========================================
 document.getElementById('slopeBtn').addEventListener('click', function() {
-    // 1. Alt menÃ¼yÃ¼ bul
+    // 1. Alt menÃƒÂ¼yÃƒÂ¼ bul
     const subButtons = document.getElementById('slopeSubButtons');
     
-    // AÃ§Ä±k mÄ± kapalÄ± mÄ±?
+    // AÃƒÂ§Ã„Â±k mÃ„Â± kapalÃ„Â± mÃ„Â±?
     const isHidden = subButtons.classList.contains('hidden') || subButtons.style.display === 'none';
 
-    // 2. EkranÄ± temizle (DiÄŸer menÃ¼leri kapat)
+    // 2. EkranÃ„Â± temizle (DiÃ„Å¸er menÃƒÂ¼leri kapat)
     clearAllScreens(); 
 
-    // 3. MenÃ¼yÃ¼ AÃ‡ (Ama oyunu baÅŸlatma!)
+    // 3. MenÃƒÂ¼yÃƒÂ¼ AÃƒâ€¡ (Ama oyunu baÃ…Å¸latma!)
     if (isHidden) {
         subButtons.classList.remove('hidden');
-        subButtons.style.display = 'flex'; // MenÃ¼yÃ¼ gÃ¶rÃ¼nÃ¼r yap
+        subButtons.style.display = 'flex'; // MenÃƒÂ¼yÃƒÂ¼ gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
         
         this.classList.add('selected-button');
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
     } else {
-        // Zaten aÃ§Ä±ksa kapat
-        subButtons.classList.add('hidden'); // SÄ±nÄ±fÄ± geri ekle
+        // Zaten aÃƒÂ§Ã„Â±ksa kapat
+        subButtons.classList.add('hidden'); // SÃ„Â±nÃ„Â±fÃ„Â± geri ekle
         subButtons.style.display = 'none';
         this.classList.remove('selected-button');
         this.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
@@ -4643,7 +4643,7 @@ document.getElementById('slopeBtn').addEventListener('click', function() {
 });
 
 
-// --- EÄŸim Alt ButonlarÄ± (Åimdilik HazÄ±rlÄ±k) ---
+// --- EÃ„Å¸im Alt ButonlarÃ„Â± (Ã…Âimdilik HazÃ„Â±rlÃ„Â±k) ---
 const slopeSubIds = ['btnSlopeIncline', 'btnSlopeGraph', 'btnSlopeTwoPoints', 'btnSlopeEquation'];
 
 slopeSubIds.forEach(id => {
@@ -4657,72 +4657,72 @@ slopeSubIds.forEach(id => {
             });
             this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
             
-            // Burada ileride ilgili modlarÄ± baÅŸlatacaÄŸÄ±z
-            console.log(id + " tÄ±klandÄ±. Ä°lgili eÄŸim modu aÃ§Ä±lacak.");
+            // Burada ileride ilgili modlarÃ„Â± baÃ…Å¸latacaÃ„Å¸Ã„Â±z
+            console.log(id + " tÃ„Â±klandÃ„Â±. Ã„Â°lgili eÃ„Å¸im modu aÃƒÂ§Ã„Â±lacak.");
             
-            // Ã–rnek: gameState.mode = 'slope_incline';
+            // Ãƒâ€“rnek: gameState.mode = 'slope_incline';
             // startSlopeInclineRound(); vb.
         });
     }
 });
 
 // ==========================================
-// DÃ–NÃœÅÃœM GEOMETRÄ°SÄ° MENÃœ MANTIÄI
+// DÃƒâ€“NÃƒÅ“Ã…ÂÃƒÅ“M GEOMETRÃ„Â°SÃ„Â° MENÃƒÅ“ MANTIÃ„ÂI
 // ==========================================
 
-// 1. ANA BUTON (MenÃ¼yÃ¼ AÃ§Ä±p Kapatma)
+// 1. ANA BUTON (MenÃƒÂ¼yÃƒÂ¼ AÃƒÂ§Ã„Â±p Kapatma)
 document.getElementById('transformationsBtn').addEventListener('click', function() {
     const subButtons = document.getElementById('transformSubButtons');
     const isHidden = subButtons.classList.contains('hidden');
 
-    // Ã–nce ekranÄ± temizle (DiÄŸer aÃ§Ä±k menÃ¼leri kapatÄ±r)
+    // Ãƒâ€“nce ekranÃ„Â± temizle (DiÃ„Å¸er aÃƒÂ§Ã„Â±k menÃƒÂ¼leri kapatÃ„Â±r)
     clearAllScreens();
 
     if (isHidden) {
-        // MenÃ¼yÃ¼ aÃ§
+        // MenÃƒÂ¼yÃƒÂ¼ aÃƒÂ§
         subButtons.classList.remove('hidden');
         this.classList.add('selected-button');
     } else {
-        // MenÃ¼yÃ¼ kapat
+        // MenÃƒÂ¼yÃƒÂ¼ kapat
         subButtons.classList.add('hidden');
         this.classList.remove('selected-button');
     }
 });
 
-// 2. Ã–TELEME BUTONU GÃœNCELLEMESÄ° (Mevcut listener'Ä± ezer veya tamamlar)
-// Not: Mevcut kodda zaten listener var ama menÃ¼yÃ¼ aÃ§Ä±k tutmak iÃ§in bunu override ediyoruz.
+// 2. Ãƒâ€“TELEME BUTONU GÃƒÅ“NCELLEMESÃ„Â° (Mevcut listener'Ã„Â± ezer veya tamamlar)
+// Not: Mevcut kodda zaten listener var ama menÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tutmak iÃƒÂ§in bunu override ediyoruz.
 var oldTranslationBtn = document.getElementById('translationBtn');
 if (oldTranslationBtn) {
-    // Butonu klonlayÄ±p eskisini silerek listener Ã§akÄ±ÅŸmasÄ±nÄ± Ã¶nlÃ¼yoruz (En temiz yÃ¶ntem)
+    // Butonu klonlayÃ„Â±p eskisini silerek listener ÃƒÂ§akÃ„Â±Ã…Å¸masÃ„Â±nÃ„Â± ÃƒÂ¶nlÃƒÂ¼yoruz (En temiz yÃƒÂ¶ntem)
     var newTranslationBtn = oldTranslationBtn.cloneNode(true);
     oldTranslationBtn.parentNode.replaceChild(newTranslationBtn, oldTranslationBtn);
 
     newTranslationBtn.addEventListener('click', function() {
         clearAllScreens(); // Temizlik
         
-        // MenÃ¼yÃ¼ tekrar aÃ§ (Ã‡Ã¼nkÃ¼ clearAllScreens kapattÄ±)
+        // MenÃƒÂ¼yÃƒÂ¼ tekrar aÃƒÂ§ (Ãƒâ€¡ÃƒÂ¼nkÃƒÂ¼ clearAllScreens kapattÃ„Â±)
         document.getElementById('transformSubButtons').classList.remove('hidden');
         document.getElementById('transformationsBtn').classList.add('selected-button');
         
         // Kendini aktif yap (Halka efekti)
         this.classList.add('ring-2', 'ring-offset-1', 'ring-blue-500');
         
-        // DiÄŸer butonun efektini sil
+        // DiÃ„Å¸er butonun efektini sil
         const refBtn = document.getElementById('reflectionBtn');
         if(refBtn) refBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-purple-500');
 
-        // Normal Canvas'Ä± geri getir
+        // Normal Canvas'Ã„Â± geri getir
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // Oyun Modunu BaÅŸlat
+        // Oyun Modunu BaÃ…Å¸lat
         gameState.mode = 'translation';
         updateUI();
         startNewRound();
     });
 }
 
-// 3. YANSIMA BUTONU GÃœNCELLEMESÄ°
+// 3. YANSIMA BUTONU GÃƒÅ“NCELLEMESÃ„Â°
 var oldReflectionBtn = document.getElementById('reflectionBtn');
 if (oldReflectionBtn) {
     var newReflectionBtn = oldReflectionBtn.cloneNode(true);
@@ -4731,22 +4731,22 @@ if (oldReflectionBtn) {
     newReflectionBtn.addEventListener('click', function() {
         clearAllScreens(); // Temizlik
         
-        // MenÃ¼yÃ¼ tekrar aÃ§
+        // MenÃƒÂ¼yÃƒÂ¼ tekrar aÃƒÂ§
         document.getElementById('transformSubButtons').classList.remove('hidden');
         document.getElementById('transformationsBtn').classList.add('selected-button');
 
         // Kendini aktif yap
         this.classList.add('ring-2', 'ring-offset-1', 'ring-purple-500');
 
-        // DiÄŸer butonun efektini sil
+        // DiÃ„Å¸er butonun efektini sil
         const transBtn = document.getElementById('translationBtn');
         if(transBtn) transBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-blue-500');
 
-        // Normal Canvas'Ä± geri getir
+        // Normal Canvas'Ã„Â± geri getir
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // Oyun Modunu BaÅŸlat
+        // Oyun Modunu BaÃ…Å¸lat
         gameState.mode = 'reflection';
         updateUI();
         startNewRound();
@@ -4754,15 +4754,15 @@ if (oldReflectionBtn) {
 }
 
 // ==========================================
-// KOORDÄ°NAT BULMA MENÃœSÃœ (YENÄ°)
+// KOORDÃ„Â°NAT BULMA MENÃƒÅ“SÃƒÅ“ (YENÃ„Â°)
 // ==========================================
 
-// 1. ANA MENÃœYÃœ AÃ‡/KAPA
+// 1. ANA MENÃƒÅ“YÃƒÅ“ AÃƒâ€¡/KAPA
 document.getElementById('coordinatesBtn').addEventListener('click', function() {
     const subButtons = document.getElementById('coordinateSubButtons');
     const isHidden = subButtons.classList.contains('hidden');
 
-    // DiÄŸer her ÅŸeyi temizle
+    // DiÃ„Å¸er her Ã…Å¸eyi temizle
     clearAllScreens();
 
     if (isHidden) {
@@ -4783,21 +4783,21 @@ if (oldP2PlaceBtn) {
     newP2PlaceBtn.addEventListener('click', function() {
         clearAllScreens();
         
-        // MenÃ¼yÃ¼ aÃ§Ä±k tut
+        // MenÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut
         document.getElementById('coordinateSubButtons').classList.remove('hidden');
         document.getElementById('coordinatesBtn').classList.add('selected-button');
         
         // Halka efekti (Pembe)
         this.classList.add('ring-2', 'ring-offset-1', 'ring-pink-500');
-        // DiÄŸer butonun efektini sil
+        // DiÃ„Å¸er butonun efektini sil
         const otherBtn = document.getElementById('placeToPointBtn');
         if(otherBtn) otherBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-teal-500');
 
-        // Normal Canvas'Ä± gÃ¶ster
+        // Normal Canvas'Ã„Â± gÃƒÂ¶ster
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // OYUNU BAÅLAT
+        // OYUNU BAÃ…ÂLAT
         gameState.mode = 'pointToPlace';
         updateUI();
         startNewRound();
@@ -4813,21 +4813,21 @@ if (oldPlace2PBtn) {
     newPlace2PBtn.addEventListener('click', function() {
         clearAllScreens();
         
-        // MenÃ¼yÃ¼ aÃ§Ä±k tut
+        // MenÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut
         document.getElementById('coordinateSubButtons').classList.remove('hidden');
         document.getElementById('coordinatesBtn').classList.add('selected-button');
 
         // Halka efekti (Turkuaz)
         this.classList.add('ring-2', 'ring-offset-1', 'ring-teal-500');
-        // DiÄŸer butonun efektini sil
+        // DiÃ„Å¸er butonun efektini sil
         const otherBtn = document.getElementById('pointToPlaceBtn');
         if(otherBtn) otherBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-pink-500');
 
-        // Normal Canvas'Ä± gÃ¶ster
+        // Normal Canvas'Ã„Â± gÃƒÂ¶ster
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // OYUNU BAÅLAT
+        // OYUNU BAÃ…ÂLAT
         gameState.mode = 'placeToPoint';
         updateUI();
         startNewRound();
@@ -4835,13 +4835,13 @@ if (oldPlace2PBtn) {
 }
 
 // ==========================================
-// EÄÄ°M: EÄÄ°K DÃœZLEM MODU
+// EÃ„ÂÃ„Â°M: EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM MODU
 // ==========================================
 
 let slopeState = {
     currentQuestion: 0,
     questions: [
-        // ... Eski sorular aynen kalsÄ±n ...
+        // ... Eski sorular aynen kalsÃ„Â±n ...
         { type: 'calc_slope', w: 7, h: 4, direction: 'ltr' }, 
         { type: 'calc_slope', w: 5, h: 3, direction: 'ltr' },
         { type: 'calc_slope', w: 6, h: 5, direction: 'rtl' }, 
@@ -4849,7 +4849,7 @@ let slopeState = {
         { type: 'find_side', w: 12, h: 6, direction: 'ltr', slopeDisplay: '0,5', unknown: 'vertical', answer: 6 },
         { type: 'find_side', w: 12, h: 9, direction: 'rtl', slopeDisplay: '3/4', unknown: 'horizontal', answer: 12 },
 
-        // --- YENÄ° EKLENEN: MERDÄ°VEN SORUSU ---
+        // --- YENÃ„Â° EKLENEN: MERDÃ„Â°VEN SORUSU ---
         { 
             type: 'stairs', 
             stepCount: 6, 
@@ -4861,26 +4861,26 @@ let slopeState = {
         }
     ],
 
-// B) GRAFÄ°K SORULARI (8 ADET: 4 Orijinden GeÃ§en, 4 Eksenleri Kesen)
+// B) GRAFÃ„Â°K SORULARI (8 ADET: 4 Orijinden GeÃƒÂ§en, 4 Eksenleri Kesen)
     graphQuestions: [
-        // --- GRUP 1: Orijinden GeÃ§enler (y = ax) ---
-        // 1. Pozitif EÄŸim (2/3)
+        // --- GRUP 1: Orijinden GeÃƒÂ§enler (y = ax) ---
+        // 1. Pozitif EÃ„Å¸im (2/3)
         { m_num: 2, m_denom: 3, points: [{x:0, y:0}, {x:3, y:2}] },
-        // 2. Negatif EÄŸim (-1/2)
+        // 2. Negatif EÃ„Å¸im (-1/2)
         { m_num: -1, m_denom: 2, points: [{x:0, y:0}, {x:-2, y:1}] },
-        // 3. Tam SayÄ± EÄŸim (3/1 = 3)
+        // 3. Tam SayÃ„Â± EÃ„Å¸im (3/1 = 3)
         { m_num: 3, m_denom: 1, points: [{x:0, y:0}, {x:1, y:3}] },
-        // 4. Negatif Tam SayÄ± EÄŸim (-2/1 = -2)
+        // 4. Negatif Tam SayÃ„Â± EÃ„Å¸im (-2/1 = -2)
         { m_num: -2, m_denom: 1, points: [{x:0, y:0}, {x:-1, y:2}] },
         
         // --- GRUP 2: Eksenleri Kesenler (y = ax + b) ---
-        // 5. x eksenini -3'te, y eksenini 4'te kesen (EÄŸim: 4/3)
+        // 5. x eksenini -3'te, y eksenini 4'te kesen (EÃ„Å¸im: 4/3)
         { m_num: 4, m_denom: 3, points: [{x:-3, y:0}, {x:0, y:4}] },
-        // 6. x eksenini 2'de, y eksenini 3'te kesen (EÄŸim: -3/2)
+        // 6. x eksenini 2'de, y eksenini 3'te kesen (EÃ„Å¸im: -3/2)
         { m_num: -3, m_denom: 2, points: [{x:2, y:0}, {x:0, y:3}] },
-        // 7. x eksenini -4'te, y eksenini -5'te kesen (EÄŸim: -5/4)
+        // 7. x eksenini -4'te, y eksenini -5'te kesen (EÃ„Å¸im: -5/4)
         { m_num: -5, m_denom: 4, points: [{x:-4, y:0}, {x:0, y:-5}] },
-        // 8. x eksenini 3'te, y eksenini -4'te kesen (EÄŸim: 4/3)
+        // 8. x eksenini 3'te, y eksenini -4'te kesen (EÃ„Å¸im: 4/3)
         { m_num: 4, m_denom: 3, points: [{x:3, y:0}, {x:0, y:-4}] },
         { 
             type: 'find_intercept',
@@ -4889,7 +4889,7 @@ let slopeState = {
             x_label: '8',       // X eksenini 8'de kessin
             y_label: 'a',
             answer: 6,          // Cevap pozitif 6 olsun
-            // GÃ¶rselde sÄ±ÄŸmasÄ± iÃ§in Ã¶lÃ§ekli Ã§izim (4 ve 3 noktalarÄ±)
+            // GÃƒÂ¶rselde sÃ„Â±Ã„Å¸masÃ„Â± iÃƒÂ§in ÃƒÂ¶lÃƒÂ§ekli ÃƒÂ§izim (4 ve 3 noktalarÃ„Â±)
             visualPoints: [{x:4, y:0}, {x:0, y:3}]
         }
     ],
@@ -4897,11 +4897,11 @@ let slopeState = {
 };
 
 // ==========================================
-// EÄÄ°K DÃœZLEM MODUNU BAÅLATAN FONKSÄ°YON (DÃœZELTÄ°LMÄ°Å TEMÄ°Z HALÄ°)
+// EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM MODUNU BAÃ…ÂLATAN FONKSÃ„Â°YON (DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â TEMÃ„Â°Z HALÃ„Â°)
 // ==========================================
 function startSlopeInclineRound() {
     
-    // 1. SORULAR BÄ°TTÄ° MÄ° KONTROLÃœ
+    // 1. SORULAR BÃ„Â°TTÃ„Â° MÃ„Â° KONTROLÃƒÅ“
     if (slopeState.currentQuestion >= slopeState.questions.length) {
         clearAllScreens();
         
@@ -4910,9 +4910,9 @@ function startSlopeInclineRound() {
 
         const feedback = document.getElementById('feedback');
         feedback.innerHTML = `
-            <div class="text-4xl mb-2">ğŸ†</div>
+            <div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div>
             <div>Tebrikler!</div>
-            <div class="text-lg font-normal mt-1">Bu bÃ¶lÃ¼mÃ¼ baÅŸarÄ±yla tamamladÄ±n!</div>
+            <div class="text-lg font-normal mt-1">Bu bÃƒÂ¶lÃƒÂ¼mÃƒÂ¼ baÃ…Å¸arÃ„Â±yla tamamladÃ„Â±n!</div>
         `;
         
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-3xl z-[9999] animate-bounce border-4 border-white';
@@ -4932,14 +4932,14 @@ function startSlopeInclineRound() {
         return; 
     }
 
-    // 2. EKRAN TEMÄ°ZLÄ°ÄÄ°
+    // 2. EKRAN TEMÃ„Â°ZLÃ„Â°Ã„ÂÃ„Â°
     clearAllScreens();
     resetLinearQuestionPanel();
 
     document.getElementById('slopeSubButtons').classList.remove('hidden');
     document.getElementById('btnSlopeIncline').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
     
-    // 3. UI HAZIRLIÄI
+    // 3. UI HAZIRLIÃ„ÂI
     const linearContainer = document.getElementById('linearContainer');
     linearContainer.classList.remove('hidden');
     linearContainer.style.display = 'flex';
@@ -4958,20 +4958,20 @@ function startSlopeInclineRound() {
     const canvas = document.getElementById('linearCanvas');
     canvas.style.display = 'block';
 
-    // 4. PANEL Ä°Ã‡ERÄ°ÄÄ°
+    // 4. PANEL Ã„Â°Ãƒâ€¡ERÃ„Â°Ã„ÂÃ„Â°
     const q = slopeState.questions[slopeState.currentQuestion];
     const panelContent = document.getElementById('slopeQuestionPanel');
     panelContent.innerHTML = '';
 
     if (q.type === 'calc_slope') {
-        // ESKÄ° TÄ°P
+        // ESKÃ„Â° TÃ„Â°P
         panelContent.innerHTML = `
             <div class="text-indigo-900 font-bold text-center">
-                <span class="text-lg block mb-2">EÄŸimi Hesapla</span>
+                <span class="text-lg block mb-2">EÃ„Å¸imi Hesapla</span>
                 <span class="text-sm text-gray-500 font-normal">Dikey / Yatay</span>
             </div>
             <div id="slopeAnswerBox" class="w-48 h-14 border-2 border-dashed border-indigo-400 rounded-xl flex items-center justify-center text-2xl font-bold text-indigo-600 bg-indigo-50 cursor-pointer hover:bg-indigo-100 transition-all shadow-sm">?</div>
-            <div class="text-xs text-gray-400 text-center">Kutuya tÄ±kla ve deÄŸeri gir<br>(Ã–rn: 4Ã·7)</div>
+            <div class="text-xs text-gray-400 text-center">Kutuya tÃ„Â±kla ve deÃ„Å¸eri gir<br>(Ãƒâ€“rn: 4ÃƒÂ·7)</div>
         `;
         document.getElementById('slopeAnswerBox').addEventListener('click', function() {
             activeInputTarget = 'slope_simple';
@@ -4982,10 +4982,10 @@ function startSlopeInclineRound() {
         });
 
     } else if (q.type === 'stairs') {
-        // MERDÄ°VEN TÄ°PÄ°
+        // MERDÃ„Â°VEN TÃ„Â°PÃ„Â°
         panelContent.innerHTML = `
             <div class="text-indigo-900 font-bold text-center mb-2">
-                <span class="text-lg">Merdivenin EÄŸimini Bul</span>
+                <span class="text-lg">Merdivenin EÃ„Å¸imini Bul</span>
             </div>
             <div class="flex items-center justify-center gap-4 text-2xl font-bold font-mono">
                 <div class="flex flex-col items-center gap-1">
@@ -5011,9 +5011,9 @@ function startSlopeInclineRound() {
             document.getElementById('numberPad').classList.remove('hidden');
         });
     } else {
-        // YENÄ° TÄ°P
+        // YENÃ„Â° TÃ„Â°P
         let leftSideHTML = '';
-        let instructionText = "Soru iÅŸaretli kutuya tÄ±kla";
+        let instructionText = "Soru iÃ…Å¸aretli kutuya tÃ„Â±kla";
 
         if (q.slopeDisplay === '0,5') {
             leftSideHTML = `
@@ -5022,7 +5022,7 @@ function startSlopeInclineRound() {
                     <div class="border-b-2 border-indigo-900 w-full"></div>
                     <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
                 </div>`;
-            instructionText = "0,5'i kesre Ã§evir (Ã–rn: 1/2), sonra x'i bul";
+            instructionText = "0,5'i kesre ÃƒÂ§evir (Ãƒâ€“rn: 1/2), sonra x'i bul";
         } 
         else if (q.slopeDisplay.includes('/')) {
             const parts = q.slopeDisplay.split('/');
@@ -5046,7 +5046,7 @@ function startSlopeInclineRound() {
         panelContent.innerHTML = `
             <div class="text-indigo-900 font-bold text-center mb-2">
                 <span class="text-lg">Bilinmeyeni Bul</span>
-                ${q.slopeDisplay === '0,5' ? '<div class="text-xs text-indigo-600">(EÄŸim = 0,5)</div>' : ''}
+                ${q.slopeDisplay === '0,5' ? '<div class="text-xs text-indigo-600">(EÃ„Å¸im = 0,5)</div>' : ''}
             </div>
             
             <div class="flex items-center justify-center gap-4 text-2xl font-bold font-mono">
@@ -5116,24 +5116,24 @@ function startSlopeInclineRound() {
 
 
 // ==========================================
-// EÄÄ°M CEVAP KONTROL FONKSÄ°YONU (DÃœZELTÄ°LMÄ°Å)
+// EÃ„ÂÃ„Â°M CEVAP KONTROL FONKSÃ„Â°YONU (DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â)
 // ==========================================
 function checkSlopeAnswer() {
     let q;
     
-    // Hangi moddayÄ±z?
+    // Hangi moddayÃ„Â±z?
     if (slopeState.activeMode === 'graph') {
         q = slopeState.graphQuestions[slopeState.currentQuestion];
     } else {
         q = slopeState.questions[slopeState.currentQuestion];
     }
 
-    // *** Ä°ÅTE HATAYI Ã‡Ã–ZEN SATIR BURASI ***
+    // *** Ã„Â°Ã…ÂTE HATAYI Ãƒâ€¡Ãƒâ€“ZEN SATIR BURASI ***
     let isCorrect = false; 
     // **************************************
 
     // ---------------------------------------------------------
-    // A) GRAFÄ°K MODU KONTROLLERÄ°
+    // A) GRAFÃ„Â°K MODU KONTROLLERÃ„Â°
     // ---------------------------------------------------------
     if (slopeState.activeMode === 'graph') {
         if (q.type === 'find_intercept') {
@@ -5166,7 +5166,7 @@ function checkSlopeAnswer() {
         }
     } 
     // ---------------------------------------------------------
-    // B) EÄÄ°K DÃœZLEM MODU KONTROLLERÄ°
+    // B) EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM MODU KONTROLLERÃ„Â°
     // ---------------------------------------------------------
     else {
         if (q.type === 'calc_slope') {
@@ -5177,8 +5177,8 @@ function checkSlopeAnswer() {
                 try {
                     if (userAnswer.includes('/')) {
                         const parts = userAnswer.split('/'); userVal = parseFloat(parts[0]) / parseFloat(parts[1]);
-                    } else if (userAnswer.includes('Ã·')) {
-                        const parts = userAnswer.split('Ã·'); userVal = parseFloat(parts[0]) / parseFloat(parts[1]);
+                    } else if (userAnswer.includes('ÃƒÂ·')) {
+                        const parts = userAnswer.split('ÃƒÂ·'); userVal = parseFloat(parts[0]) / parseFloat(parts[1]);
                     } else { userVal = parseFloat(userAnswer); }
                     const correctVal = q.h / q.w;
                     if (Math.abs(userVal - correctVal) < 0.001) isCorrect = true;
@@ -5228,7 +5228,7 @@ function checkSlopeAnswer() {
     }
 
     // ---------------------------------------------------------
-    // SONUÃ‡ Ä°ÅLEMLERÄ°
+    // SONUÃƒâ€¡ Ã„Â°Ã…ÂLEMLERÃ„Â°
     // ---------------------------------------------------------
     if (isCorrect) {
         slopeState.userAnswer = true;
@@ -5258,7 +5258,7 @@ function checkSlopeAnswer() {
         showFeedback(false);
         playErrorSound();
         const feedback = document.getElementById('feedback');
-        feedback.textContent = "YanlÄ±ÅŸ cevap, tekrar dene!";
+        feedback.textContent = "YanlÃ„Â±Ã…Å¸ cevap, tekrar dene!";
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
     }
@@ -5267,17 +5267,17 @@ function checkSlopeAnswer() {
 
 
 // ==========================================
-// EÅÄ°TLÄ°K MODU (FÄ°NAL: KESÄ°N DÃœZELTME v3)
+// EÃ…ÂÃ„Â°TLÃ„Â°K MODU (FÃ„Â°NAL: KESÃ„Â°N DÃƒÅ“ZELTME v3)
 // ==========================================
 function startSlopeGraphRound() {
-    // 1. LÄ°STEYÄ° TEMÄ°ZLE VE SORUYU ZORLA EKLE
-    // Eski "b" sorularÄ±nÄ± siliyoruz ki Ã§akÄ±ÅŸma olmasÄ±n
+    // 1. LÃ„Â°STEYÃ„Â° TEMÃ„Â°ZLE VE SORUYU ZORLA EKLE
+    // Eski "b" sorularÃ„Â±nÃ„Â± siliyoruz ki ÃƒÂ§akÃ„Â±Ã…Å¸ma olmasÃ„Â±n
     slopeState.graphQuestions = slopeState.graphQuestions.filter(q => q.subType !== 'find_b_negative');
 
     // Yeni soruyu listenin SONUNA ekliyoruz
     slopeState.graphQuestions.push({
         type: 'find_intercept',   
-        subType: 'find_b_negative', // Bu kimlik Ã§izimi tetikleyecek
+        subType: 'find_b_negative', // Bu kimlik ÃƒÂ§izimi tetikleyecek
         targetVar: 'b',           
         xVal: 5,                  
         yVal: -15,                // b = -15
@@ -5285,13 +5285,13 @@ function startSlopeGraphRound() {
         correctAnswer: -15        
     });
 
-    // 2. BitiÅŸ KontrolÃ¼
+    // 2. BitiÃ…Å¸ KontrolÃƒÂ¼
     if (slopeState.currentQuestion >= slopeState.graphQuestions.length) {
         clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('btnSlopeGraph').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
         const feedback = document.getElementById('feedback');
-        feedback.innerHTML = `<div class="text-4xl mb-2">ğŸ†</div><div>Tebrikler!</div><div class="text-lg font-normal mt-1">Grafik eÄŸim bÃ¶lÃ¼mÃ¼nÃ¼ baÅŸarÄ±yla tamamladÄ±n!</div>`;
+        feedback.innerHTML = `<div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div><div>Tebrikler!</div><div class="text-lg font-normal mt-1">Grafik eÃ„Å¸im bÃƒÂ¶lÃƒÂ¼mÃƒÂ¼nÃƒÂ¼ baÃ…Å¸arÃ„Â±yla tamamladÃ„Â±n!</div>`;
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-3xl z-[9999] animate-bounce border-4 border-white';
         feedback.style.opacity = '1';
         playSuccessSound();
@@ -5306,7 +5306,7 @@ function startSlopeGraphRound() {
         return; 
     }
 
-    // 3. Ekran HazÄ±rlÄ±ÄŸÄ±
+    // 3. Ekran HazÃ„Â±rlÃ„Â±Ã„Å¸Ã„Â±
     clearAllScreens();
     document.getElementById('slopeSubButtons').classList.remove('hidden');
     document.getElementById('btnSlopeGraph').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
@@ -5335,7 +5335,7 @@ function startSlopeGraphRound() {
         checkBtn.style.opacity = '0.5';
     }
 
-    // 4. Panel HazÄ±rlÄ±ÄŸÄ±
+    // 4. Panel HazÃ„Â±rlÃ„Â±Ã„Å¸Ã„Â±
     const panelContent = document.getElementById('linearQuestionPanel');
     if (panelContent.parentElement !== document.body) document.body.appendChild(panelContent);
     panelContent.classList.remove('hidden');
@@ -5346,17 +5346,17 @@ function startSlopeGraphRound() {
         min-width: 200px; background: #ffffff; border-radius: 12px; padding: 15px; border: 2px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     `;
 
-    // GÃœNCEL SORUYU AL
+    // GÃƒÅ“NCEL SORUYU AL
     const q = slopeState.graphQuestions[slopeState.currentQuestion];
 
-    // 5. HTML Ä°Ã§eriÄŸi
+    // 5. HTML Ã„Â°ÃƒÂ§eriÃ„Å¸i
     if (q.type === 'find_intercept') {
         const targetVar = (q.subType === 'find_b_negative') ? 'b' : (q.targetVar || 'a'); 
-        const slopeInfo = q.slope ? `<div class="text-sm text-gray-500 mb-1">EÄŸim (m) = ${q.slope}</div>` : '';
+        const slopeInfo = q.slope ? `<div class="text-sm text-gray-500 mb-1">EÃ„Å¸im (m) = ${q.slope}</div>` : '';
 
         panelContent.innerHTML = `
             <div class="flex flex-col items-center justify-center w-full">
-                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">EÅŸitliÄŸi Kur</span></div>
+                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">EÃ…Å¸itliÃ„Å¸i Kur</span></div>
                 ${slopeInfo}
                 <div class="flex items-center justify-center gap-3 mt-2">
                     <div class="flex flex-col items-center gap-1">
@@ -5371,25 +5371,25 @@ function startSlopeGraphRound() {
                         <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
                     </div>
                 </div>
-                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatÄ±k: <span class="text-red-500 font-bold text-sm">(-)</span></div>
+                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatÃ„Â±k: <span class="text-red-500 font-bold text-sm">(-)</span></div>
             </div>`;
     } else {
         panelContent.innerHTML = `
             <div class="flex flex-col items-center justify-center w-full">
-                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">EÄŸim KaÃ§tÄ±r?</span></div>
+                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">EÃ„Å¸im KaÃƒÂ§tÃ„Â±r?</span></div>
                 <div class="text-xs text-gray-400 font-medium mb-3 text-center">(Dikey / Yatay)</div>
                 <div class="flex flex-col items-center justify-center gap-1 w-full">
                     <div id="slopeNumBox" class="w-16 h-12 border-2 border-indigo-300 bg-white text-indigo-700 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-xl shadow-sm">?</div>
                     <div class="border-b-4 border-indigo-900 w-20 rounded-full my-1 opacity-80"></div>
                     <div id="slopeDenomBox" class="w-16 h-12 border-2 border-indigo-300 bg-white text-indigo-700 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-xl shadow-sm">?</div>
                 </div>
-                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatÄ±k: <span class="text-red-500 font-bold text-sm">(-)</span></div>
+                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatÃ„Â±k: <span class="text-red-500 font-bold text-sm">(-)</span></div>
             </div>`;
     }
 
     let currentActiveBoxId = null;
 
-    // 6. TuÅŸ TakÄ±mÄ±
+    // 6. TuÃ…Å¸ TakÃ„Â±mÃ„Â±
     const pad = document.getElementById('numberPad');
     if (pad) {
         const newPad = pad.cloneNode(true);
@@ -5403,9 +5403,15 @@ function startSlopeGraphRound() {
             const isDelete = btn.querySelector('.fa-backspace') || val === 'Sil' || val === 'C' || btn.getAttribute('data-value') === 'clear';
             if (isDelete) {
                 linearState.currentInputValue = linearState.currentInputValue.slice(0, -1);
-            } else if (val !== 'İptal') {
+            } else if (val !== 'Ä°ptal') {
                 let inputChar = btn.getAttribute('data-value') || val;
-                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam' && inputChar !== 'İptal') {
+                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam' && inputChar !== 'Ä°ptal') {
+                    linearState.currentInputValue += inputChar;
+                }
+            }
+            } else if (val !== 'Ä°ptal') {
+                let inputChar = btn.getAttribute('data-value') || val;
+                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam' && inputChar !== 'Ä°ptal') {
                     linearState.currentInputValue += inputChar;
                 }
             }
@@ -5463,7 +5469,7 @@ function startSlopeGraphRound() {
                 const ld = parseFloat(document.getElementById('leftDenomBox').textContent);
                 const rn = parseFloat(document.getElementById('slopeNumBox').textContent);
                 const rd = parseFloat(document.getElementById('slopeDenomBox').textContent);
-                if(isNaN(ld) || isNaN(rn) || isNaN(rd)) { alert("LÃ¼tfen tÃ¼m kutularÄ± doldurunuz!"); return; }
+                if(isNaN(ld) || isNaN(rn) || isNaN(rd)) { alert("LÃƒÂ¼tfen tÃƒÂ¼m kutularÃ„Â± doldurunuz!"); return; }
 
                 calculatedVal = (ld * rn) / rd;
                 if (q.subType === 'find_b_negative') {
@@ -5475,14 +5481,14 @@ function startSlopeGraphRound() {
             } else {
                 const rn = parseFloat(document.getElementById('slopeNumBox').textContent);
                 const rd = parseFloat(document.getElementById('slopeDenomBox').textContent);
-                if(!isNaN(rn) && !isNaN(rd)) { calculatedVal = rn/rd; finalMessage = `EÄŸim = ${calculatedVal}`; }
+                if(!isNaN(rn) && !isNaN(rd)) { calculatedVal = rn/rd; finalMessage = `EÃ„Å¸im = ${calculatedVal}`; }
             }
 
             const feedback = document.getElementById('feedback');
             const displayResult = typeof calculatedVal === 'number' && Number.isInteger(calculatedVal) ? calculatedVal : (calculatedVal ? calculatedVal.toFixed(2) : calculatedVal);
 
             feedback.innerHTML = `
-                <div class="text-4xl mb-2">ğŸ‰</div><div class="font-bold text-2xl">Tebrikler!</div>
+                <div class="text-4xl mb-2">ÄŸÅ¸Ââ€°</div><div class="font-bold text-2xl">Tebrikler!</div>
                 <div class="text-lg mt-2 font-mono bg-white text-purple-700 px-4 py-1 rounded">${finalMessage.split('=')[0]} = ${displayResult}</div>
             `;
             feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-8 rounded-2xl shadow-2xl font-bold text-center bg-green-500 text-white z-[9999] border-4 border-white animate-bounce';
@@ -5514,17 +5520,17 @@ function startSlopeGraphRound() {
     if (q.type === 'find_intercept') {
         const targetVar = (q.subType === 'find_b_negative') ? 'b' : (q.targetVar || 'a');
         setupBox('leftDenomBox', 'eq_left_denom', `${targetVar} (Payda)`);
-        setupBox('slopeNumBox', 'eq_right_num', 'EÄŸim (Pay)');
-        setupBox('slopeDenomBox', 'eq_right_denom', 'EÄŸim (Payda)');
+        setupBox('slopeNumBox', 'eq_right_num', 'EÃ„Å¸im (Pay)');
+        setupBox('slopeDenomBox', 'eq_right_denom', 'EÃ„Å¸im (Payda)');
     } else {
         setupBox('slopeNumBox', 'slope_conv_num', 'Dikey (Pay)');
         setupBox('slopeDenomBox', 'slope_conv_denom', 'Yatay (Payda)');
     }
 
     // =======================================================
-    // 9. Ã‡Ä°ZÄ°M BÃ–LÃœMÃœ (CANVAS - ELLE Ã‡Ä°ZÄ°M)
+    // 9. Ãƒâ€¡Ã„Â°ZÃ„Â°M BÃƒâ€“LÃƒÅ“MÃƒÅ“ (CANVAS - ELLE Ãƒâ€¡Ã„Â°ZÃ„Â°M)
     // =======================================================
-    // Sorunun kimliÄŸini (find_b_negative) kontrol edip Ã¶zel Ã§izimi yapÄ±yoruz.
+    // Sorunun kimliÃ„Å¸ini (find_b_negative) kontrol edip ÃƒÂ¶zel ÃƒÂ§izimi yapÃ„Â±yoruz.
     
     if (q.subType === 'find_b_negative') {
         const ctx = canvas.getContext('2d');
@@ -5532,7 +5538,7 @@ function startSlopeGraphRound() {
         const h = canvas.height = 600;
         const cx = w / 2; // 300
         const cy = h / 2; // 300
-        const scale = 15; // Ã–lÃ§ek (b=-15 ekrana sÄ±ÄŸsÄ±n diye 15 yaptÄ±k)
+        const scale = 15; // Ãƒâ€“lÃƒÂ§ek (b=-15 ekrana sÃ„Â±Ã„Å¸sÃ„Â±n diye 15 yaptÃ„Â±k)
 
         // 1. Temizle
         ctx.clearRect(0, 0, w, h);
@@ -5548,20 +5554,46 @@ function startSlopeGraphRound() {
         ctx.strokeStyle = "#374151"; ctx.lineWidth = 3; ctx.beginPath();
         ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
 
-        // 4. KIRMIZI DOÄRU (b'den 5'e YUKARI Ã§Ä±kan Ã§izgi)
-        // b noktasÄ± (Y ekseni, aÅŸaÄŸÄ±da) -> cy + 15*scale
-        // 5 noktasÄ± (X ekseni, saÄŸda) -> cx + 5*scale
+        // 3.5 Eksen Numaraları
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '10px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        for(let i = 0; i <= w; i += scale) {
+            let unit = (i - cx) / scale;
+            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, i, cy + 12);
+        }
+        ctx.textAlign = 'right';
+        for(let i = 0; i <= h; i += scale) {
+            let unit = -(i - cy) / scale;
+            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, cx - 6, i);
+        }
+        // 3.5 Eksen Numaraları
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '10px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        for(let i = 0; i <= w; i += scale) {
+            let unit = (i - cx) / scale;
+            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, i, cy + 12);
+        }
+        ctx.textAlign = 'right';
+        for(let i = 0; i <= h; i += scale) {
+            let unit = -(i - cy) / scale;
+            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, cx - 6, i);
+        // b noktasÃ„Â± (Y ekseni, aÃ…Å¸aÃ„Å¸Ã„Â±da) -> cy + 15*scale
+        // 5 noktasÃ„Â± (X ekseni, saÃ„Å¸da) -> cx + 5*scale
         
-        const y_piksel = cy + (15 * scale); // b (AÅŸaÄŸÄ±da)
-        const x_piksel = cx + (5 * scale);  // 5 (SaÄŸda)
+        const y_piksel = cy + (15 * scale); // b (AÃ…Å¸aÃ„Å¸Ã„Â±da)
+        const x_piksel = cx + (5 * scale);  // 5 (SaÃ„Å¸da)
 
         ctx.strokeStyle = "#ef4444"; ctx.lineWidth = 4; ctx.beginPath();
         
-        // Ã‡izgiyi UzatÄ±yoruz:
-        // BaÅŸlangÄ±Ã§: b noktasÄ±nÄ±n solundan ve daha aÅŸaÄŸÄ±sÄ±ndan (Sol-Alt)
+        // Ãƒâ€¡izgiyi UzatÃ„Â±yoruz:
+        // BaÃ…Å¸langÃ„Â±ÃƒÂ§: b noktasÃ„Â±nÃ„Â±n solundan ve daha aÃ…Å¸aÃ„Å¸Ã„Â±sÃ„Â±ndan (Sol-Alt)
         ctx.moveTo(cx - 3*scale, y_piksel + 9*scale); 
         
-        // BitiÅŸ: 5 noktasÄ±nÄ±n saÄŸÄ±ndan ve daha yukarÄ±sÄ±ndan (SaÄŸ-Ãœst)
+        // BitiÃ…Å¸: 5 noktasÃ„Â±nÃ„Â±n saÃ„Å¸Ã„Â±ndan ve daha yukarÃ„Â±sÃ„Â±ndan (SaÃ„Å¸-ÃƒÅ“st)
         ctx.lineTo(x_piksel + 3*scale, cy - 9*scale); 
         
         ctx.stroke();
@@ -5569,16 +5601,16 @@ function startSlopeGraphRound() {
         // 5. Etiketler
         ctx.fillStyle = "#1f2937"; ctx.font = "bold 20px sans-serif";
         
-        // 5 YazÄ±sÄ± (X ekseni)
+        // 5 YazÃ„Â±sÃ„Â± (X ekseni)
         ctx.beginPath(); ctx.arc(x_piksel, cy, 6, 0, Math.PI*2); ctx.fill();
         ctx.fillText("5", x_piksel - 5, cy - 15);
 
-        // b YazÄ±sÄ± (Y ekseni, AÅŸaÄŸÄ±da)
+        // b YazÃ„Â±sÃ„Â± (Y ekseni, AÃ…Å¸aÃ„Å¸Ã„Â±da)
         ctx.beginPath(); ctx.arc(cx, y_piksel, 6, 0, Math.PI*2); ctx.fill();
         ctx.fillText("b", cx + 15, y_piksel + 5);
 
     } else {
-        // DiÄŸer sorular iÃ§in standart Ã§izim
+        // DiÃ„Å¸er sorular iÃƒÂ§in standart ÃƒÂ§izim
         drawSlopeGraph();
     }
 }
@@ -5586,13 +5618,13 @@ function startSlopeGraphRound() {
 
 
 // ==========================================
-// GRAFÄ°K Ã‡Ä°ZÄ°M FONKSÄ°YONU (DÃœZELTÄ°LMÄ°Å FÄ°NAL HALÄ°)
+// GRAFÃ„Â°K Ãƒâ€¡Ã„Â°ZÃ„Â°M FONKSÃ„Â°YONU (DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â FÃ„Â°NAL HALÃ„Â°)
 // ==========================================
 function drawSlopeGraph() {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = ''; 
 
-    // ViewBox ekle (Responsive gÃ¶rÃ¼nÃ¼m iÃ§in)
+    // ViewBox ekle (Responsive gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼m iÃƒÂ§in)
     canvas.setAttribute('viewBox', '0 0 500 500');
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
@@ -5603,10 +5635,10 @@ function drawSlopeGraph() {
     const CENTER_Y = 250;
     const GRID = 25; // Her birim 25 birim
 
-    // 1. IZGARA VE EKSENLERÄ° Ã‡Ä°Z
+    // 1. IZGARA VE EKSENLERÃ„Â° Ãƒâ€¡Ã„Â°Z
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     
-    // Ä°nce Izgaralar
+    // Ã„Â°nce Izgaralar
     for(let i=0; i<=500; i+=GRID) {
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500);
@@ -5630,10 +5662,10 @@ function drawSlopeGraph() {
     yAxis.setAttribute('stroke', '#374151'); yAxis.setAttribute('stroke-width', '2');
     gridGroup.appendChild(yAxis);
 
-    // Eksen NumaralarÄ± (Her kare 1 birim)
+    // Eksen NumaralarÃ„Â± (Her kare 1 birim)
     for(let i = -10; i <= 10; i++) {
         if(i !== 0) {
-            // X Ekseni NumaralarÄ±
+            // X Ekseni NumaralarÃ„Â±
             const xText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             xText.setAttribute('x', CENTER_X + (i * GRID));
             xText.setAttribute('y', CENTER_Y + 15);
@@ -5643,7 +5675,7 @@ function drawSlopeGraph() {
             xText.textContent = i;
             gridGroup.appendChild(xText);
 
-            // Y Ekseni NumaralarÄ±
+            // Y Ekseni NumaralarÃ„Â±
             const yText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             yText.setAttribute('x', CENTER_X - 8);
             yText.setAttribute('y', CENTER_Y - (i * GRID) + 4);
@@ -5657,18 +5689,18 @@ function drawSlopeGraph() {
     
     canvas.appendChild(gridGroup);
 
-    // --- DEÄÄ°ÅKEN TANIMLAMA (BURADA SADECE BÄ°R KEZ YAPILIYOR) ---
-    // EÄŸer Ã¶zel soruysa visualPoints, deÄŸilse points kullan
+    // --- DEÃ„ÂÃ„Â°Ã…ÂKEN TANIMLAMA (BURADA SADECE BÃ„Â°R KEZ YAPILIYOR) ---
+    // EÃ„Å¸er ÃƒÂ¶zel soruysa visualPoints, deÃ„Å¸ilse points kullan
     const pointsToUse = (q.type === 'find_intercept') ? q.visualPoints : q.points;
 
-    // 2. DOÄRUYU Ã‡Ä°Z
+    // 2. DOÃ„ÂRUYU Ãƒâ€¡Ã„Â°Z
     const p1 = pointsToUse[0];
     const p2 = pointsToUse[1];
 
     const m = (p2.y - p1.y) / (p2.x - p1.x);
     const b = p1.y - (m * p1.x);
 
-    // DoÄŸruyu uzat
+    // DoÃ„Å¸ruyu uzat
     const startX_unit = -12; 
     const startY_unit = (m * startX_unit) + b;
     const endX_unit = 12;
@@ -5686,7 +5718,7 @@ function drawSlopeGraph() {
     line.setAttribute('stroke-width', '4');
     canvas.appendChild(line);
 
-    // 3. NOKTALAR VE ETÄ°KETLER
+    // 3. NOKTALAR VE ETÃ„Â°KETLER
     pointsToUse.forEach((pt, index) => {
         const cx = CENTER_X + (pt.x * GRID);
         const cy = CENTER_Y - (pt.y * GRID);
@@ -5699,7 +5731,7 @@ function drawSlopeGraph() {
         dot.setAttribute('stroke-width', '2');
         canvas.appendChild(dot);
 
-        // Ã–zel Soru Etiketleri ("8" ve "a" yazÄ±sÄ±)
+        // Ãƒâ€“zel Soru Etiketleri ("8" ve "a" yazÃ„Â±sÃ„Â±)
         if (q.type === 'find_intercept') {
             const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             label.setAttribute('x', cx + 15); 
@@ -5708,7 +5740,7 @@ function drawSlopeGraph() {
             label.setAttribute('font-weight', 'bold');
             label.setAttribute('fill', '#be185d');
             
-            // Ä°lk nokta X ekseninde, Ä°kinci nokta Y ekseninde
+            // Ã„Â°lk nokta X ekseninde, Ã„Â°kinci nokta Y ekseninde
             label.textContent = (index === 0) ? q.x_label : q.y_label;
             canvas.appendChild(label);
         }
@@ -5721,19 +5753,19 @@ function drawSlopeTriangle() {
 
     const q = slopeState.questions[slopeState.currentQuestion];
     
-    // Ã–lÃ§ek AyarÄ±
+    // Ãƒâ€“lÃƒÂ§ek AyarÃ„Â±
     let GRID = (q.w >= 10 || q.h >= 10) ? 25 : 40;
     
-    // Merdiven sorusu iÃ§in Ã¶zel Ã¶lÃ§ek (Toplam geniÅŸlik 30 olacaÄŸÄ± iÃ§in kÃ¼Ã§Ã¼ltÃ¼yoruz)
+    // Merdiven sorusu iÃƒÂ§in ÃƒÂ¶zel ÃƒÂ¶lÃƒÂ§ek (Toplam geniÃ…Å¸lik 30 olacaÃ„Å¸Ã„Â± iÃƒÂ§in kÃƒÂ¼ÃƒÂ§ÃƒÂ¼ltÃƒÂ¼yoruz)
     if (q.type === 'stairs') GRID = 15; 
 
     const START_Y = 350; 
-    // Merdiven iÃ§in baÅŸlangÄ±Ã§ noktasÄ± (Sol Alt)
+    // Merdiven iÃƒÂ§in baÃ…Å¸langÃ„Â±ÃƒÂ§ noktasÃ„Â± (Sol Alt)
     const START_X = q.type === 'stairs' ? 50 : (q.direction === 'rtl' ? (GRID === 25 ? 100 : 120) : (GRID === 25 ? 60 : 80));
 
     // Izgara
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    for(let i=0; i<600; i+=GRID) { // Canvas geniÅŸleyebilir
+    for(let i=0; i<600; i+=GRID) { // Canvas geniÃ…Å¸leyebilir
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500); vLine.setAttribute('stroke', '#6b7280'); gridGroup.appendChild(vLine);
         const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -5741,7 +5773,7 @@ function drawSlopeTriangle() {
     }
     canvas.appendChild(gridGroup);
 
-    // --- MERDÄ°VEN Ã‡Ä°ZÄ°MÄ° ---
+    // --- MERDÃ„Â°VEN Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
     if (q.type === 'stairs') {
         const totalW = q.stepCount * q.stepH * GRID;
         const totalH = q.stepCount * q.stepV * GRID;
@@ -5749,19 +5781,19 @@ function drawSlopeTriangle() {
         let currentX = START_X;
         let currentY = START_Y;
 
-        // BasamaklarÄ± Ã‡iz
+        // BasamaklarÃ„Â± Ãƒâ€¡iz
         for (let i = 0; i < q.stepCount; i++) {
-            // Dikey Ã‡izgi (YukarÄ±)
+            // Dikey Ãƒâ€¡izgi (YukarÃ„Â±)
             const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             vLine.setAttribute('x1', currentX); vLine.setAttribute('y1', currentY);
             vLine.setAttribute('x2', currentX); vLine.setAttribute('y2', currentY - (q.stepV * GRID));
-            vLine.setAttribute('stroke', '#ef4444'); // KÄ±rmÄ±zÄ±
+            vLine.setAttribute('stroke', '#ef4444'); // KÃ„Â±rmÃ„Â±zÃ„Â±
             vLine.setAttribute('stroke-width', '3');
-            vLine.classList.add('stair-vertical'); // Animasyon iÃ§in sÄ±nÄ±f
-            vLine.dataset.id = i; // Hangi basamak olduÄŸunu bilmek iÃ§in
+            vLine.classList.add('stair-vertical'); // Animasyon iÃƒÂ§in sÃ„Â±nÃ„Â±f
+            vLine.dataset.id = i; // Hangi basamak olduÃ„Å¸unu bilmek iÃƒÂ§in
             canvas.appendChild(vLine);
 
-            // Yatay Ã‡izgi (SaÄŸa)
+            // Yatay Ãƒâ€¡izgi (SaÃ„Å¸a)
             const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             hLine.setAttribute('x1', currentX); hLine.setAttribute('y1', currentY - (q.stepV * GRID));
             hLine.setAttribute('x2', currentX + (q.stepH * GRID)); hLine.setAttribute('y2', currentY - (q.stepV * GRID));
@@ -5770,9 +5802,9 @@ function drawSlopeTriangle() {
             hLine.classList.add('stair-horizontal');
             canvas.appendChild(hLine);
 
-            // 3. BasamaÄŸa YazÄ± Yaz (Ã–rnekleme)
+            // 3. BasamaÃ„Å¸a YazÃ„Â± Yaz (Ãƒâ€“rnekleme)
             if (i === 2) {
-                // Dikey YazÄ± (2 cm)
+                // Dikey YazÃ„Â± (2 cm)
                 const textV = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 textV.setAttribute('x', currentX - 5);
                 textV.setAttribute('y', currentY - (q.stepV * GRID) / 2);
@@ -5783,7 +5815,7 @@ function drawSlopeTriangle() {
                 textV.textContent = `${q.stepV}cm`;
                 canvas.appendChild(textV);
 
-                // Yatay YazÄ± (5 cm)
+                // Yatay YazÃ„Â± (5 cm)
                 const textH = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 textH.setAttribute('x', currentX + (q.stepH * GRID) / 2);
                 textH.setAttribute('y', currentY - (q.stepV * GRID) - 5);
@@ -5795,12 +5827,12 @@ function drawSlopeTriangle() {
                 canvas.appendChild(textH);
             }
 
-            // KoordinatlarÄ± gÃ¼ncelle
+            // KoordinatlarÃ„Â± gÃƒÂ¼ncelle
             currentY -= (q.stepV * GRID);
             currentX += (q.stepH * GRID);
         }
 
-        // Ana ÃœÃ§gen Ã‡erÃ§evesi (Hayali/Silik Ã‡izgi)
+        // Ana ÃƒÅ“ÃƒÂ§gen Ãƒâ€¡erÃƒÂ§evesi (Hayali/Silik Ãƒâ€¡izgi)
         const frame = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         frame.setAttribute('d', `M ${START_X} ${START_Y} L ${START_X + totalW} ${START_Y} L ${START_X + totalW} ${START_Y - totalH} Z`);
         frame.setAttribute('fill', 'rgba(0,0,0,0.03)');
@@ -5808,10 +5840,10 @@ function drawSlopeTriangle() {
         frame.setAttribute('stroke-dasharray', '5,5');
         canvas.insertBefore(frame, canvas.firstChild); // En arkaya at
 
-        return; // Merdiven bitti, fonksiyondan Ã§Ä±k
+        return; // Merdiven bitti, fonksiyondan ÃƒÂ§Ã„Â±k
     }
 
-    // --- DÄ°ÄER ÃœÃ‡GEN TÄ°PLERÄ° (Eski Kod) ---
+    // --- DÃ„Â°Ã„ÂER ÃƒÅ“Ãƒâ€¡GEN TÃ„Â°PLERÃ„Â° (Eski Kod) ---
     let p1, p2, p3;
     if (q.direction === 'rtl') {
         p1 = { x: START_X + (q.w * GRID), y: START_Y }; 
@@ -5842,7 +5874,7 @@ function drawSlopeTriangle() {
     rightAngle.setAttribute('stroke-width', '2');
     canvas.appendChild(rightAngle);
 
-    // Kenar YazÄ±larÄ± (Eski Tip)
+    // Kenar YazÃ„Â±larÃ„Â± (Eski Tip)
     const textH = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     textH.setAttribute('x', START_X + (q.w * GRID) / 2);
     textH.setAttribute('y', START_Y + 30);
@@ -5867,7 +5899,7 @@ function drawSlopeTriangle() {
     } else { textV.textContent = `${q.h} br`; }
     canvas.appendChild(textV);
 
-    // EÄŸim DeÄŸeri
+    // EÃ„Å¸im DeÃ„Å¸eri
     if (q.type === 'find_side') {
         const textSlope = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         const midX = (p1.x + p3.x) / 2;
@@ -5884,7 +5916,7 @@ function drawSlopeTriangle() {
 
       
    
-    // --- SONUÃ‡ Ä°ÅLEMLERÄ° ---
+    // --- SONUÃƒâ€¡ Ã„Â°Ã…ÂLEMLERÃ„Â° ---
 let isCorrect = (gameState.selectedOption === gameState.correctAnswer);
 
 
@@ -5892,13 +5924,13 @@ let isCorrect = (gameState.selectedOption === gameState.correctAnswer);
         playSuccessSound();
         showFeedback(true);
         
-        // KutularÄ± YeÅŸil Yap
+        // KutularÃ„Â± YeÃ…Å¸il Yap
         document.querySelectorAll('.border-indigo-400').forEach(el => {
             el.classList.remove('border-indigo-400', 'text-indigo-600', 'bg-indigo-50');
             el.classList.add('border-green-500', 'text-green-600', 'bg-green-50');
         });
 
-        // Merdivense animasyon, deÄŸilse sonraki soru
+        // Merdivense animasyon, deÃ„Å¸ilse sonraki soru
 
 let q = slopeState.questions[slopeState.currentQuestion];
 
@@ -5908,7 +5940,7 @@ let q = slopeState.questions[slopeState.currentQuestion];
         } else {
             window.roundTimer = setTimeout(() => {
                 slopeState.currentQuestion++;
-                // Hangi moddaysak onun baÅŸlatÄ±cÄ±sÄ±nÄ± Ã§aÄŸÄ±r
+                // Hangi moddaysak onun baÃ…Å¸latÃ„Â±cÃ„Â±sÃ„Â±nÃ„Â± ÃƒÂ§aÃ„Å¸Ã„Â±r
                 if (slopeState.activeMode === 'graph') {
                     if (typeof startSlopeGraphRound === 'function') startSlopeGraphRound();
                 } else {
@@ -5922,11 +5954,11 @@ let q = slopeState.questions[slopeState.currentQuestion];
         const feedback = document.getElementById('feedback');
         
         if (slopeState.activeMode === 'graph') {
-             feedback.textContent = "EÄŸim YanlÄ±ÅŸ! Ä°ÅŸaretleri (-) ve sayÄ±larÄ± kontrol et.";
+             feedback.textContent = "EÃ„Å¸im YanlÃ„Â±Ã…Å¸! Ã„Â°Ã…Å¸aretleri (-) ve sayÃ„Â±larÃ„Â± kontrol et.";
         } else if (q.type === 'stairs') {
-             feedback.textContent = "Toplam dikey ve yatay uzunluklarÄ± girmelisin.";
+             feedback.textContent = "Toplam dikey ve yatay uzunluklarÃ„Â± girmelisin.";
         } else {
-             feedback.textContent = "YanlÄ±ÅŸ cevap, tekrar dene!";
+             feedback.textContent = "YanlÃ„Â±Ã…Å¸ cevap, tekrar dene!";
         }
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -5934,29 +5966,29 @@ let q = slopeState.questions[slopeState.currentQuestion];
 
 
 // ==========================================
-// 5. EÄÄ°M ALT BUTONLARI (GÃœÃ‡LENDÄ°RÄ°LMÄ°Å BAÄLANTILAR)
+// 5. EÃ„ÂÃ„Â°M ALT BUTONLARI (GÃƒÅ“Ãƒâ€¡LENDÃ„Â°RÃ„Â°LMÃ„Â°Ã…Â BAÃ„ÂLANTILAR)
 // ==========================================
 
-// --- A) EÄÄ°K DÃœZLEM BUTONU ---
+// --- A) EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM BUTONU ---
 const btnSlopeIncline = document.getElementById('btnSlopeIncline');
 if (btnSlopeIncline) {
-    // Eski dinleyicileri temizlemek iÃ§in klonlama (Opsiyonel ama garanti yÃ¶ntem)
+    // Eski dinleyicileri temizlemek iÃƒÂ§in klonlama (Opsiyonel ama garanti yÃƒÂ¶ntem)
     const newBtn = btnSlopeIncline.cloneNode(true);
     btnSlopeIncline.parentNode.replaceChild(newBtn, btnSlopeIncline);
 
     newBtn.addEventListener('click', function() {
-        console.log("ğŸ–±ï¸ EÄŸik DÃ¼zlem Butonuna TÄ±klandÄ±!"); 
+        console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â EÃ„Å¸ik DÃƒÂ¼zlem Butonuna TÃ„Â±klandÃ„Â±!"); 
 
-        // 1. GÃ¶rsel SeÃ§im
+        // 1. GÃƒÂ¶rsel SeÃƒÂ§im
         document.querySelectorAll('.slope-sub-button').forEach(b => {
             b.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
         });
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-        // 2. Mod AyarÄ±
+        // 2. Mod AyarÃ„Â±
         if (gameState.mode !== 'slope_incline') {
             gameState.mode = 'slope_incline';
-            slopeState.currentQuestion = 0; // Yeni moda geÃ§ince sÄ±fÄ±rla
+            slopeState.currentQuestion = 0; // Yeni moda geÃƒÂ§ince sÃ„Â±fÃ„Â±rla
         } else {
             // Zaten bu moddaysak soru ilerlet
             slopeState.currentQuestion++;
@@ -5965,36 +5997,36 @@ if (btnSlopeIncline) {
             }
         }
         
-        // Aktif modu kaydet (Check fonksiyonu iÃ§in Ã¶nemli)
+        // Aktif modu kaydet (Check fonksiyonu iÃƒÂ§in ÃƒÂ¶nemli)
         slopeState.activeMode = 'incline';
 
-        // 3. Oyunu BaÅŸlat
+        // 3. Oyunu BaÃ…Å¸lat
         if (typeof startSlopeInclineRound === 'function') {
             startSlopeInclineRound();
         } else {
-            console.error("âŒ HATA: startSlopeInclineRound fonksiyonu bulunamadÄ±!");
+            console.error("Ã¢ÂÅ’ HATA: startSlopeInclineRound fonksiyonu bulunamadÃ„Â±!");
         }
     });
 } else {
-    console.error("âŒ HATA: 'btnSlopeIncline' ID'li buton HTML'de bulunamadÄ±!");
+    console.error("Ã¢ÂÅ’ HATA: 'btnSlopeIncline' ID'li buton HTML'de bulunamadÃ„Â±!");
 }
 
-// --- B) GRAFÄ°KTEN EÄÄ°M BUTONU ---
+// --- B) GRAFÃ„Â°KTEN EÃ„ÂÃ„Â°M BUTONU ---
 const btnSlopeGraph = document.getElementById('btnSlopeGraph');
 if (btnSlopeGraph) {
     const newBtn = btnSlopeGraph.cloneNode(true);
     btnSlopeGraph.parentNode.replaceChild(newBtn, btnSlopeGraph);
 
     newBtn.addEventListener('click', function() {
-        console.log("ğŸ–±ï¸ Grafikten EÄŸim Butonuna TÄ±klandÄ±!");
+        console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Grafikten EÃ„Å¸im Butonuna TÃ„Â±klandÃ„Â±!");
 
-        // 1. GÃ¶rsel SeÃ§im
+        // 1. GÃƒÂ¶rsel SeÃƒÂ§im
         document.querySelectorAll('.slope-sub-button').forEach(b => {
             b.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
         });
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-        // 2. Mod AyarÄ±
+        // 2. Mod AyarÃ„Â±
         if (gameState.mode !== 'slope_graph') {
             gameState.mode = 'slope_graph';
             slopeState.currentQuestion = 0;
@@ -6008,55 +6040,55 @@ if (btnSlopeGraph) {
         // Aktif modu kaydet
         slopeState.activeMode = 'graph';
 
-        // 3. Oyunu BaÅŸlat
+        // 3. Oyunu BaÃ…Å¸lat
         if (typeof startSlopeGraphRound === 'function') {
             startSlopeGraphRound();
         } else {
-            console.error("âŒ HATA: startSlopeGraphRound fonksiyonu bulunamadÄ±!");
+            console.error("Ã¢ÂÅ’ HATA: startSlopeGraphRound fonksiyonu bulunamadÃ„Â±!");
         }
     });
 } else {
-    console.error("âŒ HATA: 'btnSlopeGraph' ID'li buton HTML'de bulunamadÄ±!");
+    console.error("Ã¢ÂÅ’ HATA: 'btnSlopeGraph' ID'li buton HTML'de bulunamadÃ„Â±!");
 }
 
 
 // =================================================================
-// C) Ä°KÄ° NOKTADAN EÄÄ°M BUTONU (GÃœNCELLENDÄ°: TIKLADIKÃ‡A GEÃ‡Ä°Å)
+// C) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M BUTONU (GÃƒÅ“NCELLENDÃ„Â°: TIKLADIKÃƒâ€¡A GEÃƒâ€¡Ã„Â°Ã…Â)
 // =================================================================
 const btnTwoPoints = document.getElementById('btnSlopeTwoPoints');
 if (btnTwoPoints) {
-    // Eski listener'Ä± temizlemek iÃ§in klonluyoruz
+    // Eski listener'Ã„Â± temizlemek iÃƒÂ§in klonluyoruz
     const newBtn = btnTwoPoints.cloneNode(true);
     btnTwoPoints.parentNode.replaceChild(newBtn, btnTwoPoints);
 
     newBtn.addEventListener('click', function() {
-        console.log("ğŸ–±ï¸ Ä°ki Noktadan EÄŸim Butonuna TÄ±klandÄ± (GeÃ§iÅŸ YapÄ±lÄ±yor)");
+        console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Ã„Â°ki Noktadan EÃ„Å¸im Butonuna TÃ„Â±klandÃ„Â± (GeÃƒÂ§iÃ…Å¸ YapÃ„Â±lÃ„Â±yor)");
 
-        // 1. GÃ¶rsel Efektler
+        // 1. GÃƒÂ¶rsel Efektler
         document.querySelectorAll('.slope-sub-button').forEach(b => {
             b.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
         });
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-        // 2. Mod KontrolÃ¼ ve Ä°lerleme MantÄ±ÄŸÄ±
+        // 2. Mod KontrolÃƒÂ¼ ve Ã„Â°lerleme MantÃ„Â±Ã„Å¸Ã„Â±
         if (gameState.mode === 'slope_two_points') {
-            // EÄŸer zaten bu moddaysak, sÄ±radaki soruya geÃ§ (Skip)
+            // EÃ„Å¸er zaten bu moddaysak, sÃ„Â±radaki soruya geÃƒÂ§ (Skip)
             if (typeof slopeState.twoPointsQuestionIndex !== 'undefined') {
                 slopeState.twoPointsQuestionIndex++;
                 
-                // EÄŸer soru sayÄ±sÄ± sÄ±nÄ±rÄ±nÄ± aÅŸtÄ±ysa baÅŸa sarsÄ±n diye kontrol
-                // (startSlopeTwoPointsRound iÃ§inde zaten bitiÅŸ kontrolÃ¼ var ama bu ekstra gÃ¼venlik)
+                // EÃ„Å¸er soru sayÃ„Â±sÃ„Â± sÃ„Â±nÃ„Â±rÃ„Â±nÃ„Â± aÃ…Å¸tÃ„Â±ysa baÃ…Å¸a sarsÃ„Â±n diye kontrol
+                // (startSlopeTwoPointsRound iÃƒÂ§inde zaten bitiÃ…Å¸ kontrolÃƒÂ¼ var ama bu ekstra gÃƒÂ¼venlik)
                 if (slopeState.twoPointsQuestionIndex > 4) { 
                     slopeState.twoPointsQuestionIndex = 0; 
                 }
             }
         } else {
-            // Ä°lk kez giriyorsak baÅŸtan baÅŸla
+            // Ã„Â°lk kez giriyorsak baÃ…Å¸tan baÃ…Å¸la
             gameState.mode = 'slope_two_points';
             slopeState.twoPointsQuestionIndex = 0;
         }
         
-        // 3. Modu BaÅŸlat / GÃ¼ncelle
+        // 3. Modu BaÃ…Å¸lat / GÃƒÂ¼ncelle
         if (typeof startSlopeTwoPointsRound === 'function') {
             startSlopeTwoPointsRound();
         }
@@ -6065,23 +6097,23 @@ if (btnTwoPoints) {
 
 
 // ==========================================
-// KONTROL BUTONU (FÄ°NAL TEMÄ°Z HALÄ°)
+// KONTROL BUTONU (FÃ„Â°NAL TEMÃ„Â°Z HALÃ„Â°)
 // ==========================================
 var checkBtn = document.getElementById('checkBtn');
 if (checkBtn) {
-    // Eski listenerlarÄ± temizlemek iÃ§in klonluyoruz
+    // Eski listenerlarÃ„Â± temizlemek iÃƒÂ§in klonluyoruz
     var newCheckBtn = checkBtn.cloneNode(true);
     checkBtn.parentNode.replaceChild(newCheckBtn, checkBtn);
 
     newCheckBtn.addEventListener('click', function() {
-        console.log("Kontrol Et tÄ±klandÄ±. Aktif Mod:", gameState.mode);
+        console.log("Kontrol Et tÃ„Â±klandÃ„Â±. Aktif Mod:", gameState.mode);
 
-        // 1. EÄÄ°M MODLARI (Grafik ve EÄŸik DÃ¼zlem)
+        // 1. EÃ„ÂÃ„Â°M MODLARI (Grafik ve EÃ„Å¸ik DÃƒÂ¼zlem)
         if (gameState.mode === 'slope_incline' || gameState.mode === 'slope_graph') {
             checkSlopeAnswer();
         } 
         
-        // 2. DOÄRU GRAFÄ°KLERÄ° MODLARI
+        // 2. DOÃ„ÂRU GRAFÃ„Â°KLERÃ„Â° MODLARI
         else if (gameState.mode === 'x_eq_a') {
             if (typeof checkVerticalLine === 'function') checkVerticalLine();
         } 
@@ -6092,37 +6124,37 @@ if (checkBtn) {
             if (typeof checkStraightLine === 'function') checkStraightLine();
         }
 
-// ... checkBtn listener iÃ§inde ...
+// ... checkBtn listener iÃƒÂ§inde ...
 
 else if (gameState.mode === 'slope_two_points') {
-    // KayÄ±tlÄ± noktalarÄ± al
+    // KayÃ„Â±tlÃ„Â± noktalarÃ„Â± al
     const p1 = slopeState.currentTwoPoints.p1; // {x:2, y:3}
     const p2 = slopeState.currentTwoPoints.p2; // {x:-2, y:7}
     
-    // KullanÄ±cÄ±nÄ±n girdilerini al
+    // KullanÃ„Â±cÃ„Â±nÃ„Â±n girdilerini al
     const y2 = parseFloat(document.getElementById('box_y2').textContent);
     const y1 = parseFloat(document.getElementById('box_y1').textContent);
     const x2 = parseFloat(document.getElementById('box_x2').textContent);
     const x1 = parseFloat(document.getElementById('box_x1').textContent);
 
-    // DoÄŸru formÃ¼l kontrolÃ¼: KullanÄ±cÄ± sayÄ±larÄ± doÄŸru yerlere koymuÅŸ mu?
-    // y2=7, y1=3, x2=-2, x1=2  veya tam tersi sÄ±ra (noktalarÄ±n sÄ±rasÄ± fark etmez ama eÅŸleÅŸmeli)
+    // DoÃ„Å¸ru formÃƒÂ¼l kontrolÃƒÂ¼: KullanÃ„Â±cÃ„Â± sayÃ„Â±larÃ„Â± doÃ„Å¸ru yerlere koymuÃ…Å¸ mu?
+    // y2=7, y1=3, x2=-2, x1=2  veya tam tersi sÃ„Â±ra (noktalarÃ„Â±n sÃ„Â±rasÃ„Â± fark etmez ama eÃ…Å¸leÃ…Å¸meli)
     
-    // GerÃ§ek eÄŸim
+    // GerÃƒÂ§ek eÃ„Å¸im
     const realSlope = (p2.y - p1.y) / (p2.x - p1.x); // (7-3)/(-2-2) = 4/-4 = -1
     const userSlope = (y2 - y1) / (x2 - x1);
 
     if (Math.abs(realSlope - userSlope) < 0.001) {
         showFeedback(true);
         playSuccessSound();
-        // Ä°stersen burada yeni soruya geÃ§iÅŸ eklenebilir
+        // Ã„Â°stersen burada yeni soruya geÃƒÂ§iÃ…Å¸ eklenebilir
     } else {
         showFeedback(false);
         playErrorSound();
     }
 }
 
-        // 3. DOÄRUSAL Ä°LÄ°ÅKÄ°LER MODLARI
+        // 3. DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER MODLARI
         else if (gameState.mode === 'questionToGraph') {
             if (typeof checkLinearGraph === 'function') checkLinearGraph();
         } 
@@ -6130,7 +6162,7 @@ else if (gameState.mode === 'slope_two_points') {
             if (typeof checkGraphAnswer === 'function') checkGraphAnswer();
         }
 
-        // 4. STANDART GEOMETRÄ° MODLARI (Ã–teleme, YansÄ±ma vb.)
+        // 4. STANDART GEOMETRÃ„Â° MODLARI (Ãƒâ€“teleme, YansÃ„Â±ma vb.)
         else {
             if (typeof checkAnswer === 'function') checkAnswer();
         }
@@ -6139,13 +6171,13 @@ else if (gameState.mode === 'slope_two_points') {
 
 
 // ==========================================
-// NUMPAD Ä°PTAL BUTONU
+// NUMPAD Ã„Â°PTAL BUTONU
 // ==========================================
 document.getElementById('numPadCancel').addEventListener('click', function() {
     // Paneli gizle
     document.getElementById('numberPad').classList.add('hidden');
     
-    // Girilen deÄŸeri sÄ±fÄ±rla
+    // Girilen deÃ„Å¸eri sÃ„Â±fÃ„Â±rla
     linearState.currentInputValue = '';
     document.getElementById('currentInput').textContent = '';
     
@@ -6156,7 +6188,7 @@ document.getElementById('numPadCancel').addEventListener('click', function() {
 
 
 // ==========================================
-// MERDÄ°VEN ANÄ°MASYONU (JAVASCRIPT Ä°LE KARE KARE HAREKET - %100 GARANTÄ°)
+// MERDÃ„Â°VEN ANÃ„Â°MASYONU (JAVASCRIPT Ã„Â°LE KARE KARE HAREKET - %100 GARANTÃ„Â°)
 // ==========================================
 function animateStairsShow() {
     const q = slopeState.questions[slopeState.currentQuestion];
@@ -6170,68 +6202,68 @@ function animateStairsShow() {
     const targetX = START_X + totalW;
     const targetY = START_Y;
 
-    // Hareket ettirilecek parÃ§alarÄ± listeye alalÄ±m
-    // Her Ã§izginin "Åu an nerede?" ve "Nereye gidecek?" bilgisini tutacaÄŸÄ±z
+    // Hareket ettirilecek parÃƒÂ§alarÃ„Â± listeye alalÃ„Â±m
+    // Her ÃƒÂ§izginin "Ã…Âu an nerede?" ve "Nereye gidecek?" bilgisini tutacaÃ„Å¸Ã„Â±z
     let animations = [];
 
-    // 1. Dikey ParÃ§alarÄ± (KÄ±rmÄ±zÄ±) Listeye Ekle
+    // 1. Dikey ParÃƒÂ§alarÃ„Â± (KÃ„Â±rmÃ„Â±zÃ„Â±) Listeye Ekle
     document.querySelectorAll('.stair-vertical').forEach(line => {
-        // Ã‡izginin rengini hemen deÄŸiÅŸtir
+        // Ãƒâ€¡izginin rengini hemen deÃ„Å¸iÃ…Å¸tir
         line.setAttribute('stroke', '#b91c1c');
         line.setAttribute('stroke-width', '4');
 
         animations.push({
             el: line,
-            // BaÅŸlangÄ±Ã§ deÄŸerleri (SayÄ±ya Ã§eviriyoruz)
+            // BaÃ…Å¸langÃ„Â±ÃƒÂ§ deÃ„Å¸erleri (SayÃ„Â±ya ÃƒÂ§eviriyoruz)
             startX1: parseFloat(line.getAttribute('x1')),
             startY1: parseFloat(line.getAttribute('y1')),
             startX2: parseFloat(line.getAttribute('x2')),
             startY2: parseFloat(line.getAttribute('y2')),
-            // Hedef deÄŸerler (Dikey Ã§izgiler saÄŸa toplanacak)
+            // Hedef deÃ„Å¸erler (Dikey ÃƒÂ§izgiler saÃ„Å¸a toplanacak)
             targetX1: targetX,
-            targetY1: parseFloat(line.getAttribute('y1')), // Y deÄŸiÅŸmiyor, olduÄŸu yÃ¼kseklikte kaysÄ±n
+            targetY1: parseFloat(line.getAttribute('y1')), // Y deÃ„Å¸iÃ…Å¸miyor, olduÃ„Å¸u yÃƒÂ¼kseklikte kaysÃ„Â±n
             targetX2: targetX,
             targetY2: parseFloat(line.getAttribute('y2'))
         });
     });
 
-    // 2. Yatay ParÃ§alarÄ± (Mavi) Listeye Ekle
+    // 2. Yatay ParÃƒÂ§alarÃ„Â± (Mavi) Listeye Ekle
     document.querySelectorAll('.stair-horizontal').forEach(line => {
-        // Ã‡izginin rengini hemen deÄŸiÅŸtir
+        // Ãƒâ€¡izginin rengini hemen deÃ„Å¸iÃ…Å¸tir
         line.setAttribute('stroke', '#1e40af');
         line.setAttribute('stroke-width', '4');
 
         animations.push({
             el: line,
-            // BaÅŸlangÄ±Ã§
+            // BaÃ…Å¸langÃ„Â±ÃƒÂ§
             startX1: parseFloat(line.getAttribute('x1')),
             startY1: parseFloat(line.getAttribute('y1')),
             startX2: parseFloat(line.getAttribute('x2')),
             startY2: parseFloat(line.getAttribute('y2')),
-            // Hedef (Yatay Ã§izgiler alta inecek)
-            targetX1: parseFloat(line.getAttribute('x1')), // X deÄŸiÅŸmiyor, olduÄŸu hizada insin
+            // Hedef (Yatay ÃƒÂ§izgiler alta inecek)
+            targetX1: parseFloat(line.getAttribute('x1')), // X deÃ„Å¸iÃ…Å¸miyor, olduÃ„Å¸u hizada insin
             targetY1: targetY,
             targetX2: parseFloat(line.getAttribute('x2')),
             targetY2: targetY
         });
     });
 
-    // 3. ANÄ°MASYON MOTORU
+    // 3. ANÃ„Â°MASYON MOTORU
     const duration = 3000; // 3 Saniye
     const startTime = performance.now();
 
     function frame(currentTime) {
         const elapsed = currentTime - startTime;
-        // Ä°lerleme yÃ¼zdesi (0 ile 1 arasÄ±)
+        // Ã„Â°lerleme yÃƒÂ¼zdesi (0 ile 1 arasÃ„Â±)
         let progress = Math.min(elapsed / duration, 1);
         
-        // YumuÅŸak geÃ§iÅŸ efekti (Ease-in-out formÃ¼lÃ¼)
-        // Bu formÃ¼l hareketi baÅŸta yavaÅŸ, ortada hÄ±zlÄ±, sonda yavaÅŸ yapar
+        // YumuÃ…Å¸ak geÃƒÂ§iÃ…Å¸ efekti (Ease-in-out formÃƒÂ¼lÃƒÂ¼)
+        // Bu formÃƒÂ¼l hareketi baÃ…Å¸ta yavaÃ…Å¸, ortada hÃ„Â±zlÃ„Â±, sonda yavaÃ…Å¸ yapar
         const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
 
-        // Her bir Ã§izgiyi yeni konumuna gÃ¼ncelle
+        // Her bir ÃƒÂ§izgiyi yeni konumuna gÃƒÂ¼ncelle
         animations.forEach(anim => {
-            // Matematik: BaÅŸlangÄ±Ã§ + (Fark * Ä°lerleme)
+            // Matematik: BaÃ…Å¸langÃ„Â±ÃƒÂ§ + (Fark * Ã„Â°lerleme)
             const curX1 = anim.startX1 + (anim.targetX1 - anim.startX1) * ease;
             const curY1 = anim.startY1 + (anim.targetY1 - anim.startY1) * ease;
             const curX2 = anim.startX2 + (anim.targetX2 - anim.startX2) * ease;
@@ -6243,24 +6275,24 @@ function animateStairsShow() {
             anim.el.setAttribute('y2', curY2);
         });
 
-        // SÃ¼re bitmediyse bir sonraki kareyi iste
+        // SÃƒÂ¼re bitmediyse bir sonraki kareyi iste
         if (progress < 1) {
             window.animationFrameId = requestAnimationFrame(frame);
         } else {
-            // 4. ANÄ°MASYON BÄ°TTÄ°, YAZILARI GÃ–STER
+            // 4. ANÃ„Â°MASYON BÃ„Â°TTÃ„Â°, YAZILARI GÃƒâ€“STER
             showTextLabels(targetX, targetY, totalW, totalH, q, START_X);
         }
     }
 
-    // Motoru Ã‡alÄ±ÅŸtÄ±r
+    // Motoru Ãƒâ€¡alÃ„Â±Ã…Å¸tÃ„Â±r
     window.animationFrameId = requestAnimationFrame(frame);
 }
 
-// YazÄ±larÄ± GÃ¶steren YardÄ±mcÄ± Fonksiyon
+// YazÃ„Â±larÃ„Â± GÃƒÂ¶steren YardÃ„Â±mcÃ„Â± Fonksiyon
 function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
     const canvas = document.getElementById('linearCanvas');
 
-    // Dikey Toplam YazÄ±sÄ±
+    // Dikey Toplam YazÃ„Â±sÃ„Â±
     const totalVText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     totalVText.setAttribute('x', targetX + 15);
     totalVText.setAttribute('y', targetY - (totalH / 2));
@@ -6272,7 +6304,7 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
     totalVText.style.transition = 'opacity 1s';
     canvas.appendChild(totalVText);
 
-    // Yatay Toplam YazÄ±sÄ±
+    // Yatay Toplam YazÃ„Â±sÃ„Â±
     const totalHText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     totalHText.setAttribute('x', START_X + (totalW / 2));
     totalHText.setAttribute('y', targetY + 30);
@@ -6291,7 +6323,7 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
         totalHText.style.opacity = '1';
     });
 
-    // 5 Saniye sonra diÄŸer soruya geÃ§
+    // 5 Saniye sonra diÃ„Å¸er soruya geÃƒÂ§
     window.roundTimer = setTimeout(() => {
         slopeState.currentQuestion++;
         startSlopeInclineRound();
@@ -6299,43 +6331,43 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
 }
 
 // ==========================================
-// EKRAN TEMÄ°ZLÄ°ÄÄ° YAMASI (BUG FIX)
+// EKRAN TEMÃ„Â°ZLÃ„Â°Ã„ÂÃ„Â° YAMASI (BUG FIX)
 // ==========================================
-// DiÄŸer ana menÃ¼ butonlarÄ±na basÄ±ldÄ±ÄŸÄ±nda EÄŸim modundan kalanlarÄ± temizle
+// DiÃ„Å¸er ana menÃƒÂ¼ butonlarÃ„Â±na basÃ„Â±ldÃ„Â±Ã„Å¸Ã„Â±nda EÃ„Å¸im modundan kalanlarÃ„Â± temizle
 const cleanUpButtons = ['linearRelationsBtn', 'lineGraphsBtn', 'transformationsBtn', 'coordinatesBtn'];
 
 cleanUpButtons.forEach(btnId => {
     const btn = document.getElementById(btnId);
     if (btn) {
-        // Mevcut iÅŸlevini bozmadan 'dinleyici' ekliyoruz
+        // Mevcut iÃ…Å¸levini bozmadan 'dinleyici' ekliyoruz
         btn.addEventListener('click', function() {
-            // 1. EÄŸim Soru Panelini Gizle
+            // 1. EÃ„Å¸im Soru Panelini Gizle
             const slopePanel = document.getElementById('slopeQuestionPanel');
             if (slopePanel) {
                 slopePanel.classList.add('hidden');
                 slopePanel.style.display = 'none'; // Garanti olsun
             }
 
-            // 2. EÄŸim Alt MenÃ¼sÃ¼nÃ¼ Gizle
+            // 2. EÃ„Å¸im Alt MenÃƒÂ¼sÃƒÂ¼nÃƒÂ¼ Gizle
             const slopeSubs = document.getElementById('slopeSubButtons');
             if (slopeSubs) {
                 slopeSubs.classList.add('hidden');
             }
 
-            // 3. EÄŸim Butonu SeÃ§im Efektini KaldÄ±r
+            // 3. EÃ„Å¸im Butonu SeÃƒÂ§im Efektini KaldÃ„Â±r
             const incBtn = document.getElementById('btnSlopeIncline');
             if (incBtn) incBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-            // 4. Tabloyu ve Tamam Butonunu Geri Getir (EÄŸim modunda gizlemiÅŸtik)
+            // 4. Tabloyu ve Tamam Butonunu Geri Getir (EÃ„Å¸im modunda gizlemiÃ…Å¸tik)
             const dataTable = document.getElementById('dataTable');
             if (dataTable) {
-                dataTable.style.display = 'block'; // Veya '' yaparak CSS'e bÄ±rakabiliriz
+                dataTable.style.display = 'block'; // Veya '' yaparak CSS'e bÃ„Â±rakabiliriz
                 dataTable.classList.remove('hidden');
             }
             
             const confirmBtn = document.getElementById('tableConfirmBtn');
             if (confirmBtn) {
-                confirmBtn.style.display = 'block'; // GÃ¶rÃ¼nÃ¼r yap
+                confirmBtn.style.display = 'block'; // GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
                 confirmBtn.classList.remove('hidden');
             }
         });
@@ -6344,56 +6376,56 @@ cleanUpButtons.forEach(btnId => {
 
 
 // ==========================================
-// EKRAN GÃœNCELLEYÄ°CÄ° (YENÄ° KUTULARI TANIYAN BEYÄ°N)
+// EKRAN GÃƒÅ“NCELLEYÃ„Â°CÃ„Â° (YENÃ„Â° KUTULARI TANIYAN BEYÃ„Â°N)
 // ==========================================
 function updateActiveInputDisplay() {
-    // HafÄ±zadaki sayÄ± ne?
+    // HafÃ„Â±zadaki sayÃ„Â± ne?
     const val = linearState.currentInputValue;
     
-    // Hangi kutuya yazmalÄ±yÄ±m? (activeInputTarget)
+    // Hangi kutuya yazmalÃ„Â±yÃ„Â±m? (activeInputTarget)
     
-    // 1. Sol Alttaki Kutu (a'nÄ±n altÄ±)
+    // 1. Sol Alttaki Kutu (a'nÃ„Â±n altÃ„Â±)
     if (activeInputTarget === 'eq_left_denom') {
         const el = document.getElementById('leftDenomBox');
         if(el) el.textContent = val || '?';
     }
 
-    // 2. SaÄŸ Ãœst (Pay)
-    // Hem eski mod (slope_conv_num) hem yeni mod (eq_right_num) iÃ§in aynÄ± kutu:
+    // 2. SaÃ„Å¸ ÃƒÅ“st (Pay)
+    // Hem eski mod (slope_conv_num) hem yeni mod (eq_right_num) iÃƒÂ§in aynÃ„Â± kutu:
     if (activeInputTarget === 'eq_right_num' || activeInputTarget === 'slope_conv_num') {
         const el = document.getElementById('slopeNumBox'); 
         if(el) el.textContent = val || '?';
     }
 
-    // 3. SaÄŸ Alt (Payda)
-    // Hem eski mod (slope_conv_denom) hem yeni mod (eq_right_denom) iÃ§in aynÄ± kutu:
+    // 3. SaÃ„Å¸ Alt (Payda)
+    // Hem eski mod (slope_conv_denom) hem yeni mod (eq_right_denom) iÃƒÂ§in aynÃ„Â± kutu:
     if (activeInputTarget === 'eq_right_denom' || activeInputTarget === 'slope_conv_denom') {
         const el = document.getElementById('slopeDenomBox'); 
         if(el) el.textContent = val || '?';
     }
 
-// ... (Mevcut kodlarÄ±n altÄ±na ekle) ...
+// ... (Mevcut kodlarÃ„Â±n altÃ„Â±na ekle) ...
 
-// --- Ä°KÄ° NOKTADAN EÄÄ°M GÃœNCELLEMESÄ° ---
+// --- Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M GÃƒÅ“NCELLEMESÃ„Â° ---
 if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
-    // 1. DeÄŸeri ilgili kutuya yaz
+    // 1. DeÃ„Å¸eri ilgili kutuya yaz
     const role = activeInputTarget.split('_')[2]; // y2, y1, x2, x1
     const boxId = 'box_' + role;
     const box = document.getElementById(boxId);
     
     if (box) {
-        // BoÅŸsa '?' kalsÄ±n, deÄŸilse deÄŸeri yaz
+        // BoÃ…Å¸sa '?' kalsÃ„Â±n, deÃ„Å¸ilse deÃ„Å¸eri yaz
         box.textContent = linearState.currentInputValue === '' ? '?' : linearState.currentInputValue;
         box.style.color = '#4338ca';
     }
 
-    // 2. TÃ¼m kutular dolu mu kontrol et
+    // 2. TÃƒÂ¼m kutular dolu mu kontrol et
     const y2 = parseFloat(document.getElementById('box_y2').textContent);
     const y1 = parseFloat(document.getElementById('box_y1').textContent);
     const x2 = parseFloat(document.getElementById('box_x2').textContent);
     const x1 = parseFloat(document.getElementById('box_x1').textContent);
 
-    // EÄŸer hepsi sayÄ±ysa (isNaN deÄŸilse) hesapla
+    // EÃ„Å¸er hepsi sayÃ„Â±ysa (isNaN deÃ„Å¸ilse) hesapla
     if (!isNaN(y2) && !isNaN(y1) && !isNaN(x2) && !isNaN(x1)) {
         
         const pay = y2 - y1;
@@ -6402,18 +6434,18 @@ if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
         const resultDisplay = document.getElementById('calcResultDisplay');
         const checkBtn = document.getElementById('checkBtn');
 
-        // Payda 0 ise hata/tanÄ±msÄ±z
+        // Payda 0 ise hata/tanÃ„Â±msÃ„Â±z
         if (payda === 0) {
-            resultDisplay.textContent = "TanÄ±msÄ±z (Payda 0)";
+            resultDisplay.textContent = "TanÃ„Â±msÃ„Â±z (Payda 0)";
             resultDisplay.style.color = "red";
         } else {
-            // Sonucu gÃ¶ster (Ã–rn: m = 4/-4 veya sadeleÅŸtirme yapÄ±labilir ama ÅŸimdilik ham hali)
-            // SadeleÅŸtirme istenirse eklenebilir. Åimdilik A/B formatÄ±:
+            // Sonucu gÃƒÂ¶ster (Ãƒâ€“rn: m = 4/-4 veya sadeleÃ…Å¸tirme yapÃ„Â±labilir ama Ã…Å¸imdilik ham hali)
+            // SadeleÃ…Å¸tirme istenirse eklenebilir. Ã…Âimdilik A/B formatÃ„Â±:
             resultDisplay.textContent = `m = ${pay} / ${payda}`;
-            resultDisplay.style.color = "#16a34a"; // YeÅŸil
+            resultDisplay.style.color = "#16a34a"; // YeÃ…Å¸il
         }
 
-        // GÃ¶stergeyi aÃ§ ve butonu yak
+        // GÃƒÂ¶stergeyi aÃƒÂ§ ve butonu yak
         resultDisplay.style.opacity = '1';
         resultDisplay.classList.remove('scale-90');
         resultDisplay.classList.add('scale-100');
@@ -6428,15 +6460,15 @@ if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
 
 
 // =================================================================
-// ğŸš‘ Ä°KÄ° NOKTADAN EÄÄ°M MODU - (YERLEÅÄ°M VE NUMPAD DÃœZELTMESÄ°)
+// ÄŸÅ¸Å¡â€˜ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU - (YERLEÃ…ÂÃ„Â°M VE NUMPAD DÃƒÅ“ZELTMESÃ„Â°)
 // =================================================================
 window.startSlopeTwoPointsRound = function() {
-    console.log("ğŸ“ Ä°ki Noktadan EÄŸim Modu: DÃ¼zenlenmiÅŸ ArayÃ¼z...");
+    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu: DÃƒÂ¼zenlenmiÃ…Å¸ ArayÃƒÂ¼z...");
 
     // 1. Temizlik
     if (typeof clearAllScreens === 'function') clearAllScreens();
 
-    // 2. Alt MenÃ¼ ve Buton AktifliÄŸi
+    // 2. Alt MenÃƒÂ¼ ve Buton AktifliÃ„Å¸i
     const subButtons = document.getElementById('slopeSubButtons');
     if (subButtons) {
         subButtons.classList.remove('hidden');
@@ -6445,29 +6477,29 @@ window.startSlopeTwoPointsRound = function() {
     const btn = document.getElementById('btnSlopeTwoPoints');
     if (btn) btn.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-    // 3. Arka Plan Konteyneri (TÄ±klamalarÄ± engellememesi iÃ§in pointer-events ayarÄ±)
+    // 3. Arka Plan Konteyneri (TÃ„Â±klamalarÃ„Â± engellememesi iÃƒÂ§in pointer-events ayarÃ„Â±)
     const container = document.getElementById('linearContainer');
     if (container) {
         container.classList.remove('hidden');
         container.style.display = 'block'; 
-        container.style.pointerEvents = 'none'; // Konteyner tÄ±klamayÄ± engellemesin
+        container.style.pointerEvents = 'none'; // Konteyner tÃ„Â±klamayÃ„Â± engellemesin
         container.style.margin = '0 auto';
-        // Ä°Ã§erideki Ã§akÄ±ÅŸan elemanlarÄ± gizle
+        // Ã„Â°ÃƒÂ§erideki ÃƒÂ§akÃ„Â±Ã…Å¸an elemanlarÃ„Â± gizle
         if (document.getElementById('linearCanvas')) document.getElementById('linearCanvas').style.display = 'none';
         if (document.getElementById('dataTable')) document.getElementById('dataTable').style.display = 'none';
         if (document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     }
 
-    // 4. SORU PANELÄ° (KONUM VE BOYUT AYARI)
+    // 4. SORU PANELÃ„Â° (KONUM VE BOYUT AYARI)
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
 
         panel.classList.remove('hidden');
         
-        // --- CSS GÃœNCELLEMESÄ° ---
-        // top: 55% -> Biraz aÅŸaÄŸÄ±ya indi (butonlarÄ± kapatmaz)
-        // z-index: 50 -> Numpad'in altÄ±nda kalacak ÅŸekilde ayarlandÄ±
+        // --- CSS GÃƒÅ“NCELLEMESÃ„Â° ---
+        // top: 55% -> Biraz aÃ…Å¸aÃ„Å¸Ã„Â±ya indi (butonlarÃ„Â± kapatmaz)
+        // z-index: 50 -> Numpad'in altÃ„Â±nda kalacak Ã…Å¸ekilde ayarlandÃ„Â±
         panel.style.cssText = `
             position: fixed !important;
             top: 55% !important; 
@@ -6483,18 +6515,18 @@ window.startSlopeTwoPointsRound = function() {
             box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
             border: 3px solid #6366f1 !important;
             width: 90% !important;
-            max-width: 500px !important; /* Ã‡ok geniÅŸ olmasÄ±nÄ± engeller */
-            pointer-events: auto !important; /* Panel tÄ±klanabilir olsun */
+            max-width: 500px !important; /* Ãƒâ€¡ok geniÃ…Å¸ olmasÃ„Â±nÃ„Â± engeller */
+            pointer-events: auto !important; /* Panel tÃ„Â±klanabilir olsun */
         `;
 
-        // 5. Ä°Ã‡ERÄ°K
+        // 5. Ã„Â°Ãƒâ€¡ERÃ„Â°K
         const p1 = { x: 2, y: 3 };
         const p2 = { x: -2, y: 7 };
         
         if (typeof slopeState !== 'undefined') slopeState.currentTwoPoints = { p1, p2 };
 
         panel.innerHTML = `
-            <h3 class="text-xl font-bold text-indigo-900 mb-3">EÄŸimi Hesapla</h3>
+            <h3 class="text-xl font-bold text-indigo-900 mb-3">EÃ„Å¸imi Hesapla</h3>
             
             <div class="text-base text-gray-700 mb-4 text-center">
                 <span class="font-bold text-indigo-600">A(${p1.x}, ${p1.y})</span> ve 
@@ -6524,14 +6556,14 @@ window.startSlopeTwoPointsRound = function() {
             <div id="calcResultDisplay" class="h-8 text-2xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
         `;
 
-        // TÄ±klama OlaylarÄ±
-        setupInputClick('box_y2', 'y2', 'yâ‚‚ Giriniz (7)');
-        setupInputClick('box_y1', 'y1', 'yâ‚ Giriniz (3)');
-        setupInputClick('box_x2', 'x2', 'xâ‚‚ Giriniz (-2)');
-        setupInputClick('box_x1', 'x1', 'xâ‚ Giriniz (2)');
+        // TÃ„Â±klama OlaylarÃ„Â±
+        setupInputClick('box_y2', 'y2', 'yÃ¢â€šâ€š Giriniz (7)');
+        setupInputClick('box_y1', 'y1', 'yÃ¢â€šÂ Giriniz (3)');
+        setupInputClick('box_x2', 'x2', 'xÃ¢â€šâ€š Giriniz (-2)');
+        setupInputClick('box_x1', 'x1', 'xÃ¢â€šÂ Giriniz (2)');
     }
 
-    // Kontrol Butonunu PasifleÅŸtir
+    // Kontrol Butonunu PasifleÃ…Å¸tir
     const chk = document.getElementById('checkBtn');
     if(chk) {
         chk.disabled = true;
@@ -6541,7 +6573,7 @@ window.startSlopeTwoPointsRound = function() {
 };
 
 // ==========================================
-// 1. SAYI PANELÄ° KONUM AYARI (AÅAÄI Ä°NDÄ°RME)
+// 1. SAYI PANELÃ„Â° KONUM AYARI (AÃ…ÂAÃ„ÂI Ã„Â°NDÃ„Â°RME)
 // ==========================================
 window.setupInputClick = function(id, role, title) {
     const el = document.getElementById(id);
@@ -6550,21 +6582,21 @@ window.setupInputClick = function(id, role, title) {
             activeInputTarget = 'two_points_' + role;
             if (typeof linearState !== 'undefined') linearState.currentInputValue = '';
             
-            // BaÅŸlÄ±ÄŸÄ± gÃ¼ncelle
+            // BaÃ…Å¸lÃ„Â±Ã„Å¸Ã„Â± gÃƒÂ¼ncelle
             const currentInputLabel = document.getElementById('currentInput');
             if(currentInputLabel) currentInputLabel.textContent = title;
             
-            // NUMPAD'Ä° AÃ‡ VE KONUMLANDIR
+            // NUMPAD'Ã„Â° AÃƒâ€¡ VE KONUMLANDIR
             const numPad = document.getElementById('numberPad');
             if(numPad) {
                 numPad.classList.remove('hidden');
                 
-                // --- DÃœZELTME BURADA ---
+                // --- DÃƒÅ“ZELTME BURADA ---
                 numPad.style.cssText = `
                     display: flex !important;
-                    z-index: 999999 !important; /* En, en Ã¼stte */
+                    z-index: 999999 !important; /* En, en ÃƒÂ¼stte */
                     position: fixed !important;
-                    top: 70% !important;       /* 50% idi, 70% yaptÄ±k (AÅŸaÄŸÄ± indi) */
+                    top: 70% !important;       /* 50% idi, 70% yaptÃ„Â±k (AÃ…Å¸aÃ„Å¸Ã„Â± indi) */
                     left: 50% !important;
                     transform: translate(-50%, -50%) !important;
                 `;
@@ -6574,31 +6606,31 @@ window.setupInputClick = function(id, role, title) {
 };
 
 // ==========================================
-// 2. "TAMAM" TUÅU TAMÄ°RÄ° (KAPATMA VE HESAPLAMA)
+// 2. "TAMAM" TUÃ…ÂU TAMÃ„Â°RÃ„Â° (KAPATMA VE HESAPLAMA)
 // ==========================================
 var confirmBtn = document.getElementById('numPadClose'); // Genelde "Tamam" veya "Tik" butonu budur
 
 if (confirmBtn) {
-    // Eski gÃ¶revleri temizle (Clone yÃ¶ntemi)
+    // Eski gÃƒÂ¶revleri temizle (Clone yÃƒÂ¶ntemi)
     var newConfirmBtn = confirmBtn.cloneNode(true);
     confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
 
     newConfirmBtn.addEventListener('click', function() {
-        console.log("âœ… Tamam tuÅŸuna basÄ±ldÄ±.");
+        console.log("Ã¢Å“â€¦ Tamam tuÃ…Å¸una basÃ„Â±ldÃ„Â±.");
         
         const val = linearState.currentInputValue;
 
-        // A) Ä°KÄ° NOKTADAN EÄÄ°M MODU Ä°SE
+        // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU Ã„Â°SE
         if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
             const role = activeInputTarget.split('_')[2]; // y2, y1, x2, x1
             const box = document.getElementById('box_' + role);
             
             if (box) {
-                // DeÄŸeri kutuya yaz
+                // DeÃ„Å¸eri kutuya yaz
                 box.textContent = val === '' ? '?' : val;
                 box.style.color = '#4338ca'; // Mor renk
                 
-                // Otomatik HesaplamayÄ± Tetikle
+                // Otomatik HesaplamayÃ„Â± Tetikle
                 if (typeof checkTwoPointsComplete === 'function') {
                     checkTwoPointsComplete();
                 } else {
@@ -6623,7 +6655,7 @@ if (confirmBtn) {
             }
         }
         
-        // B) DÄ°ÄER MODLAR Ä°Ã‡Ä°N KISA YOL (Mevcut yapÄ±yÄ± bozmamak iÃ§in)
+        // B) DÃ„Â°Ã„ÂER MODLAR Ã„Â°Ãƒâ€¡Ã„Â°N KISA YOL (Mevcut yapÃ„Â±yÃ„Â± bozmamak iÃƒÂ§in)
         else if (activeInputTarget === 'slope_simple' && document.getElementById('slopeAnswerBox')) {
             document.getElementById('slopeAnswerBox').textContent = val;
             document.getElementById('checkBtn').disabled = false;
@@ -6633,13 +6665,13 @@ if (confirmBtn) {
              document.getElementById('checkBtn').disabled = false;
         }
 
-        // --- KRÄ°TÄ°K BÃ–LÃœM: KAPATMA ---
+        // --- KRÃ„Â°TÃ„Â°K BÃƒâ€“LÃƒÅ“M: KAPATMA ---
         const numPad = document.getElementById('numberPad');
         if (numPad) {
             numPad.classList.add('hidden'); // Gizle
         }
         
-        // Input deÄŸerini sÄ±fÄ±rla
+        // Input deÃ„Å¸erini sÃ„Â±fÃ„Â±rla
         if (typeof linearState !== 'undefined') {
             linearState.currentInputValue = '';
         }
@@ -6649,7 +6681,7 @@ if (confirmBtn) {
 }
 
 // ==========================================
-// 3. OTOMATÄ°K HESAPLAMA (YEDEK)
+// 3. OTOMATÃ„Â°K HESAPLAMA (YEDEK)
 // ==========================================
 window.checkTwoPointsComplete = function() {
     const y2 = parseFloat(document.getElementById('box_y2').textContent);
@@ -6665,14 +6697,14 @@ window.checkTwoPointsComplete = function() {
         const chk = document.getElementById('checkBtn');
 
         if (payda === 0) {
-            disp.textContent = "TanÄ±msÄ±z (Payda 0)";
+            disp.textContent = "TanÃ„Â±msÃ„Â±z (Payda 0)";
             disp.style.color = "red";
         } else {
             disp.textContent = `m = ${pay} / ${payda}`;
-            disp.style.color = "#16a34a"; // YeÅŸil
+            disp.style.color = "#16a34a"; // YeÃ…Å¸il
         }
         
-        // Sonucu GÃ¶ster
+        // Sonucu GÃƒÂ¶ster
         disp.style.opacity = '1';
         disp.classList.remove('scale-90');
         disp.classList.add('scale-100');
@@ -6687,54 +6719,54 @@ window.checkTwoPointsComplete = function() {
 };
 
 // =================================================================
-// ğŸš€ Ä°KÄ° NOKTADAN EÄÄ°M MODU - (Ã‡OKLU SORU VERSÄ°YONU)
+// ÄŸÅ¸Å¡â‚¬ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU - (Ãƒâ€¡OKLU SORU VERSÃ„Â°YONU)
 // =================================================================
 
-// 1. SORU LÄ°STESÄ° VE BAÅLATMA MANTIÄI
+// 1. SORU LÃ„Â°STESÃ„Â° VE BAÃ…ÂLATMA MANTIÃ„ÂI
 window.startSlopeTwoPointsRound = function() {
-    console.log("ğŸ“ Ä°ki Noktadan EÄŸim Modu: Soru YÃ¼kleniyor...");
+    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu: Soru YÃƒÂ¼kleniyor...");
 
-    // --- SORU LÄ°STESÄ° (BURAYA YENÄ° SORULAR EKLEYEBÄ°LÄ°RSÄ°N) ---
+    // --- SORU LÃ„Â°STESÃ„Â° (BURAYA YENÃ„Â° SORULAR EKLEYEBÃ„Â°LÃ„Â°RSÃ„Â°N) ---
     const questions = [
         { p1: { x: 2, y: 3 }, p2: { x: -2, y: 7 } },   // 1. Soru (Eski)
         { p1: { x: -3, y: -4 }, p2: { x: 2, y: -5 } }  // 2. Soru (Yeni)
     ];
 
-    // Soru Ä°ndeksini Kontrol Et (Yoksa 0'dan baÅŸlat)
+    // Soru Ã„Â°ndeksini Kontrol Et (Yoksa 0'dan baÃ…Å¸lat)
     if (typeof slopeState.twoPointsQuestionIndex === 'undefined') {
         slopeState.twoPointsQuestionIndex = 0;
     }
 
-    // --- TÃœM SORULAR BÄ°TTÄ° MÄ°? ---
+    // --- TÃƒÅ“M SORULAR BÃ„Â°TTÃ„Â° MÃ„Â°? ---
     if (slopeState.twoPointsQuestionIndex >= questions.length) {
-        // BitiÅŸ EkranÄ±
+        // BitiÃ…Å¸ EkranÃ„Â±
         if (typeof clearAllScreens === 'function') clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('slopeSubButtons').style.display = 'flex';
         
         const feedback = document.getElementById('feedback');
-        feedback.textContent = "ğŸ† Tebrikler! TÃ¼m sorularÄ± tamamladÄ±n!";
+        feedback.textContent = "ÄŸÅ¸Ââ€  Tebrikler! TÃƒÂ¼m sorularÃ„Â± tamamladÃ„Â±n!";
         feedback.className = 'fixed bottom-1/2 left-1/2 transform -translate-x-1/2 px-8 py-6 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-2xl z-[99999]';
         feedback.style.opacity = '1';
         playSuccessSound();
 
-        // 3 saniye sonra baÅŸa dÃ¶n
+        // 3 saniye sonra baÃ…Å¸a dÃƒÂ¶n
         setTimeout(() => {
             feedback.style.opacity = '0';
-            slopeState.twoPointsQuestionIndex = 0; // BaÅŸa sar
+            slopeState.twoPointsQuestionIndex = 0; // BaÃ…Å¸a sar
         }, 4000);
         return;
     }
 
-    // --- SIRADAKÄ° SORUYU AL ---
+    // --- SIRADAKÃ„Â° SORUYU AL ---
     const currentQ = questions[slopeState.twoPointsQuestionIndex];
     const p1 = currentQ.p1;
     const p2 = currentQ.p2;
 
-    // State'e kaydet (Kontrol ederken lazÄ±m olacak)
+    // State'e kaydet (Kontrol ederken lazÃ„Â±m olacak)
     slopeState.currentTwoPoints = { p1, p2 };
 
-    // 2. ARAYÃœZÃœ HAZIRLA
+    // 2. ARAYÃƒÅ“ZÃƒÅ“ HAZIRLA
     if (typeof clearAllScreens === 'function') clearAllScreens();
     
     const subButtons = document.getElementById('slopeSubButtons');
@@ -6745,7 +6777,7 @@ window.startSlopeTwoPointsRound = function() {
     const btn = document.getElementById('btnSlopeTwoPoints');
     if (btn) btn.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-    // Ana kutuyu aÃ§
+    // Ana kutuyu aÃƒÂ§
     const container = document.getElementById('linearContainer');
     if (container) {
         container.classList.remove('hidden');
@@ -6756,7 +6788,7 @@ window.startSlopeTwoPointsRound = function() {
         if (document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     }
 
-    // Paneli oluÅŸtur
+    // Paneli oluÃ…Å¸tur
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
@@ -6781,10 +6813,10 @@ window.startSlopeTwoPointsRound = function() {
             pointer-events: auto !important;
         `;
 
-        // HTML Ä°Ã§eriÄŸi (DeÄŸerler deÄŸiÅŸken)
+        // HTML Ã„Â°ÃƒÂ§eriÃ„Å¸i (DeÃ„Å¸erler deÃ„Å¸iÃ…Å¸ken)
         panel.innerHTML = `
             <div class="absolute top-2 left-4 text-xs font-bold text-gray-400">Soru ${slopeState.twoPointsQuestionIndex + 1} / ${questions.length}</div>
-            <h3 class="text-xl font-bold text-indigo-900 mb-3">EÄŸimi Hesapla</h3>
+            <h3 class="text-xl font-bold text-indigo-900 mb-3">EÃ„Å¸imi Hesapla</h3>
             
             <div class="text-base text-gray-700 mb-4 text-center">
                 <span class="font-bold text-indigo-600">A(${p1.x}, ${p1.y})</span> ve 
@@ -6810,14 +6842,14 @@ window.startSlopeTwoPointsRound = function() {
             <div id="calcResultDisplay" class="h-8 text-2xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
         `;
 
-        // TÄ±klama OlaylarÄ± (DeÄŸiÅŸken baÅŸlÄ±klar)
-        setupInputClick('box_y2', 'y2', `yâ‚‚ Giriniz (${p2.y})`);
-        setupInputClick('box_y1', 'y1', `yâ‚ Giriniz (${p1.y})`);
-        setupInputClick('box_x2', 'x2', `xâ‚‚ Giriniz (${p2.x})`);
-        setupInputClick('box_x1', 'x1', `xâ‚ Giriniz (${p1.x})`);
+        // TÃ„Â±klama OlaylarÃ„Â± (DeÃ„Å¸iÃ…Å¸ken baÃ…Å¸lÃ„Â±klar)
+        setupInputClick('box_y2', 'y2', `yÃ¢â€šâ€š Giriniz (${p2.y})`);
+        setupInputClick('box_y1', 'y1', `yÃ¢â€šÂ Giriniz (${p1.y})`);
+        setupInputClick('box_x2', 'x2', `xÃ¢â€šâ€š Giriniz (${p2.x})`);
+        setupInputClick('box_x1', 'x1', `xÃ¢â€šÂ Giriniz (${p1.x})`);
     }
     
-    // Kontrol Butonunu SÄ±fÄ±rla
+    // Kontrol Butonunu SÃ„Â±fÃ„Â±rla
     const chk = document.getElementById('checkBtn');
     if(chk) {
         chk.disabled = true;
@@ -6826,14 +6858,14 @@ window.startSlopeTwoPointsRound = function() {
     }
 };
 
-// 2. KONTROL BUTONU (SIRADAKÄ° SORUYA GEÃ‡ME MANTIÄI EKLENDÄ°)
+// 2. KONTROL BUTONU (SIRADAKÃ„Â° SORUYA GEÃƒâ€¡ME MANTIÃ„ÂI EKLENDÃ„Â°)
 var checkBtn = document.getElementById('checkBtn');
 if (checkBtn) {
     var newCheckBtn = checkBtn.cloneNode(true);
     checkBtn.parentNode.replaceChild(newCheckBtn, checkBtn);
 
     newCheckBtn.addEventListener('click', function() {
-        // --- Ä°KÄ° NOKTADAN EÄÄ°M MODU Ä°SE ---
+        // --- Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU Ã„Â°SE ---
         if (gameState.mode === 'slope_two_points') {
             const p1 = slopeState.currentTwoPoints.p1;
             const p2 = slopeState.currentTwoPoints.p2;
@@ -6850,10 +6882,10 @@ if (checkBtn) {
                 showFeedback(true);
                 playSuccessSound();
                 
-                // DOÄRU BÄ°LÄ°NCE 2 SANÄ°YE SONRA DÄ°ÄER SORUYA GEÃ‡
+                // DOÃ„ÂRU BÃ„Â°LÃ„Â°NCE 2 SANÃ„Â°YE SONRA DÃ„Â°Ã„ÂER SORUYA GEÃƒâ€¡
                 setTimeout(() => {
-                    slopeState.twoPointsQuestionIndex++; // SÄ±radaki soruya geÃ§
-                    startSlopeTwoPointsRound(); // Yeniden baÅŸlat
+                    slopeState.twoPointsQuestionIndex++; // SÃ„Â±radaki soruya geÃƒÂ§
+                    startSlopeTwoPointsRound(); // Yeniden baÃ…Å¸lat
                 }, 2000);
                 
             } else {
@@ -6861,7 +6893,7 @@ if (checkBtn) {
                 playErrorSound();
             }
         } 
-        // --- DÄ°ÄER MODLAR Ä°Ã‡Ä°N ESKÄ° KODLARI KORUYALIM ---
+        // --- DÃ„Â°Ã„ÂER MODLAR Ã„Â°Ãƒâ€¡Ã„Â°N ESKÃ„Â° KODLARI KORUYALIM ---
         else if (gameState.mode === 'x_eq_a') { if(typeof checkVerticalLine === 'function') checkVerticalLine(); }
         else if (gameState.mode === 'y_eq_b') { if(typeof checkHorizontalLine === 'function') checkHorizontalLine(); }
         else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') { if(typeof checkStraightLine === 'function') checkStraightLine(); }
@@ -6873,35 +6905,35 @@ if (checkBtn) {
 }
 
 // =================================================================
-// ğŸš€ Ä°KÄ° NOKTADAN EÄÄ°M MODU (3. SORU EKLENDÄ° - ORÄ°JÄ°N)
+// ÄŸÅ¸Å¡â‚¬ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (3. SORU EKLENDÃ„Â° - ORÃ„Â°JÃ„Â°N)
 // =================================================================
 window.startSlopeTwoPointsRound = function() {
-    console.log("ğŸ“ Ä°ki Noktadan EÄŸim Modu: Soru YÃ¼kleniyor...");
+    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu: Soru YÃƒÂ¼kleniyor...");
 
-    // --- 1. SORU LÄ°STESÄ° ---
+    // --- 1. SORU LÃ„Â°STESÃ„Â° ---
     const questions = [
         { p1: { x: 2, y: 3 }, p2: { x: -2, y: 7 } },     // 1. Soru
         { p1: { x: -3, y: -4 }, p2: { x: 2, y: -5 } },   // 2. Soru
-        { p1: { x: 3, y: -5 }, p2: { x: 0, y: 0 } }      // 3. Soru (YENÄ°: Orijin)
+        { p1: { x: 3, y: -5 }, p2: { x: 0, y: 0 } }      // 3. Soru (YENÃ„Â°: Orijin)
     ];
 
-    // Soru Ä°ndeksini Kontrol Et
+    // Soru Ã„Â°ndeksini Kontrol Et
     if (typeof slopeState.twoPointsQuestionIndex === 'undefined') {
         slopeState.twoPointsQuestionIndex = 0;
     }
 
-    // --- TÃœM SORULAR BÄ°TTÄ° MÄ°? ---
+    // --- TÃƒÅ“M SORULAR BÃ„Â°TTÃ„Â° MÃ„Â°? ---
     if (slopeState.twoPointsQuestionIndex >= questions.length) {
-        // BitiÅŸ EkranÄ±
+        // BitiÃ…Å¸ EkranÃ„Â±
         if (typeof clearAllScreens === 'function') clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('slopeSubButtons').style.display = 'flex';
         
         const feedback = document.getElementById('feedback');
         feedback.innerHTML = `
-            <div class="text-4xl mb-2">ğŸ†</div>
-            <div>Harika Ä°ÅŸ!</div>
-            <div class="text-lg font-normal mt-1">TÃ¼m iki nokta sorularÄ±nÄ± bitirdin!</div>
+            <div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div>
+            <div>Harika Ã„Â°Ã…Å¸!</div>
+            <div class="text-lg font-normal mt-1">TÃƒÂ¼m iki nokta sorularÃ„Â±nÃ„Â± bitirdin!</div>
         `;
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-2xl z-[99999] animate-bounce border-4 border-white';
         feedback.style.opacity = '1';
@@ -6909,13 +6941,13 @@ window.startSlopeTwoPointsRound = function() {
 
         setTimeout(() => {
             feedback.style.opacity = '0';
-            slopeState.twoPointsQuestionIndex = 0; // BaÅŸa sar
+            slopeState.twoPointsQuestionIndex = 0; // BaÃ…Å¸a sar
             setTimeout(() => { feedback.innerHTML = ''; }, 500);
         }, 4000);
         return;
     }
 
-    // --- SIRADAKÄ° SORUYU AL ---
+    // --- SIRADAKÃ„Â° SORUYU AL ---
     const currentQ = questions[slopeState.twoPointsQuestionIndex];
     const p1 = currentQ.p1;
     const p2 = currentQ.p2;
@@ -6923,10 +6955,10 @@ window.startSlopeTwoPointsRound = function() {
     // State'e kaydet
     slopeState.currentTwoPoints = { p1, p2 };
 
-    // --- 2. ARAYÃœZÃœ HAZIRLA ---
+    // --- 2. ARAYÃƒÅ“ZÃƒÅ“ HAZIRLA ---
     if (typeof clearAllScreens === 'function') clearAllScreens();
     
-    // MenÃ¼leri AÃ§
+    // MenÃƒÂ¼leri AÃƒÂ§
     const subButtons = document.getElementById('slopeSubButtons');
     if (subButtons) {
         subButtons.classList.remove('hidden');
@@ -6935,25 +6967,25 @@ window.startSlopeTwoPointsRound = function() {
     const btn = document.getElementById('btnSlopeTwoPoints');
     if (btn) btn.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-    // Arka PlanÄ± AÃ§
+    // Arka PlanÃ„Â± AÃƒÂ§
     const container = document.getElementById('linearContainer');
     if (container) {
         container.classList.remove('hidden');
         container.style.display = 'block';
         container.style.pointerEvents = 'none';
-        // Ä°Ã§eridekileri gizle
+        // Ã„Â°ÃƒÂ§eridekileri gizle
         if (document.getElementById('linearCanvas')) document.getElementById('linearCanvas').style.display = 'none';
         if (document.getElementById('dataTable')) document.getElementById('dataTable').style.display = 'none';
         if (document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     }
 
-    // --- 3. PANELÄ° OLUÅTUR ---
+    // --- 3. PANELÃ„Â° OLUÃ…ÂTUR ---
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
         panel.classList.remove('hidden');
         
-        // CSS KonumlandÄ±rma
+        // CSS KonumlandÃ„Â±rma
         panel.style.cssText = `
             position: fixed !important;
             top: 55% !important; 
@@ -6973,13 +7005,13 @@ window.startSlopeTwoPointsRound = function() {
             pointer-events: auto !important;
         `;
 
-        // Orijin KontrolÃ¼ (Metin GÃ¶sterimi Ä°Ã§in)
+        // Orijin KontrolÃƒÂ¼ (Metin GÃƒÂ¶sterimi Ã„Â°ÃƒÂ§in)
         let p2Text = `<span class="text-indigo-600">B(${p2.x}, ${p2.y})</span>`;
         if (p2.x === 0 && p2.y === 0) {
             p2Text = `<span class="text-pink-600 font-extrabold">Orijin (0,0)</span>`;
         }
 
-        // HTML Ä°Ã§eriÄŸi
+        // HTML Ã„Â°ÃƒÂ§eriÃ„Å¸i
         panel.innerHTML = `
             <div class="absolute top-3 left-4 text-xs font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">
                 Soru ${slopeState.twoPointsQuestionIndex + 1} / ${questions.length}
@@ -6989,7 +7021,7 @@ window.startSlopeTwoPointsRound = function() {
                 <div class="text-xl text-gray-700 mb-2">
                     <span class="font-bold text-indigo-600">A(${p1.x}, ${p1.y})</span> ve ${p2Text}
                 </div>
-                <div class="text-base text-gray-500">noktalarÄ±ndan geÃ§en doÄŸrunun eÄŸimi kaÃ§tÄ±r?</div>
+                <div class="text-base text-gray-500">noktalarÃ„Â±ndan geÃƒÂ§en doÃ„Å¸runun eÃ„Å¸imi kaÃƒÂ§tÃ„Â±r?</div>
             </div>
 
             <div class="flex items-center gap-4 bg-indigo-50 p-6 rounded-2xl border-2 border-indigo-100 mb-6">
@@ -7015,11 +7047,11 @@ window.startSlopeTwoPointsRound = function() {
             <div id="calcResultDisplay" class="h-10 text-3xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
         `;
 
-        // TÄ±klama OlaylarÄ±
-        setupInputClick('box_y2', 'y2', `yâ‚‚ Giriniz (${p2.y})`);
-        setupInputClick('box_y1', 'y1', `yâ‚ Giriniz (${p1.y})`);
-        setupInputClick('box_x2', 'x2', `xâ‚‚ Giriniz (${p2.x})`);
-        setupInputClick('box_x1', 'x1', `xâ‚ Giriniz (${p1.x})`);
+        // TÃ„Â±klama OlaylarÃ„Â±
+        setupInputClick('box_y2', 'y2', `yÃ¢â€šâ€š Giriniz (${p2.y})`);
+        setupInputClick('box_y1', 'y1', `yÃ¢â€šÂ Giriniz (${p1.y})`);
+        setupInputClick('box_x2', 'x2', `xÃ¢â€šâ€š Giriniz (${p2.x})`);
+        setupInputClick('box_x1', 'x1', `xÃ¢â€šÂ Giriniz (${p1.x})`);
     }
     
     // Kontrol Butonu Reset
@@ -7031,47 +7063,47 @@ window.startSlopeTwoPointsRound = function() {
     }
 };
 
-// 2. KONTROL BUTONU GÃœNCELLEMESÄ° (ZATEN EKLÄ° AMA GARANTÄ° OLSUN)
-// Bu kÄ±sÄ±m, mevcut kodunda zaten var olan 'checkBtn' listener'Ä± ile Ã§alÄ±ÅŸÄ±r.
-// Tekrar yapÄ±ÅŸtÄ±rmana gerek yok ama emin olmak istersen aÅŸaÄŸÄ±dadÄ±r.
+// 2. KONTROL BUTONU GÃƒÅ“NCELLEMESÃ„Â° (ZATEN EKLÃ„Â° AMA GARANTÃ„Â° OLSUN)
+// Bu kÃ„Â±sÃ„Â±m, mevcut kodunda zaten var olan 'checkBtn' listener'Ã„Â± ile ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r.
+// Tekrar yapÃ„Â±Ã…Å¸tÃ„Â±rmana gerek yok ama emin olmak istersen aÃ…Å¸aÃ„Å¸Ã„Â±dadÃ„Â±r.
 // ...
 
 // =================================================================
-// ğŸš€ Ä°KÄ° NOKTADAN EÄÄ°M MODU (4. SORU: EÄÄ°M VERÄ°LMÄ°Å, C BULMA)
+// ÄŸÅ¸Å¡â‚¬ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (4. SORU: EÃ„ÂÃ„Â°M VERÃ„Â°LMÃ„Â°Ã…Â, C BULMA)
 // =================================================================
 window.startSlopeTwoPointsRound = function() {
-    console.log("ğŸ“ Ä°ki Noktadan EÄŸim Modu YÃ¼kleniyor...");
+    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu YÃƒÂ¼kleniyor...");
 
-    // 1. SORU LÄ°STESÄ°
+    // 1. SORU LÃ„Â°STESÃ„Â°
     const questions = [
         { type: 'standard', p1: { x: 2, y: 3 }, p2: { x: -2, y: 7 } },
         { type: 'standard', p1: { x: -3, y: -4 }, p2: { x: 2, y: -5 } },
         { type: 'standard', p1: { x: 3, y: -5 }, p2: { x: 0, y: 0 } },
         
-        // --- 4. YENÄ° Ã–ZEL SORU (c BULMA) ---
+        // --- 4. YENÃ„Â° Ãƒâ€“ZEL SORU (c BULMA) ---
         { 
             type: 'find_c_slope_given', // Yeni Tip
-            p1: { x: 0, y: 'c' },      // A NoktasÄ± (Bilinmeyen)
-            p2: { x: -2, y: 3 },       // B NoktasÄ± (Bilinen)
-            slope: 4,                  // Verilen EÄŸim
-            slopeFraction: { n: 4, d: 1 }, // 4/1 olarak yazÄ±lacak
-            correctC: 11               // Ã‡Ã¶zÃ¼m: (c-3)/(0-(-2)) = 4 => c-3 = 8 => c=11
+            p1: { x: 0, y: 'c' },      // A NoktasÃ„Â± (Bilinmeyen)
+            p2: { x: -2, y: 3 },       // B NoktasÃ„Â± (Bilinen)
+            slope: 4,                  // Verilen EÃ„Å¸im
+            slopeFraction: { n: 4, d: 1 }, // 4/1 olarak yazÃ„Â±lacak
+            correctC: 11               // Ãƒâ€¡ÃƒÂ¶zÃƒÂ¼m: (c-3)/(0-(-2)) = 4 => c-3 = 8 => c=11
         }
     ];
 
-    // Ä°ndeks KontrolÃ¼
+    // Ã„Â°ndeks KontrolÃƒÂ¼
     if (typeof slopeState.twoPointsQuestionIndex === 'undefined') {
         slopeState.twoPointsQuestionIndex = 0;
     }
 
-    // BÄ°TÄ°Å KONTROLÃœ
+    // BÃ„Â°TÃ„Â°Ã…Â KONTROLÃƒÅ“
     if (slopeState.twoPointsQuestionIndex >= questions.length) {
         if (typeof clearAllScreens === 'function') clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('slopeSubButtons').style.display = 'flex';
         
         const feedback = document.getElementById('feedback');
-        feedback.innerHTML = `<div class="text-4xl mb-2">ğŸ†</div><div>MÃ¼kemmel!</div><div class="text-lg mt-1">Bu konunun uzmanÄ± sensin!</div>`;
+        feedback.innerHTML = `<div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div><div>MÃƒÂ¼kemmel!</div><div class="text-lg mt-1">Bu konunun uzmanÃ„Â± sensin!</div>`;
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-2xl z-[99999] animate-bounce border-4 border-white';
         feedback.style.opacity = '1';
         playSuccessSound();
@@ -7086,7 +7118,7 @@ window.startSlopeTwoPointsRound = function() {
     const currentQ = questions[slopeState.twoPointsQuestionIndex];
     slopeState.currentTwoPointsQ = currentQ; 
 
-    // 2. TEMÄ°ZLÄ°K VE HAZIRLIK
+    // 2. TEMÃ„Â°ZLÃ„Â°K VE HAZIRLIK
     if (typeof clearAllScreens === 'function') clearAllScreens();
     
     const subButtons = document.getElementById('slopeSubButtons');
@@ -7100,19 +7132,19 @@ window.startSlopeTwoPointsRound = function() {
     if(document.getElementById('dataTable')) document.getElementById('dataTable').style.display = 'none';
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
 
-    // 3. PANELÄ° OLUÅTUR
+    // 3. PANELÃ„Â° OLUÃ…ÂTUR
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
         panel.classList.remove('hidden');
         
-        // Bu soru tipi iÃ§in Ã¶zel CSS (GrafiÄŸi kapatmamasÄ± iÃ§in saÄŸa/yukarÄ± alÄ±yoruz)
+        // Bu soru tipi iÃƒÂ§in ÃƒÂ¶zel CSS (GrafiÃ„Å¸i kapatmamasÃ„Â± iÃƒÂ§in saÃ„Å¸a/yukarÃ„Â± alÃ„Â±yoruz)
         const isSpecial = (currentQ.type === 'find_c_slope_given');
         
         panel.style.cssText = `
             position: fixed !important;
             top: ${isSpecial ? '55%' : '55%'} !important; 
-            left: ${isSpecial ? '50%' : '50%'} !important; /* GrafiÄŸin saÄŸÄ±na al */
+            left: ${isSpecial ? '50%' : '50%'} !important; /* GrafiÃ„Å¸in saÃ„Å¸Ã„Â±na al */
             transform: translate(-50%, -50%) !important;
             z-index: 50 !important; 
             background-color: white !important;
@@ -7131,9 +7163,9 @@ window.startSlopeTwoPointsRound = function() {
         `;
 
         if (isSpecial) {
-            // --- 4. SORU (Ã–ZEL ARAYÃœZ: EÄÄ°M VERÄ°LMÄ°Å, C Ä°STENÄ°YOR) ---
+            // --- 4. SORU (Ãƒâ€“ZEL ARAYÃƒÅ“Z: EÃ„ÂÃ„Â°M VERÃ„Â°LMÃ„Â°Ã…Â, C Ã„Â°STENÃ„Â°YOR) ---
             
-            // GrafiÄŸi AÃ§ ve Ã‡iz
+            // GrafiÃ„Å¸i AÃƒÂ§ ve Ãƒâ€¡iz
             const canvas = document.getElementById('linearCanvas');
             canvas.style.display = 'block';
             drawSlopeUnknownGraph(currentQ); 
@@ -7143,8 +7175,8 @@ window.startSlopeTwoPointsRound = function() {
                 <h3 class="text-xl font-bold text-red-600 mb-2">Bilinmeyeni Bul (c)</h3>
                 
                 <div class="text-sm text-gray-700 mb-4 text-center leading-relaxed">
-                    DoÄŸrunun EÄŸimi <span class="font-bold text-red-600">m = 4</span> ise,<br>
-                    A(0, <span class="font-bold text-red-600">c</span>) ve B(-2, 3) noktalarÄ± iÃ§in 'c' kaÃ§tÄ±r?
+                    DoÃ„Å¸runun EÃ„Å¸imi <span class="font-bold text-red-600">m = 4</span> ise,<br>
+                    A(0, <span class="font-bold text-red-600">c</span>) ve B(-2, 3) noktalarÃ„Â± iÃƒÂ§in 'c' kaÃƒÂ§tÃ„Â±r?
                 </div>
 
                 <div class="flex items-center gap-2 bg-red-50 p-3 rounded-xl border border-red-200 mb-4 scale-90 sm:scale-100">
@@ -7180,13 +7212,13 @@ window.startSlopeTwoPointsRound = function() {
                 </div>
             `;
             
-            // TÄ±klama OlaylarÄ± (DoÄŸru deÄŸerler ile)
-            setupInputClick('box_y1', 'y1', 'yâ‚ DeÄŸeri (3)');     // B'nin y'si
-            setupInputClick('box_x2', 'x2', 'xâ‚‚ DeÄŸeri (0)');     // A'nÄ±n x'i
-            setupInputClick('box_x1', 'x1', 'xâ‚ DeÄŸeri (-2)');    // B'nin x'i
-            setupInputClick('box_slope_a', 'slope_a', 'EÄŸim PayÄ± (4)');
-            setupInputClick('box_slope_b', 'slope_b', 'EÄŸim PaydasÄ± (1)');
-            setupInputClick('box_final_c', 'final_c', 'BulduÄŸun c deÄŸeri?');
+            // TÃ„Â±klama OlaylarÃ„Â± (DoÃ„Å¸ru deÃ„Å¸erler ile)
+            setupInputClick('box_y1', 'y1', 'yÃ¢â€šÂ DeÃ„Å¸eri (3)');     // B'nin y'si
+            setupInputClick('box_x2', 'x2', 'xÃ¢â€šâ€š DeÃ„Å¸eri (0)');     // A'nÃ„Â±n x'i
+            setupInputClick('box_x1', 'x1', 'xÃ¢â€šÂ DeÃ„Å¸eri (-2)');    // B'nin x'i
+            setupInputClick('box_slope_a', 'slope_a', 'EÃ„Å¸im PayÃ„Â± (4)');
+            setupInputClick('box_slope_b', 'slope_b', 'EÃ„Å¸im PaydasÃ„Â± (1)');
+            setupInputClick('box_final_c', 'final_c', 'BulduÃ„Å¸un c deÃ„Å¸eri?');
 
         } else {
             // --- STANDART SORULAR (1, 2, 3) ---
@@ -7198,7 +7230,7 @@ window.startSlopeTwoPointsRound = function() {
 
             panel.innerHTML = `
                 <div class="absolute top-2 left-4 text-xs font-bold text-gray-400">Soru ${slopeState.twoPointsQuestionIndex + 1} / ${questions.length}</div>
-                <h3 class="text-xl font-bold text-indigo-900 mb-3">EÄŸimi Hesapla</h3>
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">EÃ„Å¸imi Hesapla</h3>
                 <div class="text-base text-gray-700 mb-4 text-center">
                     <span class="font-bold text-indigo-600">A(${currentQ.p1.x}, ${currentQ.p1.y})</span> ve ${p2Text}
                 </div>
@@ -7221,32 +7253,32 @@ window.startSlopeTwoPointsRound = function() {
                 <div id="calcResultDisplay" class="h-8 text-2xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
             `;
             
-            setupInputClick('box_y2', 'y2', `yâ‚‚ Giriniz (${currentQ.p2.y})`);
-            setupInputClick('box_y1', 'y1', `yâ‚ Giriniz (${currentQ.p1.y})`);
-            setupInputClick('box_x2', 'x2', `xâ‚‚ Giriniz (${currentQ.p2.x})`);
-            setupInputClick('box_x1', 'x1', `xâ‚ Giriniz (${currentQ.p1.x})`);
+            setupInputClick('box_y2', 'y2', `yÃ¢â€šâ€š Giriniz (${currentQ.p2.y})`);
+            setupInputClick('box_y1', 'y1', `yÃ¢â€šÂ Giriniz (${currentQ.p1.y})`);
+            setupInputClick('box_x2', 'x2', `xÃ¢â€šâ€š Giriniz (${currentQ.p2.x})`);
+            setupInputClick('box_x1', 'x1', `xÃ¢â€šÂ Giriniz (${currentQ.p1.x})`);
         }
     }
     
-    // Kontrol Butonunu SÄ±fÄ±rla
+    // Kontrol Butonunu SÃ„Â±fÃ„Â±rla
     const chk = document.getElementById('checkBtn');
     if(chk) { chk.disabled = true; chk.style.opacity = '0.5'; chk.classList.remove('animate-pulse', 'ring-4', 'ring-green-400'); }
 };
 
-// 4. Ã–ZEL GRAFÄ°K Ã‡Ä°ZÄ°MÄ° (c HESAPLANARAK)
+// 4. Ãƒâ€“ZEL GRAFÃ„Â°K Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° (c HESAPLANARAK)
 function drawSlopeUnknownGraph(q) {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = '';
     canvas.setAttribute('viewBox', '0 0 600 600');
     
-    // c'yi hesapla (GÃ¶rsel Ã§izim iÃ§in gerekli)
+    // c'yi hesapla (GÃƒÂ¶rsel ÃƒÂ§izim iÃƒÂ§in gerekli)
     const valC = q.correctC; // 11
     
-    // Ã–lÃ§ek AyarÄ±: c=11 Ã§ok yÃ¼ksek, bu yÃ¼zden her kareyi kÃ¼Ã§Ã¼k tutuyoruz.
-    // Izgara 20 birim olsun. Orijin biraz aÅŸaÄŸÄ±da olsun (400) ki 11 sÄ±ÄŸsÄ±n.
+    // Ãƒâ€“lÃƒÂ§ek AyarÃ„Â±: c=11 ÃƒÂ§ok yÃƒÂ¼ksek, bu yÃƒÂ¼zden her kareyi kÃƒÂ¼ÃƒÂ§ÃƒÂ¼k tutuyoruz.
+    // Izgara 20 birim olsun. Orijin biraz aÃ…Å¸aÃ„Å¸Ã„Â±da olsun (400) ki 11 sÃ„Â±Ã„Å¸sÃ„Â±n.
     const GRID = 25; 
     const CX = 300; // X Orijini (Biraz sola)
-    const CY = 400; // Y Orijini (AÅŸaÄŸÄ±da, Ã§Ã¼nkÃ¼ c=11 yukarÄ±da olacak)
+    const CY = 400; // Y Orijini (AÃ…Å¸aÃ„Å¸Ã„Â±da, ÃƒÂ§ÃƒÂ¼nkÃƒÂ¼ c=11 yukarÃ„Â±da olacak)
 
     // Izgara
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -7270,7 +7302,7 @@ function drawSlopeUnknownGraph(q) {
     axes.appendChild(yAxis);
     canvas.appendChild(axes);
 
-    // NoktalarÄ±n Piksel KarÅŸÄ±lÄ±klarÄ±
+    // NoktalarÃ„Â±n Piksel KarÃ…Å¸Ã„Â±lÃ„Â±klarÃ„Â±
     // A(0, c)
     const ax = CX + (0 * GRID);
     const ay = CY - (valC * GRID);
@@ -7279,17 +7311,17 @@ function drawSlopeUnknownGraph(q) {
     const bx = CX + (-2 * GRID);
     const by = CY - (3 * GRID);
 
-    // DoÄŸruyu Ã‡iz (UzatÄ±lmÄ±ÅŸ)
+    // DoÃ„Å¸ruyu Ãƒâ€¡iz (UzatÃ„Â±lmÃ„Â±Ã…Å¸)
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     const dx = ax - bx; const dy = ay - by;
-    // Ã‡izgiyi iki taraftan uzat
+    // Ãƒâ€¡izgiyi iki taraftan uzat
     line.setAttribute('x1', bx - dx*0.5); line.setAttribute('y1', by - dy*0.5);
     line.setAttribute('x2', ax + dx*0.5); line.setAttribute('y2', ay + dy*0.5);
     line.setAttribute('stroke', '#ef4444'); 
     line.setAttribute('stroke-width', '4');
     canvas.appendChild(line);
 
-    // NoktalarÄ± Ã‡iz
+    // NoktalarÃ„Â± Ãƒâ€¡iz
     const dotA = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dotA.setAttribute('cx', ax); dotA.setAttribute('cy', ay); dotA.setAttribute('r', 6); dotA.setAttribute('fill', '#4f46e5');
     canvas.appendChild(dotA);
@@ -7311,7 +7343,7 @@ function drawSlopeUnknownGraph(q) {
     canvas.appendChild(textB);
 }
 
-// 5. KONTROL MANTIÄI (GÃœNCELLENMÄ°Å VERSÄ°YON)
+// 5. KONTROL MANTIÃ„ÂI (GÃƒÅ“NCELLENMÃ„Â°Ã…Â VERSÃ„Â°YON)
 var checkBtn = document.getElementById('checkBtn');
 if (checkBtn) {
     var newCheckBtn = checkBtn.cloneNode(true);
@@ -7321,11 +7353,11 @@ if (checkBtn) {
         if (gameState.mode === 'slope_two_points') {
             const q = slopeState.currentTwoPointsQ;
 
-            // --- 4. SORU KONTROLÃœ (c BULMA) ---
+            // --- 4. SORU KONTROLÃƒÅ“ (c BULMA) ---
             if (q.type === 'find_c_slope_given') {
                 const userC = parseFloat(document.getElementById('box_final_c').textContent);
                 
-                // AyrÄ±ca ara adÄ±mlarÄ±n (formÃ¼lÃ¼n) dolu olup olmadÄ±ÄŸÄ±na da bakabiliriz
+                // AyrÃ„Â±ca ara adÃ„Â±mlarÃ„Â±n (formÃƒÂ¼lÃƒÂ¼n) dolu olup olmadÃ„Â±Ã„Å¸Ã„Â±na da bakabiliriz
                 const boxA = document.getElementById('box_slope_a').textContent;
                 const boxB = document.getElementById('box_slope_b').textContent;
 
@@ -7333,16 +7365,16 @@ if (checkBtn) {
                     showFeedback(true);
                     playSuccessSound();
                     
-                    // Ã‡Ã¶zÃ¼m AdÄ±mlarÄ±nÄ± GÃ¶ster
+                    // Ãƒâ€¡ÃƒÂ¶zÃƒÂ¼m AdÃ„Â±mlarÃ„Â±nÃ„Â± GÃƒÂ¶ster
                     const steps = document.getElementById('solutionSteps');
                     steps.classList.remove('hidden');
                     steps.innerHTML = `
-                        <div>âœ… <b>Ã‡Ã–ZÃœM ADIMLARI:</b></div>
-                        1. FormÃ¼l: (c - 3) / (0 - (-2)) = 4/1 <br>
+                        <div>Ã¢Å“â€¦ <b>Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M ADIMLARI:</b></div>
+                        1. FormÃƒÂ¼l: (c - 3) / (0 - (-2)) = 4/1 <br>
                         2. Payda: 0 - (-2) = 2 <br>
                         3. Denklem: (c - 3) / 2 = 4 <br>
-                        4. Ä°Ã§ler DÄ±ÅŸlar: c - 3 = 8 <br>
-                        5. SonuÃ§: c = 8 + 3 = <b class="text-red-600">11</b>
+                        4. Ã„Â°ÃƒÂ§ler DÃ„Â±Ã…Å¸lar: c - 3 = 8 <br>
+                        5. SonuÃƒÂ§: c = 8 + 3 = <b class="text-red-600">11</b>
                     `;
                     
                     // 6 saniye sonra bitir
@@ -7378,7 +7410,7 @@ if (checkBtn) {
                 }
             }
         }
-        // DiÄŸer modlarÄ±n kontrollerini koru...
+        // DiÃ„Å¸er modlarÃ„Â±n kontrollerini koru...
         else if (gameState.mode === 'x_eq_a') { if(typeof checkVerticalLine === 'function') checkVerticalLine(); }
         else if (gameState.mode === 'y_eq_b') { if(typeof checkHorizontalLine === 'function') checkHorizontalLine(); }
         else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') { if(typeof checkStraightLine === 'function') checkStraightLine(); }
@@ -7389,13 +7421,13 @@ if (checkBtn) {
     });
 }
 
-// 6. NUMPAD GÃœNCELLEME (YENÄ° KUTULARI TANIYAN VERSÄ°YON)
+// 6. NUMPAD GÃƒÅ“NCELLEME (YENÃ„Â° KUTULARI TANIYAN VERSÃ„Â°YON)
 // ==========================================
-// 2. "TAMAM" TUÅU TAMÄ°RÄ° (KAPATMA VE HESAPLAMA)
+// 2. "TAMAM" TUÃ…ÂU TAMÃ„Â°RÃ„Â° (KAPATMA VE HESAPLAMA)
 // ==========================================
 const numPadCloseBtn = document.getElementById('numPadClose');
 if (numPadCloseBtn) {
-    // Ã–nceki dinleyicileri temizlemek iÃ§in butonu klonluyoruz
+    // Ãƒâ€“nceki dinleyicileri temizlemek iÃƒÂ§in butonu klonluyoruz
     const newNumPadCloseBtn = numPadCloseBtn.cloneNode(true);
     numPadCloseBtn.parentNode.replaceChild(newNumPadCloseBtn, numPadCloseBtn);
     
@@ -7405,26 +7437,26 @@ if (numPadCloseBtn) {
             const disp = document.getElementById('currentInput');
             if (disp && disp.textContent !== '') val = disp.textContent;
 
-            // TÄ±klanan hedef bir tablo hÃ¼cresi ise (Ã¶rn: table_input_y_0)
+            // TÃ„Â±klanan hedef bir tablo hÃƒÂ¼cresi ise (ÃƒÂ¶rn: table_input_y_0)
             if (activeInputTarget && activeInputTarget.startsWith('table_input_')) {
                 const parts = activeInputTarget.split('_');
                 const col = parts[2]; // 'x' veya 'y'
                 const row = parseInt(parts[3]);
 
-                // Ä°ÅLEM Ã–NCELÄ°ÄÄ°NE GÃ–RE OTOMATÄ°K HESAPLAMA (Y SÃ¼tunu)
+                // Ã„Â°Ã…ÂLEM Ãƒâ€“NCELÃ„Â°Ã„ÂÃ„Â°NE GÃƒâ€“RE OTOMATÃ„Â°K HESAPLAMA (Y SÃƒÂ¼tunu)
                 if (col === 'y' && val !== '') {
-                    // x harfini Ã§arpma iÅŸlemine (*) Ã§evir
+                    // x harfini ÃƒÂ§arpma iÃ…Å¸lemine (*) ÃƒÂ§evir
                     let expression = val.replace(/x/g, '*').replace(/X/g, '*');
                     
                     try {
                         const calculatedValue = new Function('return ' + expression)();
                         val = calculatedValue.toString(); 
                     } catch (err) {
-                        console.log("Ä°fade hesaplanamadÄ±, girilen deÄŸer korundu:", err);
+                        console.log("Ã„Â°fade hesaplanamadÃ„Â±, girilen deÃ„Å¸er korundu:", err);
                     }
                 }
 
-                // TABLOYU VE EKRANI GÃœNCELLE
+                // TABLOYU VE EKRANI GÃƒÅ“NCELLE
                 if (!linearState.tableData) linearState.tableData = [];
                 if (!linearState.tableData[row]) linearState.tableData[row] = { x: '', y: '' };
                 
@@ -7436,7 +7468,7 @@ if (numPadCloseBtn) {
                     targetBox.classList.remove('bg-indigo-100', 'border-indigo-500'); 
                 }
 
-                // SATIR TAMAMLANDIYSA NOKTAYI GRAFÄ°ÄE Ã‡Ä°Z
+                // SATIR TAMAMLANDIYSA NOKTAYI GRAFÃ„Â°Ã„ÂE Ãƒâ€¡Ã„Â°Z
                 const currentRow = linearState.tableData[row];
                 if (currentRow.x !== '' && currentRow.y !== '') {
                     if (typeof refreshLinearGraphPoints === 'function') {
@@ -7446,7 +7478,7 @@ if (numPadCloseBtn) {
 
                 // TABLO TAMAMEN DOLDU MU KONTROL ET
                 let isTableFull = true;
-                const maxRows = 4; // Tablondaki varsayÄ±lan satÄ±r sayÄ±sÄ±
+                const maxRows = 4; // Tablondaki varsayÃ„Â±lan satÃ„Â±r sayÃ„Â±sÃ„Â±
                 for (let i = 0; i < maxRows; i++) {
                     if (!linearState.tableData[i] || linearState.tableData[i].x === '' || linearState.tableData[i].y === '') {
                         isTableFull = false;
@@ -7454,7 +7486,7 @@ if (numPadCloseBtn) {
                     }
                 }
 
-                // Tablo tamamen dolduysa, tablonun altÄ±ndaki onay butonunu gÃ¶ster
+                // Tablo tamamen dolduysa, tablonun altÃ„Â±ndaki onay butonunu gÃƒÂ¶ster
                 if (isTableFull) {
                     const tableConfirmBtn = document.getElementById('tableConfirmBtn'); 
                     if (tableConfirmBtn) {
@@ -7465,7 +7497,7 @@ if (numPadCloseBtn) {
                 }
             } 
             
-            // DiÄŸer modlar iÃ§in olan kodlarÄ±n (EÄŸim vs.) Ã§alÄ±ÅŸmaya devam etmesi iÃ§in burayÄ± koruyoruz
+            // DiÃ„Å¸er modlar iÃƒÂ§in olan kodlarÃ„Â±n (EÃ„Å¸im vs.) ÃƒÂ§alÃ„Â±Ã…Å¸maya devam etmesi iÃƒÂ§in burayÃ„Â± koruyoruz
             else if (activeInputTarget === 'slope_intercept') { 
                 if(val) { 
                     const ansBox = document.getElementById('interceptAnswerBox');
@@ -7479,9 +7511,9 @@ if (numPadCloseBtn) {
             }
 
         } catch (e) {
-            console.error("NumPad Ä°ÅŸlem HatasÄ±:", e);
+            console.error("NumPad Ã„Â°Ã…Å¸lem HatasÃ„Â±:", e);
         } finally {
-            // Ä°ÅŸlem bitince NumPad'i gizle ve deÄŸerleri temizle
+            // Ã„Â°Ã…Å¸lem bitince NumPad'i gizle ve deÃ„Å¸erleri temizle
             const numPadEl = document.getElementById('numberPad');
             if(numPadEl) numPadEl.classList.add('hidden');
             linearState.currentInputValue = '';
@@ -7493,28 +7525,28 @@ if (numPadCloseBtn) {
     });
 }
 // =================================================================
-// ğŸš‘ ACÄ°L DURUM: NUMPAD KAPATMA (CSS RESET YÃ–NTEMÄ°)
+// ÄŸÅ¸Å¡â€˜ ACÃ„Â°L DURUM: NUMPAD KAPATMA (CSS RESET YÃƒâ€“NTEMÃ„Â°)
 // =================================================================
 var confirmBtn = document.getElementById('numPadClose');
 
 if (confirmBtn) {
-    // 1. Butonu temizle ve yenisini oluÅŸtur
+    // 1. Butonu temizle ve yenisini oluÃ…Å¸tur
     var newConfirmBtn = confirmBtn.cloneNode(true);
     confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
 
-    // 2. Yeni TÄ±klama OlayÄ±
+    // 2. Yeni TÃ„Â±klama OlayÃ„Â±
     newConfirmBtn.addEventListener('click', function(e) {
-        // TÄ±klama olayÄ±nÄ±n yayÄ±lmasÄ±nÄ± engelle (Ã‡akÄ±ÅŸmalarÄ± Ã¶nler)
+        // TÃ„Â±klama olayÃ„Â±nÃ„Â±n yayÃ„Â±lmasÃ„Â±nÃ„Â± engelle (Ãƒâ€¡akÃ„Â±Ã…Å¸malarÃ„Â± ÃƒÂ¶nler)
         e.preventDefault();
         e.stopPropagation();
 
-        console.log("âœ… Tamam'a basÄ±ldÄ±. DeÄŸer iÅŸleniyor ve KAPATILIYOR.");
+        console.log("Ã¢Å“â€¦ Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er iÃ…Å¸leniyor ve KAPATILIYOR.");
         
         const val = linearState.currentInputValue;
 
-        // --- VERÄ° Ä°ÅLEME (KUTULARA YAZMA) ---
+        // --- VERÃ„Â° Ã„Â°Ã…ÂLEME (KUTULARA YAZMA) ---
         try {
-            // A) Ä°KÄ° NOKTADAN EÄÄ°M MODU
+            // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU
             if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
                 const role = activeInputTarget.replace('two_points_', ''); 
                 const boxId = 'box_' + role;
@@ -7524,13 +7556,13 @@ if (confirmBtn) {
                     box.textContent = val === '' ? '?' : val;
                     box.style.color = '#4338ca'; 
                     
-                    // 4. Soru KontrolÃ¼ (c deÄŸeri)
+                    // 4. Soru KontrolÃƒÂ¼ (c deÃ„Å¸eri)
                     if (role === 'final_c' && val !== '') {
                         const chk = document.getElementById('checkBtn');
                         if(chk) { chk.disabled = false; chk.style.opacity = '1'; }
                     }
                     
-                    // Standart Sorular iÃ§in Otomatik Hesaplama
+                    // Standart Sorular iÃƒÂ§in Otomatik Hesaplama
                     if (!role.includes('final') && !role.includes('slope')) {
                          if(typeof checkTwoPointsComplete === 'function') checkTwoPointsComplete(); 
                     }
@@ -7552,7 +7584,7 @@ if (confirmBtn) {
                  }
             }
 
-            // C) ESKÄ° EÄÄ°M MODLARI
+            // C) ESKÃ„Â° EÃ„ÂÃ„Â°M MODLARI
             else if (activeInputTarget === 'slope_simple') document.getElementById('slopeAnswerBox').textContent = val;
             else if (activeInputTarget === 'slope_unknown') document.getElementById('unknownBox').textContent = val;
             else if (activeInputTarget === 'slope_intercept') document.getElementById('interceptAnswerBox').textContent = val;
@@ -7561,20 +7593,20 @@ if (confirmBtn) {
             else if (activeInputTarget === 'eq_left_denom') document.getElementById('leftDenomBox').textContent = val;
 
         } catch (err) {
-            console.error("Veri iÅŸleme hatasÄ±:", err);
+            console.error("Veri iÃ…Å¸leme hatasÃ„Â±:", err);
         }
 
-        // --- KRÄ°TÄ°K BÃ–LÃœM: ZORLA KAPATMA ---
+        // --- KRÃ„Â°TÃ„Â°K BÃƒâ€“LÃƒÅ“M: ZORLA KAPATMA ---
         const numPad = document.getElementById('numberPad');
         if (numPad) {
-            // 1. Ã–nce Ã¼zerindeki tÃ¼m inline stilleri (top, left, z-index, display:flex !important) SÄ°LÄ°YORUZ.
+            // 1. Ãƒâ€“nce ÃƒÂ¼zerindeki tÃƒÂ¼m inline stilleri (top, left, z-index, display:flex !important) SÃ„Â°LÃ„Â°YORUZ.
             numPad.removeAttribute('style'); 
             
-            // 2. Sonra temiz bir ÅŸekilde gizliyoruz.
+            // 2. Sonra temiz bir Ã…Å¸ekilde gizliyoruz.
             numPad.classList.add('hidden');
         }
         
-        // --- TEMÄ°ZLÄ°K ---
+        // --- TEMÃ„Â°ZLÃ„Â°K ---
         if (typeof linearState !== 'undefined') {
             linearState.currentInputValue = '';
         }
@@ -7584,16 +7616,16 @@ if (confirmBtn) {
 }
 
 // =================================================================
-// 1. EKRAN GÃœNCELLEYÄ°CÄ° (Ä°SÄ°M AYRIÅTIRMA DÃœZELTMESÄ°)
+// 1. EKRAN GÃƒÅ“NCELLEYÃ„Â°CÃ„Â° (Ã„Â°SÃ„Â°M AYRIÃ…ÂTIRMA DÃƒÅ“ZELTMESÃ„Â°)
 // =================================================================
 window.updateActiveInputDisplay = function() {
     const val = linearState.currentInputValue;
 
-    // A) Ä°KÄ° NOKTADAN EÄÄ°M MODU (KapsamlÄ± DÃ¼zeltme)
+    // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (KapsamlÃ„Â± DÃƒÂ¼zeltme)
     if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
-        // HATA BURADAYDI: split('_')[2] sadece 'slope' alÄ±yordu, 'a' kayboluyordu.
-        // DÃœZELTME: replace ile baÅŸtaki etiketi siliyoruz, geriye tam isim kalÄ±yor.
-        const role = activeInputTarget.replace('two_points_', ''); // Ã–rn: 'slope_a'
+        // HATA BURADAYDI: split('_')[2] sadece 'slope' alÃ„Â±yordu, 'a' kayboluyordu.
+        // DÃƒÅ“ZELTME: replace ile baÃ…Å¸taki etiketi siliyoruz, geriye tam isim kalÃ„Â±yor.
+        const role = activeInputTarget.replace('two_points_', ''); // Ãƒâ€“rn: 'slope_a'
         const boxId = 'box_' + role; // -> 'box_slope_a'
         
         const box = document.getElementById(boxId);
@@ -7601,21 +7633,21 @@ window.updateActiveInputDisplay = function() {
             box.textContent = val === '' ? '?' : val;
             box.style.color = '#4338ca';
         }
-        return; // Bu moddaysak aÅŸaÄŸÄ±ya devam etme
+        return; // Bu moddaysak aÃ…Å¸aÃ„Å¸Ã„Â±ya devam etme
     }
 
-    // B) DÄ°ÄER MODLAR (ESKÄ° KODLARIN KORUNMASI)
-    // Sol Alttaki Kutu (a'nÄ±n altÄ±)
+    // B) DÃ„Â°Ã„ÂER MODLAR (ESKÃ„Â° KODLARIN KORUNMASI)
+    // Sol Alttaki Kutu (a'nÃ„Â±n altÃ„Â±)
     if (activeInputTarget === 'eq_left_denom') {
         const el = document.getElementById('leftDenomBox');
         if(el) el.textContent = val || '?';
     }
-    // SaÄŸ Ãœst (Pay)
+    // SaÃ„Å¸ ÃƒÅ“st (Pay)
     else if (activeInputTarget === 'eq_right_num' || activeInputTarget === 'slope_conv_num') {
         const el = document.getElementById('slopeNumBox'); 
         if(el) el.textContent = val || '?';
     }
-    // SaÄŸ Alt (Payda)
+    // SaÃ„Å¸ Alt (Payda)
     else if (activeInputTarget === 'eq_right_denom' || activeInputTarget === 'slope_conv_denom') {
         const el = document.getElementById('slopeDenomBox'); 
         if(el) el.textContent = val || '?';
@@ -7623,50 +7655,50 @@ window.updateActiveInputDisplay = function() {
 };
 
 // =================================================================
-// ğŸ”§ EKRAN GÃœNCELLEME TAMÄ°RÄ° (ALT TÄ°RE SORUNU Ã‡Ã–ZÃœMÃœ)
+// ÄŸÅ¸â€Â§ EKRAN GÃƒÅ“NCELLEME TAMÃ„Â°RÃ„Â° (ALT TÃ„Â°RE SORUNU Ãƒâ€¡Ãƒâ€“ZÃƒÅ“MÃƒÅ“)
 // =================================================================
 window.updateActiveInputDisplay = function() {
     const val = linearState.currentInputValue;
 
-    // A) Ä°KÄ° NOKTADAN EÄÄ°M MODU (Ã–ZEL DÃœZELTME)
+    // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (Ãƒâ€“ZEL DÃƒÅ“ZELTME)
     if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
-        // HATA BURADAYDI: split('_') kullanÄ±nca "slope_a" parÃ§alanÄ±yordu.
-        // Ã‡Ã–ZÃœM: replace() ile sadece baÅŸtaki etiketi siliyoruz, gerisini olduÄŸu gibi alÄ±yoruz.
+        // HATA BURADAYDI: split('_') kullanÃ„Â±nca "slope_a" parÃƒÂ§alanÃ„Â±yordu.
+        // Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M: replace() ile sadece baÃ…Å¸taki etiketi siliyoruz, gerisini olduÃ„Å¸u gibi alÃ„Â±yoruz.
         
-        const role = activeInputTarget.replace('two_points_', ''); // Ã–rn: 'slope_a'
+        const role = activeInputTarget.replace('two_points_', ''); // Ãƒâ€“rn: 'slope_a'
         const boxId = 'box_' + role; // -> 'box_slope_a'
         
         const box = document.getElementById(boxId);
         if (box) {
-            // DeÄŸeri kutuya anlÄ±k olarak yaz
+            // DeÃ„Å¸eri kutuya anlÃ„Â±k olarak yaz
             box.textContent = val === '' ? '?' : val;
             box.style.color = '#4338ca';
         }
-        return; // Bu moddaysak iÅŸlemi bitir, aÅŸaÄŸÄ±ya inme.
+        return; // Bu moddaysak iÃ…Å¸lemi bitir, aÃ…Å¸aÃ„Å¸Ã„Â±ya inme.
     }
 
-    // B) DÄ°ÄER MODLAR (ESKÄ° KODLARIN Ã‡ALIÅMAYA DEVAM ETMESÄ° Ä°Ã‡Ä°N)
+    // B) DÃ„Â°Ã„ÂER MODLAR (ESKÃ„Â° KODLARIN Ãƒâ€¡ALIÃ…ÂMAYA DEVAM ETMESÃ„Â° Ã„Â°Ãƒâ€¡Ã„Â°N)
     
-    // Sol Alttaki Kutu (a'nÄ±n altÄ± - EÅŸitlik Modu)
+    // Sol Alttaki Kutu (a'nÃ„Â±n altÃ„Â± - EÃ…Å¸itlik Modu)
     if (activeInputTarget === 'eq_left_denom') {
         const el = document.getElementById('leftDenomBox');
         if(el) el.textContent = val || '?';
     }
     
-    // SaÄŸ Ãœst (Pay - EÄŸim Modu)
+    // SaÃ„Å¸ ÃƒÅ“st (Pay - EÃ„Å¸im Modu)
     else if (activeInputTarget === 'eq_right_num' || activeInputTarget === 'slope_conv_num') {
         const el = document.getElementById('slopeNumBox'); 
         if(el) el.textContent = val || '?';
     }
     
-    // SaÄŸ Alt (Payda - EÄŸim Modu)
+    // SaÃ„Å¸ Alt (Payda - EÃ„Å¸im Modu)
     else if (activeInputTarget === 'eq_right_denom' || activeInputTarget === 'slope_conv_denom') {
         const el = document.getElementById('slopeDenomBox'); 
         if(el) el.textContent = val || '?';
     }
 };
 
-// --- DOÄRUSAL Ä°LÄ°ÅKÄ°LER MODÃœLÃœ (EKSÄ°K FONKSÄ°YONLAR) ---
+// --- DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER MODÃƒÅ“LÃƒÅ“ (EKSÃ„Â°K FONKSÃ„Â°YONLAR) ---
 
 function showLinearQuestions() {
     gameState.mode = 'linear_questions';
@@ -7691,20 +7723,20 @@ function nextLinearQuestion() {
                     </button>
                 `).join('')}
             </div>
-            <button onclick="backToMenu()" class="w-full mt-4 text-xs text-gray-400">Geri DÃ¶n</button>
+            <button onclick="backToMenu()" class="w-full mt-4 text-xs text-gray-400">Geri DÃƒÂ¶n</button>
         </div>
     `;
     renderGrid();
 }
 
-// --- DOÄRUSAL Ä°LÄ°ÅKÄ°LER KESÄ°N Ã‡Ã–ZÃœM MODÃœLÃœ ---
+// --- DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M MODÃƒÅ“LÃƒÅ“ ---
 
-// 1. BUTONU ZORLA BÄ°ZÄ°M SÄ°STEME BAÄLIYORUZ (Otomatik Kurulum)
+// 1. BUTONU ZORLA BÃ„Â°ZÃ„Â°M SÃ„Â°STEME BAÃ„ÂLIYORUZ (Otomatik Kurulum)
 document.addEventListener('DOMContentLoaded', () => {
     // HTML'ndeki butonun ID'si bu
     const btn = document.getElementById('questionToGraphBtn');
     if (btn) {
-        // Senin eski kodu ezip, butona basÄ±nca bizim sistemi aÃ§masÄ±nÄ± saÄŸlÄ±yoruz
+        // Senin eski kodu ezip, butona basÃ„Â±nca bizim sistemi aÃƒÂ§masÃ„Â±nÃ„Â± saÃ„Å¸lÃ„Â±yoruz
         btn.onclick = (e) => {
             e.preventDefault(); 
             showLinearGraphQuestion();
@@ -7712,7 +7744,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 2. MODU BAÅLATAN ANA FONKSÄ°YON
+// 2. MODU BAÃ…ÂLATAN ANA FONKSÃ„Â°YON
 function showLinearGraphQuestion() {
     try {
         gameState.mode = 'linear_graph_table'; 
@@ -7747,17 +7779,17 @@ function showLinearGraphQuestion() {
         }
         
         if(questionsList.length === 0) {
-            panel.innerHTML = `<div class="bg-red-100 p-4 text-red-700 font-bold border-2 border-red-500 rounded text-center">Soru havuzu bulunamadÄ±!</div>`;
+            panel.innerHTML = `<div class="bg-red-100 p-4 text-red-700 font-bold border-2 border-red-500 rounded text-center">Soru havuzu bulunamadÃ„Â±!</div>`;
             return;
         }
 
         const scenario = questionsList[Math.floor(Math.random() * questionsList.length)];
         linearState.currentScenario = scenario;
         
-        // Veri yapÄ±sÄ±nÄ± esnek ÅŸekilde Ã§ek
+        // Veri yapÃ„Â±sÃ„Â±nÃ„Â± esnek Ã…Å¸ekilde ÃƒÂ§ek
         let dataPoints = scenario.tableData || scenario.points || scenario.data || scenario.noktalar || (scenario.lines ? scenario.lines[0].points : null);
         
-        // Veri yoksa bile Ã§Ã¶kmeyi engelle, 3 tane boÅŸ satÄ±r ekle
+        // Veri yoksa bile ÃƒÂ§ÃƒÂ¶kmeyi engelle, 3 tane boÃ…Å¸ satÃ„Â±r ekle
         if (!dataPoints || dataPoints.length === 0) {
             dataPoints = [ {x:'?', y:'?'}, {x:'?', y:'?'}, {x:'?', y:'?'} ];
             linearState.isDummyData = true; 
@@ -7768,7 +7800,7 @@ function showLinearGraphQuestion() {
         linearState.currentDataPoints = dataPoints;
         renderLinearTable(scenario); 
         
-        // BoÅŸ grafiÄŸi (eksenlerle birlikte) Ã§iz
+        // BoÃ…Å¸ grafiÃ„Å¸i (eksenlerle birlikte) ÃƒÂ§iz
         if (typeof initializeLinearCanvas === 'function') {
             initializeLinearCanvas();
         }
@@ -7782,10 +7814,10 @@ function showLinearGraphQuestion() {
     }
 }
 
-// 3. TABLOYU PANELE Ã‡Ä°ZEN FONKSÄ°YON
+// 3. TABLOYU PANELE Ãƒâ€¡Ã„Â°ZEN FONKSÃ„Â°YON
 function renderLinearTable(scenario) {
     const panel = document.getElementById('linearQuestionPanel');
-    let questionText = scenario.question || scenario.soru || scenario.mainQuestion || scenario.text || "Soru metni bulunamadÄ±.";
+    let questionText = scenario.question || scenario.soru || scenario.mainQuestion || scenario.text || "Soru metni bulunamadÃ„Â±.";
     let xLabel = scenario.xLabel || scenario.xAxisLabel || "x";
     let yLabel = scenario.yLabel || scenario.yAxisLabel || "y";
     let dataPoints = linearState.currentDataPoints;
@@ -7800,13 +7832,13 @@ function renderLinearTable(scenario) {
             </div>
     `;
 
-    // VERÄ° BULUNAMAZSA EKRANA SARI UYARI KUTUSU BAS
+    // VERÃ„Â° BULUNAMAZSA EKRANA SARI UYARI KUTUSU BAS
     if (linearState.isDummyData) {
         let jsonGosterim = JSON.stringify(scenario).substring(0, 150);
         html += `
             <div class="bg-yellow-50 border-l-4 border-yellow-500 p-3 mb-4 text-xs text-yellow-800">
-                <strong class="font-bold">UyarÄ±:</strong> Bu sorunun iÃ§inde tablo verisi (points) tanÄ±mlanmamÄ±ÅŸ. 
-                <br><br>Sistemdeki ham veri ÅŸu ÅŸekilde: <code class="bg-yellow-100 p-1 rounded font-mono">${jsonGosterim}...</code>
+                <strong class="font-bold">UyarÃ„Â±:</strong> Bu sorunun iÃƒÂ§inde tablo verisi (points) tanÃ„Â±mlanmamÃ„Â±Ã…Å¸. 
+                <br><br>Sistemdeki ham veri Ã…Å¸u Ã…Å¸ekilde: <code class="bg-yellow-100 p-1 rounded font-mono">${jsonGosterim}...</code>
             </div>
         `;
     }
@@ -7851,7 +7883,7 @@ function renderLinearTable(scenario) {
             </button>
             <div id="drawMessageArea" class="hidden text-center mt-3">
                 <p class="font-bold text-emerald-700 bg-emerald-50 p-3 rounded-lg border border-emerald-300 animate-pulse text-sm shadow-sm">
-                    âœ… Tablo DoÄŸru!<br>Åimdi yandaki grafikte noktalarÄ± iÅŸaretleyip birleÅŸtirin.
+                    Ã¢Å“â€¦ Tablo DoÃ„Å¸ru!<br>Ã…Âimdi yandaki grafikte noktalarÃ„Â± iÃ…Å¸aretleyip birleÃ…Å¸tirin.
                 </p>
             </div>
         </div>
@@ -7859,18 +7891,18 @@ function renderLinearTable(scenario) {
     panel.innerHTML = html;
 }
 
-// --- 1. MATEMATÄ°KSEL Ä°ÅLEM Ã‡Ã–ZÃœCÃœ (Ä°ÅŸlem Ã–nceliÄŸi: BEDMAS/BODMAS) ---
+// --- 1. MATEMATÃ„Â°KSEL Ã„Â°Ã…ÂLEM Ãƒâ€¡Ãƒâ€“ZÃƒÅ“CÃƒÅ“ (Ã„Â°Ã…Å¸lem Ãƒâ€“nceliÃ„Å¸i: BEDMAS/BODMAS) ---
 function evaluateMath(expr) {
     if (!expr || expr === '?') return NaN;
     
-    // Numpad'den gelen Ã§arpÄ± (x, X, Ã—, *) ve bÃ¶lÃ¼ (Ã·) iÅŸaretlerini koda Ã§evir
-    let safeExpr = expr.toString().replace(/x|X|Ã—/g, '*').replace(/Ã·/g, '/');
+    // Numpad'den gelen ÃƒÂ§arpÃ„Â± (x, X, Ãƒâ€”, *) ve bÃƒÂ¶lÃƒÂ¼ (ÃƒÂ·) iÃ…Å¸aretlerini koda ÃƒÂ§evir
+    let safeExpr = expr.toString().replace(/x|X|Ãƒâ€”/g, '*').replace(/ÃƒÂ·/g, '/');
     
-    // GÃ¼venlik iÃ§in sadece rakam ve operatÃ¶rleri bÄ±rak
+    // GÃƒÂ¼venlik iÃƒÂ§in sadece rakam ve operatÃƒÂ¶rleri bÃ„Â±rak
     safeExpr = safeExpr.replace(/[^0-9\+\-\*\/\(\)\.]/g, '');
     
     try {
-        // Ä°ÅŸlem Ã¶nceliÄŸine gÃ¶re hesapla (Ã–rn: 200-1*15 = 185)
+        // Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸ine gÃƒÂ¶re hesapla (Ãƒâ€“rn: 200-1*15 = 185)
         const result = Function('"use strict";return (' + safeExpr + ')')();
         return Number.isFinite(result) ? result : NaN;
     } catch (e) {
@@ -7878,11 +7910,11 @@ function evaluateMath(expr) {
     }
 }
 
-// --- 2. NUMPAD AÃ‡ICI VE TEMÄ°ZLEYÄ°CÄ° (TÃ¼m satÄ±rlarda Ã§alÄ±ÅŸmasÄ±nÄ± saÄŸlar) ---
+// --- 2. NUMPAD AÃƒâ€¡ICI VE TEMÃ„Â°ZLEYÃ„Â°CÃ„Â° (TÃƒÂ¼m satÃ„Â±rlarda ÃƒÂ§alÃ„Â±Ã…Å¸masÃ„Â±nÃ„Â± saÃ„Å¸lar) ---
 window.openTableInput = function(targetId) {
     activeInputTarget = targetId; 
     
-    // Tablodaki seÃ§ili kutuyu mavi yap
+    // Tablodaki seÃƒÂ§ili kutuyu mavi yap
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500');
     });
@@ -7891,11 +7923,11 @@ window.openTableInput = function(targetId) {
         activeEl.classList.add('bg-indigo-100', 'border-indigo-500');
     }
 
-    // Numpad'i aÃ§
+    // Numpad'i aÃƒÂ§
     const np = document.getElementById('numberPad');
     if (np) np.classList.remove('hidden');
     
-    // Ã–NEMLÄ° DÃœZELTME: Her tÄ±klamada Numpad gÃ¶stergesini sÄ±fÄ±rla ki Ã¶nceki satÄ±rÄ±n sayÄ±sÄ± kalmasÄ±n!
+    // Ãƒâ€“NEMLÃ„Â° DÃƒÅ“ZELTME: Her tÃ„Â±klamada Numpad gÃƒÂ¶stergesini sÃ„Â±fÃ„Â±rla ki ÃƒÂ¶nceki satÃ„Â±rÃ„Â±n sayÃ„Â±sÃ„Â± kalmasÃ„Â±n!
     const displayDiv = document.getElementById('currentInput');
     if (displayDiv) {
         displayDiv.textContent = ''; 
@@ -7903,7 +7935,7 @@ window.openTableInput = function(targetId) {
 };
 
 
-// --- 4. Ã‡Ä°FT TARAFLI VERÄ° GÄ°RÄ°ÅLÄ° TABLO Ã‡Ä°ZÄ°MÄ° ---
+// --- 4. Ãƒâ€¡Ã„Â°FT TARAFLI VERÃ„Â° GÃ„Â°RÃ„Â°Ã…ÂLÃ„Â° TABLO Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
 function renderLinearTable(scenario) {
     const panel = document.getElementById('linearQuestionPanel');
     let questionText = scenario.question || scenario.soru || scenario.mainQuestion || scenario.text || "Grafik Yorumlama";
@@ -7958,7 +7990,7 @@ function renderLinearTable(scenario) {
             </button>
             <div id="drawMessageArea" class="hidden text-center mt-3">
                 <p class="font-bold text-emerald-700 bg-emerald-50 p-3 rounded-lg border border-emerald-300 animate-pulse text-sm shadow-sm">
-                    âœ… Tablo DoÄŸru!<br>Åimdi yandaki grafikte noktalarÄ± iÅŸaretleyip birleÅŸtirin.
+                    Ã¢Å“â€¦ Tablo DoÃ„Å¸ru!<br>Ã…Âimdi yandaki grafikte noktalarÃ„Â± iÃ…Å¸aretleyip birleÃ…Å¸tirin.
                 </p>
             </div>
         </div>
@@ -7971,16 +8003,16 @@ function refreshLinearGraphPoints() {
     const linearSvg = document.getElementById('linearCanvas');
     if (!linearSvg) return;
 
-    // Arka planÄ± temizle ve ViewBox'Ä± sabitle
+    // Arka planÃ„Â± temizle ve ViewBox'Ã„Â± sabitle
     linearSvg.innerHTML = '';
     linearSvg.setAttribute('viewBox', '0 0 500 500');
 
-    // OYUN MOTORUNUN ORÄ°JÄ°NAL SABÄ°TLERÄ° (Asla deÄŸiÅŸmemeli)
+    // OYUN MOTORUNUN ORÃ„Â°JÃ„Â°NAL SABÃ„Â°TLERÃ„Â° (Asla deÃ„Å¸iÃ…Å¸memeli)
     const originX = 50;
     const originY = 450;
-    const grid = 50; // Orijinal motor 50 px ile Ã§alÄ±ÅŸÄ±r!
+    const grid = 50; // Orijinal motor 50 px ile ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r!
 
-    // Ã‡izimlerin yapÄ±lacaÄŸÄ± boÅŸ katman (Oyun motoru burayÄ± arÄ±yor olabilir)
+    // Ãƒâ€¡izimlerin yapÃ„Â±lacaÃ„Å¸Ã„Â± boÃ…Å¸ katman (Oyun motoru burayÃ„Â± arÃ„Â±yor olabilir)
     const linesLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     linesLayer.setAttribute('id', 'drawingLayer');
     linearSvg.appendChild(linesLayer);
@@ -7989,7 +8021,7 @@ function refreshLinearGraphPoints() {
     const dataPoints = typeof linearState !== 'undefined' ? (linearState.tableData || linearState.currentDataPoints) : null; 
     if (!dataPoints) return;
 
-    // Ã–lÃ§ek Hesaplama
+    // Ãƒâ€“lÃƒÂ§ek Hesaplama
     let maxX = 0; let maxY = 0;
     for (let idx = 0; idx < 10; idx++) {
         const xDiv = document.getElementById('table_input_x_' + idx);
@@ -8014,13 +8046,13 @@ function refreshLinearGraphPoints() {
     let scaleY = 1;
     if (maxY > 8) { let step = maxY / 8; if(step<=2) scaleY=2; else if(step<=5) scaleY=5; else if(step<=10) scaleY=10; else if(step<=20) scaleY=20; else if(step<=25) scaleY=25; else if(step<=50) scaleY=50; else if(step<=100) scaleY=100; else scaleY=Math.ceil(step/50)*50; }
 
-    // HAYATÄ°: Ã‡izim motorunun farenin yerini doÄŸru bulmasÄ± iÃ§in Ã¶lÃ§eÄŸi hafÄ±zaya kaydet
+    // HAYATÃ„Â°: Ãƒâ€¡izim motorunun farenin yerini doÃ„Å¸ru bulmasÃ„Â± iÃƒÂ§in ÃƒÂ¶lÃƒÂ§eÃ„Å¸i hafÃ„Â±zaya kaydet
     if (typeof linearState !== 'undefined') {
         linearState.yScale = scaleY;
         linearState.xScale = scaleX;
     }
 
-    // 1. BÃ¶lge Izgara (0'dan 8'e kadar, Ã§Ã¼nkÃ¼ 8*50=400px tam sÄ±ÄŸar)
+    // 1. BÃƒÂ¶lge Izgara (0'dan 8'e kadar, ÃƒÂ§ÃƒÂ¼nkÃƒÂ¼ 8*50=400px tam sÃ„Â±Ã„Å¸ar)
     for (let i = 0; i <= 8; i++) {
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', originX + (i * grid)); vLine.setAttribute('y1', originY);
@@ -8052,7 +8084,7 @@ function refreshLinearGraphPoints() {
     zeroText.setAttribute('text-anchor', 'end'); zeroText.setAttribute('font-size', '12'); zeroText.setAttribute('font-weight', 'bold'); zeroText.setAttribute('fill', '#6b7280');
     zeroText.textContent = '0'; linearSvg.appendChild(zeroText);
 
-    // NoktalarÄ± Ã‡iz
+    // NoktalarÃ„Â± Ãƒâ€¡iz
     for (let idx = 0; idx < 10; idx++) {
         const xDiv = document.getElementById('table_input_x_' + idx);
         const yDiv = document.getElementById('table_input_y_' + idx);
@@ -8069,26 +8101,26 @@ function refreshLinearGraphPoints() {
                 const cx = originX + ((xV / scaleX) * grid);
                 const cy = originY - ((yV / scaleY) * grid);
 
-                // GÃ–RÃœNMEZ TIKLAMA ALANI (Ã–ÄŸrenci noktayÄ± kolay tutabilsin diye)
+                // GÃƒâ€“RÃƒÅ“NMEZ TIKLAMA ALANI (Ãƒâ€“Ã„Å¸renci noktayÃ„Â± kolay tutabilsin diye)
                 const hitArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 hitArea.setAttribute('cx', cx); hitArea.setAttribute('cy', cy); hitArea.setAttribute('r', '20');
                 hitArea.setAttribute('fill', 'transparent'); 
-                hitArea.setAttribute('class', `point point-${idx}`); // Motor bu class'Ä± arÄ±yor!
+                hitArea.setAttribute('class', `point point-${idx}`); // Motor bu class'Ã„Â± arÃ„Â±yor!
                 hitArea.style.cursor = 'crosshair';
                 linearSvg.appendChild(hitArea);
 
-                // GÃ–RSEL MOR NOKTA
+                // GÃƒâ€“RSEL MOR NOKTA
                 const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 circle.setAttribute('cx', cx); circle.setAttribute('cy', cy); circle.setAttribute('r', '8');
                 circle.setAttribute('fill', '#8b5cf6'); circle.setAttribute('stroke', '#ffffff'); circle.setAttribute('stroke-width', '2');
-                circle.style.pointerEvents = 'none'; // Fare bunu deÄŸil gÃ¶rÃ¼nmez alanÄ± tutsun
+                circle.style.pointerEvents = 'none'; // Fare bunu deÃ„Å¸il gÃƒÂ¶rÃƒÂ¼nmez alanÃ„Â± tutsun
                 linearSvg.appendChild(circle);
 
                 // YAZI
                 const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 label.setAttribute('x', cx + 15); label.setAttribute('y', cy - 15);
                 label.setAttribute('font-size', '13'); label.setAttribute('font-weight', 'bold'); label.setAttribute('fill', '#4b5563');
-                label.style.pointerEvents = 'none'; // YazÄ± farenin Ã¶nÃ¼ne geÃ§mesin!
+                label.style.pointerEvents = 'none'; // YazÃ„Â± farenin ÃƒÂ¶nÃƒÂ¼ne geÃƒÂ§mesin!
                 label.textContent = '(' + xV + ', ' + yV + ')';
                 linearSvg.appendChild(label);
             }
@@ -8098,7 +8130,7 @@ function refreshLinearGraphPoints() {
 
 
 // ==========================================
-// 7. TABLO KONTROL MOTORU (FÄ°NAL DÃœZELTME - MATEMATÄ°KSEL HESAPLAMA)
+// 7. TABLO KONTROL MOTORU (FÃ„Â°NAL DÃƒÅ“ZELTME - MATEMATÃ„Â°KSEL HESAPLAMA)
 // ==========================================
 function confirmTableAndStartDrawing() {
     // 1. Senaryoyu ve Verileri Al
@@ -8106,17 +8138,17 @@ function confirmTableAndStartDrawing() {
     // Orijinal veriyi (soru verisini) baz al
     let rawPoints = scenario.tableData || scenario.points || scenario.data || (scenario.lines ? scenario.lines[0].points : []);
     
-    // 2. DOÄRU DENKLEMÄ° (m ve b) HESAPLA
-    // Tablodaki "?" olmayan, yani sayÄ± olan en az 2 noktayÄ± bulmalÄ±yÄ±z.
+    // 2. DOÃ„ÂRU DENKLEMÃ„Â° (m ve b) HESAPLA
+    // Tablodaki "?" olmayan, yani sayÃ„Â± olan en az 2 noktayÃ„Â± bulmalÃ„Â±yÃ„Â±z.
     let validPoints = [];
     
     if (rawPoints) {
         rawPoints.forEach(p => {
-            // Veri yapÄ±sÄ± {x:.., y:..} veya [x, y] olabilir
+            // Veri yapÃ„Â±sÃ„Â± {x:.., y:..} veya [x, y] olabilir
             let valX = (p.x !== undefined) ? p.x : p[0];
             let valY = (p.y !== undefined) ? p.y : p[1];
 
-            // EÄŸer deÄŸer sayÄ±ysa veya sayÄ±ya Ã§evrilebiliyorsa listeye al
+            // EÃ„Å¸er deÃ„Å¸er sayÃ„Â±ysa veya sayÃ„Â±ya ÃƒÂ§evrilebiliyorsa listeye al
             let nx = parseFloat(valX);
             let ny = parseFloat(valY);
 
@@ -8126,12 +8158,12 @@ function confirmTableAndStartDrawing() {
         });
     }
 
-    // EÄŸim (m) ve Kesen (b) Hesapla
+    // EÃ„Å¸im (m) ve Kesen (b) Hesapla
     let m = null;
     let b = null;
-    let isVertical = false; // Dikey Ã§izgi kontrolÃ¼ (x = a)
+    let isVertical = false; // Dikey ÃƒÂ§izgi kontrolÃƒÂ¼ (x = a)
     let targetVerticalX = null;
-    let isHorizontal = false; // Yatay Ã§izgi kontrolÃ¼ (y = b)
+    let isHorizontal = false; // Yatay ÃƒÂ§izgi kontrolÃƒÂ¼ (y = b)
     let targetHorizontalY = null;
 
     if (validPoints.length >= 2) {
@@ -8149,35 +8181,35 @@ function confirmTableAndStartDrawing() {
             b = p1.y - (m * p1.x);
         }
     } else {
-        // EÄŸer tablodan bulamazsak, senaryonun iÃ§inde m/b var mÄ± diye bak (Yedek Plan)
+        // EÃ„Å¸er tablodan bulamazsak, senaryonun iÃƒÂ§inde m/b var mÃ„Â± diye bak (Yedek Plan)
         if (scenario.m !== undefined && scenario.b !== undefined) {
             m = scenario.m;
             b = scenario.b;
         }
     }
 
-    // 3. KULLANICININ GÄ°RDÄ°ÄÄ° DEÄERLERÄ° KONTROL ET
+    // 3. KULLANICININ GÃ„Â°RDÃ„Â°Ã„ÂÃ„Â° DEÃ„ÂERLERÃ„Â° KONTROL ET
     let allCorrect = true;
     let filledRowCount = 0;
 
-    // Tabloda en fazla 10 satÄ±r olabilir, hepsini gez
+    // Tabloda en fazla 10 satÃ„Â±r olabilir, hepsini gez
     for (let idx = 0; idx < 10; idx++) {
         const xDiv = document.getElementById('table_input_x_' + idx);
         const yDiv = document.getElementById('table_input_y_' + idx);
 
-        if (!xDiv || !yDiv) continue; // BÃ¶yle bir satÄ±r yoksa geÃ§
+        if (!xDiv || !yDiv) continue; // BÃƒÂ¶yle bir satÃ„Â±r yoksa geÃƒÂ§
 
-        // Kutunun iÃ§indeki metni al (Soru iÅŸaretlerini temizle)
+        // Kutunun iÃƒÂ§indeki metni al (Soru iÃ…Å¸aretlerini temizle)
         let xStr = xDiv.textContent.replace(/\?/g, '').trim();
         let yStr = yDiv.textContent.replace(/\?/g, '').trim();
 
-        // EÄŸer satÄ±r tamamen boÅŸsa, bu satÄ±rÄ± atla (Hata sayma)
+        // EÃ„Å¸er satÃ„Â±r tamamen boÃ…Å¸sa, bu satÃ„Â±rÃ„Â± atla (Hata sayma)
         if (xStr === '' && yStr === '') continue;
 
         filledRowCount++;
 
-        // DeÄŸerleri sayÄ±ya Ã§evir
-        // evaluateMath fonksiyonu varsa kullan (iÅŸlemleri yapmak iÃ§in), yoksa parseFloat
+        // DeÃ„Å¸erleri sayÃ„Â±ya ÃƒÂ§evir
+        // evaluateMath fonksiyonu varsa kullan (iÃ…Å¸lemleri yapmak iÃƒÂ§in), yoksa parseFloat
         let userX = (typeof evaluateMath === 'function') ? evaluateMath(xStr) : parseFloat(xStr);
         let userY = (typeof evaluateMath === 'function') ? evaluateMath(yStr) : parseFloat(yStr);
 
@@ -8185,64 +8217,64 @@ function confirmTableAndStartDrawing() {
 
         if (!isNaN(userX) && !isNaN(userY)) {
             if (isVertical) {
-                // Dikey Ã§izgi: X sabit olmalÄ±, Y her ÅŸey olabilir
+                // Dikey ÃƒÂ§izgi: X sabit olmalÃ„Â±, Y her Ã…Å¸ey olabilir
                 if (Math.abs(userX - targetVerticalX) < 0.1) isRowCorrect = true;
             } 
             else if (isHorizontal) {
-                // Yatay Ã§izgi: Y sabit olmalÄ±, X her ÅŸey olabilir
+                // Yatay ÃƒÂ§izgi: Y sabit olmalÃ„Â±, X her Ã…Å¸ey olabilir
                 if (Math.abs(userY - targetHorizontalY) < 0.1) isRowCorrect = true;
             }
             else if (m !== null && b !== null) {
-                // Standart DoÄŸru KontrolÃ¼: y = mx + b
-                // KullanÄ±cÄ±nÄ±n X'ini formÃ¼le koy, olmasÄ± gereken Y'yi bul
+                // Standart DoÃ„Å¸ru KontrolÃƒÂ¼: y = mx + b
+                // KullanÃ„Â±cÃ„Â±nÃ„Â±n X'ini formÃƒÂ¼le koy, olmasÃ„Â± gereken Y'yi bul
                 let expectedY = (m * userX) + b;
                 
-                // Hata payÄ± (float toleransÄ±) ile karÅŸÄ±laÅŸtÄ±r
-                // 0.1 tolerans iyidir (yuvarlama hatalarÄ± iÃ§in)
+                // Hata payÃ„Â± (float toleransÃ„Â±) ile karÃ…Å¸Ã„Â±laÃ…Å¸tÃ„Â±r
+                // 0.1 tolerans iyidir (yuvarlama hatalarÃ„Â± iÃƒÂ§in)
                 if (Math.abs(userY - expectedY) < 0.1) {
                     isRowCorrect = true;
                 }
             } else {
-                // EÄŸer formÃ¼l Ã§Ä±karamadÄ±ysak, sadece havuza bak (Eski yÃ¶ntem - Son Ã‡are)
+                // EÃ„Å¸er formÃƒÂ¼l ÃƒÂ§Ã„Â±karamadÃ„Â±ysak, sadece havuza bak (Eski yÃƒÂ¶ntem - Son Ãƒâ€¡are)
                 let inPool = validPoints.some(p => Math.abs(p.x - userX) < 0.1 && Math.abs(p.y - userY) < 0.1);
                 if (inPool) isRowCorrect = true;
             }
         }
 
-        // SONUCU GÃ–RSELLEÅTÄ°R (YEÅÄ°L / KIRMIZI)
+        // SONUCU GÃƒâ€“RSELLEÃ…ÂTÃ„Â°R (YEÃ…ÂÃ„Â°L / KIRMIZI)
         if (isRowCorrect) {
-            // DoÄŸru ise kutuyu yeÅŸil yap ve kilitli hale getir (tekrar tÄ±klanamaz)
+            // DoÃ„Å¸ru ise kutuyu yeÃ…Å¸il yap ve kilitli hale getir (tekrar tÃ„Â±klanamaz)
             xDiv.className = "table-input-cell bg-emerald-100 border-2 border-emerald-500 rounded p-1 flex items-center justify-center font-bold text-emerald-800 text-lg cursor-default w-full shadow-inner";
             yDiv.className = "table-input-cell bg-emerald-100 border-2 border-emerald-500 rounded p-1 flex items-center justify-center font-bold text-emerald-800 text-lg cursor-default w-full shadow-inner";
             
-            // TÄ±klama olaylarÄ±nÄ± kaldÄ±r (input'u kilitle)
+            // TÃ„Â±klama olaylarÃ„Â±nÃ„Â± kaldÃ„Â±r (input'u kilitle)
             xDiv.onclick = null;
             yDiv.onclick = null;
             
-            // DoÄŸru bilinen noktalarÄ± "linearState" iÃ§ine kaydet ki Ã§izimde kullanÄ±labilsin
+            // DoÃ„Å¸ru bilinen noktalarÃ„Â± "linearState" iÃƒÂ§ine kaydet ki ÃƒÂ§izimde kullanÃ„Â±labilsin
             if (!linearState.userCorrectPoints) linearState.userCorrectPoints = [];
-            // Bu noktayÄ± daha Ã¶nce eklemediysek ekle
+            // Bu noktayÃ„Â± daha ÃƒÂ¶nce eklemediysek ekle
             if (!linearState.userCorrectPoints.some(p => p.x === userX && p.y === userY)) {
                 linearState.userCorrectPoints.push({x: userX, y: userY});
             }
 
         } else {
-            // YanlÄ±ÅŸ ise kÄ±rmÄ±zÄ± yap ve titret
+            // YanlÃ„Â±Ã…Å¸ ise kÃ„Â±rmÃ„Â±zÃ„Â± yap ve titret
             xDiv.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
             yDiv.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
             allCorrect = false;
         }
     }
 
-    // 4. BAÅARI DURUMU
+    // 4. BAÃ…ÂARI DURUMU
     if (allCorrect && filledRowCount > 0) {
         playSuccessSound();
 
-        // Ã‡izim Modunu Aktif Et
+        // Ãƒâ€¡izim Modunu Aktif Et
         gameState.mode = 'linear_graph_draw';
-        gameState.userClicks = []; // TÄ±klamalarÄ± sÄ±fÄ±rla
+        gameState.userClicks = []; // TÃ„Â±klamalarÃ„Â± sÃ„Â±fÃ„Â±rla
         
-        // Ã‡izim aracÄ± (setupStraightLineDrawing) varsa Ã§alÄ±ÅŸtÄ±r
+        // Ãƒâ€¡izim aracÃ„Â± (setupStraightLineDrawing) varsa ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±r
         if (typeof setupStraightLineDrawing === 'function') {
             setupStraightLineDrawing();
         }
@@ -8251,27 +8283,27 @@ function confirmTableAndStartDrawing() {
         const btnTamam = document.getElementById('btnTamamCst');
         if (btnTamam) btnTamam.classList.add('hidden');
 
-        // Bildirim GÃ¶ster
+        // Bildirim GÃƒÂ¶ster
         const msgArea = document.getElementById('drawMessageArea');
         if (msgArea) {
             msgArea.classList.remove('hidden');
             msgArea.innerHTML = `
                 <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-lg animate-bounce">
-                    <p class="font-bold">MÃ¼kemmel! Tablo DoÄŸru. ğŸ‰</p>
-                    <p class="text-sm">Åimdi grafikte noktalarÄ± iÅŸaretle ve doÄŸruyu Ã§iz.</p>
+                    <p class="font-bold">MÃƒÂ¼kemmel! Tablo DoÃ„Å¸ru. ÄŸÅ¸Ââ€°</p>
+                    <p class="text-sm">Ã…Âimdi grafikte noktalarÃ„Â± iÃ…Å¸aretle ve doÃ„Å¸ruyu ÃƒÂ§iz.</p>
                 </div>
             `;
         }
 
-        // GrafiÄŸi gÃ¼ncelle (NoktalarÄ± netleÅŸtir)
+        // GrafiÃ„Å¸i gÃƒÂ¼ncelle (NoktalarÃ„Â± netleÃ…Å¸tir)
         if (typeof refreshLinearGraphPoints === 'function') refreshLinearGraphPoints();
 
     } else {
         playErrorSound();
-        // Hata mesajÄ± (Toast veya basit alert)
+        // Hata mesajÃ„Â± (Toast veya basit alert)
         const feedback = document.getElementById('feedback');
         if (feedback) {
-            feedback.textContent = "BazÄ± deÄŸerler yanlÄ±ÅŸ. KÄ±rmÄ±zÄ± kutularÄ± kontrol et!";
+            feedback.textContent = "BazÃ„Â± deÃ„Å¸erler yanlÃ„Â±Ã…Å¸. KÃ„Â±rmÃ„Â±zÃ„Â± kutularÃ„Â± kontrol et!";
             feedback.style.opacity = '1';
             feedback.className = "fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full shadow-xl font-bold z-[99999]";
             setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -8280,15 +8312,15 @@ function confirmTableAndStartDrawing() {
 }
 
 // ==========================================
-// 1. SAYI PANELÄ°NÄ° AÃ‡MA (HEDEFÄ° KÄ°LÄ°TLEME)
+// 1. SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡MA (HEDEFÃ„Â° KÃ„Â°LÃ„Â°TLEME)
 // ==========================================
 window.openTableInput = function(targetId) {
-    console.log("Kutuya tÄ±klandÄ±, Hedef:", targetId); // Konsoldan takip et
+    console.log("Kutuya tÃ„Â±klandÃ„Â±, Hedef:", targetId); // Konsoldan takip et
     
     // 1. Hedefi Kaydet
     activeInputTarget = targetId; 
     
-    // 2. DiÄŸer kutularÄ±n mavi Ä±ÅŸÄ±ÄŸÄ±nÄ± sÃ¶ndÃ¼r, buna yak
+    // 2. DiÃ„Å¸er kutularÃ„Â±n mavi Ã„Â±Ã…Å¸Ã„Â±Ã„Å¸Ã„Â±nÃ„Â± sÃƒÂ¶ndÃƒÂ¼r, buna yak
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500');
     });
@@ -8296,30 +8328,30 @@ window.openTableInput = function(targetId) {
     if (activeEl) {
         activeEl.classList.add('bg-indigo-100', 'border-indigo-500');
         
-        // EÄŸer kutuda zaten bir sayÄ± varsa, numpad ekranÄ±na taÅŸÄ±
+        // EÃ„Å¸er kutuda zaten bir sayÃ„Â± varsa, numpad ekranÃ„Â±na taÃ…Å¸Ã„Â±
         const currentVal = activeEl.textContent.replace('?', '').trim();
         const displayDiv = document.getElementById('currentInput');
         if (displayDiv) displayDiv.textContent = currentVal;
         if (typeof linearState !== 'undefined') linearState.currentInputValue = currentVal;
     }
 
-    // 3. Paneli AÃ§
+    // 3. Paneli AÃƒÂ§
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
-        np.style.display = 'flex'; // Zorla gÃ¶rÃ¼nÃ¼r yap
+        np.style.display = 'flex'; // Zorla gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
     }
 };
 
 // ==========================================
-// 2. TUÅLARI CANLANDIRMA (0-9, Sil, -, .)
+// 2. TUÃ…ÂLARI CANLANDIRMA (0-9, Sil, -, .)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Numpad iÃ§indeki tÃ¼m butonlarÄ± bul
+    // Numpad iÃƒÂ§indeki tÃƒÂ¼m butonlarÃ„Â± bul
     const padButtons = document.querySelectorAll('#numberPad button');
     
     padButtons.forEach(btn => {
-        // Ã–nce temizle, sonra ekle (Ã‡ift basmayÄ± Ã¶nler)
+        // Ãƒâ€“nce temizle, sonra ekle (Ãƒâ€¡ift basmayÃ„Â± ÃƒÂ¶nler)
         const newBtn = btn.cloneNode(true);
         btn.parentNode.replaceChild(newBtn, btn);
         
@@ -8328,10 +8360,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const val = newBtn.textContent.trim();
             const display = document.getElementById('currentInput');
             
-            // EÄŸer "Tamam" veya "Ä°ptal" deÄŸilse (yani sayÄ± ise)
+            // EÃ„Å¸er "Tamam" veya "Ã„Â°ptal" deÃ„Å¸ilse (yani sayÃ„Â± ise)
             if (newBtn.id !== 'numPadClose' && newBtn.id !== 'numPadCancel') {
                 
-                // Silme TuÅŸu
+                // Silme TuÃ…Å¸u
                 if (val === 'Sil' || newBtn.querySelector('.fa-backspace')) {
                     display.textContent = display.textContent.slice(0, -1);
                 } 
@@ -8339,12 +8371,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (val === 'C') {
                     display.textContent = '';
                 }
-                // SayÄ±lar ve Nokta
+                // SayÃ„Â±lar ve Nokta
                 else {
                     display.textContent += val;
                 }
                 
-                // State'i gÃ¼ncelle
+                // State'i gÃƒÂ¼ncelle
                 if (typeof linearState !== 'undefined') {
                     linearState.currentInputValue = display.textContent;
                 }
@@ -8352,49 +8384,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // TAMAM ve Ä°PTAL butonlarÄ±nÄ± ayrÄ±ca baÄŸlayacaÄŸÄ±z (AÅŸaÄŸÄ±da)
+    // TAMAM ve Ã„Â°PTAL butonlarÃ„Â±nÃ„Â± ayrÃ„Â±ca baÃ„Å¸layacaÃ„Å¸Ã„Â±z (AÃ…Å¸aÃ„Å¸Ã„Â±da)
 });
 
 // ==========================================
-// 3. TAMAM BUTONU (VERÄ°YÄ° TABLOYA AKTARMA)
+// 3. TAMAM BUTONU (VERÃ„Â°YÃ„Â° TABLOYA AKTARMA)
 // ==========================================
 const btnTamam = document.getElementById('numPadClose');
 if (btnTamam) {
-    // Temiz bir buton oluÅŸtur
+    // Temiz bir buton oluÃ…Å¸tur
     const newBtnTamam = btnTamam.cloneNode(true);
     btnTamam.parentNode.replaceChild(newBtnTamam, btnTamam);
 
     newBtnTamam.addEventListener('click', function(e) {
         e.preventDefault();
         
-        // 1. Veriyi Numpad EkranÄ±ndan Al
+        // 1. Veriyi Numpad EkranÃ„Â±ndan Al
         const displayDiv = document.getElementById('currentInput');
         let val = displayDiv ? displayDiv.textContent.trim() : '';
         
-        console.log("Tamam'a basÄ±ldÄ±. DeÄŸer:", val, "Hedef:", activeInputTarget);
+        console.log("Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", val, "Hedef:", activeInputTarget);
 
-        // 2. Hedef Kutu Var mÄ±?
+        // 2. Hedef Kutu Var mÃ„Â±?
         if (activeInputTarget) {
             const targetBox = document.getElementById(activeInputTarget);
             
             if (targetBox) {
-                // DeÄŸer boÅŸsa soru iÅŸareti koy
+                // DeÃ„Å¸er boÃ…Å¸sa soru iÃ…Å¸areti koy
                 if (val === '') val = '?';
                 
-                // --- KRÄ°TÄ°K NOKTA: Ekrana Yaz ---
+                // --- KRÃ„Â°TÃ„Â°K NOKTA: Ekrana Yaz ---
                 targetBox.textContent = val;
                 
-                // Mavi seÃ§imi kaldÄ±r
+                // Mavi seÃƒÂ§imi kaldÃ„Â±r
                 targetBox.classList.remove('bg-indigo-100', 'border-indigo-500');
 
-                // --- STATE GÃœNCELLEME (Tablo KontrolÃ¼ Ä°Ã§in Åart) ---
-                // ID'den satÄ±r ve sÃ¼tunu bul (Ã–rn: table_input_x_2)
+                // --- STATE GÃƒÅ“NCELLEME (Tablo KontrolÃƒÂ¼ Ã„Â°ÃƒÂ§in Ã…Âart) ---
+                // ID'den satÃ„Â±r ve sÃƒÂ¼tunu bul (Ãƒâ€“rn: table_input_x_2)
                 if (activeInputTarget.startsWith('table_input_')) {
                     const parts = activeInputTarget.split('_');
                     const col = parts[2]; // x veya y
                     const row = parseInt(parts[3]); // 0, 1, 2...
                     
-                    // State dizisini hazÄ±rla
+                    // State dizisini hazÃ„Â±rla
                     if (!linearState.tableData) linearState.tableData = [];
                     if (!linearState.tableData[row]) linearState.tableData[row] = { x: '?', y: '?' };
                     
@@ -8409,12 +8441,12 @@ if (btnTamam) {
         if (displayDiv) displayDiv.textContent = '';
         activeInputTarget = null;
         
-        // 4. "Tamam" butonu gÃ¶rÃ¼nsÃ¼n mÃ¼ kontrol et (Tablo dolduysa)
+        // 4. "Tamam" butonu gÃƒÂ¶rÃƒÂ¼nsÃƒÂ¼n mÃƒÂ¼ kontrol et (Tablo dolduysa)
         checkIfTableFull();
     });
 }
 
-// YARDIMCI: Ä°ptal Butonu
+// YARDIMCI: Ã„Â°ptal Butonu
 const btnIptal = document.getElementById('numPadCancel');
 if (btnIptal) {
     const newBtnIptal = btnIptal.cloneNode(true);
@@ -8428,12 +8460,12 @@ if (btnIptal) {
     });
 }
 
-// YARDIMCI: Tablo Dolu mu KontrolÃ¼
+// YARDIMCI: Tablo Dolu mu KontrolÃƒÂ¼
 function checkIfTableFull() {
     let isFull = true;
     let hasRows = false;
     
-    // TÃ¼m input hÃ¼crelerini gez
+    // TÃƒÂ¼m input hÃƒÂ¼crelerini gez
     const cells = document.querySelectorAll('.table-input-cell');
     if (cells.length === 0) return;
 
@@ -8445,7 +8477,7 @@ function checkIfTableFull() {
         hasRows = true;
     });
 
-    // EÄŸer hepsi doluysa alttaki "Tabloyu Kontrol Et" butonunu aÃ§
+    // EÃ„Å¸er hepsi doluysa alttaki "Tabloyu Kontrol Et" butonunu aÃƒÂ§
     const confirmBtn = document.getElementById('btnTamamCst'); // ID'si tableConfirmBtn de olabilir, kontrol et
     const confirmBtn2 = document.getElementById('tableConfirmBtn');
     
@@ -8456,117 +8488,117 @@ function checkIfTableFull() {
 }
 
 // =================================================================
-// ğŸš‘ ACÄ°L DURUM: NUMPAD SÄ°STEMÄ° (TAMÄ°R KÄ°TÄ° - SIFIRDAN KURULUM)
+// ÄŸÅ¸Å¡â€˜ ACÃ„Â°L DURUM: NUMPAD SÃ„Â°STEMÃ„Â° (TAMÃ„Â°R KÃ„Â°TÃ„Â° - SIFIRDAN KURULUM)
 // =================================================================
 
-// 1. GLOBAL DEÄÄ°ÅKENLER (HafÄ±za)
+// 1. GLOBAL DEÃ„ÂÃ„Â°Ã…ÂKENLER (HafÃ„Â±za)
 
-// 2. SAYI PANELÄ°NÄ° AÃ‡MA FONKSÄ°YONU
+// 2. SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡MA FONKSÃ„Â°YONU
 window.openTableInput = function(targetId) {
-    console.log("ğŸ–±ï¸ Kutuya tÄ±klandÄ±:", targetId);
+    console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Kutuya tÃ„Â±klandÃ„Â±:", targetId);
     
-    // Hedefi HafÄ±zaya Al
+    // Hedefi HafÃ„Â±zaya Al
     activeInputTarget = targetId;
 
-    // TÃ¼m kutularÄ±n mavi Ä±ÅŸÄ±ÄŸÄ±nÄ± sÃ¶ndÃ¼r
+    // TÃƒÂ¼m kutularÃ„Â±n mavi Ã„Â±Ã…Å¸Ã„Â±Ã„Å¸Ã„Â±nÃ„Â± sÃƒÂ¶ndÃƒÂ¼r
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500');
     });
 
-    // TÄ±klanan kutuyu mavi yap
+    // TÃ„Â±klanan kutuyu mavi yap
     const targetBox = document.getElementById(targetId);
     if (targetBox) {
         targetBox.classList.add('bg-indigo-100', 'border-indigo-500');
         
-        // Kutuda zaten sayÄ± varsa, panel ekranÄ±na taÅŸÄ±
+        // Kutuda zaten sayÃ„Â± varsa, panel ekranÃ„Â±na taÃ…Å¸Ã„Â±
         const currentVal = targetBox.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = currentVal;
     }
 
-    // Paneli GÃ¶ster
+    // Paneli GÃƒÂ¶ster
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
-        np.style.display = 'flex'; // GÃ¶rÃ¼nÃ¼rlÃ¼ÄŸÃ¼ zorla
+        np.style.display = 'flex'; // GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼rlÃƒÂ¼Ã„Å¸ÃƒÂ¼ zorla
     }
 };
 
-// 3. TUÅLARI VE PANELÄ° Ã‡ALIÅTIRAN ANA MOTOR
-// (Bu fonksiyon sayfa yÃ¼klendiÄŸinde otomatik Ã§alÄ±ÅŸÄ±r)
+// 3. TUÃ…ÂLARI VE PANELÃ„Â° Ãƒâ€¡ALIÃ…ÂTIRAN ANA MOTOR
+// (Bu fonksiyon sayfa yÃƒÂ¼klendiÃ„Å¸inde otomatik ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r)
 setTimeout(function() {
-    console.log("ğŸ”§ Numpad Motoru BaÅŸlatÄ±lÄ±yor...");
+    console.log("ÄŸÅ¸â€Â§ Numpad Motoru BaÃ…Å¸latÃ„Â±lÃ„Â±yor...");
 
-    // Paneldeki butonlarÄ± bulalÄ±m
+    // Paneldeki butonlarÃ„Â± bulalÃ„Â±m
     const keys = document.querySelectorAll('#numberPad button');
     
-    // Eski olaylarÄ± temizlemek iÃ§in butonlarÄ± yenile
+    // Eski olaylarÃ„Â± temizlemek iÃƒÂ§in butonlarÃ„Â± yenile
     keys.forEach(oldBtn => {
         const newBtn = oldBtn.cloneNode(true);
         oldBtn.parentNode.replaceChild(newBtn, oldBtn);
 
-        // --- TUÅLARA TIKLAMA OLAYI ---
+        // --- TUÃ…ÂLARA TIKLAMA OLAYI ---
         newBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // SayfanÄ±n zÄ±plamasÄ±nÄ± engelle
+            e.preventDefault(); // SayfanÃ„Â±n zÃ„Â±plamasÃ„Â±nÃ„Â± engelle
             
             const btnText = newBtn.textContent.trim();
             const display = document.getElementById('currentInput');
             
-            // A) "TAMAM" veya "TÄ°K" TUÅU Ä°SE
+            // A) "TAMAM" veya "TÃ„Â°K" TUÃ…ÂU Ã„Â°SE
             if (newBtn.id === 'numPadClose' || newBtn.querySelector('.fa-check') || btnText === 'Tamam') {
                 handleConfirm();
             }
-            // B) "Ä°PTAL" veya "Ã‡ARPI" TUÅU Ä°SE
-            else if (newBtn.id === 'numPadCancel' || newBtn.querySelector('.fa-times') || btnText === 'Ä°ptal') {
+            // B) "Ã„Â°PTAL" veya "Ãƒâ€¡ARPI" TUÃ…ÂU Ã„Â°SE
+            else if (newBtn.id === 'numPadCancel' || newBtn.querySelector('.fa-times') || btnText === 'Ã„Â°ptal') {
                 handleCancel();
             }
-            // C) SÄ°LME (BACKSPACE) TUÅU Ä°SE
+            // C) SÃ„Â°LME (BACKSPACE) TUÃ…ÂU Ã„Â°SE
             else if (btnText === 'Sil' || newBtn.querySelector('.fa-backspace')) {
                 display.textContent = display.textContent.slice(0, -1);
             }
-            // D) TEMÄ°ZLEME (C) TUÅU Ä°SE
+            // D) TEMÃ„Â°ZLEME (C) TUÃ…ÂU Ã„Â°SE
             else if (btnText === 'C') {
                 display.textContent = '';
             }
-            // E) NORMAL RAKAMLAR VE Ä°ÅARETLER
+            // E) NORMAL RAKAMLAR VE Ã„Â°Ã…ÂARETLER
             else {
-                // Sadece rakam, nokta, eksi ve x iÅŸaretine izin ver
+                // Sadece rakam, nokta, eksi ve x iÃ…Å¸aretine izin ver
                 display.textContent += btnText;
             }
         });
     });
 
-}, 1000); // Sayfa yÃ¼klendikten 1 saniye sonra devreye girer (Garanti olsun diye)
+}, 1000); // Sayfa yÃƒÂ¼klendikten 1 saniye sonra devreye girer (Garanti olsun diye)
 
 
-// 4. "TAMAM" TUÅU MANTIÄI (VERÄ°YÄ° AKTARMA)
+// 4. "TAMAM" TUÃ…ÂU MANTIÃ„ÂI (VERÃ„Â°YÃ„Â° AKTARMA)
 function handleConfirm() {
     const display = document.getElementById('currentInput');
     let val = display.textContent.trim();
 
-    console.log("âœ… Tamam'a basÄ±ldÄ±. DeÄŸer:", val);
+    console.log("Ã¢Å“â€¦ Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", val);
 
-    // Hedef kutu var mÄ±?
+    // Hedef kutu var mÃ„Â±?
     if (activeInputTarget) {
         const targetBox = document.getElementById(activeInputTarget);
         if (targetBox) {
-            // BoÅŸsa soru iÅŸareti yap
+            // BoÃ…Å¸sa soru iÃ…Å¸areti yap
             if (val === '') val = '?';
 
             // TABLOYA YAZ!
             targetBox.textContent = val;
             
-            // Mavi seÃ§imi kaldÄ±r
+            // Mavi seÃƒÂ§imi kaldÃ„Â±r
             targetBox.classList.remove('bg-indigo-100', 'border-indigo-500');
 
-            // --- TABLO VERÄ°SÄ°NÄ° GÃœNCELLE (KONTROL Ä°Ã‡Ä°N ÅART) ---
+            // --- TABLO VERÃ„Â°SÃ„Â°NÃ„Â° GÃƒÅ“NCELLE (KONTROL Ã„Â°Ãƒâ€¡Ã„Â°N Ã…ÂART) ---
             if (activeInputTarget.startsWith('table_input_')) {
-                // ID'den satÄ±r ve sÃ¼tunu bul (table_input_x_0)
+                // ID'den satÃ„Â±r ve sÃƒÂ¼tunu bul (table_input_x_0)
                 const parts = activeInputTarget.split('_');
                 const col = parts[2]; // x veya y
                 const row = parseInt(parts[3]);
 
-                // linearState hafÄ±zasÄ±nÄ± gÃ¼ncelle
+                // linearState hafÃ„Â±zasÃ„Â±nÃ„Â± gÃƒÂ¼ncelle
                 if (typeof linearState !== 'undefined') {
                     if (!linearState.tableData) linearState.tableData = [];
                     if (!linearState.tableData[row]) linearState.tableData[row] = {x:'?', y:'?'};
@@ -8580,14 +8612,14 @@ function handleConfirm() {
     // Paneli Kapat
     closeNumpad();
 
-    // Tablo doldu mu diye bak (Onay butonu iÃ§in)
+    // Tablo doldu mu diye bak (Onay butonu iÃƒÂ§in)
     checkIfTableIsFull();
 }
 
-// 5. "Ä°PTAL" TUÅU MANTIÄI
+// 5. "Ã„Â°PTAL" TUÃ…ÂU MANTIÃ„ÂI
 function handleCancel() {
-    console.log("âŒ Ä°ptal'e basÄ±ldÄ±.");
-    // SeÃ§imi kaldÄ±r
+    console.log("Ã¢ÂÅ’ Ã„Â°ptal'e basÃ„Â±ldÃ„Â±.");
+    // SeÃƒÂ§imi kaldÃ„Â±r
     if (activeInputTarget) {
         const box = document.getElementById(activeInputTarget);
         if (box) box.classList.remove('bg-indigo-100', 'border-indigo-500');
@@ -8595,7 +8627,7 @@ function handleCancel() {
     closeNumpad();
 }
 
-// 6. PANELÄ° KAPATMA VE TEMÄ°ZLEME
+// 6. PANELÃ„Â° KAPATMA VE TEMÃ„Â°ZLEME
 function closeNumpad() {
     const np = document.getElementById('numberPad');
     if (np) np.classList.add('hidden');
@@ -8606,7 +8638,7 @@ function closeNumpad() {
     activeInputTarget = null;
 }
 
-// 7. TABLO DOLULUK KONTROLÃœ
+// 7. TABLO DOLULUK KONTROLÃƒÅ“
 function checkIfTableIsFull() {
     let isFull = true;
     const cells = document.querySelectorAll('.table-input-cell');
@@ -8619,7 +8651,7 @@ function checkIfTableIsFull() {
     });
 
     if (isFull) {
-        // "Tamam" butonunu gÃ¶ster (ID'ler deÄŸiÅŸebiliyor, ikisini de dene)
+        // "Tamam" butonunu gÃƒÂ¶ster (ID'ler deÃ„Å¸iÃ…Å¸ebiliyor, ikisini de dene)
         const btn1 = document.getElementById('btnTamamCst');
         const btn2 = document.getElementById('tableConfirmBtn');
         if (btn1) btn1.classList.remove('hidden');
@@ -8628,20 +8660,20 @@ function checkIfTableIsFull() {
 }
 
 // =================================================================
-// ğŸš€ FÄ°NAL TAMÄ°R KÄ°TÄ° (Ã‡AKIÅMA Ã–NLEYÄ°CÄ° VERSÄ°YON)
+// ÄŸÅ¸Å¡â‚¬ FÃ„Â°NAL TAMÃ„Â°R KÃ„Â°TÃ„Â° (Ãƒâ€¡AKIÃ…ÂMA Ãƒâ€“NLEYÃ„Â°CÃ„Â° VERSÃ„Â°YON)
 // =================================================================
 
-// 1. GLOBAL DEÄÄ°ÅKEN (Hata vermemesi iÃ§in window Ã¼zerinden kontrol)
+// 1. GLOBAL DEÃ„ÂÃ„Â°Ã…ÂKEN (Hata vermemesi iÃƒÂ§in window ÃƒÂ¼zerinden kontrol)
 if (typeof window.activeInputTarget === 'undefined') {
     window.activeInputTarget = null;
 }
 
-// 2. KUTUYA TIKLAMA FONKSÄ°YONU
+// 2. KUTUYA TIKLAMA FONKSÃ„Â°YONU
 window.openTableInput = function(targetId) {
-    console.log("ğŸ¯ Hedef Kutu:", targetId);
+    console.log("ÄŸÅ¸ÂÂ¯ Hedef Kutu:", targetId);
     window.activeInputTarget = targetId;
 
-    // GÃ¶rsel temizlik
+    // GÃƒÂ¶rsel temizlik
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
     });
@@ -8649,13 +8681,13 @@ window.openTableInput = function(targetId) {
     const box = document.getElementById(targetId);
     if (box) {
         box.classList.add('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
-        // Varsa eski deÄŸeri ekrana taÅŸÄ±
+        // Varsa eski deÃ„Å¸eri ekrana taÃ…Å¸Ã„Â±
         const val = box.textContent.replace('?', '').trim();
         const disp = document.getElementById('currentInput');
         if (disp) disp.textContent = val;
     }
 
-    // Paneli AÃ§
+    // Paneli AÃƒÂ§
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -8663,16 +8695,16 @@ window.openTableInput = function(targetId) {
     }
 };
 
-// 3. BUTONLARI BAÄLA (1 Saniye Bekleyip Ã‡alÄ±ÅŸÄ±r - Garanti YÃ¶ntem)
+// 3. BUTONLARI BAÃ„ÂLA (1 Saniye Bekleyip Ãƒâ€¡alÃ„Â±Ã…Å¸Ã„Â±r - Garanti YÃƒÂ¶ntem)
 setTimeout(function() {
-    console.log("ğŸ”§ Butonlar Yeniden BaÄŸlanÄ±yor...");
+    console.log("ÄŸÅ¸â€Â§ Butonlar Yeniden BaÃ„Å¸lanÃ„Â±yor...");
 
     // --- TAMAM BUTONU ---
-    // DeÄŸiÅŸken ismini 'btnTamam_Fix' yaptÄ±k ki eskisiyle Ã§akÄ±ÅŸmasÄ±n
+    // DeÃ„Å¸iÃ…Å¸ken ismini 'btnTamam_Fix' yaptÃ„Â±k ki eskisiyle ÃƒÂ§akÃ„Â±Ã…Å¸masÃ„Â±n
     var btnTamam_Fix = document.getElementById('numPadClose');
     
     if (btnTamam_Fix) {
-        // Klonlayarak eski bozuk Ã¶zellikleri temizle
+        // Klonlayarak eski bozuk ÃƒÂ¶zellikleri temizle
         var newTamam = btnTamam_Fix.cloneNode(true);
         btnTamam_Fix.parentNode.replaceChild(newTamam, btnTamam_Fix);
 
@@ -8680,7 +8712,7 @@ setTimeout(function() {
             e.preventDefault(); 
             e.stopPropagation();
 
-            // DeÄŸeri Al
+            // DeÃ„Å¸eri Al
             const disp = document.getElementById('currentInput');
             let val = disp ? disp.textContent.trim() : '';
             if (val === '') val = '?';
@@ -8692,7 +8724,7 @@ setTimeout(function() {
                     targetBox.textContent = val;
                     targetBox.classList.remove('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
                     
-                    // Veriyi HafÄ±zaya (linearState) Ä°ÅŸle
+                    // Veriyi HafÃ„Â±zaya (linearState) Ã„Â°Ã…Å¸le
                     if (window.activeInputTarget.startsWith('table_input_')) {
                         const parts = window.activeInputTarget.split('_'); // table, input, x, 0
                         const col = parts[2]; 
@@ -8710,13 +8742,13 @@ setTimeout(function() {
             // Kapat
             closeNumpad_Fix();
             
-            // Tablo dolduysa kontrol butonunu aÃ§
+            // Tablo dolduysa kontrol butonunu aÃƒÂ§
             checkFull_Fix();
         });
     }
 
-    // --- Ä°PTAL BUTONU ---
-    // DeÄŸiÅŸken ismini 'btnIptal_Fix' yaptÄ±k ki hatayÄ± Ã¶nleyelim
+    // --- Ã„Â°PTAL BUTONU ---
+    // DeÃ„Å¸iÃ…Å¸ken ismini 'btnIptal_Fix' yaptÃ„Â±k ki hatayÃ„Â± ÃƒÂ¶nleyelim
     var btnIptal_Fix = document.getElementById('numPadCancel');
     
     if (btnIptal_Fix) {
@@ -8731,7 +8763,7 @@ setTimeout(function() {
 
 }, 1000);
 
-// YARDIMCI FONKSÄ°YONLAR (Ã‡akÄ±ÅŸmasÄ±n diye _Fix ekledim)
+// YARDIMCI FONKSÃ„Â°YONLAR (Ãƒâ€¡akÃ„Â±Ã…Å¸masÃ„Â±n diye _Fix ekledim)
 function closeNumpad_Fix() {
     const np = document.getElementById('numberPad');
     if (np) np.classList.add('hidden');
@@ -8739,7 +8771,7 @@ function closeNumpad_Fix() {
     const disp = document.getElementById('currentInput');
     if (disp) disp.textContent = '';
     
-    // SeÃ§im renklerini temizle
+    // SeÃƒÂ§im renklerini temizle
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
     });
@@ -8763,21 +8795,21 @@ function checkFull_Fix() {
 }
 
 // =================================================================
-// ğŸš€ NÄ°HAÄ° BAÄLANTI MODÃœLÃœ (Ã‡AKIÅMA Ã–NLEYÄ°CÄ° v3)
+// ÄŸÅ¸Å¡â‚¬ NÃ„Â°HAÃ„Â° BAÃ„ÂLANTI MODÃƒÅ“LÃƒÅ“ (Ãƒâ€¡AKIÃ…ÂMA Ãƒâ€“NLEYÃ„Â°CÃ„Â° v3)
 // =================================================================
-// Bu kod, Ã¶nceki hatalarÄ± bypass edip "Tamam" tuÅŸunu zorla Ã§alÄ±ÅŸtÄ±rÄ±r.
+// Bu kod, ÃƒÂ¶nceki hatalarÃ„Â± bypass edip "Tamam" tuÃ…Å¸unu zorla ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±rÃ„Â±r.
 
-// 1. GLOBAL HEDEF DEÄÄ°ÅKENÄ° (Window seviyesinde tanÄ±mladÄ±k ki kaybolmasÄ±n)
+// 1. GLOBAL HEDEF DEÃ„ÂÃ„Â°Ã…ÂKENÃ„Â° (Window seviyesinde tanÃ„Â±mladÃ„Â±k ki kaybolmasÃ„Â±n)
 window.CURRENT_TARGET_ID = null;
 
-// 2. KUTUYA TIKLAMA (SAYI PANELÄ°NÄ° AÃ‡AR)
+// 2. KUTUYA TIKLAMA (SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡AR)
 window.openTableInput = function(targetId) {
-    console.log("ğŸŸ¢ Kutu SeÃ§ildi:", targetId);
+    console.log("ÄŸÅ¸Å¸Â¢ Kutu SeÃƒÂ§ildi:", targetId);
     
     // Hedefi kaydet
     window.CURRENT_TARGET_ID = targetId;
 
-    // GÃ¶rsel temizlik (Ã–nceki mavi kutularÄ± normale Ã§evir)
+    // GÃƒÂ¶rsel temizlik (Ãƒâ€“nceki mavi kutularÃ„Â± normale ÃƒÂ§evir)
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.style.backgroundColor = "white";
         el.style.borderColor = "#e0e7ff"; // indigo-100
@@ -8789,13 +8821,13 @@ window.openTableInput = function(targetId) {
         box.style.backgroundColor = "#e0e7ff"; // indigo-50
         box.style.borderColor = "#6366f1"; // indigo-500
         
-        // Kutudaki eski deÄŸeri panele taÅŸÄ±
+        // Kutudaki eski deÃ„Å¸eri panele taÃ…Å¸Ã„Â±
         let val = box.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = val;
     }
 
-    // Paneli AÃ§
+    // Paneli AÃƒÂ§
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -8803,25 +8835,25 @@ window.openTableInput = function(targetId) {
     }
 };
 
-// 3. TAMAM VE Ä°PTAL BUTONLARINI BAÄLA (100ms Gecikmeli - Garanti Olsun)
+// 3. TAMAM VE Ã„Â°PTAL BUTONLARINI BAÃ„ÂLA (100ms Gecikmeli - Garanti Olsun)
 setTimeout(function() {
-    console.log("ğŸ”Œ Butonlar BaÄŸlanÄ±yor...");
+    console.log("ÄŸÅ¸â€Å’ Butonlar BaÃ„Å¸lanÃ„Â±yor...");
 
     // --- TAMAM BUTONU ---
     const oldBtn = document.getElementById('numPadClose');
     if (oldBtn) {
-        // Eski tÃ¼m Ã¶zellikleri silmek iÃ§in klonluyoruz
+        // Eski tÃƒÂ¼m ÃƒÂ¶zellikleri silmek iÃƒÂ§in klonluyoruz
         const btnTamam_Final_v3 = oldBtn.cloneNode(true);
         oldBtn.parentNode.replaceChild(btnTamam_Final_v3, oldBtn);
 
-        // Yeni TÄ±klama OlayÄ±
+        // Yeni TÃ„Â±klama OlayÃ„Â±
         btnTamam_Final_v3.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // A. DeÄŸeri Al
+            // A. DeÃ„Å¸eri Al
             const display = document.getElementById('currentInput');
             let val = display ? display.textContent.trim() : '';
-            console.log("âœ… Tamam BasÄ±ldÄ±. DeÄŸer:", val, "Hedef:", window.CURRENT_TARGET_ID);
+            console.log("Ã¢Å“â€¦ Tamam BasÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", val, "Hedef:", window.CURRENT_TARGET_ID);
 
             // B. Hedefe Yaz
             if (window.CURRENT_TARGET_ID) {
@@ -8830,15 +8862,15 @@ setTimeout(function() {
                 if (targetBox) {
                     if (val === '') val = '?';
                     
-                    // 1. Ekrana Yaz (GÃ¶rsel)
+                    // 1. Ekrana Yaz (GÃƒÂ¶rsel)
                     targetBox.textContent = val;
                     
-                    // 2. Rengi DÃ¼zelt
+                    // 2. Rengi DÃƒÂ¼zelt
                     targetBox.style.backgroundColor = "white";
                     targetBox.style.borderColor = "#e0e7ff";
 
-                    // 3. Veriyi HafÄ±zaya (linearState) Kaydet
-                    // ID formatÄ±: table_input_x_0
+                    // 3. Veriyi HafÃ„Â±zaya (linearState) Kaydet
+                    // ID formatÃ„Â±: table_input_x_0
                     if (window.CURRENT_TARGET_ID.startsWith('table_input_')) {
                         const parts = window.CURRENT_TARGET_ID.split('_');
                         const col = parts[2]; // x veya y
@@ -8857,12 +8889,12 @@ setTimeout(function() {
             // C. Paneli Kapat
             closeNumpad_Final();
 
-            // D. Tablo Doldu mu? (Kontrol Butonu AÃ§)
+            // D. Tablo Doldu mu? (Kontrol Butonu AÃƒÂ§)
             checkTableFull_Final();
         });
     }
 
-    // --- Ä°PTAL BUTONU ---
+    // --- Ã„Â°PTAL BUTONU ---
     const oldCancel = document.getElementById('numPadCancel');
     if (oldCancel) {
         const btnIptal_Final_v3 = oldCancel.cloneNode(true);
@@ -8874,9 +8906,9 @@ setTimeout(function() {
         });
     }
 
-}, 500); // YarÄ±m saniye bekle ve Ã§alÄ±ÅŸtÄ±r
+}, 500); // YarÃ„Â±m saniye bekle ve ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±r
 
-// YARDIMCI FONKSÄ°YONLAR
+// YARDIMCI FONKSÃ„Â°YONLAR
 function closeNumpad_Final() {
     const np = document.getElementById('numberPad');
     if (np) np.classList.add('hidden');
@@ -8903,7 +8935,7 @@ function checkTableFull_Final() {
     });
 
     if (isFull && hasCells) {
-        // Ä°ki olasÄ± ID'yi de dene
+        // Ã„Â°ki olasÃ„Â± ID'yi de dene
         const btn1 = document.getElementById('btnTamamCst');
         const btn2 = document.getElementById('tableConfirmBtn');
         if (btn1) btn1.classList.remove('hidden');
@@ -8912,39 +8944,39 @@ function checkTableFull_Final() {
 }
 
 // =================================================================
-// ğŸš‘ ACÄ°L KURTARMA PAKETÄ° (Ã‡AKIÅMAYI AÅAN SÃœRÃœM)
+// ÄŸÅ¸Å¡â€˜ ACÃ„Â°L KURTARMA PAKETÃ„Â° (Ãƒâ€¡AKIÃ…ÂMAYI AÃ…ÂAN SÃƒÅ“RÃƒÅ“M)
 // =================================================================
 
-// 1. Yeni ve Benzersiz Bir Hedef DeÄŸiÅŸkeni TanÄ±mlÄ±yoruz
-// (Eski activeInputTarget deÄŸiÅŸkenini kullanmÄ±yoruz ki hata vermesin)
+// 1. Yeni ve Benzersiz Bir Hedef DeÃ„Å¸iÃ…Å¸keni TanÃ„Â±mlÃ„Â±yoruz
+// (Eski activeInputTarget deÃ„Å¸iÃ…Å¸kenini kullanmÃ„Â±yoruz ki hata vermesin)
 window.HEDEF_KUTU_ID = null; 
 
-// 2. Tablo Kutusuna TÄ±klayÄ±nca Ã‡alÄ±ÅŸan Fonksiyonu "Eziyoruz"
+// 2. Tablo Kutusuna TÃ„Â±klayÃ„Â±nca Ãƒâ€¡alÃ„Â±Ã…Å¸an Fonksiyonu "Eziyoruz"
 window.openTableInput = function(tiklananId) {
-    console.log("ğŸŸ¢ Yeni Sistem: Kutu SeÃ§ildi ->", tiklananId);
+    console.log("ÄŸÅ¸Å¸Â¢ Yeni Sistem: Kutu SeÃƒÂ§ildi ->", tiklananId);
     
-    // Hedefi yeni deÄŸiÅŸkene kaydet
+    // Hedefi yeni deÃ„Å¸iÃ…Å¸kene kaydet
     window.HEDEF_KUTU_ID = tiklananId;
 
-    // GÃ¶rsel: Eski mavilikleri temizle
+    // GÃƒÂ¶rsel: Eski mavilikleri temizle
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         kutu.style.backgroundColor = "white"; 
         kutu.style.borderColor = "#e0e7ff";
     });
 
-    // GÃ¶rsel: TÄ±klananÄ± mavi yap
+    // GÃƒÂ¶rsel: TÃ„Â±klananÃ„Â± mavi yap
     const kutu = document.getElementById(tiklananId);
     if (kutu) {
-        kutu.style.backgroundColor = "#dbeafe"; // AÃ§Ä±k mavi
+        kutu.style.backgroundColor = "#dbeafe"; // AÃƒÂ§Ã„Â±k mavi
         kutu.style.borderColor = "#2563eb";     // Koyu mavi
         
-        // Kutudaki deÄŸeri panele taÅŸÄ±
+        // Kutudaki deÃ„Å¸eri panele taÃ…Å¸Ã„Â±
         let eskiDeger = kutu.textContent.replace('?', '').trim();
         const ekran = document.getElementById('currentInput');
         if (ekran) ekran.textContent = eskiDeger;
     }
 
-    // Paneli AÃ§
+    // Paneli AÃƒÂ§
     const panel = document.getElementById('numberPad');
     if (panel) {
         panel.classList.remove('hidden');
@@ -8952,24 +8984,24 @@ window.openTableInput = function(tiklananId) {
     }
 };
 
-// 3. "Tamam" Butonunu Zorla Yeniden YaratÄ±yoruz (1 saniye sonra)
+// 3. "Tamam" Butonunu Zorla Yeniden YaratÃ„Â±yoruz (1 saniye sonra)
 setTimeout(function() {
-    console.log("ğŸ› ï¸ Tamam Butonu Tamir Ediliyor...");
+    console.log("ÄŸÅ¸â€ºÂ Ã¯Â¸Â Tamam Butonu Tamir Ediliyor...");
 
     const eskiButon = document.getElementById('numPadClose');
     if (eskiButon) {
-        // Eski butonu kopyala (BÃ¶ylece eski hatalÄ± kodlardan kurtuluruz)
+        // Eski butonu kopyala (BÃƒÂ¶ylece eski hatalÃ„Â± kodlardan kurtuluruz)
         const yeniButon = eskiButon.cloneNode(true);
         eskiButon.parentNode.replaceChild(yeniButon, eskiButon);
 
-        // YENÄ° TIKLAMA GÃ–REVÄ°
+        // YENÃ„Â° TIKLAMA GÃƒâ€“REVÃ„Â°
         yeniButon.addEventListener('click', function(olay) {
             olay.preventDefault();
             olay.stopPropagation();
 
-            console.log("âœ… Tamam'a BasÄ±ldÄ±! Hedef:", window.HEDEF_KUTU_ID);
+            console.log("Ã¢Å“â€¦ Tamam'a BasÃ„Â±ldÃ„Â±! Hedef:", window.HEDEF_KUTU_ID);
 
-            // A. Ekranda ne yazÄ±yor?
+            // A. Ekranda ne yazÃ„Â±yor?
             const ekran = document.getElementById('currentInput');
             let yazilanDeger = ekran ? ekran.textContent.trim() : '';
             if (yazilanDeger === '') yazilanDeger = '?';
@@ -8979,9 +9011,10 @@ setTimeout(function() {
                 const hedefKutu = document.getElementById(window.HEDEF_KUTU_ID);
                 
                 if (hedefKutu) {
-                    // 1. EKRANA YAZ (En Ã¶nemlisi bu)
+                    // 1. EKRANA YAZ (En ÃƒÂ¶nemlisi bu)
                     hedefKutu.textContent = yazilanDeger;
                     
+                    // 2. Rengi dÃƒÂ¼zelt
                     // 2. Rengi dÃ¼zelt
                     hedefKutu.style.backgroundColor = "white";
                     hedefKutu.style.borderColor = "#e0e7ff";
@@ -8990,10 +9023,11 @@ setTimeout(function() {
                     // ID Ã¶rneÄŸi: table_input_x_0
                     if (window.HEDEF_KUTU_ID.startsWith('table_input_')) {
                         const parcalar = window.HEDEF_KUTU_ID.split('_');
-                        const sutun = parcalar[2]; // 'x' veya 'y'
+                        const sutun = parcalar[2];
                         const satir = parseInt(parcalar[3]);
 
-                        // linearState nesnesini gÃ¼ncelle
+
+
                         if (typeof linearState !== 'undefined') {
                             if (!linearState.tableData) linearState.tableData = [];
                             if (!linearState.tableData[satir]) linearState.tableData[satir] = {x:'?', y:'?'};
@@ -9002,10 +9036,10 @@ setTimeout(function() {
                         }
                     }
                 } else {
-                    console.log("âŒ Hedef kutu HTML'de bulunamadÄ±!");
+                    console.log("Ã¢ÂÅ’ Hedef kutu HTML'de bulunamadÃ„Â±!");
                 }
             } else {
-                console.log("âš ï¸ Hedef seÃ§ili deÄŸil!");
+                console.log("Ã¢Å¡Â Ã¯Â¸Â Hedef seÃƒÂ§ili deÃ„Å¸il!");
             }
 
             // C. Paneli Kapat
@@ -9013,16 +9047,16 @@ setTimeout(function() {
             if (panel) panel.classList.add('hidden');
             if (ekran) ekran.textContent = '';
             
-            // D. SeÃ§imi SÄ±fÄ±rla
+            // D. SeÃƒÂ§imi SÃ„Â±fÃ„Â±rla
             window.HEDEF_KUTU_ID = null;
 
-            // E. Tablo dolduysa kontrol butonunu aÃ§
+            // E. Tablo dolduysa kontrol butonunu aÃƒÂ§
             kontrolTabloDoluMu();
         });
     }
-}, 1000); // 1 saniye bekleme sÃ¼resi
+}, 1000); // 1 saniye bekleme sÃƒÂ¼resi
 
-// YardÄ±mcÄ±: Tablo Dolu mu?
+// YardÃ„Â±mcÃ„Â±: Tablo Dolu mu?
 function kontrolTabloDoluMu() {
     let doluMu = true;
     let kutuVarMi = false;
@@ -9042,26 +9076,26 @@ function kontrolTabloDoluMu() {
 }
 
 // =================================================================
-// ğŸšª PANEL KAPATMA TAMÄ°RCÄ°SÄ° (KESÄ°N Ã‡Ã–ZÃœM)
+// ÄŸÅ¸Å¡Âª PANEL KAPATMA TAMÃ„Â°RCÃ„Â°SÃ„Â° (KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M)
 // =================================================================
 setTimeout(function() {
-    console.log("ğŸšª Kapatma MekanizmasÄ± GÃ¼ncelleniyor...");
+    console.log("ÄŸÅ¸Å¡Âª Kapatma MekanizmasÃ„Â± GÃƒÂ¼ncelleniyor...");
 
-    // 1. TAMAM BUTONU (Kapanma Ã–zelliÄŸi Ekleniyor)
+    // 1. TAMAM BUTONU (Kapanma Ãƒâ€“zelliÃ„Å¸i Ekleniyor)
     const btnTamam = document.getElementById('numPadClose');
     if (btnTamam) {
-        // Mevcut iÅŸlevi bozmadan Ã¼zerine ekleme yapÄ±yoruz
+        // Mevcut iÃ…Å¸levi bozmadan ÃƒÂ¼zerine ekleme yapÃ„Â±yoruz
         const eskiTiklama = btnTamam.onclick; 
         
-        // Yeni, daha gÃ¼Ã§lÃ¼ bir dinleyici ekliyoruz
+        // Yeni, daha gÃƒÂ¼ÃƒÂ§lÃƒÂ¼ bir dinleyici ekliyoruz
         btnTamam.addEventListener('click', function(e) {
-            // Ã–nce veriyi yazma iÅŸini yapsÄ±n (zaten Ã§alÄ±ÅŸÄ±yor dedin)
-            // Sonra zorla kapatsÄ±n:
+            // Ãƒâ€“nce veriyi yazma iÃ…Å¸ini yapsÃ„Â±n (zaten ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±yor dedin)
+            // Sonra zorla kapatsÃ„Â±n:
             forceClosePanel();
         });
     }
 
-    // 2. Ä°PTAL BUTONU (Kapanma Ã–zelliÄŸi Ekleniyor)
+    // 2. Ã„Â°PTAL BUTONU (Kapanma Ãƒâ€“zelliÃ„Å¸i Ekleniyor)
     const btnIptal = document.getElementById('numPadCancel');
     if (btnIptal) {
         const yeniIptal = btnIptal.cloneNode(true);
@@ -9069,9 +9103,9 @@ setTimeout(function() {
 
         yeniIptal.addEventListener('click', function(e) {
             e.preventDefault();
-            // Ä°ptal'e basÄ±nca hedefi de unut
+            // Ã„Â°ptal'e basÃ„Â±nca hedefi de unut
             window.HEDEF_KUTU_ID = null;
-            // GÃ¶rsel seÃ§imleri kaldÄ±r
+            // GÃƒÂ¶rsel seÃƒÂ§imleri kaldÃ„Â±r
             document.querySelectorAll('.table-input-cell').forEach(kutu => {
                 kutu.style.backgroundColor = "white"; 
                 kutu.style.borderColor = "#e0e7ff";
@@ -9080,57 +9114,57 @@ setTimeout(function() {
         });
     }
 
-}, 1500); // DiÄŸer kodlardan sonra Ã§alÄ±ÅŸsÄ±n diye biraz gecikmeli
+}, 1500); // DiÃ„Å¸er kodlardan sonra ÃƒÂ§alÃ„Â±Ã…Å¸sÃ„Â±n diye biraz gecikmeli
 
-// 3. ZORLA KAPATMA FONKSÄ°YONU
+// 3. ZORLA KAPATMA FONKSÃ„Â°YONU
 function forceClosePanel() {
     const panel = document.getElementById('numberPad');
     if (panel) {
-        // Hem CSS sÄ±nÄ±fÄ± ekle
+        // Hem CSS sÃ„Â±nÃ„Â±fÃ„Â± ekle
         panel.removeAttribute('style');
         panel.classList.add('hidden');
     }
 
-    // EkranÄ± temizle
+    // EkranÃ„Â± temizle
     const ekran = document.getElementById('currentInput');
     if (ekran) ekran.textContent = '';
 }
 
 // =================================================================
-// ğŸš€ FÄ°NAL SÄ°STEM: CANLI GRAFÄ°K VE MATEMATÄ°KSEL KONTROL
+// ÄŸÅ¸Å¡â‚¬ FÃ„Â°NAL SÃ„Â°STEM: CANLI GRAFÃ„Â°K VE MATEMATÃ„Â°KSEL KONTROL
 // =================================================================
 
-// 1. GLOBAL DEÄÄ°ÅKENLER
+// 1. GLOBAL DEÃ„ÂÃ„Â°Ã…ÂKENLER
 window.HEDEF_KUTU = null;
 
 // ---------------------------------------------------------
-// A. KUTUYA TIKLAMA (SAYI PANELÄ°NÄ° AÃ‡AR)
+// A. KUTUYA TIKLAMA (SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡AR)
 // ---------------------------------------------------------
 window.openTableInput = function(tiklananId) {
-    console.log("ğŸ–±ï¸ Kutu SeÃ§ildi:", tiklananId);
+    console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Kutu SeÃƒÂ§ildi:", tiklananId);
     window.HEDEF_KUTU = tiklananId;
 
-    // GÃ¶rsel Temizlik
+    // GÃƒÂ¶rsel Temizlik
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         kutu.style.backgroundColor = "white"; 
         kutu.style.borderColor = "#e0e7ff";
         kutu.style.boxShadow = "none";
     });
 
-    // SeÃ§ili Kutuyu Ä°ÅŸaretle
+    // SeÃƒÂ§ili Kutuyu Ã„Â°Ã…Å¸aretle
     const kutu = document.getElementById(tiklananId);
     if (kutu) {
         kutu.style.backgroundColor = "#dbeafe"; // Mavi
         kutu.style.borderColor = "#3b82f6";
         kutu.style.boxShadow = "0 0 0 3px rgba(59, 130, 246, 0.3)";
         
-        // DeÄŸeri panele taÅŸÄ±
+        // DeÃ„Å¸eri panele taÃ…Å¸Ã„Â±
         let val = kutu.textContent.replace('?', '').trim();
         const ekran = document.getElementById('currentInput');
         if (ekran) ekran.textContent = val;
     }
 
-    // Paneli AÃ§
+    // Paneli AÃƒÂ§
     const panel = document.getElementById('numberPad');
     if (panel) {
         panel.classList.remove('hidden');
@@ -9139,7 +9173,7 @@ window.openTableInput = function(tiklananId) {
 };
 
 // ---------------------------------------------------------
-// B. NUMPAD BUTONLARINI BAÄLA (OTOMATÄ°K VE ANLIK)
+// B. NUMPAD BUTONLARINI BAÃ„ÂLA (OTOMATÃ„Â°K VE ANLIK)
 // ---------------------------------------------------------
 setTimeout(function() {
     // TAMAM BUTONU
@@ -9151,7 +9185,7 @@ setTimeout(function() {
         yeniTamam.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // 1. DeÄŸeri Al
+            // 1. DeÃ„Å¸eri Al
             const ekran = document.getElementById('currentInput');
             let deger = ekran ? ekran.textContent.trim() : '';
             if (deger === '') deger = '?';
@@ -9165,23 +9199,23 @@ setTimeout(function() {
                     kutu.style.borderColor = "#e0e7ff";
                     kutu.style.boxShadow = "none";
                     
-                    // State'i GÃ¼ncelle (HafÄ±zaya Al)
+                    // State'i GÃƒÂ¼ncelle (HafÃ„Â±zaya Al)
                     kaydetState(window.HEDEF_KUTU, deger);
                 }
             }
 
-            // 3. GRAFÄ°ÄÄ° ANINDA GÃœNCELLE (Ä°ÅŸte eksik olan parÃ§a buydu!)
+            // 3. GRAFÃ„Â°Ã„ÂÃ„Â° ANINDA GÃƒÅ“NCELLE (Ã„Â°Ã…Å¸te eksik olan parÃƒÂ§a buydu!)
             canliGrafikCiz();
 
             // 4. Paneli Kapat
             kapatPanel();
 
-            // 5. Tablo Dolduysa Kontrol Butonunu AÃ§
+            // 5. Tablo Dolduysa Kontrol Butonunu AÃƒÂ§
             kontrolButonunuAc();
         });
     }
 
-    // Ä°PTAL BUTONU
+    // Ã„Â°PTAL BUTONU
     const btnIptal = document.getElementById('numPadCancel');
     if (btnIptal) {
         const yeniIptal = btnIptal.cloneNode(true);
@@ -9194,29 +9228,30 @@ setTimeout(function() {
 }, 1000);
 
 // ---------------------------------------------------------
-// C. CANLI GRAFÄ°K Ã‡Ä°ZCÄ° (HER SAYI GÄ°RÄ°ÅÄ°NDE Ã‡ALIÅIR)
+// C. CANLI GRAFÃ„Â°K Ãƒâ€¡Ã„Â°ZCÃ„Â° (HER SAYI GÃ„Â°RÃ„Â°Ã…ÂÃ„Â°NDE Ãƒâ€¡ALIÃ…ÂIR)
 // ---------------------------------------------------------
 function canliGrafikCiz() {
-    console.log("ğŸ¨ Grafik GÃ¼ncelleniyor (refreshLinearGraphPoints'e yÃ¶nlendirildi)...");
+    if (typeof gameState !== 'undefined' && gameState.mode && gameState.mode.startsWith('slope_')) return;
+    console.log("ÄŸÅ¸ÂÂ¨ Grafik GÃƒÂ¼ncelleniyor (refreshLinearGraphPoints'e yÃƒÂ¶nlendirildi)...");
     if (typeof refreshLinearGraphPoints === 'function') {
         refreshLinearGraphPoints();
     }
 }
 
 // ---------------------------------------------------------
-// D. TABLO KONTROL (MATEMATÄ°KSEL FORMÃœL Ä°LE)
+// D. TABLO KONTROL (MATEMATÃ„Â°KSEL FORMÃƒÅ“L Ã„Â°LE)
 // ---------------------------------------------------------
 window.confirmTableAndStartDrawing = function() {
-    console.log("ğŸ§  Tablo Kontrol Ediliyor (Matematiksel)...");
+    console.log("ÄŸÅ¸Â§Â  Tablo Kontrol Ediliyor (Matematiksel)...");
     
-    // 1. DoÄŸru FormÃ¼lÃ¼nÃ¼ Bul (y = mx + b)
+    // 1. DoÃ„Å¸ru FormÃƒÂ¼lÃƒÂ¼nÃƒÂ¼ Bul (y = mx + b)
     let m = null;
     let b = null;
     
     const scenario = (typeof linearState !== 'undefined') ? linearState.currentScenario : null;
     
     if (scenario) {
-        // A) Senaryoda aÃ§Ä±kÃ§a verilmiÅŸse al
+        // A) Senaryoda aÃƒÂ§Ã„Â±kÃƒÂ§a verilmiÃ…Å¸se al
         if (scenario.m !== undefined && scenario.b !== undefined) {
             m = scenario.m;
             b = scenario.b;
@@ -9225,10 +9260,10 @@ window.confirmTableAndStartDrawing = function() {
             m = scenario.rate;
             b = scenario.initialValue;
         }
-        // B) VerilmemiÅŸse, senaryodaki "Points" listesinden hesapla
+        // B) VerilmemiÃ…Å¸se, senaryodaki "Points" listesinden hesapla
         else {
             let rawData = scenario.points || scenario.tableData || (scenario.lines ? scenario.lines[0].points : []);
-            // Soru iÅŸareti olmayan temiz verileri al
+            // Soru iÃ…Å¸areti olmayan temiz verileri al
             let cleanPoints = [];
             if(rawData) {
                 rawData.forEach(p => {
@@ -9239,7 +9274,7 @@ window.confirmTableAndStartDrawing = function() {
             }
 
             if (cleanPoints.length >= 2) {
-                // Ä°ki noktadan eÄŸim bul
+                // Ã„Â°ki noktadan eÃ„Å¸im bul
                 let p1 = cleanPoints[0];
                 let p2 = cleanPoints[1];
                 if (p2.x - p1.x !== 0) {
@@ -9250,12 +9285,12 @@ window.confirmTableAndStartDrawing = function() {
         }
     }
 
-    console.log(`ğŸ“ Bulunan FormÃ¼l: y = ${m}x + ${b}`);
+    console.log(`ÄŸÅ¸â€œÂ Bulunan FormÃƒÂ¼l: y = ${m}x + ${b}`);
     if (m !== null && typeof linearState !== 'undefined') {
         linearState.correctM = m;
     }
 
-    // 2. Tablodaki DeÄŸerleri Kontrol Et
+    // 2. Tablodaki DeÃ„Å¸erleri Kontrol Et
     let hepsiDogru = true;
     let doluSatirSayisi = 0;
 
@@ -9277,17 +9312,17 @@ window.confirmTableAndStartDrawing = function() {
         let userY = parseFloat(txtY);
         let rowCorrect = false;
 
-        // FormÃ¼l KontrolÃ¼
+        // FormÃƒÂ¼l KontrolÃƒÂ¼
         if (m !== null && b !== null) {
             let expectedY = (m * userX) + b;
-            // KÃ¼Ã§Ã¼k yuvarlama hatalarÄ±nÄ± tolere et (0.1)
+            // KÃƒÂ¼ÃƒÂ§ÃƒÂ¼k yuvarlama hatalarÃ„Â±nÃ„Â± tolere et (0.1)
             if (Math.abs(userY - expectedY) < 0.1) {
                 rowCorrect = true;
             }
         } else {
-            // FormÃ¼l bulunamadÄ±ysa (Ã‡ok nadir), eski yÃ¶ntemle havuza bak
-            // Ama yukarÄ±daki kod %99 formÃ¼lÃ¼ bulur.
-            rowCorrect = true; // Hata vermemek iÃ§in geÃ§ici true (Senaryo bozuksa Ã¶ÄŸrenci Ã¼zÃ¼lmesin)
+            // FormÃƒÂ¼l bulunamadÃ„Â±ysa (Ãƒâ€¡ok nadir), eski yÃƒÂ¶ntemle havuza bak
+            // Ama yukarÃ„Â±daki kod %99 formÃƒÂ¼lÃƒÂ¼ bulur.
+            rowCorrect = true; // Hata vermemek iÃƒÂ§in geÃƒÂ§ici true (Senaryo bozuksa ÃƒÂ¶Ã„Å¸renci ÃƒÂ¼zÃƒÂ¼lmesin)
         }
 
         // Renklendirme
@@ -9299,11 +9334,11 @@ window.confirmTableAndStartDrawing = function() {
         }
     }
 
-    // 3. SonuÃ§
+    // 3. SonuÃƒÂ§
     if (hepsiDogru && doluSatirSayisi > 0) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
         
-        // Ã‡izim modunu aÃ§
+        // Ãƒâ€¡izim modunu aÃƒÂ§
         if(typeof gameState !== 'undefined') gameState.mode = 'linear_graph_draw';
         if(typeof setupStraightLineDrawing === 'function') setupStraightLineDrawing();
 
@@ -9315,12 +9350,12 @@ window.confirmTableAndStartDrawing = function() {
         const msg = document.getElementById('drawMessageArea');
         if(msg) {
             msg.classList.remove('hidden');
-            msg.innerHTML = `<div class="bg-green-100 p-4 rounded text-green-700 font-bold border-l-4 border-green-500">âœ… Harika! Tablo doÄŸru. Åimdi noktalarÄ± birleÅŸtir.</div>`;
+            msg.innerHTML = `<div class="bg-green-100 p-4 rounded text-green-700 font-bold border-l-4 border-green-500">Ã¢Å“â€¦ Harika! Tablo doÃ„Å¸ru. Ã…Âimdi noktalarÃ„Â± birleÃ…Å¸tir.</div>`;
         }
         
-        // NoktalarÄ± YeÅŸile Ã‡evir (KalÄ±cÄ± Yap)
+        // NoktalarÃ„Â± YeÃ…Å¸ile Ãƒâ€¡evir (KalÃ„Â±cÃ„Â± Yap)
         const noktalar = document.getElementById('linearCanvas').querySelectorAll('.user-preview-dot');
-        noktalar.forEach(n => n.setAttribute('fill', '#059669')); // YeÅŸil
+        noktalar.forEach(n => n.setAttribute('fill', '#059669')); // YeÃ…Å¸il
 
     } else {
         if(typeof playErrorSound === 'function') playErrorSound();
@@ -9328,7 +9363,7 @@ window.confirmTableAndStartDrawing = function() {
 };
 
 // ---------------------------------------------------------
-// YARDIMCI FONKSÄ°YONLAR
+// YARDIMCI FONKSÃ„Â°YONLAR
 // ---------------------------------------------------------
 function kapatPanel() {
     const p = document.getElementById('numberPad');
@@ -9340,9 +9375,9 @@ function kapatPanel() {
     const ekr = document.getElementById('currentInput');
     if(ekr) ekr.textContent = '';
     
-    // Mavi seÃ§imleri temizle
+    // Mavi seÃƒÂ§imleri temizle
     document.querySelectorAll('.table-input-cell').forEach(k => {
-        if(!k.classList.contains('bg-emerald-100')) { // DoÄŸru olanlarÄ± bozma
+        if(!k.classList.contains('bg-emerald-100')) { // DoÃ„Å¸ru olanlarÃ„Â± bozma
             k.style.backgroundColor = "white";
             k.style.borderColor = "#e0e7ff";
             k.style.boxShadow = "none";
@@ -9386,17 +9421,17 @@ function styleWrong(el) {
     el.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
 }
 
-// DiÄŸer canliGrafikCiz fonksiyonlarÄ± temizlendi. Ãœstteki nihai versiyon kullanÄ±lacak.
+// DiÃ„Å¸er canliGrafikCiz fonksiyonlarÃ„Â± temizlendi. ÃƒÅ“stteki nihai versiyon kullanÃ„Â±lacak.
 
 // ==========================================
-// ğŸ¯ SVG MATRIX COORDINATE SYSTEM (v5 - KESÄ°N Ã‡Ã–ZÃœM)
+// ÄŸÅ¸ÂÂ¯ SVG MATRIX COORDINATE SYSTEM (v5 - KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M)
 // ==========================================
 
 window.setupStraightLineDrawing = function() {
     const canvas = document.getElementById('linearCanvas');
     if (!canvas) return;
 
-    console.log("âœï¸ Ã‡izim Modu: SVG Matrix sistemi aktif.");
+    console.log("Ã¢Å“ÂÃ¯Â¸Â Ãƒâ€¡izim Modu: SVG Matrix sistemi aktif.");
     
     // Temizle
     canvas.onmousedown = null;
@@ -9409,7 +9444,7 @@ window.setupStraightLineDrawing = function() {
     let isDrawing = false;
     let tempLine = null;
 
-    // --- ENERJÄ° TASARRUFLU VE HASSAS KOORDÄ°NAT SÄ°STEMÄ° ---
+    // --- ENERJÃ„Â° TASARRUFLU VE HASSAS KOORDÃ„Â°NAT SÃ„Â°STEMÃ„Â° ---
     function getPointOnSvg(e) {
         const pt = canvas.createSVGPoint();
         
@@ -9425,7 +9460,7 @@ window.setupStraightLineDrawing = function() {
             pt.y = e.clientY;
         }
 
-        // Bu bÃ¼yÃ¼: Ekran koordinatlarÄ±nÄ± doÄŸrudan SVG'nin iÃ§ koordinatlarÄ±na Ã§evirir
+        // Bu bÃƒÂ¼yÃƒÂ¼: Ekran koordinatlarÃ„Â±nÃ„Â± doÃ„Å¸rudan SVG'nin iÃƒÂ§ koordinatlarÃ„Â±na ÃƒÂ§evirir
         const cursorPoint = pt.matrixTransform(canvas.getScreenCTM().inverse());
         
         return { x: cursorPoint.x, y: cursorPoint.y };
@@ -9442,7 +9477,7 @@ window.setupStraightLineDrawing = function() {
             window.sendP2PDrawEvent({ action: 'start', coords: coords });
         }
 
-        // Eski Ã§izgiyi temizle
+        // Eski ÃƒÂ§izgiyi temizle
         const oldLine = document.getElementById('rubber-line');
         if (oldLine) oldLine.remove();
 
@@ -9511,7 +9546,7 @@ window.setupStraightLineDrawing = function() {
         }
     };
 
-    // P2P'den gelen Ã§izim verilerini iÅŸleyecek fonksiyon
+    // P2P'den gelen ÃƒÂ§izim verilerini iÃ…Å¸leyecek fonksiyon
     window.p2pDrawHandle = function(payload) {
         if (payload.action === 'start') {
             isDrawing = true;
@@ -9545,7 +9580,7 @@ window.setupStraightLineDrawing = function() {
                 y: parseFloat(tempLine.getAttribute('y1'))
             };
             
-            // Senkronizasyon KaymalarÄ±nÄ± (Ã–lÃ§ek, Denklem farkÄ± vb.) Gidermek Ä°Ã§in Tabletten Gelen DoÄŸrularÄ± Zorla
+            // Senkronizasyon KaymalarÃ„Â±nÃ„Â± (Ãƒâ€“lÃƒÂ§ek, Denklem farkÃ„Â± vb.) Gidermek Ã„Â°ÃƒÂ§in Tabletten Gelen DoÃ„Å¸rularÃ„Â± Zorla
             if (payload.scale !== undefined) linearState.axisScale = payload.scale;
             if (payload.tSlope !== undefined) gameState.targetSlope = payload.tSlope;
             if (payload.tIntercept !== undefined) gameState.targetIntercept = payload.tIntercept;
@@ -9579,19 +9614,19 @@ window.setupStraightLineDrawing = function() {
 
 
 // ==========================================
-// âœ¨ ÃœST BUTON AKTÄ°FLEÅTÄ°RÄ°CÄ° (v6)
+// Ã¢Å“Â¨ ÃƒÅ“ST BUTON AKTÃ„Â°FLEÃ…ÂTÃ„Â°RÃ„Â°CÃ„Â° (v6)
 // ==========================================
 
 function checkDrawingLogic(start, end) {
-    // Mevcut dinamik Ã¶lÃ§eÄŸi al
+    // Mevcut dinamik ÃƒÂ¶lÃƒÂ§eÃ„Å¸i al
     const stepY = (typeof linearState !== 'undefined') ? (linearState.yScale || 1) : 1;
     const stepX = (typeof linearState !== 'undefined') ? (linearState.xScale || 1) : 1;
     
-    // Ã‡izgi noktalarÄ±nÄ± matematiksel deÄŸere Ã§evir
+    // Ãƒâ€¡izgi noktalarÃ„Â±nÃ„Â± matematiksel deÃ„Å¸ere ÃƒÂ§evir
     const v1 = { x: (start.x - 50) / 50 * stepX, y: (450 - start.y) / 50 * stepY };
     const v2 = { x: (end.x - 50) / 50 * stepX, y: (450 - end.y) / 50 * stepY };
 
-    // Senaryodaki gerÃ§ek eÄŸimi hesapla
+    // Senaryodaki gerÃƒÂ§ek eÃ„Å¸imi hesapla
     let correctM = (typeof linearState !== 'undefined') ? linearState.correctM : undefined;
     
     if (correctM === undefined) {
@@ -9611,43 +9646,43 @@ function checkDrawingLogic(start, end) {
     
     const userM = (v2.y - v1.y) / (v2.x - v1.x);
 
-    // EÄÄ°M KONTROLÃœ
+    // EÃ„ÂÃ„Â°M KONTROLÃƒÅ“
     if (correctM !== undefined && !isNaN(correctM) && Math.abs(userM - correctM) < 0.4) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
-        document.getElementById('rubber-line').setAttribute('stroke', '#10b981'); // YeÅŸil
+        document.getElementById('rubber-line').setAttribute('stroke', '#10b981'); // YeÃ…Å¸il
 
-        // --- BUTONU BUL VE ZORLA AKTÄ°F ET ---
-        // Senin projendeki tÃ¼m olasÄ± ID'leri kontrol ediyoruz
+        // --- BUTONU BUL VE ZORLA AKTÃ„Â°F ET ---
+        // Senin projendeki tÃƒÂ¼m olasÃ„Â± ID'leri kontrol ediyoruz
         const btn = document.getElementById('checkBtn') || document.getElementById('btn_kontrol_et');
         
         if (btn) {
-            console.log("ğŸš€ Kontrol butonu aktif ediliyor!");
+            console.log("ÄŸÅ¸Å¡â‚¬ Kontrol butonu aktif ediliyor!");
             
-            // 1. GÃ¶rÃ¼nÃ¼rlÃ¼k Engellerini KaldÄ±r
+            // 1. GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼rlÃƒÂ¼k Engellerini KaldÃ„Â±r
             btn.classList.remove('hidden', 'opacity-50', 'cursor-not-allowed');
             btn.disabled = false;
             btn.style.display = 'block';
             btn.style.opacity = '1';
             btn.style.pointerEvents = 'auto';
 
-            // 2. GÃ¶rsel Efekt Ekle (YanÄ±p SÃ¶nme)
+            // 2. GÃƒÂ¶rsel Efekt Ekle (YanÃ„Â±p SÃƒÂ¶nme)
             btn.style.animation = "pulse 1.5s infinite";
             btn.classList.add('bg-orange-500', 'hover:bg-orange-600', 'ring-4', 'ring-orange-200');
-            btn.innerHTML = "Ã‡izimi Onayla âœ¨";
+            btn.innerHTML = "Ãƒâ€¡izimi Onayla Ã¢Å“Â¨";
 
-            // 3. TÄ±klama GÃ¶revini Ata (EÄŸer atanmamÄ±ÅŸsa)
+            // 3. TÃ„Â±klama GÃƒÂ¶revini Ata (EÃ„Å¸er atanmamÃ„Â±Ã…Å¸sa)
             btn.onclick = function() {
-                // Final onayÄ± fonksiyonunu Ã§alÄ±ÅŸtÄ±r
+                // Final onayÃ„Â± fonksiyonunu ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±r
                 if(typeof finalDogrulamaYap === 'function') finalDogrulamaYap();
             };
         }
     } else {
         if(typeof playErrorSound === 'function') playErrorSound();
-        document.getElementById('rubber-line').setAttribute('stroke', '#ef4444'); // KÄ±rmÄ±zÄ±
+        document.getElementById('rubber-line').setAttribute('stroke', '#ef4444'); // KÃ„Â±rmÃ„Â±zÃ„Â±
     }
 }
 
-// Butonun yanÄ±p sÃ¶nmesi iÃ§in gerekli olan CSS animasyonu
+// Butonun yanÃ„Â±p sÃƒÂ¶nmesi iÃƒÂ§in gerekli olan CSS animasyonu
 if (!document.getElementById('pulse-style')) {
     const style = document.createElement('style');
     style.id = 'pulse-style';
@@ -9663,32 +9698,32 @@ if (!document.getElementById('pulse-style')) {
 
 
 // =================================================================
-// âœ… FÄ°NAL ONAY VE KONTROL MEKANÄ°ZMASI
+// Ã¢Å“â€¦ FÃ„Â°NAL ONAY VE KONTROL MEKANÃ„Â°ZMASI
 // =================================================================
 
-// 1. Ã‡izgi DoÄŸruysa Ãœstteki Butonu Hareketlendir
+// 1. Ãƒâ€¡izgi DoÃ„Å¸ruysa ÃƒÅ“stteki Butonu Hareketlendir
 function animasyonuBaslatKontrolButonu() {
-    const kontrolBtn = document.getElementById('btn_kontrol_et'); // Senin Ã¼stteki butonunun ID'si
+    const kontrolBtn = document.getElementById('btn_kontrol_et'); // Senin ÃƒÂ¼stteki butonunun ID'si
     if (kontrolBtn) {
         kontrolBtn.classList.remove('hidden');
-        // YanÄ±p sÃ¶nme ve bÃ¼yÃ¼me efekti (Tailwind sÄ±nÄ±flarÄ± veya CSS)
+        // YanÃ„Â±p sÃƒÂ¶nme ve bÃƒÂ¼yÃƒÂ¼me efekti (Tailwind sÃ„Â±nÃ„Â±flarÃ„Â± veya CSS)
         kontrolBtn.style.animation = "pulse 1.5s infinite";
         kontrolBtn.classList.add('bg-emerald-600', 'scale-110', 'shadow-2xl');
-        kontrolBtn.innerHTML = "âœ¨ Åimdi Ã‡izimi Onayla";
+        kontrolBtn.innerHTML = "Ã¢Å“Â¨ Ã…Âimdi Ãƒâ€¡izimi Onayla";
         
-        // Butona son kontrol gÃ¶revini ata
+        // Butona son kontrol gÃƒÂ¶revini ata
         kontrolBtn.onclick = finalDogrulamaYap;
     }
 }
 
-// 2. Kontrol Et Butonuna BasÄ±nca YapÄ±lacak Son Kontrol
+// 2. Kontrol Et Butonuna BasÃ„Â±nca YapÃ„Â±lacak Son Kontrol
 function finalDogrulamaYap() {
-    console.log("ğŸ Final KontrolÃ¼ YapÄ±lÄ±yor...");
+    console.log("ÄŸÅ¸ÂÂ Final KontrolÃƒÂ¼ YapÃ„Â±lÃ„Â±yor...");
     
     const userLine = document.getElementById('rubber-line');
     if (!userLine) return;
 
-    // Tablodaki tÃ¼m noktalarÄ± al
+    // Tablodaki tÃƒÂ¼m noktalarÃ„Â± al
     const noktalar = [];
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         if (kutu.id.startsWith('table_input_y_')) {
@@ -9703,7 +9738,7 @@ function finalDogrulamaYap() {
         }
     });
 
-    // Ã‡izginin matematiksel eÄŸimini ve sabitini (y = mx + b) bul
+    // Ãƒâ€¡izginin matematiksel eÃ„Å¸imini ve sabitini (y = mx + b) bul
     const stepY = (typeof linearState !== 'undefined') ? (linearState.yScale || 1) : 1;
     const stepX = (typeof linearState !== 'undefined') ? (linearState.xScale || 1) : 1;
     const ORJIN_X = 50; const ORJIN_Y = 450; const KARE = 50;
@@ -9716,11 +9751,11 @@ function finalDogrulamaYap() {
     const m = (y2 - y1) / (x2 - x1);
     const b = y1 - (m * x1);
 
-    // Her nokta bu Ã§izginin Ã¼zerinde mi? (0.5 tolerans ile)
+    // Her nokta bu ÃƒÂ§izginin ÃƒÂ¼zerinde mi? (0.5 tolerans ile)
     let herNoktaUygun = true;
     noktalar.forEach(p => {
         const beklenenY = (m * p.x) + b;
-        if (Math.abs(p.y - beklenenY) > 0.8) { // Biraz esneklik payÄ±
+        if (Math.abs(p.y - beklenenY) > 0.8) { // Biraz esneklik payÃ„Â±
             herNoktaUygun = false;
         }
     });
@@ -9728,98 +9763,98 @@ function finalDogrulamaYap() {
     if (herNoktaUygun && noktalar.length > 0) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
         
-        // BaÅŸarÄ± EkranÄ±
+        // BaÃ…Å¸arÃ„Â± EkranÃ„Â±
         document.getElementById('drawMessageArea').innerHTML = `
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6 rounded-2xl shadow-2xl text-center">
-                <h2 class="text-2xl font-black mb-2">ğŸ† TEBRÄ°KLER!</h2>
-                <p>Tabloyu doldurdun, grafiÄŸi Ã§izdin ve tÃ¼m noktalarÄ± birleÅŸtirdin!</p>
+                <h2 class="text-2xl font-black mb-2">ÄŸÅ¸Ââ€  TEBRÃ„Â°KLER!</h2>
+                <p>Tabloyu doldurdun, grafiÃ„Å¸i ÃƒÂ§izdin ve tÃƒÂ¼m noktalarÃ„Â± birleÃ…Å¸tirdin!</p>
             </div>`;
             
-        // Butonun animasyonunu durdur ve yeÅŸil yap
+        // Butonun animasyonunu durdur ve yeÃ…Å¸il yap
         const btn = document.getElementById('btn_kontrol_et');
         btn.style.animation = "none";
         btn.className = "bg-green-600 text-white px-8 py-3 rounded-full font-bold";
-        btn.innerHTML = "âœ… SORU TAMAMLANDI";
+        btn.innerHTML = "Ã¢Å“â€¦ SORU TAMAMLANDI";
         
-        // 3 saniye sonra diÄŸer soruya geÃ§iÅŸ (isteÄŸe baÄŸlÄ±)
+        // 3 saniye sonra diÃ„Å¸er soruya geÃƒÂ§iÃ…Å¸ (isteÃ„Å¸e baÃ„Å¸lÃ„Â±)
         // setTimeout(nextQuestion, 3000);
     } else {
         if(typeof playErrorSound === 'function') playErrorSound();
-        alert("Ã‡izgi tÃ¼m noktalardan geÃ§miyor, lÃ¼tfen tekrar dene!");
+        alert("Ãƒâ€¡izgi tÃƒÂ¼m noktalardan geÃƒÂ§miyor, lÃƒÂ¼tfen tekrar dene!");
     }
 }
 
 // 3. Eski checkDrawingLogic fonksiyonuna tetikleyici ekle
-// (Ã–nceki yazdÄ±ÄŸÄ±mÄ±z fonksiyonun iÃ§ine ÅŸu satÄ±rÄ± ekliyoruz)
+// (Ãƒâ€“nceki yazdÃ„Â±Ã„Å¸Ã„Â±mÃ„Â±z fonksiyonun iÃƒÂ§ine Ã…Å¸u satÃ„Â±rÃ„Â± ekliyoruz)
 
 
 // ==========================================
-// ğŸ§ª MATEMATÄ°KSEL Ä°FADE Ã‡Ã–ZÃœCÃœ
+// ÄŸÅ¸Â§Âª MATEMATÃ„Â°KSEL Ã„Â°FADE Ãƒâ€¡Ãƒâ€“ZÃƒÅ“CÃƒÅ“
 // ==========================================
 function solveMathExpression(inputStr) {
     try {
-        // 1. "x" veya "X" iÅŸaretlerini "*" (Ã§arpma) ile deÄŸiÅŸtir
+        // 1. "x" veya "X" iÃ…Å¸aretlerini "*" (ÃƒÂ§arpma) ile deÃ„Å¸iÃ…Å¸tir
         let cleanedInput = inputStr.toLowerCase().replace(/x/g, '*');
         
-        // 2. Sadece gÃ¼venli karakterlere izin ver (sayÄ±lar ve + - * /)
-        // Bu gÃ¼venlik iÃ§in Ã¶nemlidir
+        // 2. Sadece gÃƒÂ¼venli karakterlere izin ver (sayÃ„Â±lar ve + - * /)
+        // Bu gÃƒÂ¼venlik iÃƒÂ§in ÃƒÂ¶nemlidir
         cleanedInput = cleanedInput.replace(/[^0-9+\-*/().]/g, '');
 
-        // 3. Ä°ÅŸlemi hesapla (Ä°ÅŸlem Ã¶nceliÄŸine gÃ¶re)
-        // Function constructor, eval'den daha gÃ¼venlidir
+        // 3. Ã„Â°Ã…Å¸lemi hesapla (Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸ine gÃƒÂ¶re)
+        // Function constructor, eval'den daha gÃƒÂ¼venlidir
         const result = new Function(`return ${cleanedInput}`)();
         
         return result;
     } catch (e) {
-        console.error("HatalÄ± iÅŸlem formatÄ±:", e);
+        console.error("HatalÃ„Â± iÃ…Å¸lem formatÃ„Â±:", e);
         return null;
     }
 }
 
-// Tablodaki Y hÃ¼cresine tÄ±klandÄ±ÄŸÄ±nda veya veri girildiÄŸinde Ã§alÄ±ÅŸÄ±r
+// Tablodaki Y hÃƒÂ¼cresine tÃ„Â±klandÃ„Â±Ã„Å¸Ã„Â±nda veya veri girildiÃ„Å¸inde ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r
 function finalizeCellInput(cellId) {
     const cell = document.getElementById(cellId);
     let rawValue = cell.textContent.trim();
 
-    // EÄŸer hÃ¼crede iÅŸlem iÅŸareti (+, -, x, /) varsa Ã§Ã¶zÃ¼cÃ¼ye gÃ¶nder
+    // EÃ„Å¸er hÃƒÂ¼crede iÃ…Å¸lem iÃ…Å¸areti (+, -, x, /) varsa ÃƒÂ§ÃƒÂ¶zÃƒÂ¼cÃƒÂ¼ye gÃƒÂ¶nder
     if (/[+\-x*/]/.test(rawValue)) {
         const calculatedResult = solveMathExpression(rawValue);
         
         if (calculatedResult !== null) {
-            // HÃ¼credeki metni sonucun kendisiyle deÄŸiÅŸtir (Ã–rn: 185)
+            // HÃƒÂ¼credeki metni sonucun kendisiyle deÃ„Å¸iÃ…Å¸tir (Ãƒâ€“rn: 185)
             cell.textContent = calculatedResult;
             
-            // GrafiÄŸi gÃ¼ncellemek iÃ§in mevcut fonksiyonunu tetikle
+            // GrafiÃ„Å¸i gÃƒÂ¼ncellemek iÃƒÂ§in mevcut fonksiyonunu tetikle
             if (typeof canliGrafikCiz === 'function') {
                 canliGrafikCiz(); 
             }
             
-            console.log(`âœ… Ä°ÅŸlem Ã§Ã¶zÃ¼ldÃ¼: ${rawValue} = ${calculatedResult}`);
+            console.log(`Ã¢Å“â€¦ Ã„Â°Ã…Å¸lem ÃƒÂ§ÃƒÂ¶zÃƒÂ¼ldÃƒÂ¼: ${rawValue} = ${calculatedResult}`);
         }
     }
 }
 
 // ==========================================
-// ğŸ¯ Ä°ÅLEMÄ° Ã‡Ã–ZÃœP SONUCU AKTARAN MOTOR (v11)
+// ÄŸÅ¸ÂÂ¯ Ã„Â°Ã…ÂLEMÃ„Â° Ãƒâ€¡Ãƒâ€“ZÃƒÅ“P SONUCU AKTARAN MOTOR (v11)
 // ==========================================
 
 window.hucreyiOnayla = function() {
-    // 1. YazÄ±lan hÃ¼creyi bul (aktifHucreId Ã¼zerinden)
+    // 1. YazÃ„Â±lan hÃƒÂ¼creyi bul (aktifHucreId ÃƒÂ¼zerinden)
     const hucre = document.getElementById(window.aktifHucreId);
     
     if (!hucre) {
-        console.log("âš ï¸ Ã–nce bir hÃ¼creye tÄ±klamalÄ±sÄ±n hocam.");
+        console.log("Ã¢Å¡Â Ã¯Â¸Â Ãƒâ€“nce bir hÃƒÂ¼creye tÃ„Â±klamalÃ„Â±sÃ„Â±n hocam.");
         return;
     }
 
     let hamVeri = hucre.textContent.trim();
 
-    // HÃ¼cre boÅŸsa veya sadece "?" varsa iÅŸlem yapma
+    // HÃƒÂ¼cre boÃ…Å¸sa veya sadece "?" varsa iÃ…Å¸lem yapma
     if (hamVeri === "" || hamVeri === "?") return;
 
     try {
-        // 2. MATEMATÄ°KSEL TEMÄ°ZLÄ°K (Ä°ÅŸlem Ã¶nceliÄŸi hazÄ±rlÄ±ÄŸÄ±)
-        // 'x' iÅŸaretini '*' yapÄ±yoruz, diÄŸer gereksiz karakterleri temizliyoruz
+        // 2. MATEMATÃ„Â°KSEL TEMÃ„Â°ZLÃ„Â°K (Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸i hazÃ„Â±rlÃ„Â±Ã„Å¸Ã„Â±)
+        // 'x' iÃ…Å¸aretini '*' yapÃ„Â±yoruz, diÃ„Å¸er gereksiz karakterleri temizliyoruz
         let temizVeri = hamVeri.toLowerCase()
                                .replace(/x/g, '*')
                                .replace(/,/g, '.')
@@ -9830,47 +9865,47 @@ window.hucreyiOnayla = function() {
 
         if (typeof sonuc === 'number' && !isNaN(sonuc)) {
             
-            // --- KRÄ°TÄ°K ADIM: Ä°ÅŸlemi sil, sonucu yaz ---
+            // --- KRÃ„Â°TÃ„Â°K ADIM: Ã„Â°Ã…Å¸lemi sil, sonucu yaz ---
             hucre.textContent = sonuc; 
             
-            // GÃ¶rsel onay (Hafif yeÅŸil yanÄ±p sÃ¶ner)
+            // GÃƒÂ¶rsel onay (Hafif yeÃ…Å¸il yanÃ„Â±p sÃƒÂ¶ner)
             hucre.style.backgroundColor = "#d1fae5"; 
             setTimeout(() => { hucre.style.backgroundColor = "white"; }, 1000);
             
-            console.log(`âœ¨ Hesaplama BaÅŸarÄ±lÄ±: ${sonuc}`);
+            console.log(`Ã¢Å“Â¨ Hesaplama BaÃ…Å¸arÃ„Â±lÃ„Â±: ${sonuc}`);
 
-            // 4. GRAFÄ°ÄÄ° GÃœNCELLE
-            // Bu fonksiyon tablodaki yeni sayÄ±yÄ± okuyup grafiÄŸe noktayÄ± koyar
+            // 4. GRAFÃ„Â°Ã„ÂÃ„Â° GÃƒÅ“NCELLE
+            // Bu fonksiyon tablodaki yeni sayÃ„Â±yÃ„Â± okuyup grafiÃ„Å¸e noktayÃ„Â± koyar
             if (typeof canliGrafikCiz === 'function') {
                 canliGrafikCiz(); 
             }
 
         } else {
-            throw new Error("HesaplanamadÄ±");
+            throw new Error("HesaplanamadÃ„Â±");
         }
 
     } catch (e) {
-        console.error("âŒ HatalÄ± Ä°ÅŸlem:", e);
-        hucre.style.backgroundColor = "#fee2e2"; // Hata durumunda kÄ±rmÄ±zÄ±
+        console.error("Ã¢ÂÅ’ HatalÃ„Â± Ã„Â°Ã…Å¸lem:", e);
+        hucre.style.backgroundColor = "#fee2e2"; // Hata durumunda kÃ„Â±rmÃ„Â±zÃ„Â±
     }
 };
 
-// 1. Ã–NCE HESAPLAMA MANTIÄINI OLUÅTURALIM
+// 1. Ãƒâ€“NCE HESAPLAMA MANTIÃ„ÂINI OLUÃ…ÂTURALIM
 function matematikselCozucu(ifade) {
     try {
-        // 'x' iÅŸaretini '*' yap, 'Ã·' iÅŸaretini '/' yap
+        // 'x' iÃ…Å¸aretini '*' yap, 'ÃƒÂ·' iÃ…Å¸aretini '/' yap
         let temiz = ifade.toLowerCase()
                          .replace(/x/g, '*')
-                         .replace(/Ã—/g, '*')
-                         .replace(/Ã·/g, '/')
+                         .replace(/Ãƒâ€”/g, '*')
+                         .replace(/ÃƒÂ·/g, '/')
                          .replace(/,/g, '.');
 
-        // Sadece sayÄ±lar ve iÅŸlem iÅŸaretleri kalsÄ±n (GÃ¼venlik iÃ§in)
+        // Sadece sayÃ„Â±lar ve iÃ…Å¸lem iÃ…Å¸aretleri kalsÃ„Â±n (GÃƒÂ¼venlik iÃƒÂ§in)
         temiz = temiz.replace(/[^0-9+\-*/().]/g, '');
 
         if (temiz === "") return null;
 
-        // Ä°ÅŸlem Ã¶nceliÄŸine gÃ¶re hesapla (PEMDAS/BODMAS kuralÄ±)
+        // Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸ine gÃƒÂ¶re hesapla (PEMDAS/BODMAS kuralÃ„Â±)
         const sonuc = new Function(`return ${temiz}`)();
         
         return sonuc;
@@ -9879,32 +9914,32 @@ function matematikselCozucu(ifade) {
     }
 }
 
-// 2. SAYI PANELÄ°NDEKÄ° "TAMAM" BUTONUNA BU GÃ–REVÄ° BAÄLAYALIM
+// 2. SAYI PANELÃ„Â°NDEKÃ„Â° "TAMAM" BUTONUNA BU GÃƒâ€“REVÃ„Â° BAÃ„ÂLAYALIM
 const tamamButonu = document.getElementById('numPadClose');
 
 if (tamamButonu) {
     tamamButonu.addEventListener('click', function() {
-        const ekran = document.getElementById('currentInput'); // Paneldeki yazÄ± alanÄ±
+        const ekran = document.getElementById('currentInput'); // Paneldeki yazÃ„Â± alanÃ„Â±
         const hamYazi = ekran.innerText.trim();
         
         if (hamYazi !== "" && window.aktifHucreId) {
             const hedefHucre = document.getElementById(window.aktifHucreId);
             
-            // HESAPLAMA BURADA DEVREYE GÄ°RÄ°YOR
+            // HESAPLAMA BURADA DEVREYE GÃ„Â°RÃ„Â°YOR
             const sonuc = matematikselCozucu(hamYazi);
 
             if (sonuc !== null) {
-                // HÃ¼creye "150-0x15" deÄŸil, sadece sonucu (150) yaz
+                // HÃƒÂ¼creye "150-0x15" deÃ„Å¸il, sadece sonucu (150) yaz
                 hedefHucre.innerText = sonuc;
                 
-                // GrafiÄŸi gÃ¼ncellemek iÃ§in sizin ana fonksiyonunuzu Ã§aÄŸÄ±rÄ±yoruz
+                // GrafiÃ„Å¸i gÃƒÂ¼ncellemek iÃƒÂ§in sizin ana fonksiyonunuzu ÃƒÂ§aÃ„Å¸Ã„Â±rÃ„Â±yoruz
                 if (typeof canliGrafikCiz === 'function') {
                     canliGrafikCiz();
                 }
                 
-                console.log("âœ… Ä°ÅŸlem baÅŸarÄ±yla sonuca dÃ¶nÃ¼ÅŸtÃ¼rÃ¼ldÃ¼.");
+                console.log("Ã¢Å“â€¦ Ã„Â°Ã…Å¸lem baÃ…Å¸arÃ„Â±yla sonuca dÃƒÂ¶nÃƒÂ¼Ã…Å¸tÃƒÂ¼rÃƒÂ¼ldÃƒÂ¼.");
             } else {
-                // EÄŸer hesaplanamazsa olduÄŸu gibi aktar (hata vermemesi iÃ§in)
+                // EÃ„Å¸er hesaplanamazsa olduÃ„Å¸u gibi aktar (hata vermemesi iÃƒÂ§in)
                 hedefHucre.innerText = hamYazi;
             }
         }
@@ -9916,15 +9951,15 @@ if (tamamButonu) {
 }
 
 // ==========================================
-// 1. SÄ°STEMÄ°N YENÄ° BEYNÄ° (UNIFIED INPUT)
+// 1. SÃ„Â°STEMÃ„Â°N YENÃ„Â° BEYNÃ„Â° (UNIFIED INPUT)
 // ==========================================
 window.activeInputTarget = null; 
 
 window.openTableInput = function(targetId) {
-    console.log("ğŸ¯ Yeni Hedef Kilitlendi:", targetId);
+    console.log("ÄŸÅ¸ÂÂ¯ Yeni Hedef Kilitlendi:", targetId);
     window.activeInputTarget = targetId;
 
-    // Ã–nceki seÃ§im gÃ¶rsellerini temizle
+    // Ãƒâ€“nceki seÃƒÂ§im gÃƒÂ¶rsellerini temizle
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.style.backgroundColor = "white";
         el.style.borderColor = "#e0e7ff";
@@ -9937,13 +9972,13 @@ window.openTableInput = function(targetId) {
         box.style.borderColor = "#6366f1";     // indigo-500
         box.classList.add('ring-2', 'ring-indigo-400');
         
-        // Kutudaki mevcut deÄŸeri Numpad ekranÄ±na taÅŸÄ±
+        // Kutudaki mevcut deÃ„Å¸eri Numpad ekranÃ„Â±na taÃ…Å¸Ã„Â±
         let currentVal = box.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = currentVal;
     }
 
-    // Numpad'i gÃ¶rÃ¼nÃ¼r yap ve en Ã¼ste taÅŸÄ±
+    // Numpad'i gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap ve en ÃƒÂ¼ste taÃ…Å¸Ã„Â±
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -9953,14 +9988,14 @@ window.openTableInput = function(targetId) {
 };
 
 // ==========================================
-// 2. MATEMATÄ°KSEL MOTOR VE TAMAM BUTONU
+// 2. MATEMATÃ„Â°KSEL MOTOR VE TAMAM BUTONU
 // ==========================================
 function solveMathExpression(input) {
     try {
-        // 'x' ve 'Ã—' iÅŸaretlerini '*' yap, virgÃ¼lÃ¼ noktaya Ã§evir
+        // 'x' ve 'Ãƒâ€”' iÃ…Å¸aretlerini '*' yap, virgÃƒÂ¼lÃƒÂ¼ noktaya ÃƒÂ§evir
         let clean = input.toLowerCase()
-                         .replace(/x|Ã—/g, '*')
-                         .replace(/Ã·/g, '/')
+                         .replace(/x|Ãƒâ€”/g, '*')
+                         .replace(/ÃƒÂ·/g, '/')
                          .replace(/,/g, '.')
                          .replace(/[^0-9+\-*/().]/g, '');
         if (clean === "") return null;
@@ -9968,7 +10003,7 @@ function solveMathExpression(input) {
     } catch (e) { return null; }
 }
 
-// Tamam butonunu bul ve gÃ¶revini yeniden tanÄ±mla
+// Tamam butonunu bul ve gÃƒÂ¶revini yeniden tanÃ„Â±mla
 (function() {
     const btnTamam = document.getElementById('numPadClose');
     if (btnTamam) {
@@ -9980,7 +10015,7 @@ function solveMathExpression(input) {
             if (window.activeInputTarget && rawVal !== "") {
                 const targetBox = document.getElementById(window.activeInputTarget);
                 if (targetBox) {
-                    // Ä°ÅLEMÄ° Ã‡Ã–Z
+                    // Ã„Â°Ã…ÂLEMÃ„Â° Ãƒâ€¡Ãƒâ€“Z
                     let result = solveMathExpression(rawVal);
                     let finalVal = (result !== null && !isNaN(result)) ? result : rawVal;
 
@@ -9988,7 +10023,7 @@ function solveMathExpression(input) {
                     targetBox.textContent = finalVal;
                     targetBox.style.backgroundColor = "white";
 
-                    // 2. HafÄ±zaya (linearState) Kaydet
+                    // 2. HafÃ„Â±zaya (linearState) Kaydet
                     if (window.activeInputTarget.startsWith('table_input_')) {
                         const parts = window.activeInputTarget.split('_');
                         const col = parts[2]; // x veya y
@@ -10001,7 +10036,7 @@ function solveMathExpression(input) {
                     }
                 }
             }
-            // 3. Paneli Kapat ve GrafiÄŸi GÃ¼ncelle
+            // 3. Paneli Kapat ve GrafiÃ„Å¸i GÃƒÂ¼ncelle
             if (typeof forceClosePanel === 'function') forceClosePanel();
             if (typeof canliGrafikCiz === 'function') canliGrafikCiz();
             if (typeof checkTableFull_Final === 'function') checkTableFull_Final();
@@ -10010,23 +10045,23 @@ function solveMathExpression(input) {
 })();
 
 // ==========================================
-// 3. AKILLI GRAFÄ°K VE Y-EKSENÄ° Ã–LÃ‡EÄÄ° (YEDEK VE SÄ°LÄ°NDÄ°)
+// 3. AKILLI GRAFÃ„Â°K VE Y-EKSENÃ„Â° Ãƒâ€“LÃƒâ€¡EÃ„ÂÃ„Â° (YEDEK VE SÃ„Â°LÃ„Â°NDÃ„Â°)
 // ==========================================
-// window.canliGrafikCiz fonksiyonu silindi Ã§Ã¼nkÃ¼ yukarÄ±daki asÄ±l canliGrafikCiz ile Ã§akÄ±ÅŸÄ±yordu.
+// window.canliGrafikCiz fonksiyonu silindi ÃƒÂ§ÃƒÂ¼nkÃƒÂ¼ yukarÃ„Â±daki asÃ„Â±l canliGrafikCiz ile ÃƒÂ§akÃ„Â±Ã…Å¸Ã„Â±yordu.
 
 // ==========================================
-// ğŸ¯ MASTER OVERRIDE: SAYI AKTARMA TAMÄ°RCÄ°SÄ°
+// ÄŸÅ¸ÂÂ¯ MASTER OVERRIDE: SAYI AKTARMA TAMÃ„Â°RCÃ„Â°SÃ„Â°
 // ==========================================
 
-// 1. TEK VE GERÃ‡EK HEDEF DEÄÄ°ÅKENÄ°
+// 1. TEK VE GERÃƒâ€¡EK HEDEF DEÃ„ÂÃ„Â°Ã…ÂKENÃ„Â°
 window.MASTER_TARGET = null;
 
-// 2. KUTUYA TIKLAMA FONKSÄ°YONUNU SIFIRDAN KUR
+// 2. KUTUYA TIKLAMA FONKSÃ„Â°YONUNU SIFIRDAN KUR
 window.openTableInput = function(targetId) {
-    console.log("ğŸ“ Kutu SeÃ§ildi:", targetId);
+    console.log("ÄŸÅ¸â€œÂ Kutu SeÃƒÂ§ildi:", targetId);
     window.MASTER_TARGET = targetId;
 
-    // GÃ¶rsel efekt: DiÄŸerlerini sÃ¶ndÃ¼r, seÃ§ileni yak
+    // GÃƒÂ¶rsel efekt: DiÃ„Å¸erlerini sÃƒÂ¶ndÃƒÂ¼r, seÃƒÂ§ileni yak
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.style.backgroundColor = "white";
         el.style.borderColor = "#e0e7ff";
@@ -10034,16 +10069,16 @@ window.openTableInput = function(targetId) {
 
     const box = document.getElementById(targetId);
     if (box) {
-        box.style.backgroundColor = "#dbeafe"; // SeÃ§ili mavi
+        box.style.backgroundColor = "#dbeafe"; // SeÃƒÂ§ili mavi
         box.style.borderColor = "#2563eb";
         
-        // Kutuda Ã¶nceden yazan bir ÅŸey varsa Numpad ekranÄ±na al
+        // Kutuda ÃƒÂ¶nceden yazan bir Ã…Å¸ey varsa Numpad ekranÃ„Â±na al
         let existingVal = box.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = existingVal;
     }
 
-    // Paneli AÃ§ (TÃ¼m engelleri aÅŸarak)
+    // Paneli AÃƒÂ§ (TÃƒÂ¼m engelleri aÃ…Å¸arak)
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -10052,13 +10087,13 @@ window.openTableInput = function(targetId) {
     }
 };
 
-// 3. TAMAM (ONAY) BUTONUNU ZORLA YENÄ°DEN BAÄLA
+// 3. TAMAM (ONAY) BUTONUNU ZORLA YENÃ„Â°DEN BAÃ„ÂLA
 (function() {
     const checkAndFixButton = () => {
         const btnTamam = document.getElementById('numPadClose');
         if (!btnTamam) return;
 
-        // Eski tÃ¼m olaylarÄ± (click) temizleyip yenisini takÄ±yoruz
+        // Eski tÃƒÂ¼m olaylarÃ„Â± (click) temizleyip yenisini takÃ„Â±yoruz
         const masterConfirm = btnTamam.cloneNode(true);
         btnTamam.parentNode.replaceChild(masterConfirm, btnTamam);
 
@@ -10069,24 +10104,24 @@ window.openTableInput = function(targetId) {
             const display = document.getElementById('currentInput');
             let rawValue = display ? display.textContent.trim() : '';
             
-            console.log("âœ… Tamam'a basÄ±ldÄ±. DeÄŸer:", rawValue, "Hedef:", window.MASTER_TARGET);
+            console.log("Ã¢Å“â€¦ Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", rawValue, "Hedef:", window.MASTER_TARGET);
 
             if (window.MASTER_TARGET) {
                 const targetBox = document.getElementById(window.MASTER_TARGET);
                 if (targetBox) {
-                    // SayÄ± veya Ä°ÅŸlem KontrolÃ¼ (200-15*2 gibi)
+                    // SayÃ„Â± veya Ã„Â°Ã…Å¸lem KontrolÃƒÂ¼ (200-15*2 gibi)
                     let finalValue = "?";
                     if (rawValue !== "") {
                         try {
-                            // Basit matematik Ã§Ã¶zÃ¼cÃ¼
-                            let cleanExpr = rawValue.replace(/x|Ã—/g, '*').replace(/Ã·/g, '/').replace(/,/g, '.');
+                            // Basit matematik ÃƒÂ§ÃƒÂ¶zÃƒÂ¼cÃƒÂ¼
+                            let cleanExpr = rawValue.replace(/x|Ãƒâ€”/g, '*').replace(/ÃƒÂ·/g, '/').replace(/,/g, '.');
                             let solved = new Function(`return ${cleanExpr}`)();
                             if (solved !== null && !isNaN(solved)) {
-                                // OndalÄ±k kÄ±smÄ± varsa en fazla 2 basamak gÃ¶ster
+                                // OndalÃ„Â±k kÃ„Â±smÃ„Â± varsa en fazla 2 basamak gÃƒÂ¶ster
                                 if (solved % 1 !== 0) {
                                     solved = parseFloat(solved.toFixed(2));
                                 }
-                                // Sadece bir sayÄ± deÄŸilse ve iÃ§inde iÅŸlem karakteri varsa '= X' ekle
+                                // Sadece bir sayÃ„Â± deÃ„Å¸ilse ve iÃƒÂ§inde iÃ…Å¸lem karakteri varsa '= X' ekle
                                 if (/[+\-*/]/.test(cleanExpr) && rawValue !== solved.toString()) {
                                     finalValue = `${rawValue} = ${solved}`;
                                 } else {
@@ -10098,12 +10133,12 @@ window.openTableInput = function(targetId) {
                         } catch(err) { finalValue = rawValue; }
                     }
 
-                    // --- KRÄ°TÄ°K ADIM: TABLOYA YAZ ---
+                    // --- KRÃ„Â°TÃ„Â°K ADIM: TABLOYA YAZ ---
                     targetBox.textContent = finalValue;
                     targetBox.style.backgroundColor = "white";
                     targetBox.style.borderColor = "#e0e7ff";
 
-                    // --- YAMA: KONTROL BUTONUNU AÃ‡ (EÄŸik DÃ¼zlem KutularÄ± Ä°Ã§in) ---
+                    // --- YAMA: KONTROL BUTONUNU AÃƒâ€¡ (EÃ„Å¸ik DÃƒÂ¼zlem KutularÃ„Â± Ã„Â°ÃƒÂ§in) ---
                     if (['slopeAnswerBox', 'unknownBox', 'slopeNumBox', 'slopeDenomBox', 'leftDenomBox'].includes(window.MASTER_TARGET)) {
                         const checkBtn = document.getElementById('checkBtn');
                         if (checkBtn) {
@@ -10112,7 +10147,7 @@ window.openTableInput = function(targetId) {
                         }
                     }
 
-                    // --- HAFIZAYA (State) Ä°ÅLE ---
+                    // --- HAFIZAYA (State) Ã„Â°Ã…ÂLE ---
                     if (window.MASTER_TARGET.startsWith('table_input_')) {
                         const parts = window.MASTER_TARGET.split('_');
                         const col = parts[2]; // x veya y
@@ -10126,7 +10161,7 @@ window.openTableInput = function(targetId) {
                 }
             }
 
-            // Paneli Kapat ve GrafiÄŸi GÃ¼ncelle
+            // Paneli Kapat ve GrafiÃ„Å¸i GÃƒÂ¼ncelle
             if (typeof forceClosePanel === 'function') forceClosePanel();
             else {
                 const np = document.getElementById('numberPad');
@@ -10137,18 +10172,18 @@ window.openTableInput = function(targetId) {
                 if (display) display.textContent = '';
             }
             
-            // CanlÄ± grafiÄŸi tetikle (EÄŸik dÃ¼zlemde canvasÄ± bozmamak iÃ§in kÄ±sÄ±tlandÄ±)
+            // CanlÃ„Â± grafiÃ„Å¸i tetikle (EÃ„Å¸ik dÃƒÂ¼zlemde canvasÃ„Â± bozmamak iÃƒÂ§in kÃ„Â±sÃ„Â±tlandÃ„Â±)
             if (typeof canliGrafikCiz === 'function' && gameState.mode !== 'slope_incline') {
                 canliGrafikCiz();
             }
-            // Tablo doluluk kontrolÃ¼
+            // Tablo doluluk kontrolÃƒÂ¼
             if (typeof checkTableFull_Final === 'function' && gameState.mode !== 'slope_incline') {
                 checkTableFull_Final();
             }
         });
     };
 
-    // Sayfa yÃ¼klendiÄŸinde ve her saniye kontrol et (ID'ler dinamik deÄŸiÅŸirse diye)
+    // Sayfa yÃƒÂ¼klendiÃ„Å¸inde ve her saniye kontrol et (ID'ler dinamik deÃ„Å¸iÃ…Å¸irse diye)
     setTimeout(checkAndFixButton, 500);
     setInterval(checkAndFixButton, 3000); 
 })();

@@ -8043,5 +8043,13 @@ canvasKatmanZirhi.innerHTML = `
     }
 `;
 document.head.appendChild(canvasKatmanZirhi);
-w i n d o w . a d d E v e n t L i s t e n e r ( ' D O M C o n t e n t L o a d e d ' ,   ( )   = >   {   i f   ( w i n d o w . l o c a t i o n . h r e f . i n c l u d e s ( ' r e t u r n F r o m G a m e = t r u e ' ) )   {   s e t T i m e o u t ( ( )   = >   {   i f   ( t y p e o f   s e t L a n g u a g e   = = =   ' f u n c t i o n ' )   s e t L a n g u a g e ( ' t r ' ) ;   c o n s t   o   =   d o c u m e n t . g e t E l e m e n t B y I d ( ' l a n g u a g e - o v e r l a y ' ) ;   i f ( o )   o . s t y l e . d i s p l a y   =   ' n o n e ' ;   } ,   3 0 0 ) ;   }   } ) ;  
- 
+
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.href.includes('returnFromGame=true')) {
+        setTimeout(() => {
+            if (typeof setLanguage === 'function') setLanguage('tr');
+            const o = document.getElementById('language-overlay');
+            if(o) o.style.display = 'none';
+        }, 300);
+    }
+});

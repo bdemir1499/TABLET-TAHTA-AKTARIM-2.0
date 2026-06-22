@@ -1,13 +1,13 @@
-﻿// ÄŸÅ¸Å¡Â¨ ALAN ADI KÃ„Â°LÃ„Â°DÃ„Â° (DOMAIN BINDING) - ASKERÃ„Â° DÃƒÅ“ZEY KORUMA ÄŸÅ¸Å¡Â¨
+// 🚨 ALAN ADI KİLİDİ (DOMAIN BINDING) - ASKERİ DÜZEY KORUMA 🚨
 const gecerliAdresler = ["bdemir1499.github.io", "127.0.0.1", "localhost"];
 const mevcutAdres = window.location.hostname;
 const kacakKullanimMi = !gecerliAdresler.some(adres => mevcutAdres.includes(adres));
 if (kacakKullanimMi && mevcutAdres !== "") {
-    document.body.innerHTML = "<div style='color:red; text-align:center; margin-top:50px; font-family:sans-serif; font-size:20px; font-weight:bold;'>Ã¢â€ºâ€ GÃƒÅ“VENLÃ„Â°K Ã„Â°HLALÃ„Â°: Bu yazÃ„Â±lÃ„Â±m kopyalanmÃ„Â±Ã…Å¸tÃ„Â±r. LÃƒÂ¼tfen orijinal adresi kullanÃ„Â±n.</div>";
-    throw new Error("Korsan kullanÃ„Â±m tespit edildi, sistem durduruldu!");
+    document.body.innerHTML = "<div style='color:red; text-align:center; margin-top:50px; font-family:sans-serif; font-size:20px; font-weight:bold;'>⛔ GÜVENLİK İHLALİ: Bu yazılım kopyalanmıştır. Lütfen orijinal adresi kullanın.</div>";
+    throw new Error("Korsan kullanım tespit edildi, sistem durduruldu!");
 }
 
-// --- SAYFAYI YENÃ„Â°LEYÃ„Â°NCE (F5) ANA UYGULAMAYA DÃƒâ€“N (ARTÃ„Â°STLÃ„Â°K YAPMASIN) ---
+// --- SAYFAYI YENİLEYİNCE (F5) ANA UYGULAMAYA DÖN (ARTİSTLİK YAPMASIN) ---
 const navEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
 const isReload = (navEntry && navEntry.type === "reload") || (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
 
@@ -15,21 +15,21 @@ if (isReload) {
     window.location.href = '../index.html';
 }
 
-// En tepeye, diÃ„Å¸er deÃ„Å¸iÃ…Å¸kenlerin (gameState vb.) yanÃ„Â±na ekle:
-window.feedbackTimer = null; // Global zamanlayÃ„Â±cÃ„Â±
+// En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
+window.feedbackTimer = null; // Global zamanlayıcı
 
 // ==========================================
-// --- GÃƒâ€“LGE SENKRONÃ„Â°ZASYON Ã„Â°Ãƒâ€¡Ã„Â°N ORTAK AKIL (PRNG) ---
+// --- GÖLGE SENKRONİZASYON İÇİN ORTAK AKIL (PRNG) ---
 // ==========================================
-// Orijinal rastgeleliÃ„Å¸i sakla (GerÃƒÂ§ek rastgele bir baÃ…Å¸langÃ„Â±ÃƒÂ§ Ã…Å¸ifresi ÃƒÂ¼retmek iÃƒÂ§in)
+// Orijinal rastgeleliği sakla (Gerçek rastgele bir başlangıç şifresi üretmek için)
 const nativeRandom = Math.random;
 
-// Tabletin ilk aÃƒÂ§Ã„Â±lÃ„Â±Ã…Å¸Ã„Â±nda tamamen eÃ…Å¸siz bir Ã…Å¸ifre (seed) belirle
+// Tabletin ilk açılışında tamamen eşsiz bir şifre (seed) belirle
 let gameSeed = Math.floor(nativeRandom() * 1000000000);
 
 window.setGameSeed = function(seed) {
     gameSeed = seed;
-    console.log("ÄŸÅ¸ÂÂ² Ortak AkÃ„Â±l (Rastgelelik) Ã…Âifresi AyarlandÃ„Â±:", seed);
+    console.log("🎲 Ortak Akıl (Rastgelelik) Şifresi Ayarlandı:", seed);
 };
 
 // Math.random() fonksiyonunu deterministik PRNG fonksiyonumuzla (Mulberry32) eziyoruz
@@ -46,11 +46,11 @@ window.generateTrueRandomSeed = function() {
 
 
 const defaultConfig = {
-    game_title: "Koordinat Sistemi, DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler, DoÃ„Å¸rularÃ„Â±n Grafikleri, DoÃ„Å¸ru Denklemleri, EÃ„Å¸im, DÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m Geometrisi",
-    instructions_text: "DÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m tÃƒÂ¼rÃƒÂ¼nÃƒÂ¼ seÃƒÂ§ ve Ã…Å¸eklin yeni kÃƒÂ¶Ã…Å¸elerini iÃ…Å¸aretle",
-    translation_button: "Ãƒâ€“teleme",
-    reflection_button: "YansÃ„Â±ma",
-    new_shape_button: "Yeni Ã…Âekil",
+    game_title: "Koordinat Sistemi, Doğrusal İlişkiler, Doğruların Grafikleri, Doğru Denklemleri, Eğim, Dönüşüm Geometrisi",
+    instructions_text: "Dönüşüm türünü seç ve şeklin yeni köşelerini işaretle",
+    translation_button: "Öteleme",
+    reflection_button: "Yansıma",
+    new_shape_button: "Yeni Şekil",
     undo_button: "Geri Al",
     check_button: "Kontrol Et",
     primary_color: "#6366f1",
@@ -102,7 +102,7 @@ let linearState = {
 const linearQuestions = [
     {
         id: 1,
-        text: "Elif'in kumbarasÃ„Â±nda 80 lira parasÃ„Â± vardÃ„Â±r ve her hafta kumbarasÃ„Â±na 20 lira atmaktadÃ„Â±r. GeÃƒÂ§en hafta sayÃ„Â±sÃ„Â± (x) ve kumbarada biriken para miktarÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
+        text: "Elif'in kumbarasında 80 lira parası vardır ve her hafta kumbarasına 20 lira atmaktadır. Geçen hafta sayısı (x) ve kumbarada biriken para miktarı (y) arasındaki ilişkinin tablo ve grafiğini çiziniz.",
         xLabel: "Hafta (x)",
         yLabel: "Para (y)",
         initialValue: 80,
@@ -111,7 +111,7 @@ const linearQuestions = [
     },
     {
         id: 2,
-        text: "Bir otobÃƒÂ¼s her durakta 5 yolcu alÃ„Â±yor. Durak sayÃ„Â±sÃ„Â± (x) ve otobÃƒÂ¼steki toplam yolcu sayÃ„Â±sÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
+        text: "Bir otobüs her durakta 5 yolcu alıyor. Durak sayısı (x) ve otobüsteki toplam yolcu sayısı (y) arasındaki ilişkinin tablo ve grafiğini çiziniz.",
         xLabel: "Durak (x)",
         yLabel: "Yolcu (y)",
         initialValue: 0,
@@ -120,7 +120,7 @@ const linearQuestions = [
     },
     {
         id: 3,
-        text: "Bir kitaplÃ„Â±kta 150 kitap vardÃ„Â±r. Her ay 10 kitap satÃ„Â±lmaktadÃ„Â±r. GeÃƒÂ§en ay sayÃ„Â±sÃ„Â± (x) ve kalan kitap sayÃ„Â±sÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
+        text: "Bir kitaplıkta 150 kitap vardır. Her ay 10 kitap satılmaktadır. Geçen ay sayısı (x) ve kalan kitap sayısı (y) arasındaki ilişkinin tablo ve grafiğini çiziniz.",
         xLabel: "Ay (x)",
         yLabel: "Kitap (y)",
         initialValue: 150,
@@ -129,8 +129,8 @@ const linearQuestions = [
     },
     {
         id: 4,
-        text: "Ahmet her gÃƒÂ¼n 3 km koÃ…Å¸maktadÃ„Â±r. GÃƒÂ¼n sayÃ„Â±sÃ„Â± (x) ve toplam koÃ…Å¸ulan mesafe (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
-        xLabel: "GÃƒÂ¼n (x)",
+        text: "Ahmet her gün 3 km koşmaktadır. Gün sayısı (x) ve toplam koşulan mesafe (y) arasındaki ilişkinin tablo ve grafiğini çiziniz.",
+        xLabel: "Gün (x)",
         yLabel: "Mesafe (y)",
         initialValue: 0,
         rate: 3,
@@ -138,7 +138,7 @@ const linearQuestions = [
     },
     {
         id: 5,
-        text: "Bir su deposunda 200 litre su vardÃ„Â±r. Her saat 15 litre su kullanÃ„Â±lmaktadÃ„Â±r. GeÃƒÂ§en saat sayÃ„Â±sÃ„Â± (x) ve depodaki su miktarÃ„Â± (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
+        text: "Bir su deposunda 200 litre su vardır. Her saat 15 litre su kullanılmaktadır. Geçen saat sayısı (x) ve depodaki su miktarı (y) arasındaki ilişkinin tablo ve grafiğini çiziniz.",
         xLabel: "Saat (x)",
         yLabel: "Su (y)",
         initialValue: 200,
@@ -147,8 +147,8 @@ const linearQuestions = [
     },
     {
         id: 6,
-        text: "Bir aÃ„Å¸aÃƒÂ§ her yÃ„Â±l 12 cm bÃƒÂ¼yÃƒÂ¼mektedir. YÃ„Â±l sayÃ„Â±sÃ„Â± (x) ve aÃ„Å¸acÃ„Â±n boyu (y) arasÃ„Â±ndaki iliÃ…Å¸kinin tablo ve grafiÃ„Å¸ini ÃƒÂ§iziniz.",
-        xLabel: "YÃ„Â±l (x)",
+        text: "Bir ağaç her yıl 12 cm büyümektedir. Yıl sayısı (x) ve ağacın boyu (y) arasındaki ilişkinin tablo ve grafiğini çiziniz.",
+        xLabel: "Yıl (x)",
         yLabel: "Boy (cm) (y)",
         initialValue: 0,
         rate: 12,
@@ -162,9 +162,9 @@ const graphToQuestionScenarios = [
     {
         id: 1,
         graphType: 'plant_growth',
-        mainQuestion: 'Yandaki grafikte bir fidanÃ„Â±n aylara gÃƒÂ¶re boy deÃ„Å¸iÃ…Å¸imi verilmiÃ…Å¸tir. Buna gÃƒÂ¶re;',
+        mainQuestion: 'Yandaki grafikte bir fidanın aylara göre boy değişimi verilmiştir. Buna göre;',
         yAxisLabel: 'Bitkinin Boyu (cm)',
-        xAxisLabel: 'SÃƒÂ¼re (ay)',
+        xAxisLabel: 'Süre (ay)',
         yStart: 25,
         yStep: 3,
         yMax: 40,
@@ -180,31 +180,31 @@ const graphToQuestionScenarios = [
         questions: [
             {
                 id: 'a',
-                text: 'a) Fidan dikildiÃ„Å¸inde boyu kaÃƒÂ§ santimetredir?',
+                text: 'a) Fidan dikildiğinde boyu kaç santimetredir?',
                 correctAnswer: '25 cm',
                 options: ['25 cm', '28 cm', '22 cm', '30 cm']
             },
             {
                 id: 'b',
-                text: 'b) Bu fidan bir ayda kaÃƒÂ§ cm uzamaktadÃ„Â±r?',
+                text: 'b) Bu fidan bir ayda kaç cm uzamaktadır?',
                 correctAnswer: '3 cm',
                 options: ['3 cm', '2 cm', '4 cm', '5 cm']
             },
             {
                 id: 'c',
-                text: 'c) Bu fidanÃ„Â±n boyu (y) ve sÃƒÂ¼reye (x) baÃ„Å¸lÃ„Â± doÃ„Å¸rusal denklemini yazÃ„Â±nÃ„Â±z.',
+                text: 'c) Bu fidanın boyu (y) ve süreye (x) bağlı doğrusal denklemini yazınız.',
                 correctAnswer: 'y = 3x + 25',
                 options: ['y = 3x + 25', 'y = 2x + 25', 'y = 3x + 28', 'y = 4x + 25']
             },
             {
                 id: 'd',
-                text: 'd) 10. ayÃ„Â±n sonunda fidanÃ„Â±n boyu kaÃƒÂ§ cm dir?',
+                text: 'd) 10. ayın sonunda fidanın boyu kaç cm dir?',
                 correctAnswer: '55 cm',
                 options: ['55 cm', '58 cm', '52 cm', '60 cm']
             },
             {
                 id: 'e',
-                text: 'e) KaÃƒÂ§ ay sonra fidanÃ„Â±n boyu 85 cm dir?',
+                text: 'e) Kaç ay sonra fidanın boyu 85 cm dir?',
                 correctAnswer: '20 ay',
                 options: ['20 ay', '18 ay', '22 ay', '25 ay']
             }
@@ -213,9 +213,9 @@ const graphToQuestionScenarios = [
     {
         id: 2,
         graphType: 'water_tank',
-        mainQuestion: 'Yandaki grafikte iÃƒÂ§inde 200 ton su olan bir havuzdan tarla sulamak iÃƒÂ§in saatlere gÃƒÂ¶re alÃ„Â±nan su miktarÃ„Â± verilmiÃ…Å¸tir. Buna gÃƒÂ¶re;',
+        mainQuestion: 'Yandaki grafikte içinde 200 ton su olan bir havuzdan tarla sulamak için saatlere göre alınan su miktarı verilmiştir. Buna göre;',
         yAxisLabel: 'Havuzdaki Su (ton)',
-        xAxisLabel: 'SÃƒÂ¼re (saat)',
+        xAxisLabel: 'Süre (saat)',
         yMin: 160,
         yMax: 200,
         yStep: 5,
@@ -230,31 +230,31 @@ const graphToQuestionScenarios = [
         questions: [
             {
                 id: 'a',
-                text: 'a) BaÃ…Å¸langÃ„Â±ÃƒÂ§ta havuzda kaÃƒÂ§ ton su vardÃ„Â±r?',
+                text: 'a) Başlangıçta havuzda kaç ton su vardır?',
                 correctAnswer: '200 ton',
                 options: ['200 ton', '190 ton', '210 ton', '195 ton']
             },
             {
                 id: 'b',
-                text: 'b) Her saat kaÃƒÂ§ ton su alÃ„Â±nmaktadÃ„Â±r?',
+                text: 'b) Her saat kaç ton su alınmaktadır?',
                 correctAnswer: '5 ton',
                 options: ['5 ton', '4 ton', '6 ton', '10 ton']
             },
             {
                 id: 'c',
-                text: 'c) Havuzdaki su miktarÃ„Â± (y) ve sÃƒÂ¼reye (x) baÃ„Å¸lÃ„Â± doÃ„Å¸rusal denklemini yazÃ„Â±nÃ„Â±z.',
+                text: 'c) Havuzdaki su miktarı (y) ve süreye (x) bağlı doğrusal denklemini yazınız.',
                 correctAnswer: 'y = -5x + 200',
                 options: ['y = -5x + 200', 'y = -4x + 200', 'y = 5x + 200', 'y = -10x + 200']
             },
             {
                 id: 'd',
-                text: 'd) 12. saatin sonunda havuzda kaÃƒÂ§ ton su kalÃ„Â±r?',
+                text: 'd) 12. saatin sonunda havuzda kaç ton su kalır?',
                 correctAnswer: '140 ton',
                 options: ['140 ton', '130 ton', '150 ton', '145 ton']
             },
             {
                 id: 'e',
-                text: 'e) KaÃƒÂ§ saat sonra havuzda 100 ton su kalÃ„Â±r?',
+                text: 'e) Kaç saat sonra havuzda 100 ton su kalır?',
                 correctAnswer: '20 saat',
                 options: ['20 saat', '18 saat', '22 saat', '24 saat']
             }
@@ -263,7 +263,7 @@ const graphToQuestionScenarios = [
     {
         id: 3,
         graphType: 'two_cars_fuel',
-        mainQuestion: 'AÃ…Å¸aÃ„Å¸Ã„Â±daki grafikte aynÃ„Â± anda harekete baÃ…Å¸layan iki aracÃ„Â±n deposundaki benzinin zamana baÃ„Å¸lÃ„Â± deÃ„Å¸iÃ…Å¸imi gÃƒÂ¶sterilmiÃ…Å¸tir. Buna gÃƒÂ¶re;',
+        mainQuestion: 'Aşağıdaki grafikte aynı anda harekete başlayan iki aracın deposundaki benzinin zamana bağlı değişimi gösterilmiştir. Buna göre;',
         yAxisLabel: 'Benzin (L)',
         xAxisLabel: 'Zaman (saat)',
         yMin: 0,
@@ -274,7 +274,7 @@ const graphToQuestionScenarios = [
         lines: [
             {
                 color: '#3b82f6',
-                name: 'Mavi AraÃƒÂ§',
+                name: 'Mavi Araç',
                 points: [
                     {x: 0, y: 80},
                     {x: 8, y: 0}
@@ -282,7 +282,7 @@ const graphToQuestionScenarios = [
             },
             {
                 color: '#ef4444',
-                name: 'KÃ„Â±rmÃ„Â±zÃ„Â± AraÃƒÂ§',
+                name: 'Kırmızı Araç',
                 points: [
                     {x: 0, y: 40},
                     {x: 20, y: 0}
@@ -292,7 +292,7 @@ const graphToQuestionScenarios = [
         questions: [
             {
                 id: 'a',
-                text: 'KaÃƒÂ§Ã„Â±ncÃ„Â± saat sonunda araÃƒÂ§larÃ„Â±n depolarÃ„Â±ndaki kalan yakÃ„Â±t miktarlarÃ„Â± eÃ…Å¸it olur?',
+                text: 'Kaçıncı saat sonunda araçların depolarındaki kalan yakıt miktarları eşit olur?',
                 correctAnswer: '5. saat',
                 options: ['4. saat', '5. saat', '3. saat', '6. saat']
             }
@@ -301,9 +301,9 @@ const graphToQuestionScenarios = [
     {
         id: 4,
         graphType: 'article_reading',
-        mainQuestion: 'Mustafa okumasÃ„Â± gereken 400 makaleden her gÃƒÂ¼n eÃ…Å¸it sayÃ„Â±da makale seÃƒÂ§ip okuyor. Buna gÃƒÂ¶re aÃ…Å¸aÃ„Å¸Ã„Â±daki grafiÃ„Å¸e bakarak tÃƒÂ¼m makalelerin kaÃƒÂ§ gÃƒÂ¼nde biteceÃ„Å¸ini bulunuz?',
-        yAxisLabel: 'Makale SayÃ„Â±sÃ„Â±',
-        xAxisLabel: 'GÃƒÂ¼n',
+        mainQuestion: 'Mustafa okuması gereken 400 makaleden her gün eşit sayıda makale seçip okuyor. Buna göre aşağıdaki grafiğe bakarak tüm makalelerin kaç günde biteceğini bulunuz?',
+        yAxisLabel: 'Makale Sayısı',
+        xAxisLabel: 'Gün',
         yMin: 0,
         yMax: 400,
         yStep: 50,
@@ -318,7 +318,7 @@ const graphToQuestionScenarios = [
                     {x: 50, y: 200},
                     {x: 80, y: 80}
                 ],
-                label: 'Kalan Makale SayÃ„Â±sÃ„Â±',
+                label: 'Kalan Makale Sayısı',
                 labelPosition: 'end'
             },
             {
@@ -329,25 +329,25 @@ const graphToQuestionScenarios = [
                     {x: 50, y: 200},
                     {x: 80, y: 320}
                 ],
-                label: 'Okunan Makale SayÃ„Â±sÃ„Â±',
+                label: 'Okunan Makale Sayısı',
                 labelPosition: 'end'
             }
         ],
         questions: [
             {
                 id: 'a',
-                text: 'TÃƒÂ¼m makaleler kaÃƒÂ§ gÃƒÂ¼nde biter?',
-                correctAnswer: '100 gÃƒÂ¼n',
-                options: ['100 gÃƒÂ¼n', '80 gÃƒÂ¼n', '90 gÃƒÂ¼n', '120 gÃƒÂ¼n']
+                text: 'Tüm makaleler kaç günde biter?',
+                correctAnswer: '100 gün',
+                options: ['100 gün', '80 gün', '90 gün', '120 gün']
             }
         ]
     },
     {
         id: 5,
         graphType: 'taxi_fare',
-        mainQuestion: 'AÃ…Å¸aÃ„Å¸Ã„Â±da A ve B Ã…Å¸ehirlerindeki taksi ÃƒÂ¼cret tarifelerine iliÃ…Å¸kin iki doÃ„Å¸rusal grafik verilmiÃ…Å¸tir. Bu iki Ã…Å¸ehirde 20 km yol giden taksilere ÃƒÂ¶denecek ÃƒÂ¼cretler arasÃ„Â±ndaki fark kaÃƒÂ§ liradÃ„Â±r?',
-        yAxisLabel: 'ÃƒÅ“cret (TL)',
-        xAxisLabel: 'AlÃ„Â±nan Yol (km)',
+        mainQuestion: 'Aşağıda A ve B şehirlerindeki taksi ücret tarifelerine ilişkin iki doğrusal grafik verilmiştir. Bu iki şehirde 20 km yol giden taksilere ödenecek ücretler arasındaki fark kaç liradır?',
+        yAxisLabel: 'Ücret (TL)',
+        xAxisLabel: 'Alınan Yol (km)',
         yMin: 0,
         yMax: 100,
         yStep: 10,
@@ -356,31 +356,31 @@ const graphToQuestionScenarios = [
         lines: [
             {
                 color: '#3b82f6',
-                name: 'B Ã…Âehri',
+                name: 'B Şehri',
                 points: [
                     {x: 0, y: 50},
                     {x: 4, y: 60},
                     {x: 16, y: 90}
                 ],
-                label: 'B Ã…ÂEHRÃ„Â°',
+                label: 'B ŞEHRİ',
                 labelPosition: 'end'
             },
             {
                 color: '#ef4444',
-                name: 'A Ã…Âehri',
+                name: 'A Şehri',
                 points: [
                     {x: 0, y: 45},
                     {x: 4, y: 60},
                     {x: 12, y: 90}
                 ],
-                label: 'A Ã…ÂEHRÃ„Â°',
+                label: 'A ŞEHRİ',
                 labelPosition: 'end'
             }
         ],
         questions: [
             {
                 id: 'a',
-                text: 'Bu iki Ã…Å¸ehirde 20 km yol giden taksilere ÃƒÂ¶denecek ÃƒÂ¼cretler arasÃ„Â±ndaki fark kaÃƒÂ§ liradÃ„Â±r?',
+                text: 'Bu iki şehirde 20 km yol giden taksilere ödenecek ücretler arasındaki fark kaç liradır?',
                 correctAnswer: '20 TL',
                 options: ['10 TL', '15 TL', '20 TL', '5 TL']
             }
@@ -649,34 +649,34 @@ function showSlopeContent(type) {
     panel.classList.remove("hidden");
     answerBox.textContent = "?";
 
-    // EÃ„Å¸er elementler bulunamazsa hata vermesin
+    // Eğer elementler bulunamazsa hata vermesin
     if (!titleSpan || !infoText) {
-        console.warn("slopeQuestionPanel iÃƒÂ§inde gerekli span bulunamadÃ„Â±!");
+        console.warn("slopeQuestionPanel içinde gerekli span bulunamadı!");
         return;
     }
 
     switch(type) {
         case "incline":
-            titleSpan.textContent = "EÃ„Å¸ik DÃƒÂ¼zlem Sorusu";
-            infoText.textContent = "EÃ„Å¸im = Dikey / Yatay (ÃƒÂ¶rneÃ„Å¸in: yÃƒÂ¼kseklik / taban uzunluÃ„Å¸u)";
+            titleSpan.textContent = "Eğik Düzlem Sorusu";
+            infoText.textContent = "Eğim = Dikey / Yatay (örneğin: yükseklik / taban uzunluğu)";
             break;
         case "graph":
-            titleSpan.textContent = "Grafikten EÃ„Å¸im Sorusu";
-            infoText.textContent = "Grafikte iki nokta seÃƒÂ§ Ã¢â€ â€™ (y2 - y1) / (x2 - x1)";
+            titleSpan.textContent = "Grafikten Eğim Sorusu";
+            infoText.textContent = "Grafikte iki nokta seç → (y2 - y1) / (x2 - x1)";
             break;
         case "twoPoints":
-            titleSpan.textContent = "Ã„Â°ki Noktadan EÃ„Å¸im Sorusu";
-            infoText.textContent = "FormÃƒÂ¼l: m = (y2 - y1) / (x2 - x1)";
+            titleSpan.textContent = "İki Noktadan Eğim Sorusu";
+            infoText.textContent = "Formül: m = (y2 - y1) / (x2 - x1)";
             break;
         case "equation":
-            titleSpan.textContent = "Denklemden EÃ„Å¸im Sorusu";
-            infoText.textContent = "y = ax + b denkleminde eÃ„Å¸im katsayÃ„Â±sÃ„Â± aÃ¢â‚¬â„¢dÃ„Â±r.";
+            titleSpan.textContent = "Denklemden Eğim Sorusu";
+            infoText.textContent = "y = ax + b denkleminde eğim katsayısı a’dır.";
             break;
     }
 }
 
 
-// Butonlara tÃ„Â±klama olaylarÃ„Â±nÃ„Â± baÃ„Å¸la
+// Butonlara tıklama olaylarını bağla
 document.getElementById("btnSlopeIncline").addEventListener("click", () => showSlopeContent("incline"));
 document.getElementById("btnSlopeGraph").addEventListener("click", () => showSlopeContent("graph"));
 document.getElementById("btnSlopeTwoPoints").addEventListener("click", () => showSlopeContent("twoPoints"));
@@ -1064,7 +1064,7 @@ function applyReflection(points) {
 }
 
 
-// Ãƒâ€¡izimi gerÃƒÂ§ekleÃ…Å¸tiren ana fonksiyon
+// Çizimi gerçekleştiren ana fonksiyon
 function drawLogicalPoint(coord) {
     if (!gameState.mode) return;
     if (gameState.mode === 'placeToPoint') return;
@@ -1105,7 +1105,7 @@ function drawLogicalPoint(coord) {
     }
 }
 
-// P2P ÃƒÂ¼zerinden gelen koordinatÃ„Â± ÃƒÂ§iz
+// P2P üzerinden gelen koordinatı çiz
 window.p2pAddPointToCanvas = function(coord) {
     drawLogicalPoint(coord);
 };
@@ -1124,7 +1124,7 @@ function addPointToCanvas(clientX, clientY) {
 
     const coord = pixelToCoord(svgP.x, svgP.y);
 
-    // GÃƒâ€“LGE SENKRONÃ„Â°ZASYON: Tablet, Tahtaya mantÃ„Â±ksal koordinatÃ„Â± gÃƒÂ¶ndersin
+    // GÖLGE SENKRONİZASYON: Tablet, Tahtaya mantıksal koordinatı göndersin
     if (typeof window.sendP2PCanvasPointEvent === 'function') {
         window.sendP2PCanvasPointEvent(coord);
     }
@@ -1167,16 +1167,16 @@ function handleCanvasPointer(e) {
 
 
 function checkLinearGraph() {
-    // 1. Ãƒâ€¡izgi var mÃ„Â± kontrol et (Sadece 2 nokta olmalÃ„Â±)
+    // 1. Çizgi var mı kontrol et (Sadece 2 nokta olmalı)
     if (linearState.drawnPoints.length !== 2) {
         showFeedback(false);
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'LÃƒÂ¼tfen grafiÃ„Å¸i ÃƒÂ§iziniz! (Ã„Â°ki nokta arasÃ„Â±na ÃƒÂ§izgi ÃƒÂ§ekin)';
+        feedback.textContent = 'Lütfen grafiği çiziniz! (İki nokta arasına çizgi çekin)';
         feedback.style.opacity = '1';
         return;
     }
 
-    // 2. Tablodaki geÃƒÂ§erli noktalarÃ„Â± al
+    // 2. Tablodaki geçerli noktaları al
     const validPoints = [];
     for (let i = 0; i < Math.min(4, linearState.tableData.length); i++) {
         const row = linearState.tableData[i];
@@ -1184,7 +1184,7 @@ function checkLinearGraph() {
             const xVal = parseFloat(row.x);
             const yVal = row.calcY;
             if (!isNaN(xVal) && !isNaN(yVal) && isFinite(yVal)) {
-                // Sadece grid sÃ„Â±nÃ„Â±rlarÃ„Â± iÃƒÂ§indekileri al
+                // Sadece grid sınırları içindekileri al
                 const scaledY = yVal / linearState.yScale;
                 if (scaledY >= 0 && scaledY <= 9 && xVal >= 0 && xVal <= 9) {
                     validPoints.push({ x: xVal, scaledY: scaledY });
@@ -1197,14 +1197,14 @@ function checkLinearGraph() {
         showFeedback(false); return;
     }
 
-    // 3. Ãƒâ€¡izilen ÃƒÂ§izgiyi al (P1 ve P2)
+    // 3. Çizilen çizgiyi al (P1 ve P2)
     const p1 = linearState.drawnPoints[0];
     const p2 = linearState.drawnPoints[1];
 
-    // 4. Her bir tablo noktasÃ„Â±nÃ„Â±n ÃƒÂ§izilen ÃƒÂ§izgiye uzaklÃ„Â±Ã„Å¸Ã„Â±nÃ„Â± kontrol et
+    // 4. Her bir tablo noktasının çizilen çizgiye uzaklığını kontrol et
     let allPointsCovered = true;
     
-    // Ãƒâ€¡izgi denklemi veya uzaklÃ„Â±k hesabÃ„Â± iÃƒÂ§in vektÃƒÂ¶r hesabÃ„Â±
+    // Çizgi denklemi veya uzaklık hesabı için vektör hesabı
     // Line defined by p1 and p2. Distance from point p0 to line p1p2.
     // Distance = |(y2-y1)x0 - (x2-x1)y0 + x2y1 - y2x1| / sqrt((y2-y1)^2 + (x2-x1)^2)
     
@@ -1212,17 +1212,17 @@ function checkLinearGraph() {
     const x2 = p2.x, y2 = p2.y;
     const denominator = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
 
-    if (denominator === 0) { allPointsCovered = false; } // Nokta ÃƒÂ§izmiÃ…Å¸
+    if (denominator === 0) { allPointsCovered = false; } // Nokta çizmiş
     else {
         for (let point of validPoints) {
-            // Tablo noktasÃ„Â±nÃ„Â± piksele ÃƒÂ§evir
+            // Tablo noktasını piksele çevir
             const p0 = linearCoordToPixel(point.x, point.scaledY);
             
-            // UzaklÃ„Â±k formÃƒÂ¼lÃƒÂ¼
+            // Uzaklık formülü
             const numerator = Math.abs((y2 - y1) * p0.x - (x2 - x1) * p0.y + x2 * y1 - y2 * x1);
             const distance = numerator / denominator;
 
-            // Tolerans (ÃƒÂ¶rneÃ„Å¸in 15 piksel)
+            // Tolerans (örneğin 15 piksel)
             if (distance > 20) {
                 allPointsCovered = false;
                 break;
@@ -1230,12 +1230,12 @@ function checkLinearGraph() {
         }
     }
 
-    // 5. SonuÃƒÂ§
+    // 5. Sonuç
     if (allPointsCovered) {
         playSuccessSound();
         showFeedback(true);
         
-        // Ãƒâ€¡izgiyi yeÃ…Å¸il yap
+        // Çizgiyi yeşil yap
         const userLine = document.querySelector('.user-drawn-line');
         if (userLine) { 
             userLine.setAttribute('stroke', '#10b981'); 
@@ -1249,10 +1249,10 @@ function checkLinearGraph() {
         playErrorSound();
         showFeedback(false);
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'Ãƒâ€¡izgin tablodaki noktalardan geÃƒÂ§miyor! Tekrar dene.';
+        feedback.textContent = 'Çizgin tablodaki noktalardan geçmiyor! Tekrar dene.';
         feedback.style.opacity = '1';
         
-        // YanlÃ„Â±Ã…Å¸ ÃƒÂ§izgiyi sil
+        // Yanlış çizgiyi sil
         document.querySelectorAll('.user-drawn-line').forEach(line => line.remove());
         linearState.drawnPoints = [];
     }
@@ -1290,7 +1290,7 @@ function checkGraphAnswer() {
             } else {
                 // All questions completed
                 const feedback = document.getElementById('feedback');
-                feedback.textContent = 'Tebrikler! TÃƒÂ¼m sorularÃ„Â± tamamladÃ„Â±n! ÄŸÅ¸Ââ€°ÄŸÅ¸ÂÅ ';
+                feedback.textContent = 'Tebrikler! Tüm soruları tamamladın! 🎉🎊';
                 feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-xl shadow-2xl font-bold text-center transition-all bg-green-500 text-white text-2xl success-animation';
                 feedback.style.opacity = '1';
                 setTimeout(() => {
@@ -1654,56 +1654,56 @@ function checkAnswer() {
 
 
 // ==========================================
-// GERÃ„Â° BÃ„Â°LDÃ„Â°RÃ„Â°M FONKSÃ„Â°YONU (KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M)
+// GERİ BİLDİRİM FONKSİYONU (KESİN ÇÖZÜM)
 // ==========================================
 function showFeedback(correct) {
     const feedback = document.getElementById('feedback');
     if (!feedback) return;
 
-    // 1. Ãƒâ€“NCEKÃ„Â° SAYACI Ã„Â°PTAL ET (Ãƒâ€¡ok Ãƒâ€“nemli!)
-    // EÃ„Å¸er ekranda zaten bir yazÃ„Â± varsa ve kapanmayÃ„Â± bekliyorsa, o emri iptal et.
+    // 1. ÖNCEKİ SAYACI İPTAL ET (Çok Önemli!)
+    // Eğer ekranda zaten bir yazı varsa ve kapanmayı bekliyorsa, o emri iptal et.
     if (window.feedbackTimer) {
         clearTimeout(window.feedbackTimer);
         window.feedbackTimer = null;
     }
 
-    // 2. MesajÃ„Â± ve Rengi Ayarla
-    feedback.textContent = correct ? 'Harika! MÃƒÂ¼kemmel! ÄŸÅ¸Ââ€°' : 'Tekrar dene. KÃƒÂ¶Ã…Å¸eleri kontrol et. ÄŸÅ¸â€Â';
+    // 2. Mesajı ve Rengi Ayarla
+    feedback.textContent = correct ? 'Harika! Mükemmel! 🎉' : 'Tekrar dene. Köşeleri kontrol et. 🔍';
     
-    // Sabit classlar (Animasyon ve konum iÃƒÂ§in)
+    // Sabit classlar (Animasyon ve konum için)
     const baseClass = "fixed bottom-4 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-xl shadow-2xl font-bold text-center transition-opacity duration-500 z-[9999]";
     const colorClass = correct ? "bg-green-500 text-white text-2xl" : "bg-red-500 text-white text-lg";
     
     feedback.className = `${baseClass} ${colorClass}`;
 
-    // 3. GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r Yap
-    // (requestAnimationFrame, tarayÃ„Â±cÃ„Â±nÃ„Â±n stil deÃ„Å¸iÃ…Å¸imini yakalamasÃ„Â±nÃ„Â± saÃ„Å¸lar)
+    // 3. Görünür Yap
+    // (requestAnimationFrame, tarayıcının stil değişimini yakalamasını sağlar)
     requestAnimationFrame(() => {
         feedback.style.opacity = '1';
-        feedback.style.pointerEvents = 'auto'; // TÃ„Â±klanabilir olsun (seÃƒÂ§im engellemesin diye)
+        feedback.style.pointerEvents = 'auto'; // Tıklanabilir olsun (seçim engellemesin diye)
     });
 
-    // 4. YENÃ„Â° SAYAÃƒâ€¡ BAÃ…ÂLAT (3 Saniye Sonra Kapat)
+    // 4. YENİ SAYAÇ BAŞLAT (3 Saniye Sonra Kapat)
     window.feedbackTimer = setTimeout(() => {
         feedback.style.opacity = '0';
-        feedback.style.pointerEvents = 'none'; // Kaybolunca arkadaki butonlara engel olmasÃ„Â±n
+        feedback.style.pointerEvents = 'none'; // Kaybolunca arkadaki butonlara engel olmasın
     }, 3000);
 }
 
 
 function updateUI() {
-    const modeText = gameState.mode === 'translation' ? 'Ãƒâ€“teleme' :
-                     gameState.mode === 'reflection' ? 'YansÃ„Â±ma' :
-                     gameState.mode === 'pointToPlace' ? 'Nokta Ã¢â€ â€™ Yer' :
-                    gameState.mode === 'placeToPoint' ? 'Yer Ã¢â€ â€™ Nokta' : 'SeÃƒÂ§im yapÃ„Â±n';
+    const modeText = gameState.mode === 'translation' ? 'Öteleme' :
+                     gameState.mode === 'reflection' ? 'Yansıma' :
+                     gameState.mode === 'pointToPlace' ? 'Nokta → Yer' :
+                    gameState.mode === 'placeToPoint' ? 'Yer → Nokta' : 'Seçim yapın';
     document.getElementById('currentMode').textContent = modeText;
 
 
     const shapeNames = {
         'point': 'Nokta',
-        'segment': 'DoÃ„Å¸ru ParÃƒÂ§asÃ„Â±',
-        'triangle': 'ÃƒÅ“ÃƒÂ§gen',
-        'quadrilateral': 'DÃƒÂ¶rtgen'
+        'segment': 'Doğru Parçası',
+        'triangle': 'Üçgen',
+        'quadrilateral': 'Dörtgen'
     };
     document.getElementById('currentShape').textContent =
         gameState.shapeType ? shapeNames[gameState.shapeType] : '-';
@@ -1723,15 +1723,15 @@ function updateUI() {
     if (gameState.mode === 'translation' && gameState.translationVector) {
         const dx = gameState.translationVector.dx;
         const dy = gameState.translationVector.dy;
-        const xDirection = dx > 0 ? 'saÃ„Å¸a' : dx < 0 ? 'sola' : '';
-        const yDirection = dy > 0 ? 'yukarÃ„Â±' : dy < 0 ? 'aÃ…Å¸aÃ„Å¸Ã„Â±' : '';
+        const xDirection = dx > 0 ? 'sağa' : dx < 0 ? 'sola' : '';
+        const yDirection = dy > 0 ? 'yukarı' : dy < 0 ? 'aşağı' : '';
 
 
-        let message = 'ÄŸÅ¸â€œÂ Ã…Âekli ';
+        let message = '📍 Şekli ';
         if (dx !== 0) message += `X ekseninde ${Math.abs(dx)} birim ${xDirection}`;
         if (dx !== 0 && dy !== 0) message += ' ve ';
         if (dy !== 0) message += `Y ekseninde ${Math.abs(dy)} birim ${yDirection}`;
-        message += ' ÃƒÂ¶telemelisin!';
+        message += ' ötelemelisin!';
 
 
         transformText.textContent = message;
@@ -1739,19 +1739,19 @@ function updateUI() {
         coordinateOptions.classList.add('hidden');
     } else if (gameState.mode === 'reflection' && gameState.reflectionAxis) {
         const axis = gameState.reflectionAxis === 'x' ? 'X' : 'Y';
-        transformText.textContent = `ÄŸÅ¸ÂªÂ Ã…Âekli ${axis} eksenine gÃƒÂ¶re yansÃ„Â±tmalÃ„Â±sÃ„Â±n!`;
+        transformText.textContent = `🪞 Şekli ${axis} eksenine göre yansıtmalısın!`;
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.add('hidden');
     } else if (gameState.mode === 'pointToPlace' && gameState.targetPoint) {
-        transformText.textContent = `ÄŸÅ¸â€œÂ (${gameState.targetPoint.x}, ${gameState.targetPoint.y}) koordinatÃ„Â±nÃ„Â±n yerini tÃ„Â±klayarak gÃƒÂ¶ster!`;
+        transformText.textContent = `📍 (${gameState.targetPoint.x}, ${gameState.targetPoint.y}) koordinatının yerini tıklayarak göster!`;
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.add('hidden');
     } else if (gameState.mode === 'placeToPoint') {
-        transformText.textContent = 'ÄŸÅ¸â€œÂ AÃ…Å¸aÃ„Å¸Ã„Â±daki seÃƒÂ§eneklerden mavi noktanÃ„Â±n koordinatÃ„Â±nÃ„Â± seÃƒÂ§!';
+        transformText.textContent = '📍 Aşağıdaki seçeneklerden mavi noktanın koordinatını seç!';
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.remove('hidden');
     } else if (gameState.mode && !gameState.translationVector && !gameState.reflectionAxis && !gameState.targetPoint) {
-        transformText.textContent = 'ÄŸÅ¸ÂÂ¯ "Yeni Ã…Âekil" butonuna tÃ„Â±klayarak baÃ…Å¸la!';
+        transformText.textContent = '🎯 "Yeni Şekil" butonuna tıklayarak başla!';
         transformInfo.classList.remove('hidden');
         coordinateOptions.classList.add('hidden');
     } else {
@@ -1765,7 +1765,7 @@ function startNewRound() {
     if (!gameState.mode) {
         showFeedback(false);
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'Ãƒâ€“nce bir dÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m tÃƒÂ¼rÃƒÂ¼ seÃƒÂ§! ÄŸÅ¸ÂÂ¯';
+        feedback.textContent = 'Önce bir dönüşüm türü seç! 🎯';
         feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-semibold text-center transition-all bg-yellow-500 text-white';
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -1793,7 +1793,7 @@ function startNewRound() {
         const x = validCoords[Math.floor(Math.random() * validCoords.length)];
         const y = validCoords[Math.floor(Math.random() * validCoords.length)];
         gameState.targetPoint = { x, y };
-        gameState.shapeType = 'Nokta YerleÃ…Å¸tirme';
+        gameState.shapeType = 'Nokta Yerleştirme';
 
 
         document.getElementById('checkBtn').disabled = true;
@@ -1897,13 +1897,13 @@ function startNewRound() {
 document.getElementById('translationBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
     
-    // 2. Normal Canvas'Ã„Â± geri getir (Ãƒâ€¡ÃƒÂ¼nkÃƒÂ¼ grafik modlarÃ„Â± bunu gizlemiÃ…Å¸ olabilir)
+    // 2. Normal Canvas'ı geri getir (Çünkü grafik modları bunu gizlemiş olabilir)
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
     gameState.mode = 'translation';
     
-    // Buton stillerini gÃƒÂ¼ncelle
+    // Buton stillerini güncelle
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('selected-button'));
     this.classList.add('selected-button');
     
@@ -1915,7 +1915,7 @@ document.getElementById('translationBtn').addEventListener('click', function() {
 document.getElementById('reflectionBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
 
-    // 2. Normal Canvas'Ã„Â± geri getir
+    // 2. Normal Canvas'ı geri getir
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
@@ -1932,7 +1932,7 @@ document.getElementById('reflectionBtn').addEventListener('click', function() {
 document.getElementById('pointToPlaceBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
 
-    // 2. Normal Canvas'Ã„Â± geri getir
+    // 2. Normal Canvas'ı geri getir
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
@@ -1948,7 +1948,7 @@ document.getElementById('pointToPlaceBtn').addEventListener('click', function() 
 document.getElementById('placeToPointBtn').addEventListener('click', function() {
     clearAllScreens(); // 1. Temizlik
 
-    // 2. Normal Canvas'Ã„Â± geri getir
+    // 2. Normal Canvas'ı geri getir
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) regularCanvas.style.display = 'flex';
 
@@ -1963,50 +1963,50 @@ document.getElementById('placeToPointBtn').addEventListener('click', function() 
 
 
 // =========================================================
-// DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER BUTONU (GARANTÃ„Â°LÃ„Â° AÃƒâ€¡MA Ãƒâ€¡Ãƒâ€“ZÃƒÅ“MÃƒÅ“)
+// DOĞRUSAL İLİŞKİLER BUTONU (GARANTİLİ AÇMA ÇÖZÜMÜ)
 // =========================================================
 var btnLinear = document.getElementById('linearRelationsBtn');
 
 if (btnLinear) {
-    // 1. Butonu klonlayarak ÃƒÂ¼zerindeki tÃƒÂ¼m eski/hatalÃ„Â± kodlarÃ„Â± temizle
+    // 1. Butonu klonlayarak üzerindeki tüm eski/hatalı kodları temizle
     var newBtnLinear = btnLinear.cloneNode(true);
     btnLinear.parentNode.replaceChild(newBtnLinear, btnLinear);
 
-    // 2. TÃ„Â±klama olayÃ„Â±nÃ„Â± sÃ„Â±fÃ„Â±rdan yaz
+    // 2. Tıklama olayını sıfırdan yaz
     newBtnLinear.addEventListener('click', function() {
-        console.log("ÄŸÅ¸â€Ëœ DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler butonuna tÃ„Â±klandÃ„Â±.");
+        console.log("🔘 Doğrusal İlişkiler butonuna tıklandı.");
         
         const subButtons = document.getElementById('linearSubButtons');
         if (!subButtons) {
-            console.error("Ã¢ÂÅ’ HATA: linearSubButtons ID'li element bulunamadÃ„Â±!");
+            console.error("❌ HATA: linearSubButtons ID'li element bulunamadı!");
             return;
         }
 
-        // Ã…Âu an kapalÃ„Â± mÃ„Â±? (Hem class hem style kontrolÃƒÂ¼)
+        // Şu an kapalı mı? (Hem class hem style kontrolü)
         const isClosed = subButtons.classList.contains('hidden') || subButtons.style.display === 'none';
 
-        // 1. Ãƒâ€“nce ekranÃ„Â± temizle (Bu her Ã…Å¸eyi kapatÃ„Â±r)
+        // 1. Önce ekranı temizle (Bu her şeyi kapatır)
         if (typeof clearAllScreens === 'function') {
             clearAllScreens();
         }
 
-        // 2. EÃ„Å¸er menÃƒÂ¼ ÃƒÂ¶nceden kapalÃ„Â±ysa, Ã…Å¸imdi ZORLA AÃƒâ€¡
+        // 2. Eğer menü önceden kapalıysa, şimdi ZORLA AÇ
         if (isClosed) {
-            // Class'Ã„Â± kaldÃ„Â±r
+            // Class'ı kaldır
             subButtons.classList.remove('hidden');
             
-            // Stili zorla uygula (CSS !important etkisi yaratÃ„Â±r)
+            // Stili zorla uygula (CSS !important etkisi yaratır)
             subButtons.style.cssText = "display: flex !important; flex-wrap: wrap; justify-content: center; gap: 10px;";
             
-            // Butonu seÃƒÂ§ili yap
+            // Butonu seçili yap
             this.classList.add('selected-button');
-            console.log("Ã¢Å“â€¦ MenÃƒÂ¼ aÃƒÂ§Ã„Â±ldÃ„Â± (Zorla).");
+            console.log("✅ Menü açıldı (Zorla).");
         } 
         else {
-            console.log("ÄŸÅ¸â€Â» MenÃƒÂ¼ kapatÃ„Â±ldÃ„Â±.");
+            console.log("🔻 Menü kapatıldı.");
         }
 
-        // 3. DiÃ„Å¸er ana butonlarÃ„Â±n seÃƒÂ§im efektlerini temizle
+        // 3. Diğer ana butonların seçim efektlerini temizle
         const otherBtns = ['translationBtn', 'reflectionBtn', 'pointToPlaceBtn', 'placeToPointBtn', 'slopeBtn', 'lineGraphsBtn'];
         otherBtns.forEach(id => {
             const b = document.getElementById(id);
@@ -2015,54 +2015,54 @@ if (btnLinear) {
     });
 }
 
-// SORU -> GRAFÃ„Â°K BUTONU
+// SORU -> GRAFİK BUTONU
 document.getElementById('questionToGraphBtn').addEventListener('click', function() {
-    // Ãƒâ€“nce ekranÃ„Â± temizle
+    // Önce ekranı temizle
     clearAllScreens(); 
     
     // Modu ayarla
     gameState.mode = 'questionToGraph';
     
-    // Alt menÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut (clearAllScreens kapatmÃ„Â±Ã…Å¸ olabilir, geri aÃƒÂ§alÃ„Â±m)
+    // Alt menüyü açık tut (clearAllScreens kapatmış olabilir, geri açalım)
     document.getElementById('linearSubButtons').classList.remove('hidden');
 
-    // *** KRÃ„Â°TÃ„Â°K KISIM: DiÃ„Å¸er iÃƒÂ§eriÃ„Å¸i GÃ„Â°ZLE, bunu GÃƒâ€“STER ***
-    document.getElementById('graphQuestionContainer').classList.add('hidden'); // DiÃ„Å¸erini kapat
+    // *** KRİTİK KISIM: Diğer içeriği GİZLE, bunu GÖSTER ***
+    document.getElementById('graphQuestionContainer').classList.add('hidden'); // Diğerini kapat
     
     const linearContainer = document.getElementById('linearContainer');
-    linearContainer.classList.remove('hidden'); // Bunu aÃƒÂ§
+    linearContainer.classList.remove('hidden'); // Bunu aç
     linearContainer.style.display = 'flex';
     
-    // Canvas ve Tabloyu hazÃ„Â±rla
+    // Canvas ve Tabloyu hazırla
     const linearCanvas = document.getElementById('linearCanvas');
     linearCanvas.style.display = 'block';
     document.getElementById('dataTable').parentElement.style.display = 'flex';
     document.getElementById('tableConfirmBtn').style.display = 'block';
 
-    // Oyunu baÃ…Å¸lat
+    // Oyunu başlat
     startLinearQuestion();
 });
 
 
-// GRAFÃ„Â°K -> SORU BUTONU
+// GRAFİK -> SORU BUTONU
 document.getElementById('graphToQuestionBtn').addEventListener('click', function() {
-    // 1. Ãƒâ€“nceki her Ã…Å¸eyi (Yer-Nokta dahil) temizle
+    // 1. Önceki her şeyi (Yer-Nokta dahil) temizle
     clearAllScreens();
     
     // 2. Modu ayarla
     gameState.mode = 'graphToQuestion';
 
-    // 3. Alt menÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut (DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler menÃƒÂ¼sÃƒÂ¼)
+    // 3. Alt menüyü açık tut (Doğrusal İlişkiler menüsü)
     document.getElementById('linearSubButtons').classList.remove('hidden');
 
-    // 4. Bu modun container'Ã„Â±nÃ„Â± aÃƒÂ§
+    // 4. Bu modun container'ını aç
     const graphContainer = document.getElementById('graphQuestionContainer');
     if (graphContainer) {
         graphContainer.classList.remove('hidden');
-        graphContainer.style.display = 'flex'; // GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
+        graphContainer.style.display = 'flex'; // Görünür yap
     }
     
-    // 5. Oyunu baÃ…Å¸lat
+    // 5. Oyunu başlat
     startGraphToQuestion();
 });
 
@@ -2080,7 +2080,7 @@ function resetLinearQuestionPanel() {
 
 function startLinearQuestion() {
     resetLinearQuestionPanel();
-    // 1. Ãƒâ€“nce ekrandaki eski bildirimi temizle
+    // 1. Önce ekrandaki eski bildirimi temizle
     const feedback = document.getElementById('feedback');
     feedback.style.opacity = '0';
     feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-semibold text-center transition-all opacity-0 pointer-events-none';
@@ -2146,7 +2146,7 @@ function startGraphToQuestion() {
     // If all scenarios used, show completion message
     if (linearState.usedScenarioIds.length >= graphToQuestionScenarios.length) {
         const feedback = document.getElementById('feedback');
-        feedback.textContent = 'ÄŸÅ¸Ââ€° SorularÃ„Â±mÃ„Â±z bu kadar! Tebrikler! ÄŸÅ¸ÂÅ ';
+        feedback.textContent = '🎉 Sorularımız bu kadar! Tebrikler! 🎊';
         feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-8 py-4 rounded-xl shadow-2xl font-bold text-center transition-all bg-purple-500 text-white text-2xl success-animation';
         feedback.style.opacity = '1';
 
@@ -2174,9 +2174,9 @@ function startGraphToQuestion() {
 }
 
 
-// Y = ax + b Modunu BaÃ…Å¸lat
+// Y = ax + b Modunu Başlat
 function startYeqAXplusBRound() {
-    console.log("Y=ax+b Modu BaÃ…Å¸lÃ„Â±yor...");
+    console.log("Y=ax+b Modu Başlıyor...");
     resetLinearQuestionPanel();
     
     // 1. Eski bildirimleri temizle
@@ -2186,7 +2186,7 @@ function startYeqAXplusBRound() {
 
     gameState.mode = 'y_eq_ax_plus_b';
     
-    // Rastgele EÃ„Å¸im ve Sabit (Senkronize)
+    // Rastgele Eğim ve Sabit (Senkronize)
     const slopes = [1, -1, 2, -2, 3, -3]; 
     const intercepts = [-4, -3, -2, -1, 1, 2, 3, 4];
 
@@ -2205,7 +2205,7 @@ function startYeqAXplusBRound() {
     gameState.targetSlope = newSlope;
     gameState.targetIntercept = newIntercept;
     
-    // UI HazÃ„Â±rla
+    // UI Hazırla
     document.getElementById('linearQuestionPanel').classList.remove('hidden');
     document.getElementById('linearContainer').classList.remove('hidden');
     document.getElementById('linearContainer').style.display = 'flex';
@@ -2215,7 +2215,7 @@ function startYeqAXplusBRound() {
     document.getElementById('drawInstructionText').classList.add('hidden');
     
     const sign = newIntercept > 0 ? '+' : ''; 
-    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x ${sign}${newIntercept}. Tabloyu doldurarak grafiÃ„Å¸i ÃƒÂ§iziniz.`;
+    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x ${sign}${newIntercept}. Tabloyu doldurarak grafiği çiziniz.`;
 
     initializeLearningTable(); 
     drawFullGridForAX(); 
@@ -2233,7 +2233,7 @@ function startYeqAXplusBRound() {
 }
 
 function showGraphQuestion() {
-    // 1. Ãƒâ€“nce ekrandaki eski bildirimi temizle
+    // 1. Önce ekrandaki eski bildirimi temizle
     const feedback = document.getElementById('feedback');
     feedback.style.opacity = '0';
     feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-semibold text-center transition-all opacity-0 pointer-events-none';
@@ -2250,7 +2250,7 @@ function showGraphQuestion() {
     optionsContainer.innerHTML = '';
     
     // Deterministic shuffle (Fisher-Yates with a simple seed based on question text)
-    // Bu sayede tablet ve tahtada (farklÃ„Â± tarayÃ„Â±cÃ„Â± motorlarÃ„Â± olsa bile) Ã…Å¸Ã„Â±klar KESÃ„Â°NLÃ„Â°KLE aynÃ„Â± sÃ„Â±rada ÃƒÂ§Ã„Â±kar.
+    // Bu sayede tablet ve tahtada (farklı tarayıcı motorları olsa bile) şıklar KESİNLİKLE aynı sırada çıkar.
     const shuffledOptions = [...question.options];
     let seed = 0;
     for (let i = 0; i < question.text.length; i++) {
@@ -2294,7 +2294,7 @@ function drawScenarioGraph(scenario) {
     
     const isTwoLineScenario = scenario.lines !== undefined;
 
-    // Y Ekseni HesaplamalarÃ„Â±
+    // Y Ekseni Hesaplamaları
     let ySteps, yMin, yMax;
     if (scenario.yMin !== undefined && scenario.yMax !== undefined) {
         yMin = scenario.yMin;
@@ -2306,11 +2306,11 @@ function drawScenarioGraph(scenario) {
         ySteps = Math.ceil((yMax - yMin) / scenario.yStep) + 1;
     }
 
-    // X Ekseni HesaplamalarÃ„Â±
+    // X Ekseni Hesaplamaları
     const xStep = scenario.xStep || 1;
     const xSteps = Math.ceil(scenario.xMax / xStep);
 
-    // --- DÃ„Â°NAMÃ„Â°K AYARLAR ---
+    // --- DİNAMİK AYARLAR ---
     const GRID_SIZE = 50;
     const paddingLeft = 100;
     const paddingRight = 100;
@@ -2321,24 +2321,24 @@ function drawScenarioGraph(scenario) {
     const CANVAS_HEIGHT = paddingTop + (ySteps * GRID_SIZE) + paddingBottom;
     const ORIGIN = { x: paddingLeft, y: CANVAS_HEIGHT - paddingBottom };
 
-    // Canvas'Ã„Â± ÃƒÂ¶lÃƒÂ§ekle (Responsive)
+    // Canvas'ı ölçekle (Responsive)
     canvas.setAttribute('viewBox', `0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`);
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
-    // --- IZGARA Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
-    // Dikey Ãƒâ€¡izgiler
+    // --- IZGARA ÇİZİMİ ---
+    // Dikey Çizgiler
     for (let i = 0; i <= xSteps; i++) {
         const x = ORIGIN.x + i * GRID_SIZE;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x);
         line.setAttribute('y1', ORIGIN.y);
         line.setAttribute('x2', x);
-        line.setAttribute('y2', 50); // Tepe noktasÃ„Â±
+        line.setAttribute('y2', 50); // Tepe noktası
         line.setAttribute('stroke', '#6b7280');
         line.setAttribute('stroke-width', '1');
         canvas.appendChild(line);
     }
-    // Yatay Ãƒâ€¡izgiler
+    // Yatay Çizgiler
     for (let i = 0; i <= ySteps; i++) {
         const y = ORIGIN.y - i * GRID_SIZE;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -2375,10 +2375,10 @@ function drawScenarioGraph(scenario) {
     yArrow.setAttribute('fill', '#374151');
     canvas.appendChild(yArrow);
 
-    // --- EKSEN Ã„Â°SÃ„Â°MLERÃ„Â° (Daha uzaÃ„Å¸a konumlandÃ„Â±rÃ„Â±ldÃ„Â±) ---
+    // --- EKSEN İSİMLERİ (Daha uzağa konumlandırıldı) ---
     const xLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     xLabel.setAttribute('x', ORIGIN.x + (xSteps * GRID_SIZE) / 2);
-    xLabel.setAttribute('y', ORIGIN.y + 50); // AÃ…Å¸aÃ„Å¸Ã„Â±ya ÃƒÂ¶telendi
+    xLabel.setAttribute('y', ORIGIN.y + 50); // Aşağıya ötelendi
     xLabel.setAttribute('text-anchor', 'middle');
     xLabel.setAttribute('font-size', '16');
     xLabel.setAttribute('font-weight', 'bold');
@@ -2387,9 +2387,9 @@ function drawScenarioGraph(scenario) {
     canvas.appendChild(xLabel);
 
     const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    // DÃƒÂ¶ndÃƒÂ¼rÃƒÂ¼lmÃƒÂ¼Ã…Å¸ metin (Dikey yazÃ„Â±)
+    // Döndürülmüş metin (Dikey yazı)
     yLabel.setAttribute('transform', `rotate(-90, ${ORIGIN.x - 60}, ${ORIGIN.y - (ySteps * GRID_SIZE) / 2})`);
-    yLabel.setAttribute('x', ORIGIN.x - 60); // Sola ÃƒÂ¶telendi
+    yLabel.setAttribute('x', ORIGIN.x - 60); // Sola ötelendi
     yLabel.setAttribute('y', ORIGIN.y - (ySteps * GRID_SIZE) / 2);
     yLabel.setAttribute('text-anchor', 'middle');
     yLabel.setAttribute('font-size', '16');
@@ -2399,7 +2399,7 @@ function drawScenarioGraph(scenario) {
     canvas.appendChild(yLabel);
 
     // --- SAYILAR ---
-    // X Eksen SayÃ„Â±larÃ„Â±
+    // X Eksen Sayıları
     for (let i = 0; i <= xSteps; i++) {
         const x = ORIGIN.x + i * GRID_SIZE;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -2413,7 +2413,7 @@ function drawScenarioGraph(scenario) {
         canvas.appendChild(text);
     }
 
-    // Y Eksen SayÃ„Â±larÃ„Â±
+    // Y Eksen Sayıları
     const yValuesToShow = new Set();
     if (isTwoLineScenario) {
         scenario.lines.forEach(line => line.points.forEach(p => yValuesToShow.add(p.y)));
@@ -2428,9 +2428,9 @@ function drawScenarioGraph(scenario) {
 
         if (y >= 30 && y <= ORIGIN.y) {
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', ORIGIN.x - 15); // SayÃ„Â±lar eksenin hemen solunda
+            text.setAttribute('x', ORIGIN.x - 15); // Sayılar eksenin hemen solunda
             text.setAttribute('y', y + 5);
-            text.setAttribute('text-anchor', 'end'); // SaÃ„Å¸a yasla
+            text.setAttribute('text-anchor', 'end'); // Sağa yasla
             text.setAttribute('font-size', '13');
             text.setAttribute('font-weight', 'bold');
             text.setAttribute('fill', '#1f2937');
@@ -2439,10 +2439,10 @@ function drawScenarioGraph(scenario) {
         }
     });
 
-    // --- Ãƒâ€¡Ã„Â°ZGÃ„Â°LERÃ„Â°N Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
+    // --- ÇİZGİLERİN ÇİZİMİ ---
     if (isTwoLineScenario) {
         scenario.lines.forEach(lineData => {
-            // Ãƒâ€¡izgi parÃƒÂ§alarÃ„Â±
+            // Çizgi parçaları
             for (let i = 0; i < lineData.points.length - 1; i++) {
                 const p1 = lineData.points[i];
                 const p2 = lineData.points[i + 1];
@@ -2489,7 +2489,7 @@ function drawScenarioGraph(scenario) {
             }
         });
     } else {
-        // Tek Ãƒâ€¡izgi MantÃ„Â±Ã„Å¸Ã„Â±
+        // Tek Çizgi Mantığı
         for (let i = 0; i < scenario.points.length - 1; i++) {
             const p1 = scenario.points[i];
             const p2 = scenario.points[i + 1];
@@ -2579,7 +2579,7 @@ function openNumberPad(row, col) {
     linearState.currentInputValue = linearState.tableData[row][col] || '';
 
 
-    document.getElementById('currentInput').textContent = linearState.currentInputValue || 'DeÃ„Å¸er girin';
+    document.getElementById('currentInput').textContent = linearState.currentInputValue || 'Değer girin';
     document.getElementById('numberPad').classList.remove('hidden');
 }
 
@@ -2587,8 +2587,8 @@ function openNumberPad(row, col) {
 // Number pad handlers
 document.querySelectorAll('.num-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
-        e.preventDefault(); // Mobilde ve akÃ„Â±llÃ„Â± tahtada ÃƒÂ§ift dokunmayÃ„Â± engeller
-        e.stopImmediatePropagation(); // Kodun iki kere ÃƒÂ§alÃ„Â±Ã…Å¸masÃ„Â±nÃ„Â± KESÃ„Â°N OLARAK durdurur
+        e.preventDefault(); // Mobilde ve akıllı tahtada çift dokunmayı engeller
+        e.stopImmediatePropagation(); // Kodun iki kere çalışmasını KESİN OLARAK durdurur
 
         const value = this.dataset.value;
 
@@ -2598,44 +2598,44 @@ document.querySelectorAll('.num-btn').forEach(btn => {
             linearState.currentInputValue += value;
         }
 
-        document.getElementById('currentInput').textContent = linearState.currentInputValue || 'DeÃ„Å¸er girin';
+        document.getElementById('currentInput').textContent = linearState.currentInputValue || 'Değer girin';
     });
 });
 
 // ==========================================
-// GELÃ„Â°Ã…ÂMÃ„Â°Ã…Â MATEMATÃ„Â°KSEL Ã„Â°Ã…ÂLEM VE DENKLEM Ãƒâ€¡Ãƒâ€“ZÃƒÅ“CÃƒÅ“ (AKILLI SÃƒÅ“RÃƒÅ“M)
+// GELİŞMİŞ MATEMATİKSEL İŞLEM VE DENKLEM ÇÖZÜCÜ (AKILLI SÜRÜM)
 // ==========================================
 function evaluateMathExpression(formula, contextVal) {
     if (!formula) return '';
     
-    // 1. Temizlik ve StandartlaÃ…Å¸tÃ„Â±rma
+    // 1. Temizlik ve Standartlaştırma
     let expr = formula.toString().toLowerCase()
-        .replace(/\s+/g, '')       // BoÃ…Å¸luklarÃ„Â± sil
-        .replace(/Ãƒâ€”/g, '*')        // Ãƒâ€¡arpÃ„Â± -> *
-        .replace(/ÃƒÂ·/g, '/')        // BÃƒÂ¶lme -> /
-        .replace(/,/g, '.');       // VirgÃƒÂ¼l -> .
+        .replace(/\s+/g, '')       // Boşlukları sil
+        .replace(/×/g, '*')        // Çarpı -> *
+        .replace(/÷/g, '/')        // Bölme -> /
+        .replace(/,/g, '.');       // Virgül -> .
     
-    // 2. YazÃ„Â±m dÃƒÂ¼zeltme: "2x" -> "2*x"
+    // 2. Yazım düzeltme: "2x" -> "2*x"
     expr = expr.replace(/(\d)x/g, '$1*x'); 
 
-    // --- SENARYO A: X'i Ãƒâ€¡ÃƒÂ¶zmeye Ãƒâ€¡alÃ„Â±Ã…Å¸Ã„Â±yoruz (Denklem Modu) ---
-    // EÃ„Å¸er ifade iÃƒÂ§inde '=' varsa VE 'x' harfi geÃƒÂ§iyorsa
+    // --- SENARYO A: X'i Çözmeye Çalışıyoruz (Denklem Modu) ---
+    // Eğer ifade içinde '=' varsa VE 'x' harfi geçiyorsa
     if (expr.includes('=') && expr.includes('x')) {
         try {
             const parts = expr.split('=');
             let lhsStr = parts[0]; 
             let rhsStr = parts[1]; 
 
-            // EÃ„Å¸er tersten yazÃ„Â±ldÃ„Â±ysa (3x-4 = 0) dÃƒÂ¼zelt
+            // Eğer tersten yazıldıysa (3x-4 = 0) düzelt
             if (lhsStr.includes('x') && !rhsStr.includes('x')) {
                 [lhsStr, rhsStr] = [rhsStr, lhsStr];
             }
 
-            // Sol tarafÃ„Â± hesapla (Bu kÃ„Â±sÃ„Â±m hata verirse Scenario B'ye dÃƒÂ¼Ã…Å¸er)
-            // Ãƒâ€“rn: lhsStr="y" ise burasÃ„Â± patlar ve catch'e gider (Ã„Â°stediÃ„Å¸imiz bu)
+            // Sol tarafı hesapla (Bu kısım hata verirse Scenario B'ye düşer)
+            // Örn: lhsStr="y" ise burası patlar ve catch'e gider (İstediğimiz bu)
             const targetY = new Function('return ' + lhsStr)();
 
-            // SaÃ„Å¸ taraf testi (x=0 ve x=1 iÃƒÂ§in)
+            // Sağ taraf testi (x=0 ve x=1 için)
             const exprAt0 = rhsStr.replace(/x/g, '(0)'); 
             const yAt0 = new Function('return ' + exprAt0)();
 
@@ -2645,12 +2645,12 @@ function evaluateMathExpression(formula, contextVal) {
             const slope = yAt1 - yAt0;
             const intercept = yAt0;
             
-            // EÃ„Å¸im ÃƒÂ§ok kÃƒÂ¼ÃƒÂ§ÃƒÂ¼kse ÃƒÂ§ÃƒÂ¶zÃƒÂ¼lemez
-            if (Math.abs(slope) < 0.000001) throw new Error("EÃ„Å¸im sÃ„Â±fÃ„Â±r"); 
+            // Eğim çok küçükse çözülemez
+            if (Math.abs(slope) < 0.000001) throw new Error("Eğim sıfır"); 
 
             let solvedX = (targetY - intercept) / slope;
             
-            // Yuvarlama (4/3 gibi durumlar iÃƒÂ§in hassasiyet koruma)
+            // Yuvarlama (4/3 gibi durumlar için hassasiyet koruma)
             if (Math.abs(Math.round(solvedX) - solvedX) < 0.0001) {
                 solvedX = Math.round(solvedX);
             }
@@ -2658,16 +2658,16 @@ function evaluateMathExpression(formula, contextVal) {
             return solvedX;
 
         } catch (e) {
-            // Denklem ÃƒÂ§ÃƒÂ¶zÃƒÂ¼lemedi (ÃƒÂ¶rn: "y=..." yazÃ„Â±ldÃ„Â±), normal hesaplamaya devam et
-            // Konsola hata basmÃ„Â±yoruz ki kullanÃ„Â±cÃ„Â± gÃƒÂ¶rmesin, sessizce B planÃ„Â±na geÃƒÂ§iyoruz.
+            // Denklem çözülemedi (örn: "y=..." yazıldı), normal hesaplamaya devam et
+            // Konsola hata basmıyoruz ki kullanıcı görmesin, sessizce B planına geçiyoruz.
         }
     }
 
     // --- SENARYO B: Normal Hesaplama (Yedek Plan) ---
-    // x yerine verilen deÃ„Å¸eri koy
+    // x yerine verilen değeri koy
     expr = expr.replace(/x/g, `(${contextVal})`);
 
-    // EÃ…Å¸ittir varsa saÃ„Å¸ tarafÃ„Â± al
+    // Eşittir varsa sağ tarafı al
     if (expr.includes('=')) {
         expr = expr.split('=')[1];
     }
@@ -2683,13 +2683,13 @@ function evaluateMathExpression(formula, contextVal) {
 
 
 // ==========================================
-// NUMPAD TAMAM BUTONU (FÃ„Â°NAL VE DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â)
+// NUMPAD TAMAM BUTONU (FİNAL VE DÜZELTİLMİŞ)
 // ==========================================
 document.getElementById('numPadClose').addEventListener('click', function() {
-    console.log("Tamam'a basÃ„Â±ldÃ„Â±. Hedef:", activeInputTarget);
+    console.log("Tamam'a basıldı. Hedef:", activeInputTarget);
 
     try {
-        // 1. BASÃ„Â°T EÃ„ÂÃ„Â°M KUTUSU
+        // 1. BASİT EĞİM KUTUSU
         if (activeInputTarget === 'slope_simple') {
             const val = linearState.currentInputValue;
             if(val) {
@@ -2702,7 +2702,7 @@ document.getElementById('numPadClose').addEventListener('click', function() {
             activeInputTarget = null;
         }
 
-        // 2. BÃ„Â°LÃ„Â°NMEYEN KENAR KUTUSU (X)
+        // 2. BİLİNMEYEN KENAR KUTUSU (X)
         else if (activeInputTarget === 'slope_unknown') {
             const val = linearState.currentInputValue;
             if(val) {
@@ -2726,23 +2726,23 @@ else if (activeInputTarget === 'slope_intercept') {
              activeInputTarget = null;
         }
         
-        // 3. EÃ„ÂÃ„Â°M DÃƒâ€“NÃƒÅ“Ã…ÂÃƒÅ“M: PAY KUTUSU (Merdiven ve 0,5 Sorusu Ã„Â°ÃƒÂ§in)
+        // 3. EĞİM DÖNÜŞÜM: PAY KUTUSU (Merdiven ve 0,5 Sorusu İçin)
         else if (activeInputTarget === 'slope_conv_num') {
             const val = linearState.currentInputValue;
             if(val) {
                 document.getElementById('slopeNumBox').textContent = val;
-                // --- EKLENEN SATIR: BUTONU AKTÃ„Â°F ET ---
+                // --- EKLENEN SATIR: BUTONU AKTİF ET ---
                 document.getElementById('checkBtn').disabled = false;
             }
             activeInputTarget = null;
         }
 
-        // 4. EÃ„ÂÃ„Â°M DÃƒâ€“NÃƒÅ“Ã…ÂÃƒÅ“M: PAYDA KUTUSU (Merdiven ve 0,5 Sorusu Ã„Â°ÃƒÂ§in)
+        // 4. EĞİM DÖNÜŞÜM: PAYDA KUTUSU (Merdiven ve 0,5 Sorusu İçin)
         else if (activeInputTarget === 'slope_conv_denom') {
             const val = linearState.currentInputValue;
             if(val) {
                 document.getElementById('slopeDenomBox').textContent = val;
-                // --- EKLENEN SATIR: BUTONU AKTÃ„Â°F ET ---
+                // --- EKLENEN SATIR: BUTONU AKTİF ET ---
                 document.getElementById('checkBtn').disabled = false;
             }
             activeInputTarget = null;
@@ -2765,7 +2765,7 @@ else if (activeInputTarget === 'slope_intercept') {
                         }
                     }
 
-// --- YENÃ„Â° EÃ…ÂÃ„Â°TLÃ„Â°K KUTULARI ---
+// --- YENİ EŞİTLİK KUTULARI ---
         else if (['eq_left_num', 'eq_left_denom', 'eq_right_num', 'eq_right_denom'].includes(activeInputTarget)) {
              const val = linearState.currentInputValue;
              if(val) {
@@ -2811,7 +2811,7 @@ else if (activeInputTarget === 'slope_intercept') {
             }
         }
     } catch (e) {
-        console.error("NumPad iÃ…Å¸lem hatasÃ„Â±:", e);
+        console.error("NumPad işlem hatası:", e);
     } finally {
         document.getElementById('numberPad').classList.add('hidden');
         linearState.currentInputValue = '';
@@ -2829,7 +2829,7 @@ document.addEventListener('click', function(e) {
     const btn = e.target.closest ? e.target.closest('.num-btn') : null;
     if (btn) {
         const display = document.getElementById('currentInput');
-        if (display && (display.textContent.trim() === 'DeÃ„Å¸er girin' || display.textContent.trim() === '?')) {
+        if (display && (display.textContent.trim() === 'Değer girin' || display.textContent.trim() === '?')) {
             display.textContent = '';
             if (typeof linearState !== 'undefined') {
                 linearState.currentInputValue = '';
@@ -2848,7 +2848,7 @@ document.addEventListener('click', function(e) {
         e.stopImmediatePropagation();
         e.preventDefault();
         
-        console.log("y=ax moduna ÃƒÂ¶zel Tamam tuÃ…Å¸u yakalandÃ„Â±!");
+        console.log("y=ax moduna özel Tamam tuşu yakalandı!");
         
         if (!linearState.currentCell) return;
         const { row, col } = linearState.currentCell;
@@ -2884,8 +2884,8 @@ document.addEventListener('click', function(e) {
                 }
                 
             } catch(err) {
-                console.log("Hesaplama hatasÃ„Â±", err);
-                if (formula !== 'DeÃ„Å¸er girin' && formula !== '?') {
+                console.log("Hesaplama hatası", err);
+                if (formula !== 'Değer girin' && formula !== '?') {
                     cell.textContent = formula;
                 }
             }
@@ -2935,7 +2935,7 @@ function drawCoordinatePoint(row) {
             circle.classList.add(`point-${row}`);
             linearCanvas.appendChild(circle);
 
-            // --- YENÃ„Â°LÃ„Â°K BURADA: NoktanÃ„Â±n yanÃ„Â±ndaki (x,y) yazÃ„Â±sÃ„Â±nÃ„Â± kesirli yap ---
+            // --- YENİLİK BURADA: Noktanın yanındaki (x,y) yazısını kesirli yap ---
             const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             label.setAttribute('x', pixel.x + 12);
             label.setAttribute('y', pixel.y - 12);
@@ -2943,7 +2943,7 @@ function drawCoordinatePoint(row) {
             label.setAttribute('font-weight', 'bold');
             label.setAttribute('fill', '#6d28d9');
             
-            // Hem X hem Y iÃƒÂ§in kesir dÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼mÃƒÂ¼ yapÃ„Â±yoruz
+            // Hem X hem Y için kesir dönüşümü yapıyoruz
             const displayXVal = decimalToFraction(xVal);
             const displayYVal = decimalToFraction(yVal);
             
@@ -2955,7 +2955,7 @@ function drawCoordinatePoint(row) {
 }
 
 function recalculateYScale(maxYValue) {
-    // Mevcut Y deÃ„Å¸erlerini topla
+    // Mevcut Y değerlerini topla
     const allYValues = [];
     for (let i = 0; i < linearState.tableData.length; i++) {
         const val = linearState.tableData[i].calcY;
@@ -2972,7 +2972,7 @@ function recalculateYScale(maxYValue) {
 
     const actualMaxY = Math.max(...allYValues, maxYValue || 0);
 
-    // Ãƒâ€“lÃƒÂ§ekleme mantÃ„Â±Ã„Å¸Ã„Â± (AynÃ„Â± kalÃ„Â±yor)
+    // Ölçekleme mantığı (Aynı kalıyor)
     const niceScales = [1, 2, 5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 150, 200, 250, 300, 400, 500, 750, 1000];
     let scaleFound = false;
     for (let scale of niceScales) {
@@ -2992,7 +2992,7 @@ function recalculateYScale(maxYValue) {
         linearState.maxY = 9 * linearState.yScale;
     }
 
-    // Yeniden Ãƒâ€¡izim
+    // Yeniden Çizim
     initializeLinearCanvas();
 
     for (let i = 0; i < linearState.tableData.length; i++) {
@@ -3031,7 +3031,7 @@ function recalculateYScale(maxYValue) {
                 circle.classList.add(`y-marker-${i}`);
                 linearCanvas.appendChild(circle);
 
-                // --- YENÃ„Â°LÃ„Â°K BURADA: Ãƒâ€“lÃƒÂ§ekleme sonrasÃ„Â± Y etiketi ---
+                // --- YENİLİK BURADA: Ölçekleme sonrası Y etiketi ---
                 const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 yLabel.setAttribute('x', pixel.x - 35);
                 yLabel.setAttribute('y', pixel.y - 10);
@@ -3039,7 +3039,7 @@ function recalculateYScale(maxYValue) {
                 yLabel.setAttribute('font-weight', 'bold');
                 yLabel.setAttribute('fill', '#059669');
                 
-                // decimalToFraction kullanÃ„Â±mÃ„Â±
+                // decimalToFraction kullanımı
                 const displayYVal = decimalToFraction(yVal);
                 yLabel.textContent = `${displayYVal}`;
                 
@@ -3078,7 +3078,7 @@ document.getElementById('tableConfirmBtn').addEventListener('click', function() 
         cell.style.opacity = '0.6';
     });
     
-    // *** YENÃ„Â° EKLENEN KISIM: Lastik Ãƒâ€¡izgi AracÃ„Â±nÃ„Â± BaÃ…Å¸lat ***
+    // *** YENİ EKLENEN KISIM: Lastik Çizgi Aracını Başlat ***
     setupStraightLineDrawing(); 
 
     this.disabled = true;
@@ -3089,38 +3089,38 @@ function initializeLinearCanvas() {
     const linearCanvas = document.getElementById('linearCanvas');
     linearCanvas.innerHTML = ''; // Temizle
     
-    // viewBox'u JavaScript ÃƒÂ¼zerinden kesin olarak camelCase olarak ayarla
+    // viewBox'u JavaScript üzerinden kesin olarak camelCase olarak ayarla
     linearCanvas.setAttribute('viewBox', '0 0 500 500');
-    linearCanvas.style.backgroundColor = '#f8fafc'; // Arka planÃ„Â±n beyaz/farklÃ„Â± olduÃ„Å¸unu anlamak iÃƒÂ§in ÃƒÂ§ok hafif mavi
+    linearCanvas.style.backgroundColor = '#f8fafc'; // Arka planın beyaz/farklı olduğunu anlamak için çok hafif mavi
 
-    // Y-Ekseni ÃƒÂ¶lÃƒÂ§eÃ„Å¸ini sÃ„Â±fÃ„Â±rla
+    // Y-Ekseni ölçeğini sıfırla
     if(typeof linearState !== 'undefined') linearState.yScale = 1;
 
     const LINEAR_GRID = 50;
     const LINEAR_ORIGIN = { x: 50, y: 450 };
-    const EKSEN_UZUNLUGU = 8; // 8 kare ÃƒÂ§izelim
+    const EKSEN_UZUNLUGU = 8; // 8 kare çizelim
 
     // --- IZGARA ---
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     
-    // Dikey ÃƒÂ§izgiler
+    // Dikey çizgiler
     for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
         const x = LINEAR_ORIGIN.x + i * LINEAR_GRID;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', LINEAR_ORIGIN.y);
         line.setAttribute('x2', x); line.setAttribute('y2', LINEAR_ORIGIN.y - (EKSEN_UZUNLUGU * LINEAR_GRID));
-        line.setAttribute('stroke', '#d1d5db'); // DAHA BELÃ„Â°RGÃ„Â°N GRÃ„Â°
+        line.setAttribute('stroke', '#d1d5db'); // DAHA BELİRGİN GRİ
         line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
     
-    // Yatay ÃƒÂ§izgiler
+    // Yatay çizgiler
     for (let i = 0; i <= EKSEN_UZUNLUGU; i++) {
         const y = LINEAR_ORIGIN.y - i * LINEAR_GRID;
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', LINEAR_ORIGIN.x); line.setAttribute('y1', y);
         line.setAttribute('x2', LINEAR_ORIGIN.x + (EKSEN_UZUNLUGU * LINEAR_GRID)); line.setAttribute('y2', y);
-        line.setAttribute('stroke', '#d1d5db'); // DAHA BELÃ„Â°RGÃ„Â°N GRÃ„Â°
+        line.setAttribute('stroke', '#d1d5db'); // DAHA BELİRGİN GRİ
         line.setAttribute('stroke-width', '1');
         gridGroup.appendChild(line);
     }
@@ -3130,14 +3130,14 @@ function initializeLinearCanvas() {
     const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     xAxis.setAttribute('x1', LINEAR_ORIGIN.x); xAxis.setAttribute('y1', LINEAR_ORIGIN.y);
     xAxis.setAttribute('x2', LINEAR_ORIGIN.x + EKSEN_UZUNLUGU * LINEAR_GRID + 20); xAxis.setAttribute('y2', LINEAR_ORIGIN.y);
-    xAxis.setAttribute('stroke', '#111827'); // SÃ„Â°YAH
+    xAxis.setAttribute('stroke', '#111827'); // SİYAH
     xAxis.setAttribute('stroke-width', '3');
     linearCanvas.appendChild(xAxis);
 
     const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     yAxis.setAttribute('x1', LINEAR_ORIGIN.x); yAxis.setAttribute('y1', LINEAR_ORIGIN.y);
     yAxis.setAttribute('x2', LINEAR_ORIGIN.x); yAxis.setAttribute('y2', LINEAR_ORIGIN.y - EKSEN_UZUNLUGU * LINEAR_GRID - 20);
-    yAxis.setAttribute('stroke', '#111827'); // SÃ„Â°YAH
+    yAxis.setAttribute('stroke', '#111827'); // SİYAH
     yAxis.setAttribute('stroke-width', '3');
     linearCanvas.appendChild(yAxis);
 
@@ -3152,7 +3152,7 @@ function initializeLinearCanvas() {
     yArrow.setAttribute('fill', '#111827');
     linearCanvas.appendChild(yArrow);
 
-    // X Ekseni SayÃ„Â±larÃ„Â±
+    // X Ekseni Sayıları
     for (let i = 1; i <= EKSEN_UZUNLUGU; i++) {
         const x = LINEAR_ORIGIN.x + i * LINEAR_GRID;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -3163,7 +3163,7 @@ function initializeLinearCanvas() {
         linearCanvas.appendChild(text);
     }
 
-    // Y Ekseni SayÃ„Â±larÃ„Â± (Dinamik gÃƒÂ¼ncellenebilmesi iÃƒÂ§in ID veriyoruz)
+    // Y Ekseni Sayıları (Dinamik güncellenebilmesi için ID veriyoruz)
     for (let i = 1; i <= EKSEN_UZUNLUGU; i++) {
         const y = LINEAR_ORIGIN.y - i * LINEAR_GRID;
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -3280,7 +3280,7 @@ document.getElementById('undoBtn').addEventListener('click', function() {
 
 
 // ==========================================
-// OYUNU BAÃ…ÂLAT BUTONU (FABRÃ„Â°KA AYARLARINA DÃƒâ€“NÃƒÅ“Ã…Â)
+// OYUNU BAŞLAT BUTONU (FABRİKA AYARLARINA DÖNÜŞ)
 // ==========================================
 window.addEventListener('DOMContentLoaded', function() {
     const startGameBtn = document.getElementById('startGameBtn');
@@ -3289,27 +3289,27 @@ window.addEventListener('DOMContentLoaded', function() {
 
     if (startGameBtn && splashScreen && appElement) {
         startGameBtn.addEventListener('click', function(e) {
-            console.log('ÄŸÅ¸Å¡â‚¬ Oyun BaÃ…Å¸latÃ„Â±lÃ„Â±yor... (Tam SÃ„Â±fÃ„Â±rlama)');
+            console.log('🚀 Oyun Başlatılıyor... (Tam Sıfırlama)');
 
-            // 1. GiriÃ…Å¸ EkranÃ„Â±nÃ„Â± Kapat, UygulamayÃ„Â± AÃƒÂ§
+            // 1. Giriş Ekranını Kapat, Uygulamayı Aç
             splashScreen.classList.add('hidden');
             splashScreen.style.display = 'none';
             appElement.classList.remove('hidden');
             appElement.style.display = 'flex';
 
-            // AÃ„Å¸ ÃƒÂ¼zerinden KESÃ„Â°N baÃ…Å¸latma emri gÃƒÂ¶nder (GÃƒÂ¶lge Senkronizasyon Bypass)
-            // SADECE fiziksel tÃ„Â±klamalarda (e.isTrusted) gÃƒÂ¶nder ki sonsuz dÃƒÂ¶ngÃƒÂ¼ye girmesin!
+            // Ağ üzerinden KESİN başlatma emri gönder (Gölge Senkronizasyon Bypass)
+            // SADECE fiziksel tıklamalarda (e.isTrusted) gönder ki sonsuz döngüye girmesin!
             if (e && e.isTrusted && typeof myConnection !== 'undefined' && myConnection && isConnected) {
                 myConnection.send({ type: 'force_start_game' });
             }
 
-            // 2. TÃƒÅ“M EKRANLARI VE MENÃƒÅ“LERÃ„Â° KAPAT
+            // 2. TÜM EKRANLARI VE MENÜLERİ KAPAT
             if (typeof clearAllScreens === 'function') {
                 clearAllScreens();
             }
 
             // 3. OYUN DURUMLARINI (STATE) SIFIRLA
-            // Bu kÃ„Â±sÃ„Â±m ÃƒÂ§ok ÃƒÂ¶nemli, oyunun "devam ettiÃ„Å¸ini" sanmasÃ„Â±nÃ„Â± engeller.
+            // Bu kısım çok önemli, oyunun "devam ettiğini" sanmasını engeller.
             
             // Genel Durum
             if (typeof gameState !== 'undefined') {
@@ -3320,20 +3320,20 @@ window.addEventListener('DOMContentLoaded', function() {
                 gameState.transformedShape = null;
             }
 
-            // EÃ„Å¸im Modu Durumu (Sorunun kaynaÃ„Å¸Ã„Â± burasÃ„Â± olabilir)
+            // Eğim Modu Durumu (Sorunun kaynağı burası olabilir)
             if (typeof slopeState !== 'undefined') {
                 slopeState.currentQuestion = 0;
-                slopeState.activeMode = null; // Hangi modda olduÃ„Å¸unu unuttur
+                slopeState.activeMode = null; // Hangi modda olduğunu unuttur
             }
 
-            // DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler Durumu
+            // Doğrusal İlişkiler Durumu
             if (typeof linearState !== 'undefined') {
                 linearState.currentQuestion = null;
                 linearState.drawnPoints = [];
                 linearState.isDrawing = false;
             }
 
-            // ZamanlayÃ„Â±cÃ„Â±larÃ„Â± Durdur
+            // Zamanlayıcıları Durdur
             if (typeof window.feedbackTimer !== 'undefined' && window.feedbackTimer) {
                 clearTimeout(window.feedbackTimer);
                 window.feedbackTimer = null;
@@ -3345,10 +3345,10 @@ window.addEventListener('DOMContentLoaded', function() {
             const fb = document.getElementById('feedback');
             if(fb) fb.style.opacity = '0';
 
-            // 4. BUTON EFEKTLERÃ„Â°NÃ„Â° TEMÃ„Â°ZLE
+            // 4. BUTON EFEKTLERİNİ TEMİZLE
             document.querySelectorAll('.nav-btn, button').forEach(btn => {
                 btn.classList.remove('selected-button');
-                // TÃƒÂ¼m renk halkalarÃ„Â±nÃ„Â± sil
+                // Tüm renk halkalarını sil
                 btn.classList.remove(
                     'ring-2', 'ring-offset-1', 
                     'ring-orange-500', 'ring-cyan-500', 'ring-blue-500', 
@@ -3357,32 +3357,32 @@ window.addEventListener('DOMContentLoaded', function() {
                 );
             });
 
-            // 5. NORMAL CANVAS'I (BOÃ…Â IZGARA) GÃƒâ€“STER
-            // DiÃ„Å¸er ÃƒÂ¶zel modlar kapandÃ„Â±Ã„Å¸Ã„Â± iÃƒÂ§in kullanÃ„Â±cÃ„Â± boÃ…Å¸lukta kalmasÃ„Â±n.
+            // 5. NORMAL CANVAS'I (BOŞ IZGARA) GÖSTER
+            // Diğer özel modlar kapandığı için kullanıcı boşlukta kalmasın.
             const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
             if (regularCanvas) {
                 regularCanvas.style.display = 'flex';
                 if (typeof initCanvas === 'function') initCanvas();
             }
 
-            console.log("Ã¢Å“â€¦ Oyun Fabrika AyarlarÃ„Â±na DÃƒÂ¶ndÃƒÂ¼.");
+            console.log("✅ Oyun Fabrika Ayarlarına Döndü.");
         });
     }
 });
 
 
 
-// --- DoÃ„Å¸ru Grafikleri Buton MantÃ„Â±Ã„Å¸Ã„Â± ---
+// --- Doğru Grafikleri Buton Mantığı ---
 document.getElementById('lineGraphsBtn').addEventListener('click', function() {
     const subButtons = document.getElementById('lineGraphSubButtons');
     
-    // AÃƒÂ§Ã„Â±k mÃ„Â± kapalÃ„Â± mÃ„Â± kontrolÃƒÂ¼ (Toggle mantÃ„Â±Ã„Å¸Ã„Â±)
+    // Açık mı kapalı mı kontrolü (Toggle mantığı)
     const isHidden = subButtons.classList.contains('hidden');
 
-    // 1. EkranÃ„Â± temizle
+    // 1. Ekranı temizle
     clearAllScreens();
 
-    // 2. Duruma gÃƒÂ¶re aÃƒÂ§ veya kapa
+    // 2. Duruma göre aç veya kapa
     if (isHidden) {
         subButtons.classList.remove('hidden');
         this.classList.add('selected-button');
@@ -3391,11 +3391,11 @@ document.getElementById('lineGraphsBtn').addEventListener('click', function() {
         this.classList.remove('selected-button');
     }
 
-    // 3. DiÃ„Å¸er menÃƒÂ¼yÃƒÂ¼ (DoÃ„Å¸rusal Ã„Â°liÃ…Å¸kiler) kapat
+    // 3. Diğer menüyü (Doğrusal İlişkiler) kapat
     document.getElementById('linearSubButtons').classList.add('hidden');
     document.getElementById('linearRelationsBtn').classList.remove('selected-button');
 
-    // 4. DiÃ„Å¸er ana buton seÃƒÂ§imlerini kaldÃ„Â±r
+    // 4. Diğer ana buton seçimlerini kaldır
     document.getElementById('translationBtn').classList.remove('selected-button');
     document.getElementById('reflectionBtn').classList.remove('selected-button');
     document.getElementById('pointToPlaceBtn').classList.remove('selected-button');
@@ -3410,26 +3410,26 @@ graphSubIds.forEach(id => {
     const btn = document.getElementById(id);
     if (btn) {
         btn.addEventListener('click', function() {
-            // Hepsinin seÃƒÂ§imini kaldÃ„Â±r
+            // Hepsinin seçimini kaldır
             graphSubIds.forEach(btnId => {
                 const b = document.getElementById(btnId);
                 if (b) b.classList.remove('ring-2', 'ring-offset-1', 'ring-cyan-500');
             });
-            // TÃ„Â±klanana ekle
+            // Tıklanana ekle
             this.classList.add('ring-2', 'ring-offset-1', 'ring-cyan-500');
         });
     }
 });
 // ==========================================
-// YENÃ„Â° Ãƒâ€“ZELLÃ„Â°KLER: X=a ve Y=b (HÃ„Â°ZALI IZGARA)
+// YENİ ÖZELLİKLER: X=a ve Y=b (HİZALI IZGARA)
 // ==========================================
 
-// 1. TAM KOORDÃ„Â°NAT SÃ„Â°STEMÃ„Â°NÃ„Â° Ãƒâ€¡Ã„Â°ZEN FONKSÃ„Â°YON (Ãƒâ€¡izim kodlarÃ„Â± kaldÃ„Â±rÃ„Â±ldÃ„Â±, sadece Ã„Â±zgara)
+// 1. TAM KOORDİNAT SİSTEMİNİ ÇİZEN FONKSİYON (Çizim kodları kaldırıldı, sadece ızgara)
 function initializeFullCanvas() {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = ''; 
 
-    // EkranÃ„Â± sabitle
+    // Ekranı sabitle
     canvas.setAttribute('viewBox', '0 0 500 500');
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     canvas.style.width = '100%';
@@ -3444,7 +3444,7 @@ function initializeFullCanvas() {
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     const startOffset = CENTER_X % FULL_GRID;
     
-    // Ãƒâ€¡izgiler
+    // Çizgiler
     for (let x = startOffset; x <= FULL_SIZE; x += FULL_GRID) {
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', x); line.setAttribute('y1', 0);
@@ -3500,7 +3500,7 @@ function initializeFullCanvas() {
     canvas.appendChild(origin);
 }
 
-    // --- Ãƒâ€¡Ã„Â°ZÃ„Â°M Ã„Â°Ã…ÂLEVÃ„Â° ---
+    // --- ÇİZİM İŞLEVİ ---
     let isMouseDown = false;
     let lastPoint = null;
 
@@ -3551,18 +3551,18 @@ function startXeqARound() {
     const feedback = document.getElementById('feedback');
     if(feedback) feedback.style.opacity = '0';
 
-    // 2. PANELÃ„Â° BUL VE HAPÃ„Â°STEN KURTAR (ANA GÃƒâ€“VDEYE TAÃ…ÂI)
+    // 2. PANELİ BUL VE HAPİSTEN KURTAR (ANA GÖVDEYE TAŞI)
     const panel = document.getElementById('linearQuestionPanel');
     
-    // EÃ„Å¸er panel bir Ã…Å¸eyin iÃƒÂ§indeyse, onu oradan ÃƒÂ§Ã„Â±karÃ„Â±p doÃ„Å¸rudan body'ye ekle
+    // Eğer panel bir şeyin içindeyse, onu oradan çıkarıp doğrudan body'ye ekle
     if (panel.parentElement !== document.body) {
         document.body.appendChild(panel);
     }
     
     panel.classList.remove('hidden');
 
-    // 3. KONUMLANDIR (TEPEYE SABÃ„Â°TLE)
-    // position: absolute yerine fixed kullanÃ„Â±yoruz ki sayfa kaysa bile tepede kalsÃ„Â±n
+    // 3. KONUMLANDIR (TEPEYE SABİTLE)
+    // position: absolute yerine fixed kullanıyoruz ki sayfa kaysa bile tepede kalsın
     panel.style.cssText = `
         position: fixed !important; 
         top: 200px !important; 
@@ -3579,11 +3579,11 @@ function startXeqARound() {
         box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
     `;
 
-    // 4. Ã„Â°Ãƒâ€¡ERÃ„Â°Ã„ÂÃ„Â° YENÃ„Â°DEN YAZ
-    // Soru metni div'ini sÃ„Â±fÃ„Â±rdan oluÃ…Å¸turuyoruz
-    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazÃ„Â±rlanÃ„Â±yor...</div>';
+    // 4. İÇERİĞİ YENİDEN YAZ
+    // Soru metni div'ini sıfırdan oluşturuyoruz
+    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazırlanıyor...</div>';
 
-    // 5. Grafik AlanÃ„Â±nÃ„Â± Ayarla
+    // 5. Grafik Alanını Ayarla
     const linearContainer = document.getElementById('linearContainer');
     linearContainer.classList.remove('hidden');
     linearContainer.style.display = 'block';
@@ -3591,14 +3591,14 @@ function startXeqARound() {
     linearContainer.style.width = '600px';
     linearContainer.style.height = '600px';
     linearContainer.style.margin = '0 auto';
-    linearContainer.style.overflow = 'visible'; // TaÃ…Å¸arsa da gÃƒÂ¶rÃƒÂ¼nsÃƒÂ¼n
+    linearContainer.style.overflow = 'visible'; // Taşarsa da görünsün
 
     // Gereksizleri Gizle
     if(document.getElementById('dataTable')) document.getElementById('dataTable').parentElement.style.display = 'none';
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     if(document.getElementById('drawInstructionText')) document.getElementById('drawInstructionText').classList.remove('hidden');
     
-    // 6. Soru MantÃ„Â±Ã„Å¸Ã„Â± (Senkronize)
+    // 6. Soru Mantığı (Senkronize)
     const targets = [4, -3, 2, -5, 3, -2, 5, -4];
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
     const urlParams = new URLSearchParams(window.location.search);
@@ -3610,11 +3610,11 @@ function startXeqARound() {
     let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
-    // 7. METNÃ„Â° GÃƒÅ“NCELLE
+    // 7. METNİ GÜNCELLE
     const qText = document.getElementById('questionText');
-    if(qText) qText.textContent = `AÃ…Å¸aÃ„Å¸Ã„Â±daki koordinat sisteminde x = ${newTarget} doÃ„Å¸rusunu ÃƒÂ§iziniz.`;
+    if(qText) qText.textContent = `Aşağıdaki koordinat sisteminde x = ${newTarget} doğrusunu çiziniz.`;
     
-    // 8. HazÃ„Â±rlÃ„Â±k
+    // 8. Hazırlık
     initializeFullCanvas();
     linearState.drawnPoints = []; 
     if(document.getElementById('checkBtn')) document.getElementById('checkBtn').disabled = true; 
@@ -3631,10 +3631,10 @@ function startYeqBRound() {
     const feedback = document.getElementById('feedback');
     if(feedback) feedback.style.opacity = '0';
 
-    // 2. PANELÃ„Â° BUL VE HAPÃ„Â°STEN KURTAR
+    // 2. PANELİ BUL VE HAPİSTEN KURTAR
     const panel = document.getElementById('linearQuestionPanel');
     
-    // Body'ye taÃ…Å¸Ã„Â±
+    // Body'ye taşı
     if (panel.parentElement !== document.body) {
         document.body.appendChild(panel);
     }
@@ -3658,10 +3658,10 @@ function startYeqBRound() {
         box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
     `;
 
-    // 4. Ã„Â°Ãƒâ€¡ERÃ„Â°Ã„ÂÃ„Â° YENÃ„Â°DEN YAZ
-    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazÃ„Â±rlanÃ„Â±yor...</div>';
+    // 4. İÇERİĞİ YENİDEN YAZ
+    panel.innerHTML = '<div id="questionText" style="font-size: 20px; font-weight: 800; color: #312e81;">Sorular hazırlanıyor...</div>';
 
-    // 5. Grafik AlanÃ„Â±nÃ„Â± Ayarla
+    // 5. Grafik Alanını Ayarla
     const linearContainer = document.getElementById('linearContainer');
     linearContainer.classList.remove('hidden');
     linearContainer.style.display = 'block';
@@ -3676,7 +3676,7 @@ function startYeqBRound() {
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     if(document.getElementById('drawInstructionText')) document.getElementById('drawInstructionText').classList.remove('hidden');
     
-    // 6. Soru MantÃ„Â±Ã„Å¸Ã„Â± (Senkronize)
+    // 6. Soru Mantığı (Senkronize)
     const targets = [3, -2, 4, -3, 2, -5, 5, -4];
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
     const urlParams = new URLSearchParams(window.location.search);
@@ -3688,11 +3688,11 @@ function startYeqBRound() {
     let newTarget = targets[tIndex];
     gameState.targetLineValue = newTarget; 
     
-    // 7. METNÃ„Â° GÃƒÅ“NCELLE
+    // 7. METNİ GÜNCELLE
     const qText = document.getElementById('questionText');
-    if(qText) qText.textContent = `AÃ…Å¸aÃ„Å¸Ã„Â±daki koordinat sisteminde y = ${newTarget} doÃ„Å¸rusunu ÃƒÂ§iziniz.`;
+    if(qText) qText.textContent = `Aşağıdaki koordinat sisteminde y = ${newTarget} doğrusunu çiziniz.`;
     
-    // 8. HazÃ„Â±rlÃ„Â±k
+    // 8. Hazırlık
     initializeFullCanvas();
     linearState.drawnPoints = []; 
     if(document.getElementById('checkBtn')) document.getElementById('checkBtn').disabled = true;
@@ -3702,12 +3702,12 @@ function startYeqBRound() {
 
 
 
-// X=a KONTROLÃƒÅ“ (2 Nokta MantÃ„Â±Ã„Å¸Ã„Â±)
+// X=a KONTROLÜ (2 Nokta Mantığı)
 function checkVerticalLine() {
     const targetX = gameState.targetLineValue;
     const drawnPoints = linearState.drawnPoints;
     
-    // Sadece 2 nokta olmalÃ„Â± (BaÃ…Å¸langÃ„Â±ÃƒÂ§ ve BitiÃ…Å¸)
+    // Sadece 2 nokta olmalı (Başlangıç ve Bitiş)
     if (drawnPoints.length !== 2) { 
         showFeedback(false); 
         return; 
@@ -3720,30 +3720,30 @@ function checkVerticalLine() {
     const CENTER_X = 250;
     const CENTER_Y = 250;
 
-    // KoordinatlarÃ„Â± grid sistemine ÃƒÂ§evir
+    // Koordinatları grid sistemine çevir
     const x1 = (p1.x - CENTER_X) / FULL_GRID;
     const x2 = (p2.x - CENTER_X) / FULL_GRID;
     
-    // Y koordinatlarÃ„Â± (uzunluk kontrolÃƒÂ¼ iÃƒÂ§in)
+    // Y koordinatları (uzunluk kontrolü için)
     const y1 = (CENTER_Y - p1.y) / FULL_GRID;
     const y2 = (CENTER_Y - p2.y) / FULL_GRID;
 
-    // 1. Konum DoÃ„Å¸ru mu? (Ã„Â°ki noktanÃ„Â±n da X'i hedefe yakÃ„Â±n olmalÃ„Â±)
+    // 1. Konum Doğru mu? (İki noktanın da X'i hedefe yakın olmalı)
     // Tolerans 0.5 birim
     const isX1Correct = Math.abs(x1 - targetX) < 0.5;
     const isX2Correct = Math.abs(x2 - targetX) < 0.5;
 
-    // 2. Ãƒâ€¡izgi Dikey mi? (X deÃ„Å¸erleri birbirine yakÃ„Â±n mÃ„Â±)
+    // 2. Çizgi Dikey mi? (X değerleri birbirine yakın mı)
     const isVertical = Math.abs(x1 - x2) < 0.5;
 
-    // 3. Ãƒâ€¡izgi Yeterince Uzun mu? (En az 3 birim boyunda olsun)
+    // 3. Çizgi Yeterince Uzun mu? (En az 3 birim boyunda olsun)
     const isLongEnough = Math.abs(y1 - y2) > 3;
 
     if (isX1Correct && isX2Correct && isVertical && isLongEnough) {
         playSuccessSound(); 
         showFeedback(true);
         
-        // BaÃ…Å¸arÃ„Â±lÃ„Â± ÃƒÂ§izgiyi yeÃ…Å¸ile boya ve kalÃ„Â±nlaÃ…Å¸tÃ„Â±r
+        // Başarılı çizgiyi yeşile boya ve kalınlaştır
         const userLine = document.querySelector('.user-drawn-line');
         if (userLine) { 
             userLine.setAttribute('stroke', '#10b981'); 
@@ -3755,21 +3755,21 @@ function checkVerticalLine() {
         playErrorSound();
         const feedback = document.getElementById('feedback');
         
-        if (!isVertical) feedback.textContent = `Dik bir ÃƒÂ§izgi (x=${targetX}) ÃƒÂ§izmelisin!`;
-        else if (!isX1Correct) feedback.textContent = `Ãƒâ€¡izgiyi x=${targetX} noktasÃ„Â±ndan geÃƒÂ§irmelisin!`;
-        else if (!isLongEnough) feedback.textContent = "Ãƒâ€¡izgi ÃƒÂ§ok kÃ„Â±sa, biraz daha uzat!";
-        else feedback.textContent = "YanlÃ„Â±Ã…Å¸ oldu, tekrar dene.";
+        if (!isVertical) feedback.textContent = `Dik bir çizgi (x=${targetX}) çizmelisin!`;
+        else if (!isX1Correct) feedback.textContent = `Çizgiyi x=${targetX} noktasından geçirmelisin!`;
+        else if (!isLongEnough) feedback.textContent = "Çizgi çok kısa, biraz daha uzat!";
+        else feedback.textContent = "Yanlış oldu, tekrar dene.";
         
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
         
-        // YanlÃ„Â±Ã…Å¸ ÃƒÂ§izgiyi sil
+        // Yanlış çizgiyi sil
         document.querySelectorAll('.user-drawn-line').forEach(el => el.remove());
         linearState.drawnPoints = [];
     }
 }
 
-// Y=b KONTROLÃƒÅ“ (2 Nokta MantÃ„Â±Ã„Å¸Ã„Â±)
+// Y=b KONTROLÜ (2 Nokta Mantığı)
 function checkHorizontalLine() {
     const targetY = gameState.targetLineValue;
     const drawnPoints = linearState.drawnPoints;
@@ -3786,19 +3786,19 @@ function checkHorizontalLine() {
     const CENTER_X = 250;
     const CENTER_Y = 250;
 
-    // Y koordinatlarÃ„Â±nÃ„Â± ÃƒÂ§evir
+    // Y koordinatlarını çevir
     const y1 = (CENTER_Y - p1.y) / FULL_GRID;
     const y2 = (CENTER_Y - p2.y) / FULL_GRID;
     
-    // X koordinatlarÃ„Â± (uzunluk kontrolÃƒÂ¼ iÃƒÂ§in)
+    // X koordinatları (uzunluk kontrolü için)
     const x1 = (p1.x - CENTER_X) / FULL_GRID;
     const x2 = (p2.x - CENTER_X) / FULL_GRID;
 
-    // 1. Konum DoÃ„Å¸ru mu? (Ã„Â°ki noktanÃ„Â±n da Y'si hedefe yakÃ„Â±n olmalÃ„Â±)
+    // 1. Konum Doğru mu? (İki noktanın da Y'si hedefe yakın olmalı)
     const isY1Correct = Math.abs(y1 - targetY) < 0.5;
     const isY2Correct = Math.abs(y2 - targetY) < 0.5;
 
-    // 2. Ãƒâ€¡izgi Yatay mÃ„Â±? (Y deÃ„Å¸erleri birbirine yakÃ„Â±n mÃ„Â±)
+    // 2. Çizgi Yatay mı? (Y değerleri birbirine yakın mı)
     const isHorizontal = Math.abs(y1 - y2) < 0.5;
 
     // 3. Uzunluk
@@ -3819,10 +3819,10 @@ function checkHorizontalLine() {
         playErrorSound();
         const feedback = document.getElementById('feedback');
         
-        if (!isHorizontal) feedback.textContent = `Yatay bir ÃƒÂ§izgi (y=${targetY}) ÃƒÂ§izmelisin!`;
-        else if (!isY1Correct) feedback.textContent = `Ãƒâ€¡izgiyi y=${targetY} noktasÃ„Â±ndan geÃƒÂ§irmelisin!`;
-        else if (!isLongEnough) feedback.textContent = "Ãƒâ€¡izgi ÃƒÂ§ok kÃ„Â±sa, biraz daha uzat!";
-        else feedback.textContent = "YanlÃ„Â±Ã…Å¸ oldu, tekrar dene.";
+        if (!isHorizontal) feedback.textContent = `Yatay bir çizgi (y=${targetY}) çizmelisin!`;
+        else if (!isY1Correct) feedback.textContent = `Çizgiyi y=${targetY} noktasından geçirmelisin!`;
+        else if (!isLongEnough) feedback.textContent = "Çizgi çok kısa, biraz daha uzat!";
+        else feedback.textContent = "Yanlış oldu, tekrar dene.";
         
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -3870,10 +3870,10 @@ if (btnYeqB) {
 }
 
 // ==========================================
-// YENÃ„Â° Ãƒâ€“ZELLÃ„Â°K: Y = ax MODU (TABLOYU BÃ„Â°REBÃ„Â°R OKUYAN SÃƒÅ“RÃƒÅ“M)
+// YENİ ÖZELLİK: Y = ax MODU (TABLOYU BİREBİR OKUYAN SÜRÜM)
 // ==========================================
 
-// 1. ESKÃ„Â° Ãƒâ€¡Ã„Â°ZÃ„Â°M FONKSÃ„Â°YONUNU DEVRE DIÃ…ÂI BIRAK
+// 1. ESKİ ÇİZİM FONKSİYONUNU DEVRE DIŞI BIRAK
 if (!window.originalInitializeLinearCanvas) {
     window.originalInitializeLinearCanvas = window.initializeLinearCanvas;
 }
@@ -3886,23 +3886,23 @@ window.initializeLinearCanvas = function() {
     }
 };
 
-// GRAFÃ„Â°K IZGARASINI Ãƒâ€¡Ã„Â°ZEN FONKSÃ„Â°YON (Ãƒâ€“lÃƒÂ§ekli)
+// GRAFİK IZGARASINI ÇİZEN FONKSİYON (Ölçekli)
 function drawFullGridForAX(scaleFactor = 1) {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = ''; 
 
-    // EkranÃ„Â± sabitle
+    // Ekranı sabitle
     canvas.setAttribute('viewBox', '0 0 500 500');
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     canvas.style.width = '100%';
     canvas.style.height = '100%';
 
     const FULL_SIZE = 500;
-    const FULL_GRID = 40; // Her karenin piksel geniÃ…Å¸liÃ„Å¸i (sabit)
+    const FULL_GRID = 40; // Her karenin piksel genişliği (sabit)
     const CENTER_X = 250;
     const CENTER_Y = 250;
 
-    // --- IZGARA Ãƒâ€¡Ã„Â°ZGÃ„Â°LERÃ„Â° ---
+    // --- IZGARA ÇİZGİLERİ ---
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     const startOffset = CENTER_X % FULL_GRID;
     
@@ -3937,17 +3937,17 @@ function drawFullGridForAX(scaleFactor = 1) {
     axisGroup.appendChild(yAxis);
     canvas.appendChild(axisGroup);
 
-    // --- SAYILAR (Ãƒâ€“LÃƒâ€¡EÃ„ÂE GÃƒâ€“RE) ---
-    // Her ÃƒÂ§izgi 1 birim deÃ„Å¸il, 'scaleFactor' kadar birimdir.
+    // --- SAYILAR (ÖLÇEĞE GÖRE) ---
+    // Her çizgi 1 birim değil, 'scaleFactor' kadar birimdir.
     for (let i = -6; i <= 6; i++) {
         if (i === 0) continue;
         const pos = CENTER_X + (i * FULL_GRID);
         
-        // GÃƒÂ¶sterilecek sayÃ„Â± deÃ„Å¸eri
+        // Gösterilecek sayı değeri
         const displayNum = i * scaleFactor;
 
         if (pos > 10 && pos < FULL_SIZE - 10) {
-            // X Ekseni SayÃ„Â±larÃ„Â±
+            // X Ekseni Sayıları
             const textX = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             textX.setAttribute('x', pos); textX.setAttribute('y', CENTER_Y + 20);
             textX.setAttribute('text-anchor', 'middle'); textX.setAttribute('font-size', '12');
@@ -3955,12 +3955,12 @@ function drawFullGridForAX(scaleFactor = 1) {
             textX.textContent = displayNum;
             canvas.appendChild(textX);
             
-            // Y Ekseni SayÃ„Â±larÃ„Â±
+            // Y Ekseni Sayıları
             const textY = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             textY.setAttribute('x', CENTER_X - 15); textY.setAttribute('y', pos + 5);
             textY.setAttribute('text-anchor', 'middle'); textY.setAttribute('font-size', '12');
             textY.setAttribute('font-weight', 'bold'); 
-            textY.textContent = -displayNum; // Y ekseni yukarÃ„Â± doÃ„Å¸ru pozitiftir ama SVG'de yukarÃ„Â± gidildikÃƒÂ§e piksel azalÃ„Â±r
+            textY.textContent = -displayNum; // Y ekseni yukarı doğru pozitiftir ama SVG'de yukarı gidildikçe piksel azalır
             canvas.appendChild(textY);
         }
     }
@@ -3974,12 +3974,12 @@ function initializeLearningTable() {
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
     
-    // Hem 'y_eq_ax' HEM DE 'y_eq_ax_plus_b' modlarÃ„Â± iÃƒÂ§in ÃƒÂ¶zel tablo
+    // Hem 'y_eq_ax' HEM DE 'y_eq_ax_plus_b' modları için özel tablo
     if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') {
         
         document.getElementById('xHeader').textContent = "x";
         
-        // BaÃ…Å¸lÃ„Â±k metnini moda gÃƒÂ¶re ayarla
+        // Başlık metnini moda göre ayarla
         if (gameState.mode === 'y_eq_ax') {
             document.getElementById('yHeader').textContent = `y = ${gameState.targetSlope}x`;
         } else {
@@ -3987,7 +3987,7 @@ function initializeLearningTable() {
             document.getElementById('yHeader').textContent = `y = ${gameState.targetSlope}x ${sign}${gameState.targetIntercept}`;
         }
         
-        // 3. SÃƒÂ¼tun BaÃ…Å¸lÃ„Â±Ã„Å¸Ã„Â± (Nokta)
+        // 3. Sütun Başlığı (Nokta)
         let thirdHeader = document.getElementById('pointHeader');
         if (!thirdHeader) {
             const trHead = document.querySelector('#dataTable thead tr');
@@ -3999,23 +3999,23 @@ function initializeLearningTable() {
         thirdHeader.textContent = "Nokta (x,y)";
         thirdHeader.style.display = 'table-cell';
 
-        // 4 SatÃ„Â±r OluÃ…Å¸tur
+        // 4 Satır Oluştur
         for (let i = 0; i < 4; i++) {
             const row = document.createElement('tr');
             
-            // X HÃƒÂ¼cresi
+            // X Hücresi
             const xCell = document.createElement('td');
             xCell.className = 'border-2 border-purple-400 px-2 py-2 text-center font-bold text-lg cursor-pointer hover:bg-purple-100';
             xCell.dataset.row = i; xCell.dataset.col = 'x';
             xCell.addEventListener('click', () => openNumberPad(i, 'x'));
             
-            // Y HÃƒÂ¼cresi
+            // Y Hücresi
             const yCell = document.createElement('td');
             yCell.className = 'border-2 border-purple-400 px-2 py-2 text-center font-bold text-lg cursor-pointer hover:bg-purple-100';
             yCell.dataset.row = i; yCell.dataset.col = 'y';
             yCell.addEventListener('click', () => openNumberPad(i, 'y'));
             
-            // Nokta HÃƒÂ¼cresi (Otomatik)
+            // Nokta Hücresi (Otomatik)
             const pointCell = document.createElement('td');
             pointCell.className = 'border-2 border-purple-400 px-2 py-2 text-center font-bold text-lg bg-gray-100 text-gray-600';
             pointCell.id = `point-cell-${i}`;
@@ -4027,7 +4027,7 @@ function initializeLearningTable() {
             tbody.appendChild(row);
         }
     } else {
-        // DiÃ„Å¸er modlar iÃƒÂ§in eski standart tablo
+        // Diğer modlar için eski standart tablo
         const thirdHeader = document.getElementById('pointHeader');
         if (thirdHeader) thirdHeader.style.display = 'none';
 
@@ -4058,14 +4058,14 @@ function initializeLearningTable() {
 window.updateLinearCanvas = function(row, col, value) {
     if (gameState.mode !== 'y_eq_ax' && gameState.mode !== 'y_eq_ax_plus_b') return;
 
-    // 1. Tablo Verisini GÃƒÂ¼ncelle (Metin olarak)
+    // 1. Tablo Verisini Güncelle (Metin olarak)
     const tableRows = document.getElementById('tableBody').querySelectorAll('tr');
     const currentRow = tableRows[row];
     let xText = currentRow.children[0].textContent.trim();
     let yText = currentRow.children[1].textContent.trim();
     if (yText.includes('=')) yText = yText.split('=')[1].trim();
 
-    // 3. SÃƒÂ¼tun (Nokta) GÃƒÂ¼ncellemesi
+    // 3. Sütun (Nokta) Güncellemesi
     const pointCell = document.getElementById(`point-cell-${row}`);
     if (xText !== '' && yText !== '' && pointCell) {
         pointCell.textContent = `(${xText}, ${yText})`;
@@ -4075,8 +4075,8 @@ window.updateLinearCanvas = function(row, col, value) {
         pointCell.style.color = '#6b7280'; pointCell.style.backgroundColor = '#9ca3af';
     }
 
-    // --- AKILLI Ãƒâ€“LÃƒâ€¡EKLENDÃ„Â°RME ---
-    // Tablodaki tÃƒÂ¼m verileri topla
+    // --- AKILLI ÖLÇEKLENDİRME ---
+    // Tablodaki tüm verileri topla
     let maxAbsValue = 0;
     let pointsData = [];
     let validPointsCount = 0;
@@ -4092,14 +4092,14 @@ window.updateLinearCanvas = function(row, col, value) {
         if (!isNaN(xVal) && !isNaN(yVal)) {
             pointsData.push({x: xVal, y: yVal});
             validPointsCount++;
-            // En bÃƒÂ¼yÃƒÂ¼k deÃ„Å¸eri bul (negatifler pozitif yapÃ„Â±lÃ„Â±p bakÃ„Â±lÃ„Â±r)
+            // En büyük değeri bul (negatifler pozitif yapılıp bakılır)
             maxAbsValue = Math.max(maxAbsValue, Math.abs(xVal), Math.abs(yVal));
         }
     });
 
-    // Ãƒâ€“lÃƒÂ§eÃ„Å¸i Belirle (VarsayÃ„Â±lan 1)
-    // Ekranda merkezin saÃ„Å¸Ã„Â±na doÃ„Å¸ru yaklaÃ…Å¸Ã„Â±k 6 ÃƒÂ§izgi var.
-    // EÃ„Å¸er sayÃ„Â± 6'dan bÃƒÂ¼yÃƒÂ¼kse sÃ„Â±Ã„Å¸maz, ÃƒÂ¶lÃƒÂ§eÃ„Å¸i bÃƒÂ¼yÃƒÂ¼tmeliyiz.
+    // Ölçeği Belirle (Varsayılan 1)
+    // Ekranda merkezin sağına doğru yaklaşık 6 çizgi var.
+    // Eğer sayı 6'dan büyükse sığmaz, ölçeği büyütmeliyiz.
     let scaleFactor = 1;
     if (maxAbsValue > 6) scaleFactor = 2;
     if (maxAbsValue > 12) scaleFactor = 5;
@@ -4107,35 +4107,35 @@ window.updateLinearCanvas = function(row, col, value) {
     if (maxAbsValue > 60) scaleFactor = 20;
     if (maxAbsValue > 120) scaleFactor = 50;
 
-    // Bu ÃƒÂ¶lÃƒÂ§ek deÃ„Å¸erini global bir yere kaydet (Ãƒâ€¡izgi kontrolÃƒÂ¼nde lazÃ„Â±m olacak)
+    // Bu ölçek değerini global bir yere kaydet (Çizgi kontrolünde lazım olacak)
     linearState.axisScale = scaleFactor;
 
-    // 2. GrafiÃ„Å¸i Yeni Ãƒâ€“lÃƒÂ§ekle Ãƒâ€¡iz
+    // 2. Grafiği Yeni Ölçekle Çiz
     drawFullGridForAX(scaleFactor);
 
-    // 3. NoktalarÃ„Â± YerleÃ…Å¸tir
+    // 3. Noktaları Yerleştir
     const linearCanvas = document.getElementById('linearCanvas');
     const CENTER_X = 250; 
     const CENTER_Y = 250; 
     const FULL_GRID = 40; 
 
-    // Eski noktalarÃ„Â± temizle
+    // Eski noktaları temizle
     document.querySelectorAll("circle[class*='point-'], text[class*='point-'], line[class*='guide-']").forEach(el => el.remove());
 
     pointsData.forEach(p => {
-        // KOORDÃ„Â°NAT HESABI:
-        // (DeÃ„Å¸er / Ãƒâ€“lÃƒÂ§ek) * IzgaraBÃƒÂ¼yÃƒÂ¼klÃƒÂ¼Ã„Å¸ÃƒÂ¼
-        // Ãƒâ€“rn: DeÃ„Å¸er 20, Ãƒâ€“lÃƒÂ§ek 5 ise -> 4 kare gider.
+        // KOORDİNAT HESABI:
+        // (Değer / Ölçek) * IzgaraBüyüklüğü
+        // Örn: Değer 20, Ölçek 5 ise -> 4 kare gider.
         const pixelX = CENTER_X + ((p.x / scaleFactor) * FULL_GRID);
         const pixelY = CENTER_Y - ((p.y / scaleFactor) * FULL_GRID);
 
-        // Rehber Ãƒâ€¡izgiler
+        // Rehber Çizgiler
         const guideX = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         guideX.setAttribute('x1', pixelX); guideX.setAttribute('y1', pixelY);
         guideX.setAttribute('x2', pixelX); guideX.setAttribute('y2', CENTER_Y);
         guideX.setAttribute('stroke', '#ef4444'); guideX.setAttribute('stroke-width', '2');
         guideX.setAttribute('stroke-dasharray', '4,4');
-        guideX.style.pointerEvents = 'none'; // TÃ„Â±klama hatasÃ„Â±nÃ„Â± engelle
+        guideX.style.pointerEvents = 'none'; // Tıklama hatasını engelle
         linearCanvas.appendChild(guideX);
 
         const guideY = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -4143,7 +4143,7 @@ window.updateLinearCanvas = function(row, col, value) {
         guideY.setAttribute('x2', CENTER_X); guideY.setAttribute('y2', pixelY);
         guideY.setAttribute('stroke', '#ef4444'); guideY.setAttribute('stroke-width', '2');
         guideY.setAttribute('stroke-dasharray', '4,4');
-        guideY.style.pointerEvents = 'none'; // TÃ„Â±klama hatasÃ„Â±nÃ„Â± engelle
+        guideY.style.pointerEvents = 'none'; // Tıklama hatasını engelle
         linearCanvas.appendChild(guideY);
 
         // Nokta
@@ -4152,7 +4152,7 @@ window.updateLinearCanvas = function(row, col, value) {
         circle.setAttribute('r', 8); 
         circle.setAttribute('fill', '#8b5cf6');
         circle.setAttribute('stroke', 'white'); circle.setAttribute('stroke-width', '2');
-        circle.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI Ã„Â°Ãƒâ€¡Ã„Â°N EKLENDÃ„Â°
+        circle.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI İÇİN EKLENDİ
         linearCanvas.appendChild(circle);
 
         // Etiket
@@ -4164,23 +4164,23 @@ window.updateLinearCanvas = function(row, col, value) {
         const displayX = decimalToFraction(p.x);
         const displayY = decimalToFraction(p.y);
         label.textContent = `(${displayX}, ${displayY})`;
-        label.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI Ã„Â°Ãƒâ€¡Ã„Â°N EKLENDÃ„Â°
+        label.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI İÇİN EKLENDİ
         linearCanvas.appendChild(label);
     });
 
-    // Buton KontrolÃƒÂ¼
+    // Buton Kontrolü
     const feedback = document.getElementById('feedback');
     const confirmBtn = document.getElementById('tableConfirmBtn');
 
     if (validPointsCount >= 2) {
         const allSame = pointsData.every(p => p.x === pointsData[0].x && p.y === pointsData[0].y);
         if (allSame) {
-            feedback.textContent = "Ã¢Å¡Â Ã¯Â¸Â Noktalar ÃƒÂ¼st ÃƒÂ¼ste! FarklÃ„Â± deÃ„Å¸erler ver.";
+            feedback.textContent = "⚠️ Noktalar üst üste! Farklı değerler ver.";
             feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-bold bg-orange-500 text-white';
             feedback.style.opacity = '1';
             confirmBtn.disabled = true; confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
         } else {
-            feedback.textContent = "Ã¢Å“â€¦ Harika! 'TAMAM' butonuna bas ve ÃƒÂ§izimi yap.";
+            feedback.textContent = "✅ Harika! 'TAMAM' butonuna bas ve çizimi yap.";
             feedback.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg font-bold bg-green-500 text-white';
             feedback.style.opacity = '1';
             confirmBtn.disabled = false; confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -4190,7 +4190,7 @@ window.updateLinearCanvas = function(row, col, value) {
     }
 };
 
-// 6. LASTÃ„Â°K Ãƒâ€¡Ã„Â°ZGÃ„Â° ARACI
+// 6. LASTİK ÇİZGİ ARACI
 function setupStraightLineDrawing() {
     const canvas = document.getElementById('linearCanvas');
     const newCanvas = canvas.cloneNode(true);
@@ -4207,8 +4207,8 @@ function setupStraightLineDrawing() {
         try {
             newCanvas.setPointerCapture(e.pointerId);
         } catch(err) {
-            console.warn("Pointer capture hatasÃ„Â±:", err);
-            // Tablette hata verse bile ÃƒÂ§izime devam et
+            console.warn("Pointer capture hatası:", err);
+            // Tablette hata verse bile çizime devam et
         }
         const pt = newCanvas.createSVGPoint();
         pt.x = e.clientX; pt.y = e.clientY;
@@ -4276,11 +4276,11 @@ function checkStraightLine() {
 
     const CENTER_X = 250, CENTER_Y = 250, FULL_GRID = 40;
     
-    // YENÃ„Â°LÃ„Â°K BURADA: O anki ÃƒÂ¶lÃƒÂ§ek katsayÃ„Â±sÃ„Â±nÃ„Â± kullan (Yoksa 1 kabul et)
+    // YENİLİK BURADA: O anki ölçek katsayısını kullan (Yoksa 1 kabul et)
     const currentScale = linearState.axisScale || 1;
 
-    // Koordinat dÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼mÃƒÂ¼nde 'currentScale' ile ÃƒÂ§arpÃ„Â±yoruz
-    // FormÃƒÂ¼l: (PikselFarkÃ„Â± / GridBoyutu) * Ãƒâ€“lÃƒÂ§ek
+    // Koordinat dönüşümünde 'currentScale' ile çarpıyoruz
+    // Formül: (PikselFarkı / GridBoyutu) * Ölçek
     const x1 = ((p1.x - CENTER_X) / FULL_GRID) * currentScale;
     const y1 = ((CENTER_Y - p1.y) / FULL_GRID) * currentScale;
     const x2 = ((p2.x - CENTER_X) / FULL_GRID) * currentScale;
@@ -4289,17 +4289,17 @@ function checkStraightLine() {
     const drawnSlope = (y2 - y1) / (x2 - x1);
     const drawnIntercept = y1 - (drawnSlope * x1); 
     
-    // Kontroller (Ãƒâ€¡ok Daha GeniÃ…Å¸ ToleranslÃ„Â± - Tablet Parmak Ãƒâ€¡izimi Ã„Â°ÃƒÂ§in)
+    // Kontroller (Çok Daha Geniş Toleranslı - Tablet Parmak Çizimi İçin)
     let slopeTolerance = 1.0;
     if (Math.abs(targetSlope) >= 2) slopeTolerance = 1.5;
     if (Math.abs(targetSlope) >= 3) slopeTolerance = 2.0;
     
-    let interceptTolerance = 1.5 * currentScale; // Ãƒâ€“lÃƒÂ§ek arttÃ„Â±kÃƒÂ§a hata payÃ„Â± artar
+    let interceptTolerance = 1.5 * currentScale; // Ölçek arttıkça hata payı artar
     
     const isSlopeCorrect = Math.abs(drawnSlope - targetSlope) <= slopeTolerance;
     const isInterceptCorrect = Math.abs(drawnIntercept - targetIntercept) <= interceptTolerance;
     
-    // Uzunluk kontrolÃƒÂ¼ (Piksel bazÃ„Â±nda yapalÃ„Â±m ki ÃƒÂ¶lÃƒÂ§ekten etkilenmesin)
+    // Uzunluk kontrolü (Piksel bazında yapalım ki ölçekten etkilenmesin)
     // En az 40 piksel (1 kare) uzunluk olsun
     const pixelDist = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
     const isLongEnough = pixelDist > 40;
@@ -4310,7 +4310,7 @@ function checkStraightLine() {
         if (userLine) { userLine.setAttribute('stroke', '#10b981'); userLine.setAttribute('stroke-width', '6'); }
         
         setTimeout(() => { 
-            // Yeni soruya geÃƒÂ§erken ÃƒÂ¶lÃƒÂ§eÃ„Å¸i sÃ„Â±fÃ„Â±rla
+            // Yeni soruya geçerken ölçeği sıfırla
             linearState.axisScale = 1; 
             if (gameState.mode === 'y_eq_ax_plus_b') startYeqAXplusBRound();
             else startYeqAXRound();
@@ -4320,11 +4320,11 @@ function checkStraightLine() {
         const feedback = document.getElementById('feedback');
         
         if (!isInterceptCorrect) {
-             feedback.textContent = `Ãƒâ€¡izgi Y eksenini ${targetIntercept} noktasÃ„Â±nda kesmeli!`;
+             feedback.textContent = `Çizgi Y eksenini ${targetIntercept} noktasında kesmeli!`;
         } else if (!isSlopeCorrect) {
-            feedback.textContent = "EÃ„Å¸im yanlÃ„Â±Ã…Å¸! NoktalarÃ„Â± birleÃ…Å¸tir.";
+            feedback.textContent = "Eğim yanlış! Noktaları birleştir.";
         } else if (!isLongEnough) {
-            feedback.textContent = "Ãƒâ€¡izgi ÃƒÂ§ok kÃ„Â±sa!";
+            feedback.textContent = "Çizgi çok kısa!";
         }
         
         feedback.style.opacity = '1';
@@ -4376,7 +4376,7 @@ if (checkBtn) {
         if (gameState.mode === 'x_eq_a') { if(typeof checkVerticalLine === 'function') checkVerticalLine(); }
         else if (gameState.mode === 'y_eq_b') { if(typeof checkHorizontalLine === 'function') checkHorizontalLine(); }
         else if (gameState.mode === 'y_eq_ax') { checkStraightLine(); }
-// checkBtn listener iÃƒÂ§inde:
+// checkBtn listener içinde:
 else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') { 
     checkStraightLine(); 
 }
@@ -4387,7 +4387,7 @@ else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') {
 }
 
 function clearGeometryUI() {
-    // 1. Koordinat butonlarÃ„Â±nÃ„Â± (Yer -> Nokta) gizle
+    // 1. Koordinat butonlarını (Yer -> Nokta) gizle
     document.getElementById('coordinateOptions').classList.add('hidden');
     
     // 2. Geometri bilgi kutusunu gizle
@@ -4396,9 +4396,9 @@ function clearGeometryUI() {
     // 3. Bildirimleri temizle
     document.getElementById('feedback').style.opacity = '0';
     
-    // 4. Standart Geometri Canvas'Ã„Â±nÃ„Â± gizle (EÃ„Å¸er aÃƒÂ§Ã„Â±ksa)
-    // Not: Linear modlar kendi canvaslarÃ„Â±nÃ„Â± veya containerlarÃ„Â±nÃ„Â± aÃƒÂ§tÃ„Â±Ã„Å¸Ã„Â± iÃƒÂ§in
-    // bu genellikle otomatik gizlenir ama garantiye alalÃ„Â±m.
+    // 4. Standart Geometri Canvas'ını gizle (Eğer açıksa)
+    // Not: Linear modlar kendi canvaslarını veya containerlarını açtığı için
+    // bu genellikle otomatik gizlenir ama garantiye alalım.
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) {
         regularCanvas.style.display = 'none';
@@ -4407,28 +4407,28 @@ function clearGeometryUI() {
 
 
 // ==========================================
-// KESÃ„Â°N TEMÃ„Â°ZLÃ„Â°K FONKSÃ„Â°YONU (NÃƒÅ“KLEER SEÃƒâ€¡ENEK)
+// KESİN TEMİZLİK FONKSİYONU (NÜKLEER SEÇENEK)
 // ==========================================
 function clearAllScreens() {
 
-// clearAllScreens fonksiyonunun iÃƒÂ§ine Ã…Å¸u satÃ„Â±rÃ„Â± ekle:
+// clearAllScreens fonksiyonunun içine şu satırı ekle:
 if (window.feedbackTimer) clearTimeout(window.feedbackTimer);
-if (window.roundTimer) clearTimeout(window.roundTimer); // BUG FIX: Devam eden eski oyunlarÃ„Â±n setTimeout'larÃ„Â±nÃ„Â± iptal et
-if (window.animationFrameId) cancelAnimationFrame(window.animationFrameId); // BUG FIX: Devam eden animasyonlarÃ„Â± iptal et
+if (window.roundTimer) clearTimeout(window.roundTimer); // BUG FIX: Devam eden eski oyunların setTimeout'larını iptal et
+if (window.animationFrameId) cancelAnimationFrame(window.animationFrameId); // BUG FIX: Devam eden animasyonları iptal et
 const fb = document.getElementById('feedback');
 if (fb) fb.style.opacity = '0';
 
 
-    // 1. GÃ„Â°ZLENMESÃ„Â° GEREKEN TÃƒÅ“M ID'LERÃ„Â°N LÃ„Â°STESÃ„Â°
+    // 1. GİZLENMESİ GEREKEN TÜM ID'LERİN LİSTESİ
     const idsToHide = [
-        // Alt MenÃƒÂ¼ler
+        // Alt Menüler
         'transformSubButtons',
         'coordinateSubButtons',
         'linearSubButtons',
         'lineGraphSubButtons',
         'slopeSubButtons',
         
-        // Ã„Â°ÃƒÂ§erik Panelleri ve Containerlar
+        // İçerik Panelleri ve Containerlar
         'linearContainer',
         'graphQuestionContainer',
         'linearQuestionPanel',
@@ -4442,18 +4442,18 @@ if (fb) fb.style.opacity = '0';
         'tableConfirmBtn'
     ];
 
-    // 2. HEPSÃ„Â°NÃ„Â° TEK TEK BUL VE GÃ„Â°ZLE
+    // 2. HEPSİNİ TEK TEK BUL VE GİZLE
     idsToHide.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
             el.classList.add('hidden');       // Tailwind gizlemesi
-            el.style.display = 'none';        // CSS zorla gizleme (Ãƒâ€“nemli!)
+            el.style.display = 'none';        // CSS zorla gizleme (Önemli!)
             el.style.removeProperty('display'); // Veya inline stili tamamen sil (daha temiz)
             el.classList.add('hidden'); // Tekrar garantiye al
         }
     });
 
-    // 3. TABLOYU Ãƒâ€“ZEL OLARAK GÃ„Â°ZLE (Wrapper'Ã„Â± ile birlikte)
+    // 3. TABLOYU ÖZEL OLARAK GİZLE (Wrapper'ı ile birlikte)
     const dataTable = document.getElementById('dataTable');
     if (dataTable) {
         dataTable.style.display = 'none';
@@ -4462,11 +4462,11 @@ if (fb) fb.style.opacity = '0';
         }
     }
 
-    // 4. GERÃ„Â° BÃ„Â°LDÃ„Â°RÃ„Â°MÃ„Â° SÃ„Â°L
+    // 4. GERİ BİLDİRİMİ SİL
     const feedback = document.getElementById('feedback');
     if (feedback) feedback.style.opacity = '0';
 
-    // 5. TÃƒÅ“M BUTON EFEKTLERÃ„Â°NÃ„Â° SÃ„Â°L (Halkalar vb.)
+    // 5. TÜM BUTON EFEKTLERİNİ SİL (Halkalar vb.)
     document.querySelectorAll('.nav-btn, button').forEach(btn => {
         btn.classList.remove('selected-button');
         btn.classList.remove(
@@ -4477,8 +4477,8 @@ if (fb) fb.style.opacity = '0';
         );
     });
 
-    // 6. ANA GEOMETRÃ„Â° CANVAS'INI GÃ„Â°ZLE (VarsayÃ„Â±lan olarak)
-    // Bunu sadece "DÃƒÂ¶nÃƒÂ¼Ã…Å¸ÃƒÂ¼m Geometrisi" modlarÃ„Â± geri aÃƒÂ§acak.
+    // 6. ANA GEOMETRİ CANVAS'INI GİZLE (Varsayılan olarak)
+    // Bunu sadece "Dönüşüm Geometrisi" modları geri açacak.
     const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
     if (regularCanvas) {
         regularCanvas.style.display = 'none'; 
@@ -4488,55 +4488,55 @@ if (fb) fb.style.opacity = '0';
 
 
 // ==========================================
-// DÃƒÅ“ZEN DÃƒÅ“ZELTME: GRAFÃ„Â°K -> SORU EKRANI
+// DÜZEN DÜZELTME: GRAFİK -> SORU EKRANI
 // ==========================================
-// Sol paneli (Soru kÃ„Â±smÃ„Â±) geniÃ…Å¸let, grafiÃ„Å¸i sÃ„Â±kÃ„Â±Ã…Å¸tÃ„Â±rma
+// Sol paneli (Soru kısmı) genişlet, grafiği sıkıştırma
 document.addEventListener('DOMContentLoaded', function() {
     const graphContainer = document.getElementById('graphQuestionContainer');
     if (graphContainer) {
-        // Sol panel (Soru metni ve Ã…Å¸Ã„Â±klar)
+        // Sol panel (Soru metni ve şıklar)
         const leftPanel = graphContainer.children[0];
-        // w-64 (sabit) yerine w-1/3 veya w-2/5 (oransal) yapÃ„Â±yoruz
+        // w-64 (sabit) yerine w-1/3 veya w-2/5 (oransal) yapıyoruz
         leftPanel.classList.remove('w-64'); 
         leftPanel.classList.add('w-1/3', 'min-w-[300px]', 'p-2'); 
         
-        // SaÃ„Å¸ panel (Grafik)
+        // Sağ panel (Grafik)
         const rightPanel = graphContainer.children[1];
         rightPanel.classList.add('p-2');
     }
 });
 
 // ==========================================
-// ONDALIK SAYIYI KESRE Ãƒâ€¡EVÃ„Â°RME (1.33 -> 4/3)
+// ONDALIK SAYIYI KESRE ÇEVİRME (1.33 -> 4/3)
 // ==========================================
 function decimalToFraction(val) {
     if (val === undefined || isNaN(val)) return "";
     
-    // Zaten tam sayÃ„Â±ysa direkt dÃƒÂ¶ndÃƒÂ¼r (Ãƒâ€“rn: 5)
+    // Zaten tam sayıysa direkt döndür (Örn: 5)
     if (Math.abs(val - Math.round(val)) < 0.0001) {
         return Math.round(val).toString();
     }
 
-    // PaydayÃ„Â± 2'den 100'e kadar dene (Okul matematiÃ„Å¸i iÃƒÂ§in yeterli)
+    // Paydayı 2'den 100'e kadar dene (Okul matematiği için yeterli)
     for (let d = 2; d <= 100; d++) {
         let n = val * d;
-        // EÃ„Å¸er payda ile ÃƒÂ§arpÃ„Â±nca tam sayÃ„Â±ya ÃƒÂ§ok yaklaÃ…Å¸Ã„Â±yorsa bulduk demektir
+        // Eğer payda ile çarpınca tam sayıya çok yaklaşıyorsa bulduk demektir
         if (Math.abs(n - Math.round(n)) < 0.0001) {
             return `${Math.round(n)}/${d}`;
         }
     }
     
-    // EÃ„Å¸er basit bir kesir bulunamazsa, virgÃƒÂ¼lden sonra 2 basamak gÃƒÂ¶ster
+    // Eğer basit bir kesir bulunamazsa, virgülden sonra 2 basamak göster
     return val.toFixed(2);
 }
 
 // ==========================================
-// Y=AX MODU Ã„Â°Ãƒâ€¡Ã„Â°N EKSÃ„Â°K KODLAR (RESTORASYON)
+// Y=AX MODU İÇİN EKSİK KODLAR (RESTORASYON)
 // ==========================================
 
-// 1. Modu BaÃ…Å¸latan Fonksiyon
+// 1. Modu Başlatan Fonksiyon
 function startYeqAXRound() {
-    console.log("Y=ax Modu BaÃ…Å¸lÃ„Â±yor...");
+    console.log("Y=ax Modu Başlıyor...");
     resetLinearQuestionPanel();
     
     // Eski bildirimleri temizle
@@ -4546,7 +4546,7 @@ function startYeqAXRound() {
 
     gameState.mode = 'y_eq_ax';
     
-    // Rastgele EÃ„Å¸im Belirle (Senkronize)
+    // Rastgele Eğim Belirle (Senkronize)
     const slopes = [2, -2, 3, -3]; 
     window.gameLogicCounter = (window.gameLogicCounter || 0) + 1;
     const urlParams = new URLSearchParams(window.location.search);
@@ -4558,7 +4558,7 @@ function startYeqAXRound() {
     let newSlope = slopes[sIndex];
     gameState.targetSlope = newSlope;
     
-    // UI (ArayÃƒÂ¼z) HazÃ„Â±rla
+    // UI (Arayüz) Hazırla
     document.getElementById('linearQuestionPanel').classList.remove('hidden');
     document.getElementById('linearContainer').classList.remove('hidden');
     document.getElementById('linearContainer').style.display = 'flex';
@@ -4567,16 +4567,16 @@ function startYeqAXRound() {
     document.getElementById('dataTable').style.display = 'block';
     document.getElementById('drawInstructionText').classList.add('hidden');
     
-    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x. Tabloyu doldurarak grafiÃ„Å¸i ÃƒÂ§iziniz.`;
+    document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x. Tabloyu doldurarak grafiği çiziniz.`;
 
-    // Tabloyu oluÃ…Å¸tur
+    // Tabloyu oluştur
     initializeLearningTable();
     
-    // GrafiÃ„Å¸i varsayÃ„Â±lan ÃƒÂ¶lÃƒÂ§ekle (1) ÃƒÂ§iz
+    // Grafiği varsayılan ölçekle (1) çiz
     linearState.axisScale = 1; 
     drawFullGridForAX(1);
     
-    // HafÃ„Â±zayÃ„Â± Temizle 
+    // Hafızayı Temizle 
     linearState.drawnPoints = []; 
     linearState.tableData = Array(4).fill(null).map(() => ({x: '', y: '', calcY: undefined}));
     
@@ -4586,56 +4586,56 @@ function startYeqAXRound() {
     confirmBtn.classList.add('opacity-50', 'cursor-not-allowed'); 
     document.getElementById('checkBtn').disabled = true;
     
-    // Ãƒâ€¡izim aracÃ„Â±nÃ„Â± hazÃ„Â±rla
+    // Çizim aracını hazırla
     setupStraightLineDrawing();
 }
 
-// 2. Buton TÃ„Â±klama OlayÃ„Â± (Listener)
+// 2. Buton Tıklama Olayı (Listener)
 var btnYeqAX = document.getElementById('btnYeqAX');
 if (btnYeqAX) {
     var newBtnAX = btnYeqAX.cloneNode(true);
     btnYeqAX.parentNode.replaceChild(newBtnAX, btnYeqAX);
     newBtnAX.addEventListener('click', function() {
         gameState.mode = 'y_eq_ax';
-        // DiÃ„Å¸er butonlarÃ„Â±n seÃƒÂ§im halkasÃ„Â±nÃ„Â± kaldÃ„Â±r
+        // Diğer butonların seçim halkasını kaldır
         document.querySelectorAll('#lineGraphSubButtons button').forEach(b => b.classList.remove('ring-2', 'ring-offset-1', 'ring-cyan-500'));
         // Bu butona halka ekle
         this.classList.add('ring-2', 'ring-offset-1', 'ring-cyan-500');
         
-        // DiÃ„Å¸er ekranlarÃ„Â± gizle
+        // Diğer ekranları gizle
         var regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'none';
         document.getElementById('graphQuestionContainer').classList.add('hidden');
         
-        // Modu baÃ…Å¸lat
+        // Modu başlat
         startYeqAXRound();
     });
 }
 
 
 // ==========================================
-// EÃ„ÂÃ„Â°M ANA BUTONU (SADECE MENÃƒÅ“YÃƒÅ“ AÃƒâ€¡AR)
+// EĞİM ANA BUTONU (SADECE MENÜYÜ AÇAR)
 // ==========================================
 document.getElementById('slopeBtn').addEventListener('click', function() {
-    // 1. Alt menÃƒÂ¼yÃƒÂ¼ bul
+    // 1. Alt menüyü bul
     const subButtons = document.getElementById('slopeSubButtons');
     
-    // AÃƒÂ§Ã„Â±k mÃ„Â± kapalÃ„Â± mÃ„Â±?
+    // Açık mı kapalı mı?
     const isHidden = subButtons.classList.contains('hidden') || subButtons.style.display === 'none';
 
-    // 2. EkranÃ„Â± temizle (DiÃ„Å¸er menÃƒÂ¼leri kapat)
+    // 2. Ekranı temizle (Diğer menüleri kapat)
     clearAllScreens(); 
 
-    // 3. MenÃƒÂ¼yÃƒÂ¼ AÃƒâ€¡ (Ama oyunu baÃ…Å¸latma!)
+    // 3. Menüyü AÇ (Ama oyunu başlatma!)
     if (isHidden) {
         subButtons.classList.remove('hidden');
-        subButtons.style.display = 'flex'; // MenÃƒÂ¼yÃƒÂ¼ gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
+        subButtons.style.display = 'flex'; // Menüyü görünür yap
         
         this.classList.add('selected-button');
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
     } else {
-        // Zaten aÃƒÂ§Ã„Â±ksa kapat
-        subButtons.classList.add('hidden'); // SÃ„Â±nÃ„Â±fÃ„Â± geri ekle
+        // Zaten açıksa kapat
+        subButtons.classList.add('hidden'); // Sınıfı geri ekle
         subButtons.style.display = 'none';
         this.classList.remove('selected-button');
         this.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
@@ -4643,7 +4643,7 @@ document.getElementById('slopeBtn').addEventListener('click', function() {
 });
 
 
-// --- EÃ„Å¸im Alt ButonlarÃ„Â± (Ã…Âimdilik HazÃ„Â±rlÃ„Â±k) ---
+// --- Eğim Alt Butonları (Şimdilik Hazırlık) ---
 const slopeSubIds = ['btnSlopeIncline', 'btnSlopeGraph', 'btnSlopeTwoPoints', 'btnSlopeEquation'];
 
 slopeSubIds.forEach(id => {
@@ -4657,72 +4657,72 @@ slopeSubIds.forEach(id => {
             });
             this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
             
-            // Burada ileride ilgili modlarÃ„Â± baÃ…Å¸latacaÃ„Å¸Ã„Â±z
-            console.log(id + " tÃ„Â±klandÃ„Â±. Ã„Â°lgili eÃ„Å¸im modu aÃƒÂ§Ã„Â±lacak.");
+            // Burada ileride ilgili modları başlatacağız
+            console.log(id + " tıklandı. İlgili eğim modu açılacak.");
             
-            // Ãƒâ€“rnek: gameState.mode = 'slope_incline';
+            // Örnek: gameState.mode = 'slope_incline';
             // startSlopeInclineRound(); vb.
         });
     }
 });
 
 // ==========================================
-// DÃƒâ€“NÃƒÅ“Ã…ÂÃƒÅ“M GEOMETRÃ„Â°SÃ„Â° MENÃƒÅ“ MANTIÃ„ÂI
+// DÖNÜŞÜM GEOMETRİSİ MENÜ MANTIĞI
 // ==========================================
 
-// 1. ANA BUTON (MenÃƒÂ¼yÃƒÂ¼ AÃƒÂ§Ã„Â±p Kapatma)
+// 1. ANA BUTON (Menüyü Açıp Kapatma)
 document.getElementById('transformationsBtn').addEventListener('click', function() {
     const subButtons = document.getElementById('transformSubButtons');
     const isHidden = subButtons.classList.contains('hidden');
 
-    // Ãƒâ€“nce ekranÃ„Â± temizle (DiÃ„Å¸er aÃƒÂ§Ã„Â±k menÃƒÂ¼leri kapatÃ„Â±r)
+    // Önce ekranı temizle (Diğer açık menüleri kapatır)
     clearAllScreens();
 
     if (isHidden) {
-        // MenÃƒÂ¼yÃƒÂ¼ aÃƒÂ§
+        // Menüyü aç
         subButtons.classList.remove('hidden');
         this.classList.add('selected-button');
     } else {
-        // MenÃƒÂ¼yÃƒÂ¼ kapat
+        // Menüyü kapat
         subButtons.classList.add('hidden');
         this.classList.remove('selected-button');
     }
 });
 
-// 2. Ãƒâ€“TELEME BUTONU GÃƒÅ“NCELLEMESÃ„Â° (Mevcut listener'Ã„Â± ezer veya tamamlar)
-// Not: Mevcut kodda zaten listener var ama menÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tutmak iÃƒÂ§in bunu override ediyoruz.
+// 2. ÖTELEME BUTONU GÜNCELLEMESİ (Mevcut listener'ı ezer veya tamamlar)
+// Not: Mevcut kodda zaten listener var ama menüyü açık tutmak için bunu override ediyoruz.
 var oldTranslationBtn = document.getElementById('translationBtn');
 if (oldTranslationBtn) {
-    // Butonu klonlayÃ„Â±p eskisini silerek listener ÃƒÂ§akÃ„Â±Ã…Å¸masÃ„Â±nÃ„Â± ÃƒÂ¶nlÃƒÂ¼yoruz (En temiz yÃƒÂ¶ntem)
+    // Butonu klonlayıp eskisini silerek listener çakışmasını önlüyoruz (En temiz yöntem)
     var newTranslationBtn = oldTranslationBtn.cloneNode(true);
     oldTranslationBtn.parentNode.replaceChild(newTranslationBtn, oldTranslationBtn);
 
     newTranslationBtn.addEventListener('click', function() {
         clearAllScreens(); // Temizlik
         
-        // MenÃƒÂ¼yÃƒÂ¼ tekrar aÃƒÂ§ (Ãƒâ€¡ÃƒÂ¼nkÃƒÂ¼ clearAllScreens kapattÃ„Â±)
+        // Menüyü tekrar aç (Çünkü clearAllScreens kapattı)
         document.getElementById('transformSubButtons').classList.remove('hidden');
         document.getElementById('transformationsBtn').classList.add('selected-button');
         
         // Kendini aktif yap (Halka efekti)
         this.classList.add('ring-2', 'ring-offset-1', 'ring-blue-500');
         
-        // DiÃ„Å¸er butonun efektini sil
+        // Diğer butonun efektini sil
         const refBtn = document.getElementById('reflectionBtn');
         if(refBtn) refBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-purple-500');
 
-        // Normal Canvas'Ã„Â± geri getir
+        // Normal Canvas'ı geri getir
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // Oyun Modunu BaÃ…Å¸lat
+        // Oyun Modunu Başlat
         gameState.mode = 'translation';
         updateUI();
         startNewRound();
     });
 }
 
-// 3. YANSIMA BUTONU GÃƒÅ“NCELLEMESÃ„Â°
+// 3. YANSIMA BUTONU GÜNCELLEMESİ
 var oldReflectionBtn = document.getElementById('reflectionBtn');
 if (oldReflectionBtn) {
     var newReflectionBtn = oldReflectionBtn.cloneNode(true);
@@ -4731,22 +4731,22 @@ if (oldReflectionBtn) {
     newReflectionBtn.addEventListener('click', function() {
         clearAllScreens(); // Temizlik
         
-        // MenÃƒÂ¼yÃƒÂ¼ tekrar aÃƒÂ§
+        // Menüyü tekrar aç
         document.getElementById('transformSubButtons').classList.remove('hidden');
         document.getElementById('transformationsBtn').classList.add('selected-button');
 
         // Kendini aktif yap
         this.classList.add('ring-2', 'ring-offset-1', 'ring-purple-500');
 
-        // DiÃ„Å¸er butonun efektini sil
+        // Diğer butonun efektini sil
         const transBtn = document.getElementById('translationBtn');
         if(transBtn) transBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-blue-500');
 
-        // Normal Canvas'Ã„Â± geri getir
+        // Normal Canvas'ı geri getir
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // Oyun Modunu BaÃ…Å¸lat
+        // Oyun Modunu Başlat
         gameState.mode = 'reflection';
         updateUI();
         startNewRound();
@@ -4754,15 +4754,15 @@ if (oldReflectionBtn) {
 }
 
 // ==========================================
-// KOORDÃ„Â°NAT BULMA MENÃƒÅ“SÃƒÅ“ (YENÃ„Â°)
+// KOORDİNAT BULMA MENÜSÜ (YENİ)
 // ==========================================
 
-// 1. ANA MENÃƒÅ“YÃƒÅ“ AÃƒâ€¡/KAPA
+// 1. ANA MENÜYÜ AÇ/KAPA
 document.getElementById('coordinatesBtn').addEventListener('click', function() {
     const subButtons = document.getElementById('coordinateSubButtons');
     const isHidden = subButtons.classList.contains('hidden');
 
-    // DiÃ„Å¸er her Ã…Å¸eyi temizle
+    // Diğer her şeyi temizle
     clearAllScreens();
 
     if (isHidden) {
@@ -4783,21 +4783,21 @@ if (oldP2PlaceBtn) {
     newP2PlaceBtn.addEventListener('click', function() {
         clearAllScreens();
         
-        // MenÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut
+        // Menüyü açık tut
         document.getElementById('coordinateSubButtons').classList.remove('hidden');
         document.getElementById('coordinatesBtn').classList.add('selected-button');
         
         // Halka efekti (Pembe)
         this.classList.add('ring-2', 'ring-offset-1', 'ring-pink-500');
-        // DiÃ„Å¸er butonun efektini sil
+        // Diğer butonun efektini sil
         const otherBtn = document.getElementById('placeToPointBtn');
         if(otherBtn) otherBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-teal-500');
 
-        // Normal Canvas'Ã„Â± gÃƒÂ¶ster
+        // Normal Canvas'ı göster
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // OYUNU BAÃ…ÂLAT
+        // OYUNU BAŞLAT
         gameState.mode = 'pointToPlace';
         updateUI();
         startNewRound();
@@ -4813,21 +4813,21 @@ if (oldPlace2PBtn) {
     newPlace2PBtn.addEventListener('click', function() {
         clearAllScreens();
         
-        // MenÃƒÂ¼yÃƒÂ¼ aÃƒÂ§Ã„Â±k tut
+        // Menüyü açık tut
         document.getElementById('coordinateSubButtons').classList.remove('hidden');
         document.getElementById('coordinatesBtn').classList.add('selected-button');
 
         // Halka efekti (Turkuaz)
         this.classList.add('ring-2', 'ring-offset-1', 'ring-teal-500');
-        // DiÃ„Å¸er butonun efektini sil
+        // Diğer butonun efektini sil
         const otherBtn = document.getElementById('pointToPlaceBtn');
         if(otherBtn) otherBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-pink-500');
 
-        // Normal Canvas'Ã„Â± gÃƒÂ¶ster
+        // Normal Canvas'ı göster
         const regularCanvas = document.querySelector('.flex-1.flex.items-center.justify-center.p-2.min-h-0.overflow-hidden');
         if (regularCanvas) regularCanvas.style.display = 'flex';
 
-        // OYUNU BAÃ…ÂLAT
+        // OYUNU BAŞLAT
         gameState.mode = 'placeToPoint';
         updateUI();
         startNewRound();
@@ -4835,13 +4835,13 @@ if (oldPlace2PBtn) {
 }
 
 // ==========================================
-// EÃ„ÂÃ„Â°M: EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM MODU
+// EĞİM: EĞİK DÜZLEM MODU
 // ==========================================
 
 let slopeState = {
     currentQuestion: 0,
     questions: [
-        // ... Eski sorular aynen kalsÃ„Â±n ...
+        // ... Eski sorular aynen kalsın ...
         { type: 'calc_slope', w: 7, h: 4, direction: 'ltr' }, 
         { type: 'calc_slope', w: 5, h: 3, direction: 'ltr' },
         { type: 'calc_slope', w: 6, h: 5, direction: 'rtl' }, 
@@ -4849,7 +4849,7 @@ let slopeState = {
         { type: 'find_side', w: 12, h: 6, direction: 'ltr', slopeDisplay: '0,5', unknown: 'vertical', answer: 6 },
         { type: 'find_side', w: 12, h: 9, direction: 'rtl', slopeDisplay: '3/4', unknown: 'horizontal', answer: 12 },
 
-        // --- YENÃ„Â° EKLENEN: MERDÃ„Â°VEN SORUSU ---
+        // --- YENİ EKLENEN: MERDİVEN SORUSU ---
         { 
             type: 'stairs', 
             stepCount: 6, 
@@ -4861,26 +4861,26 @@ let slopeState = {
         }
     ],
 
-// B) GRAFÃ„Â°K SORULARI (8 ADET: 4 Orijinden GeÃƒÂ§en, 4 Eksenleri Kesen)
+// B) GRAFİK SORULARI (8 ADET: 4 Orijinden Geçen, 4 Eksenleri Kesen)
     graphQuestions: [
-        // --- GRUP 1: Orijinden GeÃƒÂ§enler (y = ax) ---
-        // 1. Pozitif EÃ„Å¸im (2/3)
+        // --- GRUP 1: Orijinden Geçenler (y = ax) ---
+        // 1. Pozitif Eğim (2/3)
         { m_num: 2, m_denom: 3, points: [{x:0, y:0}, {x:3, y:2}] },
-        // 2. Negatif EÃ„Å¸im (-1/2)
+        // 2. Negatif Eğim (-1/2)
         { m_num: -1, m_denom: 2, points: [{x:0, y:0}, {x:-2, y:1}] },
-        // 3. Tam SayÃ„Â± EÃ„Å¸im (3/1 = 3)
+        // 3. Tam Sayı Eğim (3/1 = 3)
         { m_num: 3, m_denom: 1, points: [{x:0, y:0}, {x:1, y:3}] },
-        // 4. Negatif Tam SayÃ„Â± EÃ„Å¸im (-2/1 = -2)
+        // 4. Negatif Tam Sayı Eğim (-2/1 = -2)
         { m_num: -2, m_denom: 1, points: [{x:0, y:0}, {x:-1, y:2}] },
         
         // --- GRUP 2: Eksenleri Kesenler (y = ax + b) ---
-        // 5. x eksenini -3'te, y eksenini 4'te kesen (EÃ„Å¸im: 4/3)
+        // 5. x eksenini -3'te, y eksenini 4'te kesen (Eğim: 4/3)
         { m_num: 4, m_denom: 3, points: [{x:-3, y:0}, {x:0, y:4}] },
-        // 6. x eksenini 2'de, y eksenini 3'te kesen (EÃ„Å¸im: -3/2)
+        // 6. x eksenini 2'de, y eksenini 3'te kesen (Eğim: -3/2)
         { m_num: -3, m_denom: 2, points: [{x:2, y:0}, {x:0, y:3}] },
-        // 7. x eksenini -4'te, y eksenini -5'te kesen (EÃ„Å¸im: -5/4)
+        // 7. x eksenini -4'te, y eksenini -5'te kesen (Eğim: -5/4)
         { m_num: -5, m_denom: 4, points: [{x:-4, y:0}, {x:0, y:-5}] },
-        // 8. x eksenini 3'te, y eksenini -4'te kesen (EÃ„Å¸im: 4/3)
+        // 8. x eksenini 3'te, y eksenini -4'te kesen (Eğim: 4/3)
         { m_num: 4, m_denom: 3, points: [{x:3, y:0}, {x:0, y:-4}] },
         { 
             type: 'find_intercept',
@@ -4889,7 +4889,7 @@ let slopeState = {
             x_label: '8',       // X eksenini 8'de kessin
             y_label: 'a',
             answer: 6,          // Cevap pozitif 6 olsun
-            // GÃƒÂ¶rselde sÃ„Â±Ã„Å¸masÃ„Â± iÃƒÂ§in ÃƒÂ¶lÃƒÂ§ekli ÃƒÂ§izim (4 ve 3 noktalarÃ„Â±)
+            // Görselde sığması için ölçekli çizim (4 ve 3 noktaları)
             visualPoints: [{x:4, y:0}, {x:0, y:3}]
         }
     ],
@@ -4897,11 +4897,11 @@ let slopeState = {
 };
 
 // ==========================================
-// EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM MODUNU BAÃ…ÂLATAN FONKSÃ„Â°YON (DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â TEMÃ„Â°Z HALÃ„Â°)
+// EĞİK DÜZLEM MODUNU BAŞLATAN FONKSİYON (DÜZELTİLMİŞ TEMİZ HALİ)
 // ==========================================
 function startSlopeInclineRound() {
     
-    // 1. SORULAR BÃ„Â°TTÃ„Â° MÃ„Â° KONTROLÃƒÅ“
+    // 1. SORULAR BİTTİ Mİ KONTROLÜ
     if (slopeState.currentQuestion >= slopeState.questions.length) {
         clearAllScreens();
         
@@ -4910,9 +4910,9 @@ function startSlopeInclineRound() {
 
         const feedback = document.getElementById('feedback');
         feedback.innerHTML = `
-            <div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div>
+            <div class="text-4xl mb-2">🏆</div>
             <div>Tebrikler!</div>
-            <div class="text-lg font-normal mt-1">Bu bÃƒÂ¶lÃƒÂ¼mÃƒÂ¼ baÃ…Å¸arÃ„Â±yla tamamladÃ„Â±n!</div>
+            <div class="text-lg font-normal mt-1">Bu bölümü başarıyla tamamladın!</div>
         `;
         
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-3xl z-[9999] animate-bounce border-4 border-white';
@@ -4932,14 +4932,13 @@ function startSlopeInclineRound() {
         return; 
     }
 
-    // 2. EKRAN TEMÃ„Â°ZLÃ„Â°Ã„ÂÃ„Â°
+    // 2. EKRAN TEMİZLİĞİ
     clearAllScreens();
-    resetLinearQuestionPanel();
 
     document.getElementById('slopeSubButtons').classList.remove('hidden');
     document.getElementById('btnSlopeIncline').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
     
-    // 3. UI HAZIRLIÃ„ÂI
+    // 3. UI HAZIRLIĞI
     const linearContainer = document.getElementById('linearContainer');
     linearContainer.classList.remove('hidden');
     linearContainer.style.display = 'flex';
@@ -4958,20 +4957,20 @@ function startSlopeInclineRound() {
     const canvas = document.getElementById('linearCanvas');
     canvas.style.display = 'block';
 
-    // 4. PANEL Ã„Â°Ãƒâ€¡ERÃ„Â°Ã„ÂÃ„Â°
+    // 4. PANEL İÇERİĞİ
     const q = slopeState.questions[slopeState.currentQuestion];
     const panelContent = document.getElementById('slopeQuestionPanel');
     panelContent.innerHTML = '';
 
     if (q.type === 'calc_slope') {
-        // ESKÃ„Â° TÃ„Â°P
+        // ESKİ TİP
         panelContent.innerHTML = `
             <div class="text-indigo-900 font-bold text-center">
-                <span class="text-lg block mb-2">EÃ„Å¸imi Hesapla</span>
+                <span class="text-lg block mb-2">Eğimi Hesapla</span>
                 <span class="text-sm text-gray-500 font-normal">Dikey / Yatay</span>
             </div>
             <div id="slopeAnswerBox" class="w-48 h-14 border-2 border-dashed border-indigo-400 rounded-xl flex items-center justify-center text-2xl font-bold text-indigo-600 bg-indigo-50 cursor-pointer hover:bg-indigo-100 transition-all shadow-sm">?</div>
-            <div class="text-xs text-gray-400 text-center">Kutuya tÃ„Â±kla ve deÃ„Å¸eri gir<br>(Ãƒâ€“rn: 4ÃƒÂ·7)</div>
+            <div class="text-xs text-gray-400 text-center">Kutuya tıkla ve değeri gir<br>(Örn: 4÷7)</div>
         `;
         document.getElementById('slopeAnswerBox').addEventListener('click', function() {
             activeInputTarget = 'slope_simple';
@@ -4982,10 +4981,10 @@ function startSlopeInclineRound() {
         });
 
     } else if (q.type === 'stairs') {
-        // MERDÃ„Â°VEN TÃ„Â°PÃ„Â°
+        // MERDİVEN TİPİ
         panelContent.innerHTML = `
             <div class="text-indigo-900 font-bold text-center mb-2">
-                <span class="text-lg">Merdivenin EÃ„Å¸imini Bul</span>
+                <span class="text-lg">Merdivenin Eğimini Bul</span>
             </div>
             <div class="flex items-center justify-center gap-4 text-2xl font-bold font-mono">
                 <div class="flex flex-col items-center gap-1">
@@ -5011,9 +5010,9 @@ function startSlopeInclineRound() {
             document.getElementById('numberPad').classList.remove('hidden');
         });
     } else {
-        // YENÃ„Â° TÃ„Â°P
+        // YENİ TİP
         let leftSideHTML = '';
-        let instructionText = "Soru iÃ…Å¸aretli kutuya tÃ„Â±kla";
+        let instructionText = "Soru işaretli kutuya tıkla";
 
         if (q.slopeDisplay === '0,5') {
             leftSideHTML = `
@@ -5022,7 +5021,7 @@ function startSlopeInclineRound() {
                     <div class="border-b-2 border-indigo-900 w-full"></div>
                     <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-dashed border-indigo-400 bg-indigo-50 text-indigo-600 rounded flex items-center justify-center cursor-pointer hover:bg-indigo-100 font-bold text-lg">?</div>
                 </div>`;
-            instructionText = "0,5'i kesre ÃƒÂ§evir (Ãƒâ€“rn: 1/2), sonra x'i bul";
+            instructionText = "0,5'i kesre çevir (Örn: 1/2), sonra x'i bul";
         } 
         else if (q.slopeDisplay.includes('/')) {
             const parts = q.slopeDisplay.split('/');
@@ -5046,7 +5045,7 @@ function startSlopeInclineRound() {
         panelContent.innerHTML = `
             <div class="text-indigo-900 font-bold text-center mb-2">
                 <span class="text-lg">Bilinmeyeni Bul</span>
-                ${q.slopeDisplay === '0,5' ? '<div class="text-xs text-indigo-600">(EÃ„Å¸im = 0,5)</div>' : ''}
+                ${q.slopeDisplay === '0,5' ? '<div class="text-xs text-indigo-600">(Eğim = 0,5)</div>' : ''}
             </div>
             
             <div class="flex items-center justify-center gap-4 text-2xl font-bold font-mono">
@@ -5116,24 +5115,24 @@ function startSlopeInclineRound() {
 
 
 // ==========================================
-// EÃ„ÂÃ„Â°M CEVAP KONTROL FONKSÃ„Â°YONU (DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â)
+// EĞİM CEVAP KONTROL FONKSİYONU (DÜZELTİLMİŞ)
 // ==========================================
 function checkSlopeAnswer() {
     let q;
     
-    // Hangi moddayÃ„Â±z?
+    // Hangi moddayız?
     if (slopeState.activeMode === 'graph') {
         q = slopeState.graphQuestions[slopeState.currentQuestion];
     } else {
         q = slopeState.questions[slopeState.currentQuestion];
     }
 
-    // *** Ã„Â°Ã…ÂTE HATAYI Ãƒâ€¡Ãƒâ€“ZEN SATIR BURASI ***
+    // *** İŞTE HATAYI ÇÖZEN SATIR BURASI ***
     let isCorrect = false; 
     // **************************************
 
     // ---------------------------------------------------------
-    // A) GRAFÃ„Â°K MODU KONTROLLERÃ„Â°
+    // A) GRAFİK MODU KONTROLLERİ
     // ---------------------------------------------------------
     if (slopeState.activeMode === 'graph') {
         if (q.type === 'find_intercept') {
@@ -5166,7 +5165,7 @@ function checkSlopeAnswer() {
         }
     } 
     // ---------------------------------------------------------
-    // B) EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM MODU KONTROLLERÃ„Â°
+    // B) EĞİK DÜZLEM MODU KONTROLLERİ
     // ---------------------------------------------------------
     else {
         if (q.type === 'calc_slope') {
@@ -5177,8 +5176,8 @@ function checkSlopeAnswer() {
                 try {
                     if (userAnswer.includes('/')) {
                         const parts = userAnswer.split('/'); userVal = parseFloat(parts[0]) / parseFloat(parts[1]);
-                    } else if (userAnswer.includes('ÃƒÂ·')) {
-                        const parts = userAnswer.split('ÃƒÂ·'); userVal = parseFloat(parts[0]) / parseFloat(parts[1]);
+                    } else if (userAnswer.includes('÷')) {
+                        const parts = userAnswer.split('÷'); userVal = parseFloat(parts[0]) / parseFloat(parts[1]);
                     } else { userVal = parseFloat(userAnswer); }
                     const correctVal = q.h / q.w;
                     if (Math.abs(userVal - correctVal) < 0.001) isCorrect = true;
@@ -5228,7 +5227,7 @@ function checkSlopeAnswer() {
     }
 
     // ---------------------------------------------------------
-    // SONUÃƒâ€¡ Ã„Â°Ã…ÂLEMLERÃ„Â°
+    // SONUÇ İŞLEMLERİ
     // ---------------------------------------------------------
     if (isCorrect) {
         slopeState.userAnswer = true;
@@ -5258,7 +5257,7 @@ function checkSlopeAnswer() {
         showFeedback(false);
         playErrorSound();
         const feedback = document.getElementById('feedback');
-        feedback.textContent = "YanlÃ„Â±Ã…Å¸ cevap, tekrar dene!";
+        feedback.textContent = "Yanlış cevap, tekrar dene!";
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
     }
@@ -5267,17 +5266,17 @@ function checkSlopeAnswer() {
 
 
 // ==========================================
-// EÃ…ÂÃ„Â°TLÃ„Â°K MODU (FÃ„Â°NAL: KESÃ„Â°N DÃƒÅ“ZELTME v3)
+// EŞİTLİK MODU (FİNAL: KESİN DÜZELTME v3)
 // ==========================================
 function startSlopeGraphRound() {
-    // 1. LÃ„Â°STEYÃ„Â° TEMÃ„Â°ZLE VE SORUYU ZORLA EKLE
-    // Eski "b" sorularÃ„Â±nÃ„Â± siliyoruz ki ÃƒÂ§akÃ„Â±Ã…Å¸ma olmasÃ„Â±n
+    // 1. LİSTEYİ TEMİZLE VE SORUYU ZORLA EKLE
+    // Eski "b" sorularını siliyoruz ki çakışma olmasın
     slopeState.graphQuestions = slopeState.graphQuestions.filter(q => q.subType !== 'find_b_negative');
 
     // Yeni soruyu listenin SONUNA ekliyoruz
     slopeState.graphQuestions.push({
         type: 'find_intercept',   
-        subType: 'find_b_negative', // Bu kimlik ÃƒÂ§izimi tetikleyecek
+        subType: 'find_b_negative', // Bu kimlik çizimi tetikleyecek
         targetVar: 'b',           
         xVal: 5,                  
         yVal: -15,                // b = -15
@@ -5285,13 +5284,13 @@ function startSlopeGraphRound() {
         correctAnswer: -15        
     });
 
-    // 2. BitiÃ…Å¸ KontrolÃƒÂ¼
+    // 2. Bitiş Kontrolü
     if (slopeState.currentQuestion >= slopeState.graphQuestions.length) {
         clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('btnSlopeGraph').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
         const feedback = document.getElementById('feedback');
-        feedback.innerHTML = `<div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div><div>Tebrikler!</div><div class="text-lg font-normal mt-1">Grafik eÃ„Å¸im bÃƒÂ¶lÃƒÂ¼mÃƒÂ¼nÃƒÂ¼ baÃ…Å¸arÃ„Â±yla tamamladÃ„Â±n!</div>`;
+        feedback.innerHTML = `<div class="text-4xl mb-2">🏆</div><div>Tebrikler!</div><div class="text-lg font-normal mt-1">Grafik eğim bölümünü başarıyla tamamladın!</div>`;
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-3xl z-[9999] animate-bounce border-4 border-white';
         feedback.style.opacity = '1';
         playSuccessSound();
@@ -5306,7 +5305,7 @@ function startSlopeGraphRound() {
         return; 
     }
 
-    // 3. Ekran HazÃ„Â±rlÃ„Â±Ã„Å¸Ã„Â±
+    // 3. Ekran Hazırlığı
     clearAllScreens();
     document.getElementById('slopeSubButtons').classList.remove('hidden');
     document.getElementById('btnSlopeGraph').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
@@ -5335,7 +5334,7 @@ function startSlopeGraphRound() {
         checkBtn.style.opacity = '0.5';
     }
 
-    // 4. Panel HazÃ„Â±rlÃ„Â±Ã„Å¸Ã„Â±
+    // 4. Panel Hazırlığı
     const panelContent = document.getElementById('linearQuestionPanel');
     if (panelContent.parentElement !== document.body) document.body.appendChild(panelContent);
     panelContent.classList.remove('hidden');
@@ -5346,17 +5345,17 @@ function startSlopeGraphRound() {
         min-width: 200px; background: #ffffff; border-radius: 12px; padding: 15px; border: 2px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     `;
 
-    // GÃƒÅ“NCEL SORUYU AL
+    // GÜNCEL SORUYU AL
     const q = slopeState.graphQuestions[slopeState.currentQuestion];
 
-    // 5. HTML Ã„Â°ÃƒÂ§eriÃ„Å¸i
+    // 5. HTML İçeriği
     if (q.type === 'find_intercept') {
         const targetVar = (q.subType === 'find_b_negative') ? 'b' : (q.targetVar || 'a'); 
-        const slopeInfo = q.slope ? `<div class="text-sm text-gray-500 mb-1">EÃ„Å¸im (m) = ${q.slope}</div>` : '';
+        const slopeInfo = q.slope ? `<div class="text-sm text-gray-500 mb-1">Eğim (m) = ${q.slope}</div>` : '';
 
         panelContent.innerHTML = `
             <div class="flex flex-col items-center justify-center w-full">
-                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">EÃ…Å¸itliÃ„Å¸i Kur</span></div>
+                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">Eşitliği Kur</span></div>
                 ${slopeInfo}
                 <div class="flex items-center justify-center gap-3 mt-2">
                     <div class="flex flex-col items-center gap-1">
@@ -5371,25 +5370,25 @@ function startSlopeGraphRound() {
                         <div id="slopeDenomBox" class="min-w-[80px] h-10 border-2 border-indigo-300 bg-white text-indigo-700 rounded flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-lg shadow-sm">?</div>
                     </div>
                 </div>
-                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatÃ„Â±k: <span class="text-red-500 font-bold text-sm">(-)</span></div>
+                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatık: <span class="text-red-500 font-bold text-sm">(-)</span></div>
             </div>`;
     } else {
         panelContent.innerHTML = `
             <div class="flex flex-col items-center justify-center w-full">
-                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">EÃ„Å¸im KaÃƒÂ§tÃ„Â±r?</span></div>
+                <div class="text-indigo-900 font-bold text-center mb-2"><span class="text-lg">Eğim Kaçtır?</span></div>
                 <div class="text-xs text-gray-400 font-medium mb-3 text-center">(Dikey / Yatay)</div>
                 <div class="flex flex-col items-center justify-center gap-1 w-full">
                     <div id="slopeNumBox" class="w-16 h-12 border-2 border-indigo-300 bg-white text-indigo-700 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-xl shadow-sm">?</div>
                     <div class="border-b-4 border-indigo-900 w-20 rounded-full my-1 opacity-80"></div>
                     <div id="slopeDenomBox" class="w-16 h-12 border-2 border-indigo-300 bg-white text-indigo-700 rounded-lg flex items-center justify-center cursor-pointer hover:border-indigo-500 font-bold text-xl shadow-sm">?</div>
                 </div>
-                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatÃ„Â±k: <span class="text-red-500 font-bold text-sm">(-)</span></div>
+                <div class="mt-4 text-xs text-gray-500 font-medium text-center border-t pt-2 w-full">Sola yatık: <span class="text-red-500 font-bold text-sm">(-)</span></div>
             </div>`;
     }
 
     let currentActiveBoxId = null;
 
-    // 6. TuÃ…Å¸ TakÃ„Â±mÃ„Â±
+    // 6. Tuş Takımı
     const pad = document.getElementById('numberPad');
     if (pad) {
         const newPad = pad.cloneNode(true);
@@ -5403,18 +5402,12 @@ function startSlopeGraphRound() {
             const isDelete = btn.querySelector('.fa-backspace') || val === 'Sil' || val === 'C' || btn.getAttribute('data-value') === 'clear';
             if (isDelete) {
                 linearState.currentInputValue = linearState.currentInputValue.slice(0, -1);
-            } else if (val !== 'Ä°ptal') {
+            } else if (val !== 'İptal') {
                 let inputChar = btn.getAttribute('data-value') || val;
-                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam' && inputChar !== 'Ä°ptal') {
+                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam') {
                     linearState.currentInputValue += inputChar;
                 }
             }
-
-
-
-
-
-
 
             if (currentActiveBoxId) {
                 const box = document.getElementById(currentActiveBoxId);
@@ -5422,11 +5415,6 @@ function startSlopeGraphRound() {
                     const displayVal = linearState.currentInputValue;
                     box.textContent = displayVal === '' ? '?' : displayVal;
                     box.style.color = displayVal === '' ? '' : '#4338ca';
-                    
-                    const currentInput = document.getElementById('currentInput');
-                    if (currentInput) {
-                        currentInput.textContent = displayVal;
-                    }
                 }
             }
         });
@@ -5469,7 +5457,7 @@ function startSlopeGraphRound() {
                 const ld = parseFloat(document.getElementById('leftDenomBox').textContent);
                 const rn = parseFloat(document.getElementById('slopeNumBox').textContent);
                 const rd = parseFloat(document.getElementById('slopeDenomBox').textContent);
-                if(isNaN(ld) || isNaN(rn) || isNaN(rd)) { alert("LÃƒÂ¼tfen tÃƒÂ¼m kutularÃ„Â± doldurunuz!"); return; }
+                if(isNaN(ld) || isNaN(rn) || isNaN(rd)) { alert("Lütfen tüm kutuları doldurunuz!"); return; }
 
                 calculatedVal = (ld * rn) / rd;
                 if (q.subType === 'find_b_negative') {
@@ -5481,14 +5469,14 @@ function startSlopeGraphRound() {
             } else {
                 const rn = parseFloat(document.getElementById('slopeNumBox').textContent);
                 const rd = parseFloat(document.getElementById('slopeDenomBox').textContent);
-                if(!isNaN(rn) && !isNaN(rd)) { calculatedVal = rn/rd; finalMessage = `EÃ„Å¸im = ${calculatedVal}`; }
+                if(!isNaN(rn) && !isNaN(rd)) { calculatedVal = rn/rd; finalMessage = `Eğim = ${calculatedVal}`; }
             }
 
             const feedback = document.getElementById('feedback');
             const displayResult = typeof calculatedVal === 'number' && Number.isInteger(calculatedVal) ? calculatedVal : (calculatedVal ? calculatedVal.toFixed(2) : calculatedVal);
 
             feedback.innerHTML = `
-                <div class="text-4xl mb-2">ÄŸÅ¸Ââ€°</div><div class="font-bold text-2xl">Tebrikler!</div>
+                <div class="text-4xl mb-2">🎉</div><div class="font-bold text-2xl">Tebrikler!</div>
                 <div class="text-lg mt-2 font-mono bg-white text-purple-700 px-4 py-1 rounded">${finalMessage.split('=')[0]} = ${displayResult}</div>
             `;
             feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-8 rounded-2xl shadow-2xl font-bold text-center bg-green-500 text-white z-[9999] border-4 border-white animate-bounce';
@@ -5508,29 +5496,24 @@ function startSlopeGraphRound() {
             linearState.currentInputValue = ''; 
             box.textContent = '?'; box.style.color = '';
             document.getElementById('currentInput').textContent = '';
-            const pad = document.getElementById('numberPad');
-            if (pad) {
-                pad.classList.remove('hidden');
-                pad.style.display = 'flex';
-                pad.style.zIndex = '999999';
-            }
+            document.getElementById('numberPad').classList.remove('hidden');
         });
     }
 
     if (q.type === 'find_intercept') {
         const targetVar = (q.subType === 'find_b_negative') ? 'b' : (q.targetVar || 'a');
         setupBox('leftDenomBox', 'eq_left_denom', `${targetVar} (Payda)`);
-        setupBox('slopeNumBox', 'eq_right_num', 'EÃ„Å¸im (Pay)');
-        setupBox('slopeDenomBox', 'eq_right_denom', 'EÃ„Å¸im (Payda)');
+        setupBox('slopeNumBox', 'eq_right_num', 'Eğim (Pay)');
+        setupBox('slopeDenomBox', 'eq_right_denom', 'Eğim (Payda)');
     } else {
         setupBox('slopeNumBox', 'slope_conv_num', 'Dikey (Pay)');
         setupBox('slopeDenomBox', 'slope_conv_denom', 'Yatay (Payda)');
     }
 
     // =======================================================
-    // 9. Ãƒâ€¡Ã„Â°ZÃ„Â°M BÃƒâ€“LÃƒÅ“MÃƒÅ“ (CANVAS - ELLE Ãƒâ€¡Ã„Â°ZÃ„Â°M)
+    // 9. ÇİZİM BÖLÜMÜ (CANVAS - ELLE ÇİZİM)
     // =======================================================
-    // Sorunun kimliÃ„Å¸ini (find_b_negative) kontrol edip ÃƒÂ¶zel ÃƒÂ§izimi yapÃ„Â±yoruz.
+    // Sorunun kimliğini (find_b_negative) kontrol edip özel çizimi yapıyoruz.
     
     if (q.subType === 'find_b_negative') {
         const ctx = canvas.getContext('2d');
@@ -5538,7 +5521,7 @@ function startSlopeGraphRound() {
         const h = canvas.height = 600;
         const cx = w / 2; // 300
         const cy = h / 2; // 300
-        const scale = 15; // Ãƒâ€“lÃƒÂ§ek (b=-15 ekrana sÃ„Â±Ã„Å¸sÃ„Â±n diye 15 yaptÃ„Â±k)
+        const scale = 15; // Ölçek (b=-15 ekrana sığsın diye 15 yaptık)
 
         // 1. Temizle
         ctx.clearRect(0, 0, w, h);
@@ -5569,31 +5552,20 @@ function startSlopeGraphRound() {
             if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, cx - 6, i);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        // b noktasÃ„Â± (Y ekseni, aÃ…Å¸aÃ„Å¸Ã„Â±da) -> cy + 15*scale
-        // 5 noktasÃ„Â± (X ekseni, saÃ„Å¸da) -> cx + 5*scale
+        // 4. KIRMIZI DOĞRU (b'den 5'e YUKARI çıkan çizgi)
+        // b noktası (Y ekseni, aşağıda) -> cy + 15*scale
+        // 5 noktası (X ekseni, sağda) -> cx + 5*scale
         
-        const y_piksel = cy + (15 * scale); // b (AÃ…Å¸aÃ„Å¸Ã„Â±da)
-        const x_piksel = cx + (5 * scale);  // 5 (SaÃ„Å¸da)
+        const y_piksel = cy + (15 * scale); // b (Aşağıda)
+        const x_piksel = cx + (5 * scale);  // 5 (Sağda)
 
         ctx.strokeStyle = "#ef4444"; ctx.lineWidth = 4; ctx.beginPath();
         
-        // Ãƒâ€¡izgiyi UzatÃ„Â±yoruz:
-        // BaÃ…Å¸langÃ„Â±ÃƒÂ§: b noktasÃ„Â±nÃ„Â±n solundan ve daha aÃ…Å¸aÃ„Å¸Ã„Â±sÃ„Â±ndan (Sol-Alt)
+        // Çizgiyi Uzatıyoruz:
+        // Başlangıç: b noktasının solundan ve daha aşağısından (Sol-Alt)
         ctx.moveTo(cx - 3*scale, y_piksel + 9*scale); 
         
-        // BitiÃ…Å¸: 5 noktasÃ„Â±nÃ„Â±n saÃ„Å¸Ã„Â±ndan ve daha yukarÃ„Â±sÃ„Â±ndan (SaÃ„Å¸-ÃƒÅ“st)
+        // Bitiş: 5 noktasının sağından ve daha yukarısından (Sağ-Üst)
         ctx.lineTo(x_piksel + 3*scale, cy - 9*scale); 
         
         ctx.stroke();
@@ -5601,16 +5573,16 @@ function startSlopeGraphRound() {
         // 5. Etiketler
         ctx.fillStyle = "#1f2937"; ctx.font = "bold 20px sans-serif";
         
-        // 5 YazÃ„Â±sÃ„Â± (X ekseni)
+        // 5 Yazısı (X ekseni)
         ctx.beginPath(); ctx.arc(x_piksel, cy, 6, 0, Math.PI*2); ctx.fill();
         ctx.fillText("5", x_piksel - 5, cy - 15);
 
-        // b YazÃ„Â±sÃ„Â± (Y ekseni, AÃ…Å¸aÃ„Å¸Ã„Â±da)
+        // b Yazısı (Y ekseni, Aşağıda)
         ctx.beginPath(); ctx.arc(cx, y_piksel, 6, 0, Math.PI*2); ctx.fill();
         ctx.fillText("b", cx + 15, y_piksel + 5);
 
     } else {
-        // DiÃ„Å¸er sorular iÃƒÂ§in standart ÃƒÂ§izim
+        // Diğer sorular için standart çizim
         drawSlopeGraph();
     }
 }
@@ -5618,13 +5590,13 @@ function startSlopeGraphRound() {
 
 
 // ==========================================
-// GRAFÃ„Â°K Ãƒâ€¡Ã„Â°ZÃ„Â°M FONKSÃ„Â°YONU (DÃƒÅ“ZELTÃ„Â°LMÃ„Â°Ã…Â FÃ„Â°NAL HALÃ„Â°)
+// GRAFİK ÇİZİM FONKSİYONU (DÜZELTİLMİŞ FİNAL HALİ)
 // ==========================================
 function drawSlopeGraph() {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = ''; 
 
-    // ViewBox ekle (Responsive gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼m iÃƒÂ§in)
+    // ViewBox ekle (Responsive görünüm için)
     canvas.setAttribute('viewBox', '0 0 500 500');
     canvas.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
@@ -5635,10 +5607,10 @@ function drawSlopeGraph() {
     const CENTER_Y = 250;
     const GRID = 25; // Her birim 25 birim
 
-    // 1. IZGARA VE EKSENLERÃ„Â° Ãƒâ€¡Ã„Â°Z
+    // 1. IZGARA VE EKSENLERİ ÇİZ
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     
-    // Ã„Â°nce Izgaralar
+    // İnce Izgaralar
     for(let i=0; i<=500; i+=GRID) {
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500);
@@ -5661,46 +5633,21 @@ function drawSlopeGraph() {
     yAxis.setAttribute('x1', CENTER_X); yAxis.setAttribute('y1', 0); yAxis.setAttribute('x2', CENTER_X); yAxis.setAttribute('y2', 500);
     yAxis.setAttribute('stroke', '#374151'); yAxis.setAttribute('stroke-width', '2');
     gridGroup.appendChild(yAxis);
-
-    // Eksen NumaralarÃ„Â± (Her kare 1 birim)
-    for(let i = -10; i <= 10; i++) {
-        if(i !== 0) {
-            // X Ekseni NumaralarÃ„Â±
-            const xText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            xText.setAttribute('x', CENTER_X + (i * GRID));
-            xText.setAttribute('y', CENTER_Y + 15);
-            xText.setAttribute('font-size', '12');
-            xText.setAttribute('text-anchor', 'middle');
-            xText.setAttribute('fill', '#6b7280');
-            xText.textContent = i;
-            gridGroup.appendChild(xText);
-
-            // Y Ekseni NumaralarÃ„Â±
-            const yText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            yText.setAttribute('x', CENTER_X - 8);
-            yText.setAttribute('y', CENTER_Y - (i * GRID) + 4);
-            yText.setAttribute('font-size', '12');
-            yText.setAttribute('text-anchor', 'end');
-            yText.setAttribute('fill', '#6b7280');
-            yText.textContent = i;
-            gridGroup.appendChild(yText);
-        }
-    }
     
     canvas.appendChild(gridGroup);
 
-    // --- DEÃ„ÂÃ„Â°Ã…ÂKEN TANIMLAMA (BURADA SADECE BÃ„Â°R KEZ YAPILIYOR) ---
-    // EÃ„Å¸er ÃƒÂ¶zel soruysa visualPoints, deÃ„Å¸ilse points kullan
+    // --- DEĞİŞKEN TANIMLAMA (BURADA SADECE BİR KEZ YAPILIYOR) ---
+    // Eğer özel soruysa visualPoints, değilse points kullan
     const pointsToUse = (q.type === 'find_intercept') ? q.visualPoints : q.points;
 
-    // 2. DOÃ„ÂRUYU Ãƒâ€¡Ã„Â°Z
+    // 2. DOĞRUYU ÇİZ
     const p1 = pointsToUse[0];
     const p2 = pointsToUse[1];
 
     const m = (p2.y - p1.y) / (p2.x - p1.x);
     const b = p1.y - (m * p1.x);
 
-    // DoÃ„Å¸ruyu uzat
+    // Doğruyu uzat
     const startX_unit = -12; 
     const startY_unit = (m * startX_unit) + b;
     const endX_unit = 12;
@@ -5718,7 +5665,7 @@ function drawSlopeGraph() {
     line.setAttribute('stroke-width', '4');
     canvas.appendChild(line);
 
-    // 3. NOKTALAR VE ETÃ„Â°KETLER
+    // 3. NOKTALAR VE ETİKETLER
     pointsToUse.forEach((pt, index) => {
         const cx = CENTER_X + (pt.x * GRID);
         const cy = CENTER_Y - (pt.y * GRID);
@@ -5731,7 +5678,7 @@ function drawSlopeGraph() {
         dot.setAttribute('stroke-width', '2');
         canvas.appendChild(dot);
 
-        // Ãƒâ€“zel Soru Etiketleri ("8" ve "a" yazÃ„Â±sÃ„Â±)
+        // Özel Soru Etiketleri ("8" ve "a" yazısı)
         if (q.type === 'find_intercept') {
             const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             label.setAttribute('x', cx + 15); 
@@ -5740,7 +5687,7 @@ function drawSlopeGraph() {
             label.setAttribute('font-weight', 'bold');
             label.setAttribute('fill', '#be185d');
             
-            // Ã„Â°lk nokta X ekseninde, Ã„Â°kinci nokta Y ekseninde
+            // İlk nokta X ekseninde, İkinci nokta Y ekseninde
             label.textContent = (index === 0) ? q.x_label : q.y_label;
             canvas.appendChild(label);
         }
@@ -5753,19 +5700,19 @@ function drawSlopeTriangle() {
 
     const q = slopeState.questions[slopeState.currentQuestion];
     
-    // Ãƒâ€“lÃƒÂ§ek AyarÃ„Â±
+    // Ölçek Ayarı
     let GRID = (q.w >= 10 || q.h >= 10) ? 25 : 40;
     
-    // Merdiven sorusu iÃƒÂ§in ÃƒÂ¶zel ÃƒÂ¶lÃƒÂ§ek (Toplam geniÃ…Å¸lik 30 olacaÃ„Å¸Ã„Â± iÃƒÂ§in kÃƒÂ¼ÃƒÂ§ÃƒÂ¼ltÃƒÂ¼yoruz)
+    // Merdiven sorusu için özel ölçek (Toplam genişlik 30 olacağı için küçültüyoruz)
     if (q.type === 'stairs') GRID = 15; 
 
     const START_Y = 350; 
-    // Merdiven iÃƒÂ§in baÃ…Å¸langÃ„Â±ÃƒÂ§ noktasÃ„Â± (Sol Alt)
+    // Merdiven için başlangıç noktası (Sol Alt)
     const START_X = q.type === 'stairs' ? 50 : (q.direction === 'rtl' ? (GRID === 25 ? 100 : 120) : (GRID === 25 ? 60 : 80));
 
     // Izgara
     const gridGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    for(let i=0; i<600; i+=GRID) { // Canvas geniÃ…Å¸leyebilir
+    for(let i=0; i<600; i+=GRID) { // Canvas genişleyebilir
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', i); vLine.setAttribute('y1', 0); vLine.setAttribute('x2', i); vLine.setAttribute('y2', 500); vLine.setAttribute('stroke', '#6b7280'); gridGroup.appendChild(vLine);
         const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -5773,7 +5720,7 @@ function drawSlopeTriangle() {
     }
     canvas.appendChild(gridGroup);
 
-    // --- MERDÃ„Â°VEN Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
+    // --- MERDİVEN ÇİZİMİ ---
     if (q.type === 'stairs') {
         const totalW = q.stepCount * q.stepH * GRID;
         const totalH = q.stepCount * q.stepV * GRID;
@@ -5781,19 +5728,19 @@ function drawSlopeTriangle() {
         let currentX = START_X;
         let currentY = START_Y;
 
-        // BasamaklarÃ„Â± Ãƒâ€¡iz
+        // Basamakları Çiz
         for (let i = 0; i < q.stepCount; i++) {
-            // Dikey Ãƒâ€¡izgi (YukarÃ„Â±)
+            // Dikey Çizgi (Yukarı)
             const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             vLine.setAttribute('x1', currentX); vLine.setAttribute('y1', currentY);
             vLine.setAttribute('x2', currentX); vLine.setAttribute('y2', currentY - (q.stepV * GRID));
-            vLine.setAttribute('stroke', '#ef4444'); // KÃ„Â±rmÃ„Â±zÃ„Â±
+            vLine.setAttribute('stroke', '#ef4444'); // Kırmızı
             vLine.setAttribute('stroke-width', '3');
-            vLine.classList.add('stair-vertical'); // Animasyon iÃƒÂ§in sÃ„Â±nÃ„Â±f
-            vLine.dataset.id = i; // Hangi basamak olduÃ„Å¸unu bilmek iÃƒÂ§in
+            vLine.classList.add('stair-vertical'); // Animasyon için sınıf
+            vLine.dataset.id = i; // Hangi basamak olduğunu bilmek için
             canvas.appendChild(vLine);
 
-            // Yatay Ãƒâ€¡izgi (SaÃ„Å¸a)
+            // Yatay Çizgi (Sağa)
             const hLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             hLine.setAttribute('x1', currentX); hLine.setAttribute('y1', currentY - (q.stepV * GRID));
             hLine.setAttribute('x2', currentX + (q.stepH * GRID)); hLine.setAttribute('y2', currentY - (q.stepV * GRID));
@@ -5802,9 +5749,9 @@ function drawSlopeTriangle() {
             hLine.classList.add('stair-horizontal');
             canvas.appendChild(hLine);
 
-            // 3. BasamaÃ„Å¸a YazÃ„Â± Yaz (Ãƒâ€“rnekleme)
+            // 3. Basamağa Yazı Yaz (Örnekleme)
             if (i === 2) {
-                // Dikey YazÃ„Â± (2 cm)
+                // Dikey Yazı (2 cm)
                 const textV = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 textV.setAttribute('x', currentX - 5);
                 textV.setAttribute('y', currentY - (q.stepV * GRID) / 2);
@@ -5815,7 +5762,7 @@ function drawSlopeTriangle() {
                 textV.textContent = `${q.stepV}cm`;
                 canvas.appendChild(textV);
 
-                // Yatay YazÃ„Â± (5 cm)
+                // Yatay Yazı (5 cm)
                 const textH = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 textH.setAttribute('x', currentX + (q.stepH * GRID) / 2);
                 textH.setAttribute('y', currentY - (q.stepV * GRID) - 5);
@@ -5827,12 +5774,12 @@ function drawSlopeTriangle() {
                 canvas.appendChild(textH);
             }
 
-            // KoordinatlarÃ„Â± gÃƒÂ¼ncelle
+            // Koordinatları güncelle
             currentY -= (q.stepV * GRID);
             currentX += (q.stepH * GRID);
         }
 
-        // Ana ÃƒÅ“ÃƒÂ§gen Ãƒâ€¡erÃƒÂ§evesi (Hayali/Silik Ãƒâ€¡izgi)
+        // Ana Üçgen Çerçevesi (Hayali/Silik Çizgi)
         const frame = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         frame.setAttribute('d', `M ${START_X} ${START_Y} L ${START_X + totalW} ${START_Y} L ${START_X + totalW} ${START_Y - totalH} Z`);
         frame.setAttribute('fill', 'rgba(0,0,0,0.03)');
@@ -5840,10 +5787,10 @@ function drawSlopeTriangle() {
         frame.setAttribute('stroke-dasharray', '5,5');
         canvas.insertBefore(frame, canvas.firstChild); // En arkaya at
 
-        return; // Merdiven bitti, fonksiyondan ÃƒÂ§Ã„Â±k
+        return; // Merdiven bitti, fonksiyondan çık
     }
 
-    // --- DÃ„Â°Ã„ÂER ÃƒÅ“Ãƒâ€¡GEN TÃ„Â°PLERÃ„Â° (Eski Kod) ---
+    // --- DİĞER ÜÇGEN TİPLERİ (Eski Kod) ---
     let p1, p2, p3;
     if (q.direction === 'rtl') {
         p1 = { x: START_X + (q.w * GRID), y: START_Y }; 
@@ -5874,7 +5821,7 @@ function drawSlopeTriangle() {
     rightAngle.setAttribute('stroke-width', '2');
     canvas.appendChild(rightAngle);
 
-    // Kenar YazÃ„Â±larÃ„Â± (Eski Tip)
+    // Kenar Yazıları (Eski Tip)
     const textH = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     textH.setAttribute('x', START_X + (q.w * GRID) / 2);
     textH.setAttribute('y', START_Y + 30);
@@ -5899,7 +5846,7 @@ function drawSlopeTriangle() {
     } else { textV.textContent = `${q.h} br`; }
     canvas.appendChild(textV);
 
-    // EÃ„Å¸im DeÃ„Å¸eri
+    // Eğim Değeri
     if (q.type === 'find_side') {
         const textSlope = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         const midX = (p1.x + p3.x) / 2;
@@ -5916,7 +5863,7 @@ function drawSlopeTriangle() {
 
       
    
-    // --- SONUÃƒâ€¡ Ã„Â°Ã…ÂLEMLERÃ„Â° ---
+    // --- SONUÇ İŞLEMLERİ ---
 let isCorrect = (gameState.selectedOption === gameState.correctAnswer);
 
 
@@ -5924,13 +5871,13 @@ let isCorrect = (gameState.selectedOption === gameState.correctAnswer);
         playSuccessSound();
         showFeedback(true);
         
-        // KutularÃ„Â± YeÃ…Å¸il Yap
+        // Kutuları Yeşil Yap
         document.querySelectorAll('.border-indigo-400').forEach(el => {
             el.classList.remove('border-indigo-400', 'text-indigo-600', 'bg-indigo-50');
             el.classList.add('border-green-500', 'text-green-600', 'bg-green-50');
         });
 
-        // Merdivense animasyon, deÃ„Å¸ilse sonraki soru
+        // Merdivense animasyon, değilse sonraki soru
 
 let q = slopeState.questions[slopeState.currentQuestion];
 
@@ -5940,7 +5887,7 @@ let q = slopeState.questions[slopeState.currentQuestion];
         } else {
             window.roundTimer = setTimeout(() => {
                 slopeState.currentQuestion++;
-                // Hangi moddaysak onun baÃ…Å¸latÃ„Â±cÃ„Â±sÃ„Â±nÃ„Â± ÃƒÂ§aÃ„Å¸Ã„Â±r
+                // Hangi moddaysak onun başlatıcısını çağır
                 if (slopeState.activeMode === 'graph') {
                     if (typeof startSlopeGraphRound === 'function') startSlopeGraphRound();
                 } else {
@@ -5954,11 +5901,11 @@ let q = slopeState.questions[slopeState.currentQuestion];
         const feedback = document.getElementById('feedback');
         
         if (slopeState.activeMode === 'graph') {
-             feedback.textContent = "EÃ„Å¸im YanlÃ„Â±Ã…Å¸! Ã„Â°Ã…Å¸aretleri (-) ve sayÃ„Â±larÃ„Â± kontrol et.";
+             feedback.textContent = "Eğim Yanlış! İşaretleri (-) ve sayıları kontrol et.";
         } else if (q.type === 'stairs') {
-             feedback.textContent = "Toplam dikey ve yatay uzunluklarÃ„Â± girmelisin.";
+             feedback.textContent = "Toplam dikey ve yatay uzunlukları girmelisin.";
         } else {
-             feedback.textContent = "YanlÃ„Â±Ã…Å¸ cevap, tekrar dene!";
+             feedback.textContent = "Yanlış cevap, tekrar dene!";
         }
         feedback.style.opacity = '1';
         setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -5966,29 +5913,29 @@ let q = slopeState.questions[slopeState.currentQuestion];
 
 
 // ==========================================
-// 5. EÃ„ÂÃ„Â°M ALT BUTONLARI (GÃƒÅ“Ãƒâ€¡LENDÃ„Â°RÃ„Â°LMÃ„Â°Ã…Â BAÃ„ÂLANTILAR)
+// 5. EĞİM ALT BUTONLARI (GÜÇLENDİRİLMİŞ BAĞLANTILAR)
 // ==========================================
 
-// --- A) EÃ„ÂÃ„Â°K DÃƒÅ“ZLEM BUTONU ---
+// --- A) EĞİK DÜZLEM BUTONU ---
 const btnSlopeIncline = document.getElementById('btnSlopeIncline');
 if (btnSlopeIncline) {
-    // Eski dinleyicileri temizlemek iÃƒÂ§in klonlama (Opsiyonel ama garanti yÃƒÂ¶ntem)
+    // Eski dinleyicileri temizlemek için klonlama (Opsiyonel ama garanti yöntem)
     const newBtn = btnSlopeIncline.cloneNode(true);
     btnSlopeIncline.parentNode.replaceChild(newBtn, btnSlopeIncline);
 
     newBtn.addEventListener('click', function() {
-        console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â EÃ„Å¸ik DÃƒÂ¼zlem Butonuna TÃ„Â±klandÃ„Â±!"); 
+        console.log("🖱️ Eğik Düzlem Butonuna Tıklandı!"); 
 
-        // 1. GÃƒÂ¶rsel SeÃƒÂ§im
+        // 1. Görsel Seçim
         document.querySelectorAll('.slope-sub-button').forEach(b => {
             b.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
         });
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-        // 2. Mod AyarÃ„Â±
+        // 2. Mod Ayarı
         if (gameState.mode !== 'slope_incline') {
             gameState.mode = 'slope_incline';
-            slopeState.currentQuestion = 0; // Yeni moda geÃƒÂ§ince sÃ„Â±fÃ„Â±rla
+            slopeState.currentQuestion = 0; // Yeni moda geçince sıfırla
         } else {
             // Zaten bu moddaysak soru ilerlet
             slopeState.currentQuestion++;
@@ -5997,36 +5944,36 @@ if (btnSlopeIncline) {
             }
         }
         
-        // Aktif modu kaydet (Check fonksiyonu iÃƒÂ§in ÃƒÂ¶nemli)
+        // Aktif modu kaydet (Check fonksiyonu için önemli)
         slopeState.activeMode = 'incline';
 
-        // 3. Oyunu BaÃ…Å¸lat
+        // 3. Oyunu Başlat
         if (typeof startSlopeInclineRound === 'function') {
             startSlopeInclineRound();
         } else {
-            console.error("Ã¢ÂÅ’ HATA: startSlopeInclineRound fonksiyonu bulunamadÃ„Â±!");
+            console.error("❌ HATA: startSlopeInclineRound fonksiyonu bulunamadı!");
         }
     });
 } else {
-    console.error("Ã¢ÂÅ’ HATA: 'btnSlopeIncline' ID'li buton HTML'de bulunamadÃ„Â±!");
+    console.error("❌ HATA: 'btnSlopeIncline' ID'li buton HTML'de bulunamadı!");
 }
 
-// --- B) GRAFÃ„Â°KTEN EÃ„ÂÃ„Â°M BUTONU ---
+// --- B) GRAFİKTEN EĞİM BUTONU ---
 const btnSlopeGraph = document.getElementById('btnSlopeGraph');
 if (btnSlopeGraph) {
     const newBtn = btnSlopeGraph.cloneNode(true);
     btnSlopeGraph.parentNode.replaceChild(newBtn, btnSlopeGraph);
 
     newBtn.addEventListener('click', function() {
-        console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Grafikten EÃ„Å¸im Butonuna TÃ„Â±klandÃ„Â±!");
+        console.log("🖱️ Grafikten Eğim Butonuna Tıklandı!");
 
-        // 1. GÃƒÂ¶rsel SeÃƒÂ§im
+        // 1. Görsel Seçim
         document.querySelectorAll('.slope-sub-button').forEach(b => {
             b.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
         });
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-        // 2. Mod AyarÃ„Â±
+        // 2. Mod Ayarı
         if (gameState.mode !== 'slope_graph') {
             gameState.mode = 'slope_graph';
             slopeState.currentQuestion = 0;
@@ -6040,55 +5987,55 @@ if (btnSlopeGraph) {
         // Aktif modu kaydet
         slopeState.activeMode = 'graph';
 
-        // 3. Oyunu BaÃ…Å¸lat
+        // 3. Oyunu Başlat
         if (typeof startSlopeGraphRound === 'function') {
             startSlopeGraphRound();
         } else {
-            console.error("Ã¢ÂÅ’ HATA: startSlopeGraphRound fonksiyonu bulunamadÃ„Â±!");
+            console.error("❌ HATA: startSlopeGraphRound fonksiyonu bulunamadı!");
         }
     });
 } else {
-    console.error("Ã¢ÂÅ’ HATA: 'btnSlopeGraph' ID'li buton HTML'de bulunamadÃ„Â±!");
+    console.error("❌ HATA: 'btnSlopeGraph' ID'li buton HTML'de bulunamadı!");
 }
 
 
 // =================================================================
-// C) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M BUTONU (GÃƒÅ“NCELLENDÃ„Â°: TIKLADIKÃƒâ€¡A GEÃƒâ€¡Ã„Â°Ã…Â)
+// C) İKİ NOKTADAN EĞİM BUTONU (GÜNCELLENDİ: TIKLADIKÇA GEÇİŞ)
 // =================================================================
 const btnTwoPoints = document.getElementById('btnSlopeTwoPoints');
 if (btnTwoPoints) {
-    // Eski listener'Ã„Â± temizlemek iÃƒÂ§in klonluyoruz
+    // Eski listener'ı temizlemek için klonluyoruz
     const newBtn = btnTwoPoints.cloneNode(true);
     btnTwoPoints.parentNode.replaceChild(newBtn, btnTwoPoints);
 
     newBtn.addEventListener('click', function() {
-        console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Ã„Â°ki Noktadan EÃ„Å¸im Butonuna TÃ„Â±klandÃ„Â± (GeÃƒÂ§iÃ…Å¸ YapÃ„Â±lÃ„Â±yor)");
+        console.log("🖱️ İki Noktadan Eğim Butonuna Tıklandı (Geçiş Yapılıyor)");
 
-        // 1. GÃƒÂ¶rsel Efektler
+        // 1. Görsel Efektler
         document.querySelectorAll('.slope-sub-button').forEach(b => {
             b.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
         });
         this.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-        // 2. Mod KontrolÃƒÂ¼ ve Ã„Â°lerleme MantÃ„Â±Ã„Å¸Ã„Â±
+        // 2. Mod Kontrolü ve İlerleme Mantığı
         if (gameState.mode === 'slope_two_points') {
-            // EÃ„Å¸er zaten bu moddaysak, sÃ„Â±radaki soruya geÃƒÂ§ (Skip)
+            // Eğer zaten bu moddaysak, sıradaki soruya geç (Skip)
             if (typeof slopeState.twoPointsQuestionIndex !== 'undefined') {
                 slopeState.twoPointsQuestionIndex++;
                 
-                // EÃ„Å¸er soru sayÃ„Â±sÃ„Â± sÃ„Â±nÃ„Â±rÃ„Â±nÃ„Â± aÃ…Å¸tÃ„Â±ysa baÃ…Å¸a sarsÃ„Â±n diye kontrol
-                // (startSlopeTwoPointsRound iÃƒÂ§inde zaten bitiÃ…Å¸ kontrolÃƒÂ¼ var ama bu ekstra gÃƒÂ¼venlik)
+                // Eğer soru sayısı sınırını aştıysa başa sarsın diye kontrol
+                // (startSlopeTwoPointsRound içinde zaten bitiş kontrolü var ama bu ekstra güvenlik)
                 if (slopeState.twoPointsQuestionIndex > 4) { 
                     slopeState.twoPointsQuestionIndex = 0; 
                 }
             }
         } else {
-            // Ã„Â°lk kez giriyorsak baÃ…Å¸tan baÃ…Å¸la
+            // İlk kez giriyorsak baştan başla
             gameState.mode = 'slope_two_points';
             slopeState.twoPointsQuestionIndex = 0;
         }
         
-        // 3. Modu BaÃ…Å¸lat / GÃƒÂ¼ncelle
+        // 3. Modu Başlat / Güncelle
         if (typeof startSlopeTwoPointsRound === 'function') {
             startSlopeTwoPointsRound();
         }
@@ -6097,23 +6044,23 @@ if (btnTwoPoints) {
 
 
 // ==========================================
-// KONTROL BUTONU (FÃ„Â°NAL TEMÃ„Â°Z HALÃ„Â°)
+// KONTROL BUTONU (FİNAL TEMİZ HALİ)
 // ==========================================
 var checkBtn = document.getElementById('checkBtn');
 if (checkBtn) {
-    // Eski listenerlarÃ„Â± temizlemek iÃƒÂ§in klonluyoruz
+    // Eski listenerları temizlemek için klonluyoruz
     var newCheckBtn = checkBtn.cloneNode(true);
     checkBtn.parentNode.replaceChild(newCheckBtn, checkBtn);
 
     newCheckBtn.addEventListener('click', function() {
-        console.log("Kontrol Et tÃ„Â±klandÃ„Â±. Aktif Mod:", gameState.mode);
+        console.log("Kontrol Et tıklandı. Aktif Mod:", gameState.mode);
 
-        // 1. EÃ„ÂÃ„Â°M MODLARI (Grafik ve EÃ„Å¸ik DÃƒÂ¼zlem)
+        // 1. EĞİM MODLARI (Grafik ve Eğik Düzlem)
         if (gameState.mode === 'slope_incline' || gameState.mode === 'slope_graph') {
             checkSlopeAnswer();
         } 
         
-        // 2. DOÃ„ÂRU GRAFÃ„Â°KLERÃ„Â° MODLARI
+        // 2. DOĞRU GRAFİKLERİ MODLARI
         else if (gameState.mode === 'x_eq_a') {
             if (typeof checkVerticalLine === 'function') checkVerticalLine();
         } 
@@ -6124,37 +6071,37 @@ if (checkBtn) {
             if (typeof checkStraightLine === 'function') checkStraightLine();
         }
 
-// ... checkBtn listener iÃƒÂ§inde ...
+// ... checkBtn listener içinde ...
 
 else if (gameState.mode === 'slope_two_points') {
-    // KayÃ„Â±tlÃ„Â± noktalarÃ„Â± al
+    // Kayıtlı noktaları al
     const p1 = slopeState.currentTwoPoints.p1; // {x:2, y:3}
     const p2 = slopeState.currentTwoPoints.p2; // {x:-2, y:7}
     
-    // KullanÃ„Â±cÃ„Â±nÃ„Â±n girdilerini al
+    // Kullanıcının girdilerini al
     const y2 = parseFloat(document.getElementById('box_y2').textContent);
     const y1 = parseFloat(document.getElementById('box_y1').textContent);
     const x2 = parseFloat(document.getElementById('box_x2').textContent);
     const x1 = parseFloat(document.getElementById('box_x1').textContent);
 
-    // DoÃ„Å¸ru formÃƒÂ¼l kontrolÃƒÂ¼: KullanÃ„Â±cÃ„Â± sayÃ„Â±larÃ„Â± doÃ„Å¸ru yerlere koymuÃ…Å¸ mu?
-    // y2=7, y1=3, x2=-2, x1=2  veya tam tersi sÃ„Â±ra (noktalarÃ„Â±n sÃ„Â±rasÃ„Â± fark etmez ama eÃ…Å¸leÃ…Å¸meli)
+    // Doğru formül kontrolü: Kullanıcı sayıları doğru yerlere koymuş mu?
+    // y2=7, y1=3, x2=-2, x1=2  veya tam tersi sıra (noktaların sırası fark etmez ama eşleşmeli)
     
-    // GerÃƒÂ§ek eÃ„Å¸im
+    // Gerçek eğim
     const realSlope = (p2.y - p1.y) / (p2.x - p1.x); // (7-3)/(-2-2) = 4/-4 = -1
     const userSlope = (y2 - y1) / (x2 - x1);
 
     if (Math.abs(realSlope - userSlope) < 0.001) {
         showFeedback(true);
         playSuccessSound();
-        // Ã„Â°stersen burada yeni soruya geÃƒÂ§iÃ…Å¸ eklenebilir
+        // İstersen burada yeni soruya geçiş eklenebilir
     } else {
         showFeedback(false);
         playErrorSound();
     }
 }
 
-        // 3. DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER MODLARI
+        // 3. DOĞRUSAL İLİŞKİLER MODLARI
         else if (gameState.mode === 'questionToGraph') {
             if (typeof checkLinearGraph === 'function') checkLinearGraph();
         } 
@@ -6162,7 +6109,7 @@ else if (gameState.mode === 'slope_two_points') {
             if (typeof checkGraphAnswer === 'function') checkGraphAnswer();
         }
 
-        // 4. STANDART GEOMETRÃ„Â° MODLARI (Ãƒâ€“teleme, YansÃ„Â±ma vb.)
+        // 4. STANDART GEOMETRİ MODLARI (Öteleme, Yansıma vb.)
         else {
             if (typeof checkAnswer === 'function') checkAnswer();
         }
@@ -6171,13 +6118,13 @@ else if (gameState.mode === 'slope_two_points') {
 
 
 // ==========================================
-// NUMPAD Ã„Â°PTAL BUTONU
+// NUMPAD İPTAL BUTONU
 // ==========================================
 document.getElementById('numPadCancel').addEventListener('click', function() {
     // Paneli gizle
     document.getElementById('numberPad').classList.add('hidden');
     
-    // Girilen deÃ„Å¸eri sÃ„Â±fÃ„Â±rla
+    // Girilen değeri sıfırla
     linearState.currentInputValue = '';
     document.getElementById('currentInput').textContent = '';
     
@@ -6188,7 +6135,7 @@ document.getElementById('numPadCancel').addEventListener('click', function() {
 
 
 // ==========================================
-// MERDÃ„Â°VEN ANÃ„Â°MASYONU (JAVASCRIPT Ã„Â°LE KARE KARE HAREKET - %100 GARANTÃ„Â°)
+// MERDİVEN ANİMASYONU (JAVASCRIPT İLE KARE KARE HAREKET - %100 GARANTİ)
 // ==========================================
 function animateStairsShow() {
     const q = slopeState.questions[slopeState.currentQuestion];
@@ -6202,68 +6149,68 @@ function animateStairsShow() {
     const targetX = START_X + totalW;
     const targetY = START_Y;
 
-    // Hareket ettirilecek parÃƒÂ§alarÃ„Â± listeye alalÃ„Â±m
-    // Her ÃƒÂ§izginin "Ã…Âu an nerede?" ve "Nereye gidecek?" bilgisini tutacaÃ„Å¸Ã„Â±z
+    // Hareket ettirilecek parçaları listeye alalım
+    // Her çizginin "Şu an nerede?" ve "Nereye gidecek?" bilgisini tutacağız
     let animations = [];
 
-    // 1. Dikey ParÃƒÂ§alarÃ„Â± (KÃ„Â±rmÃ„Â±zÃ„Â±) Listeye Ekle
+    // 1. Dikey Parçaları (Kırmızı) Listeye Ekle
     document.querySelectorAll('.stair-vertical').forEach(line => {
-        // Ãƒâ€¡izginin rengini hemen deÃ„Å¸iÃ…Å¸tir
+        // Çizginin rengini hemen değiştir
         line.setAttribute('stroke', '#b91c1c');
         line.setAttribute('stroke-width', '4');
 
         animations.push({
             el: line,
-            // BaÃ…Å¸langÃ„Â±ÃƒÂ§ deÃ„Å¸erleri (SayÃ„Â±ya ÃƒÂ§eviriyoruz)
+            // Başlangıç değerleri (Sayıya çeviriyoruz)
             startX1: parseFloat(line.getAttribute('x1')),
             startY1: parseFloat(line.getAttribute('y1')),
             startX2: parseFloat(line.getAttribute('x2')),
             startY2: parseFloat(line.getAttribute('y2')),
-            // Hedef deÃ„Å¸erler (Dikey ÃƒÂ§izgiler saÃ„Å¸a toplanacak)
+            // Hedef değerler (Dikey çizgiler sağa toplanacak)
             targetX1: targetX,
-            targetY1: parseFloat(line.getAttribute('y1')), // Y deÃ„Å¸iÃ…Å¸miyor, olduÃ„Å¸u yÃƒÂ¼kseklikte kaysÃ„Â±n
+            targetY1: parseFloat(line.getAttribute('y1')), // Y değişmiyor, olduğu yükseklikte kaysın
             targetX2: targetX,
             targetY2: parseFloat(line.getAttribute('y2'))
         });
     });
 
-    // 2. Yatay ParÃƒÂ§alarÃ„Â± (Mavi) Listeye Ekle
+    // 2. Yatay Parçaları (Mavi) Listeye Ekle
     document.querySelectorAll('.stair-horizontal').forEach(line => {
-        // Ãƒâ€¡izginin rengini hemen deÃ„Å¸iÃ…Å¸tir
+        // Çizginin rengini hemen değiştir
         line.setAttribute('stroke', '#1e40af');
         line.setAttribute('stroke-width', '4');
 
         animations.push({
             el: line,
-            // BaÃ…Å¸langÃ„Â±ÃƒÂ§
+            // Başlangıç
             startX1: parseFloat(line.getAttribute('x1')),
             startY1: parseFloat(line.getAttribute('y1')),
             startX2: parseFloat(line.getAttribute('x2')),
             startY2: parseFloat(line.getAttribute('y2')),
-            // Hedef (Yatay ÃƒÂ§izgiler alta inecek)
-            targetX1: parseFloat(line.getAttribute('x1')), // X deÃ„Å¸iÃ…Å¸miyor, olduÃ„Å¸u hizada insin
+            // Hedef (Yatay çizgiler alta inecek)
+            targetX1: parseFloat(line.getAttribute('x1')), // X değişmiyor, olduğu hizada insin
             targetY1: targetY,
             targetX2: parseFloat(line.getAttribute('x2')),
             targetY2: targetY
         });
     });
 
-    // 3. ANÃ„Â°MASYON MOTORU
+    // 3. ANİMASYON MOTORU
     const duration = 3000; // 3 Saniye
     const startTime = performance.now();
 
     function frame(currentTime) {
         const elapsed = currentTime - startTime;
-        // Ã„Â°lerleme yÃƒÂ¼zdesi (0 ile 1 arasÃ„Â±)
+        // İlerleme yüzdesi (0 ile 1 arası)
         let progress = Math.min(elapsed / duration, 1);
         
-        // YumuÃ…Å¸ak geÃƒÂ§iÃ…Å¸ efekti (Ease-in-out formÃƒÂ¼lÃƒÂ¼)
-        // Bu formÃƒÂ¼l hareketi baÃ…Å¸ta yavaÃ…Å¸, ortada hÃ„Â±zlÃ„Â±, sonda yavaÃ…Å¸ yapar
+        // Yumuşak geçiş efekti (Ease-in-out formülü)
+        // Bu formül hareketi başta yavaş, ortada hızlı, sonda yavaş yapar
         const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
 
-        // Her bir ÃƒÂ§izgiyi yeni konumuna gÃƒÂ¼ncelle
+        // Her bir çizgiyi yeni konumuna güncelle
         animations.forEach(anim => {
-            // Matematik: BaÃ…Å¸langÃ„Â±ÃƒÂ§ + (Fark * Ã„Â°lerleme)
+            // Matematik: Başlangıç + (Fark * İlerleme)
             const curX1 = anim.startX1 + (anim.targetX1 - anim.startX1) * ease;
             const curY1 = anim.startY1 + (anim.targetY1 - anim.startY1) * ease;
             const curX2 = anim.startX2 + (anim.targetX2 - anim.startX2) * ease;
@@ -6275,24 +6222,24 @@ function animateStairsShow() {
             anim.el.setAttribute('y2', curY2);
         });
 
-        // SÃƒÂ¼re bitmediyse bir sonraki kareyi iste
+        // Süre bitmediyse bir sonraki kareyi iste
         if (progress < 1) {
             window.animationFrameId = requestAnimationFrame(frame);
         } else {
-            // 4. ANÃ„Â°MASYON BÃ„Â°TTÃ„Â°, YAZILARI GÃƒâ€“STER
+            // 4. ANİMASYON BİTTİ, YAZILARI GÖSTER
             showTextLabels(targetX, targetY, totalW, totalH, q, START_X);
         }
     }
 
-    // Motoru Ãƒâ€¡alÃ„Â±Ã…Å¸tÃ„Â±r
+    // Motoru Çalıştır
     window.animationFrameId = requestAnimationFrame(frame);
 }
 
-// YazÃ„Â±larÃ„Â± GÃƒÂ¶steren YardÃ„Â±mcÃ„Â± Fonksiyon
+// Yazıları Gösteren Yardımcı Fonksiyon
 function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
     const canvas = document.getElementById('linearCanvas');
 
-    // Dikey Toplam YazÃ„Â±sÃ„Â±
+    // Dikey Toplam Yazısı
     const totalVText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     totalVText.setAttribute('x', targetX + 15);
     totalVText.setAttribute('y', targetY - (totalH / 2));
@@ -6304,7 +6251,7 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
     totalVText.style.transition = 'opacity 1s';
     canvas.appendChild(totalVText);
 
-    // Yatay Toplam YazÃ„Â±sÃ„Â±
+    // Yatay Toplam Yazısı
     const totalHText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     totalHText.setAttribute('x', START_X + (totalW / 2));
     totalHText.setAttribute('y', targetY + 30);
@@ -6323,7 +6270,7 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
         totalHText.style.opacity = '1';
     });
 
-    // 5 Saniye sonra diÃ„Å¸er soruya geÃƒÂ§
+    // 5 Saniye sonra diğer soruya geç
     window.roundTimer = setTimeout(() => {
         slopeState.currentQuestion++;
         startSlopeInclineRound();
@@ -6331,43 +6278,43 @@ function showTextLabels(targetX, targetY, totalW, totalH, q, START_X) {
 }
 
 // ==========================================
-// EKRAN TEMÃ„Â°ZLÃ„Â°Ã„ÂÃ„Â° YAMASI (BUG FIX)
+// EKRAN TEMİZLİĞİ YAMASI (BUG FIX)
 // ==========================================
-// DiÃ„Å¸er ana menÃƒÂ¼ butonlarÃ„Â±na basÃ„Â±ldÃ„Â±Ã„Å¸Ã„Â±nda EÃ„Å¸im modundan kalanlarÃ„Â± temizle
+// Diğer ana menü butonlarına basıldığında Eğim modundan kalanları temizle
 const cleanUpButtons = ['linearRelationsBtn', 'lineGraphsBtn', 'transformationsBtn', 'coordinatesBtn'];
 
 cleanUpButtons.forEach(btnId => {
     const btn = document.getElementById(btnId);
     if (btn) {
-        // Mevcut iÃ…Å¸levini bozmadan 'dinleyici' ekliyoruz
+        // Mevcut işlevini bozmadan 'dinleyici' ekliyoruz
         btn.addEventListener('click', function() {
-            // 1. EÃ„Å¸im Soru Panelini Gizle
+            // 1. Eğim Soru Panelini Gizle
             const slopePanel = document.getElementById('slopeQuestionPanel');
             if (slopePanel) {
                 slopePanel.classList.add('hidden');
                 slopePanel.style.display = 'none'; // Garanti olsun
             }
 
-            // 2. EÃ„Å¸im Alt MenÃƒÂ¼sÃƒÂ¼nÃƒÂ¼ Gizle
+            // 2. Eğim Alt Menüsünü Gizle
             const slopeSubs = document.getElementById('slopeSubButtons');
             if (slopeSubs) {
                 slopeSubs.classList.add('hidden');
             }
 
-            // 3. EÃ„Å¸im Butonu SeÃƒÂ§im Efektini KaldÃ„Â±r
+            // 3. Eğim Butonu Seçim Efektini Kaldır
             const incBtn = document.getElementById('btnSlopeIncline');
             if (incBtn) incBtn.classList.remove('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-            // 4. Tabloyu ve Tamam Butonunu Geri Getir (EÃ„Å¸im modunda gizlemiÃ…Å¸tik)
+            // 4. Tabloyu ve Tamam Butonunu Geri Getir (Eğim modunda gizlemiştik)
             const dataTable = document.getElementById('dataTable');
             if (dataTable) {
-                dataTable.style.display = 'block'; // Veya '' yaparak CSS'e bÃ„Â±rakabiliriz
+                dataTable.style.display = 'block'; // Veya '' yaparak CSS'e bırakabiliriz
                 dataTable.classList.remove('hidden');
             }
             
             const confirmBtn = document.getElementById('tableConfirmBtn');
             if (confirmBtn) {
-                confirmBtn.style.display = 'block'; // GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
+                confirmBtn.style.display = 'block'; // Görünür yap
                 confirmBtn.classList.remove('hidden');
             }
         });
@@ -6376,56 +6323,56 @@ cleanUpButtons.forEach(btnId => {
 
 
 // ==========================================
-// EKRAN GÃƒÅ“NCELLEYÃ„Â°CÃ„Â° (YENÃ„Â° KUTULARI TANIYAN BEYÃ„Â°N)
+// EKRAN GÜNCELLEYİCİ (YENİ KUTULARI TANIYAN BEYİN)
 // ==========================================
 function updateActiveInputDisplay() {
-    // HafÃ„Â±zadaki sayÃ„Â± ne?
+    // Hafızadaki sayı ne?
     const val = linearState.currentInputValue;
     
-    // Hangi kutuya yazmalÃ„Â±yÃ„Â±m? (activeInputTarget)
+    // Hangi kutuya yazmalıyım? (activeInputTarget)
     
-    // 1. Sol Alttaki Kutu (a'nÃ„Â±n altÃ„Â±)
+    // 1. Sol Alttaki Kutu (a'nın altı)
     if (activeInputTarget === 'eq_left_denom') {
         const el = document.getElementById('leftDenomBox');
         if(el) el.textContent = val || '?';
     }
 
-    // 2. SaÃ„Å¸ ÃƒÅ“st (Pay)
-    // Hem eski mod (slope_conv_num) hem yeni mod (eq_right_num) iÃƒÂ§in aynÃ„Â± kutu:
+    // 2. Sağ Üst (Pay)
+    // Hem eski mod (slope_conv_num) hem yeni mod (eq_right_num) için aynı kutu:
     if (activeInputTarget === 'eq_right_num' || activeInputTarget === 'slope_conv_num') {
         const el = document.getElementById('slopeNumBox'); 
         if(el) el.textContent = val || '?';
     }
 
-    // 3. SaÃ„Å¸ Alt (Payda)
-    // Hem eski mod (slope_conv_denom) hem yeni mod (eq_right_denom) iÃƒÂ§in aynÃ„Â± kutu:
+    // 3. Sağ Alt (Payda)
+    // Hem eski mod (slope_conv_denom) hem yeni mod (eq_right_denom) için aynı kutu:
     if (activeInputTarget === 'eq_right_denom' || activeInputTarget === 'slope_conv_denom') {
         const el = document.getElementById('slopeDenomBox'); 
         if(el) el.textContent = val || '?';
     }
 
-// ... (Mevcut kodlarÃ„Â±n altÃ„Â±na ekle) ...
+// ... (Mevcut kodların altına ekle) ...
 
-// --- Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M GÃƒÅ“NCELLEMESÃ„Â° ---
+// --- İKİ NOKTADAN EĞİM GÜNCELLEMESİ ---
 if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
-    // 1. DeÃ„Å¸eri ilgili kutuya yaz
+    // 1. Değeri ilgili kutuya yaz
     const role = activeInputTarget.split('_')[2]; // y2, y1, x2, x1
     const boxId = 'box_' + role;
     const box = document.getElementById(boxId);
     
     if (box) {
-        // BoÃ…Å¸sa '?' kalsÃ„Â±n, deÃ„Å¸ilse deÃ„Å¸eri yaz
+        // Boşsa '?' kalsın, değilse değeri yaz
         box.textContent = linearState.currentInputValue === '' ? '?' : linearState.currentInputValue;
         box.style.color = '#4338ca';
     }
 
-    // 2. TÃƒÂ¼m kutular dolu mu kontrol et
+    // 2. Tüm kutular dolu mu kontrol et
     const y2 = parseFloat(document.getElementById('box_y2').textContent);
     const y1 = parseFloat(document.getElementById('box_y1').textContent);
     const x2 = parseFloat(document.getElementById('box_x2').textContent);
     const x1 = parseFloat(document.getElementById('box_x1').textContent);
 
-    // EÃ„Å¸er hepsi sayÃ„Â±ysa (isNaN deÃ„Å¸ilse) hesapla
+    // Eğer hepsi sayıysa (isNaN değilse) hesapla
     if (!isNaN(y2) && !isNaN(y1) && !isNaN(x2) && !isNaN(x1)) {
         
         const pay = y2 - y1;
@@ -6434,18 +6381,18 @@ if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
         const resultDisplay = document.getElementById('calcResultDisplay');
         const checkBtn = document.getElementById('checkBtn');
 
-        // Payda 0 ise hata/tanÃ„Â±msÃ„Â±z
+        // Payda 0 ise hata/tanımsız
         if (payda === 0) {
-            resultDisplay.textContent = "TanÃ„Â±msÃ„Â±z (Payda 0)";
+            resultDisplay.textContent = "Tanımsız (Payda 0)";
             resultDisplay.style.color = "red";
         } else {
-            // Sonucu gÃƒÂ¶ster (Ãƒâ€“rn: m = 4/-4 veya sadeleÃ…Å¸tirme yapÃ„Â±labilir ama Ã…Å¸imdilik ham hali)
-            // SadeleÃ…Å¸tirme istenirse eklenebilir. Ã…Âimdilik A/B formatÃ„Â±:
+            // Sonucu göster (Örn: m = 4/-4 veya sadeleştirme yapılabilir ama şimdilik ham hali)
+            // Sadeleştirme istenirse eklenebilir. Şimdilik A/B formatı:
             resultDisplay.textContent = `m = ${pay} / ${payda}`;
-            resultDisplay.style.color = "#16a34a"; // YeÃ…Å¸il
+            resultDisplay.style.color = "#16a34a"; // Yeşil
         }
 
-        // GÃƒÂ¶stergeyi aÃƒÂ§ ve butonu yak
+        // Göstergeyi aç ve butonu yak
         resultDisplay.style.opacity = '1';
         resultDisplay.classList.remove('scale-90');
         resultDisplay.classList.add('scale-100');
@@ -6460,15 +6407,15 @@ if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
 
 
 // =================================================================
-// ÄŸÅ¸Å¡â€˜ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU - (YERLEÃ…ÂÃ„Â°M VE NUMPAD DÃƒÅ“ZELTMESÃ„Â°)
+// 🚑 İKİ NOKTADAN EĞİM MODU - (YERLEŞİM VE NUMPAD DÜZELTMESİ)
 // =================================================================
 window.startSlopeTwoPointsRound = function() {
-    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu: DÃƒÂ¼zenlenmiÃ…Å¸ ArayÃƒÂ¼z...");
+    console.log("📍 İki Noktadan Eğim Modu: Düzenlenmiş Arayüz...");
 
     // 1. Temizlik
     if (typeof clearAllScreens === 'function') clearAllScreens();
 
-    // 2. Alt MenÃƒÂ¼ ve Buton AktifliÃ„Å¸i
+    // 2. Alt Menü ve Buton Aktifliği
     const subButtons = document.getElementById('slopeSubButtons');
     if (subButtons) {
         subButtons.classList.remove('hidden');
@@ -6477,29 +6424,29 @@ window.startSlopeTwoPointsRound = function() {
     const btn = document.getElementById('btnSlopeTwoPoints');
     if (btn) btn.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-    // 3. Arka Plan Konteyneri (TÃ„Â±klamalarÃ„Â± engellememesi iÃƒÂ§in pointer-events ayarÃ„Â±)
+    // 3. Arka Plan Konteyneri (Tıklamaları engellememesi için pointer-events ayarı)
     const container = document.getElementById('linearContainer');
     if (container) {
         container.classList.remove('hidden');
         container.style.display = 'block'; 
-        container.style.pointerEvents = 'none'; // Konteyner tÃ„Â±klamayÃ„Â± engellemesin
+        container.style.pointerEvents = 'none'; // Konteyner tıklamayı engellemesin
         container.style.margin = '0 auto';
-        // Ã„Â°ÃƒÂ§erideki ÃƒÂ§akÃ„Â±Ã…Å¸an elemanlarÃ„Â± gizle
+        // İçerideki çakışan elemanları gizle
         if (document.getElementById('linearCanvas')) document.getElementById('linearCanvas').style.display = 'none';
         if (document.getElementById('dataTable')) document.getElementById('dataTable').style.display = 'none';
         if (document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     }
 
-    // 4. SORU PANELÃ„Â° (KONUM VE BOYUT AYARI)
+    // 4. SORU PANELİ (KONUM VE BOYUT AYARI)
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
 
         panel.classList.remove('hidden');
         
-        // --- CSS GÃƒÅ“NCELLEMESÃ„Â° ---
-        // top: 55% -> Biraz aÃ…Å¸aÃ„Å¸Ã„Â±ya indi (butonlarÃ„Â± kapatmaz)
-        // z-index: 50 -> Numpad'in altÃ„Â±nda kalacak Ã…Å¸ekilde ayarlandÃ„Â±
+        // --- CSS GÜNCELLEMESİ ---
+        // top: 55% -> Biraz aşağıya indi (butonları kapatmaz)
+        // z-index: 50 -> Numpad'in altında kalacak şekilde ayarlandı
         panel.style.cssText = `
             position: fixed !important;
             top: 55% !important; 
@@ -6515,18 +6462,18 @@ window.startSlopeTwoPointsRound = function() {
             box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
             border: 3px solid #6366f1 !important;
             width: 90% !important;
-            max-width: 500px !important; /* Ãƒâ€¡ok geniÃ…Å¸ olmasÃ„Â±nÃ„Â± engeller */
-            pointer-events: auto !important; /* Panel tÃ„Â±klanabilir olsun */
+            max-width: 500px !important; /* Çok geniş olmasını engeller */
+            pointer-events: auto !important; /* Panel tıklanabilir olsun */
         `;
 
-        // 5. Ã„Â°Ãƒâ€¡ERÃ„Â°K
+        // 5. İÇERİK
         const p1 = { x: 2, y: 3 };
         const p2 = { x: -2, y: 7 };
         
         if (typeof slopeState !== 'undefined') slopeState.currentTwoPoints = { p1, p2 };
 
         panel.innerHTML = `
-            <h3 class="text-xl font-bold text-indigo-900 mb-3">EÃ„Å¸imi Hesapla</h3>
+            <h3 class="text-xl font-bold text-indigo-900 mb-3">Eğimi Hesapla</h3>
             
             <div class="text-base text-gray-700 mb-4 text-center">
                 <span class="font-bold text-indigo-600">A(${p1.x}, ${p1.y})</span> ve 
@@ -6556,14 +6503,14 @@ window.startSlopeTwoPointsRound = function() {
             <div id="calcResultDisplay" class="h-8 text-2xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
         `;
 
-        // TÃ„Â±klama OlaylarÃ„Â±
-        setupInputClick('box_y2', 'y2', 'yÃ¢â€šâ€š Giriniz (7)');
-        setupInputClick('box_y1', 'y1', 'yÃ¢â€šÂ Giriniz (3)');
-        setupInputClick('box_x2', 'x2', 'xÃ¢â€šâ€š Giriniz (-2)');
-        setupInputClick('box_x1', 'x1', 'xÃ¢â€šÂ Giriniz (2)');
+        // Tıklama Olayları
+        setupInputClick('box_y2', 'y2', 'y₂ Giriniz (7)');
+        setupInputClick('box_y1', 'y1', 'y₁ Giriniz (3)');
+        setupInputClick('box_x2', 'x2', 'x₂ Giriniz (-2)');
+        setupInputClick('box_x1', 'x1', 'x₁ Giriniz (2)');
     }
 
-    // Kontrol Butonunu PasifleÃ…Å¸tir
+    // Kontrol Butonunu Pasifleştir
     const chk = document.getElementById('checkBtn');
     if(chk) {
         chk.disabled = true;
@@ -6573,7 +6520,7 @@ window.startSlopeTwoPointsRound = function() {
 };
 
 // ==========================================
-// 1. SAYI PANELÃ„Â° KONUM AYARI (AÃ…ÂAÃ„ÂI Ã„Â°NDÃ„Â°RME)
+// 1. SAYI PANELİ KONUM AYARI (AŞAĞI İNDİRME)
 // ==========================================
 window.setupInputClick = function(id, role, title) {
     const el = document.getElementById(id);
@@ -6582,21 +6529,21 @@ window.setupInputClick = function(id, role, title) {
             activeInputTarget = 'two_points_' + role;
             if (typeof linearState !== 'undefined') linearState.currentInputValue = '';
             
-            // BaÃ…Å¸lÃ„Â±Ã„Å¸Ã„Â± gÃƒÂ¼ncelle
+            // Başlığı güncelle
             const currentInputLabel = document.getElementById('currentInput');
             if(currentInputLabel) currentInputLabel.textContent = title;
             
-            // NUMPAD'Ã„Â° AÃƒâ€¡ VE KONUMLANDIR
+            // NUMPAD'İ AÇ VE KONUMLANDIR
             const numPad = document.getElementById('numberPad');
             if(numPad) {
                 numPad.classList.remove('hidden');
                 
-                // --- DÃƒÅ“ZELTME BURADA ---
+                // --- DÜZELTME BURADA ---
                 numPad.style.cssText = `
                     display: flex !important;
-                    z-index: 999999 !important; /* En, en ÃƒÂ¼stte */
+                    z-index: 999999 !important; /* En, en üstte */
                     position: fixed !important;
-                    top: 70% !important;       /* 50% idi, 70% yaptÃ„Â±k (AÃ…Å¸aÃ„Å¸Ã„Â± indi) */
+                    top: 70% !important;       /* 50% idi, 70% yaptık (Aşağı indi) */
                     left: 50% !important;
                     transform: translate(-50%, -50%) !important;
                 `;
@@ -6606,31 +6553,31 @@ window.setupInputClick = function(id, role, title) {
 };
 
 // ==========================================
-// 2. "TAMAM" TUÃ…ÂU TAMÃ„Â°RÃ„Â° (KAPATMA VE HESAPLAMA)
+// 2. "TAMAM" TUŞU TAMİRİ (KAPATMA VE HESAPLAMA)
 // ==========================================
 var confirmBtn = document.getElementById('numPadClose'); // Genelde "Tamam" veya "Tik" butonu budur
 
 if (confirmBtn) {
-    // Eski gÃƒÂ¶revleri temizle (Clone yÃƒÂ¶ntemi)
+    // Eski görevleri temizle (Clone yöntemi)
     var newConfirmBtn = confirmBtn.cloneNode(true);
     confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
 
     newConfirmBtn.addEventListener('click', function() {
-        console.log("Ã¢Å“â€¦ Tamam tuÃ…Å¸una basÃ„Â±ldÃ„Â±.");
+        console.log("✅ Tamam tuşuna basıldı.");
         
         const val = linearState.currentInputValue;
 
-        // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU Ã„Â°SE
+        // A) İKİ NOKTADAN EĞİM MODU İSE
         if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
             const role = activeInputTarget.split('_')[2]; // y2, y1, x2, x1
             const box = document.getElementById('box_' + role);
             
             if (box) {
-                // DeÃ„Å¸eri kutuya yaz
+                // Değeri kutuya yaz
                 box.textContent = val === '' ? '?' : val;
                 box.style.color = '#4338ca'; // Mor renk
                 
-                // Otomatik HesaplamayÃ„Â± Tetikle
+                // Otomatik Hesaplamayı Tetikle
                 if (typeof checkTwoPointsComplete === 'function') {
                     checkTwoPointsComplete();
                 } else {
@@ -6655,7 +6602,7 @@ if (confirmBtn) {
             }
         }
         
-        // B) DÃ„Â°Ã„ÂER MODLAR Ã„Â°Ãƒâ€¡Ã„Â°N KISA YOL (Mevcut yapÃ„Â±yÃ„Â± bozmamak iÃƒÂ§in)
+        // B) DİĞER MODLAR İÇİN KISA YOL (Mevcut yapıyı bozmamak için)
         else if (activeInputTarget === 'slope_simple' && document.getElementById('slopeAnswerBox')) {
             document.getElementById('slopeAnswerBox').textContent = val;
             document.getElementById('checkBtn').disabled = false;
@@ -6665,13 +6612,13 @@ if (confirmBtn) {
              document.getElementById('checkBtn').disabled = false;
         }
 
-        // --- KRÃ„Â°TÃ„Â°K BÃƒâ€“LÃƒÅ“M: KAPATMA ---
+        // --- KRİTİK BÖLÜM: KAPATMA ---
         const numPad = document.getElementById('numberPad');
         if (numPad) {
             numPad.classList.add('hidden'); // Gizle
         }
         
-        // Input deÃ„Å¸erini sÃ„Â±fÃ„Â±rla
+        // Input değerini sıfırla
         if (typeof linearState !== 'undefined') {
             linearState.currentInputValue = '';
         }
@@ -6681,7 +6628,7 @@ if (confirmBtn) {
 }
 
 // ==========================================
-// 3. OTOMATÃ„Â°K HESAPLAMA (YEDEK)
+// 3. OTOMATİK HESAPLAMA (YEDEK)
 // ==========================================
 window.checkTwoPointsComplete = function() {
     const y2 = parseFloat(document.getElementById('box_y2').textContent);
@@ -6697,14 +6644,14 @@ window.checkTwoPointsComplete = function() {
         const chk = document.getElementById('checkBtn');
 
         if (payda === 0) {
-            disp.textContent = "TanÃ„Â±msÃ„Â±z (Payda 0)";
+            disp.textContent = "Tanımsız (Payda 0)";
             disp.style.color = "red";
         } else {
             disp.textContent = `m = ${pay} / ${payda}`;
-            disp.style.color = "#16a34a"; // YeÃ…Å¸il
+            disp.style.color = "#16a34a"; // Yeşil
         }
         
-        // Sonucu GÃƒÂ¶ster
+        // Sonucu Göster
         disp.style.opacity = '1';
         disp.classList.remove('scale-90');
         disp.classList.add('scale-100');
@@ -6719,54 +6666,54 @@ window.checkTwoPointsComplete = function() {
 };
 
 // =================================================================
-// ÄŸÅ¸Å¡â‚¬ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU - (Ãƒâ€¡OKLU SORU VERSÃ„Â°YONU)
+// 🚀 İKİ NOKTADAN EĞİM MODU - (ÇOKLU SORU VERSİYONU)
 // =================================================================
 
-// 1. SORU LÃ„Â°STESÃ„Â° VE BAÃ…ÂLATMA MANTIÃ„ÂI
+// 1. SORU LİSTESİ VE BAŞLATMA MANTIĞI
 window.startSlopeTwoPointsRound = function() {
-    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu: Soru YÃƒÂ¼kleniyor...");
+    console.log("📍 İki Noktadan Eğim Modu: Soru Yükleniyor...");
 
-    // --- SORU LÃ„Â°STESÃ„Â° (BURAYA YENÃ„Â° SORULAR EKLEYEBÃ„Â°LÃ„Â°RSÃ„Â°N) ---
+    // --- SORU LİSTESİ (BURAYA YENİ SORULAR EKLEYEBİLİRSİN) ---
     const questions = [
         { p1: { x: 2, y: 3 }, p2: { x: -2, y: 7 } },   // 1. Soru (Eski)
         { p1: { x: -3, y: -4 }, p2: { x: 2, y: -5 } }  // 2. Soru (Yeni)
     ];
 
-    // Soru Ã„Â°ndeksini Kontrol Et (Yoksa 0'dan baÃ…Å¸lat)
+    // Soru İndeksini Kontrol Et (Yoksa 0'dan başlat)
     if (typeof slopeState.twoPointsQuestionIndex === 'undefined') {
         slopeState.twoPointsQuestionIndex = 0;
     }
 
-    // --- TÃƒÅ“M SORULAR BÃ„Â°TTÃ„Â° MÃ„Â°? ---
+    // --- TÜM SORULAR BİTTİ Mİ? ---
     if (slopeState.twoPointsQuestionIndex >= questions.length) {
-        // BitiÃ…Å¸ EkranÃ„Â±
+        // Bitiş Ekranı
         if (typeof clearAllScreens === 'function') clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('slopeSubButtons').style.display = 'flex';
         
         const feedback = document.getElementById('feedback');
-        feedback.textContent = "ÄŸÅ¸Ââ€  Tebrikler! TÃƒÂ¼m sorularÃ„Â± tamamladÃ„Â±n!";
+        feedback.textContent = "🏆 Tebrikler! Tüm soruları tamamladın!";
         feedback.className = 'fixed bottom-1/2 left-1/2 transform -translate-x-1/2 px-8 py-6 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-2xl z-[99999]';
         feedback.style.opacity = '1';
         playSuccessSound();
 
-        // 3 saniye sonra baÃ…Å¸a dÃƒÂ¶n
+        // 3 saniye sonra başa dön
         setTimeout(() => {
             feedback.style.opacity = '0';
-            slopeState.twoPointsQuestionIndex = 0; // BaÃ…Å¸a sar
+            slopeState.twoPointsQuestionIndex = 0; // Başa sar
         }, 4000);
         return;
     }
 
-    // --- SIRADAKÃ„Â° SORUYU AL ---
+    // --- SIRADAKİ SORUYU AL ---
     const currentQ = questions[slopeState.twoPointsQuestionIndex];
     const p1 = currentQ.p1;
     const p2 = currentQ.p2;
 
-    // State'e kaydet (Kontrol ederken lazÃ„Â±m olacak)
+    // State'e kaydet (Kontrol ederken lazım olacak)
     slopeState.currentTwoPoints = { p1, p2 };
 
-    // 2. ARAYÃƒÅ“ZÃƒÅ“ HAZIRLA
+    // 2. ARAYÜZÜ HAZIRLA
     if (typeof clearAllScreens === 'function') clearAllScreens();
     
     const subButtons = document.getElementById('slopeSubButtons');
@@ -6777,7 +6724,7 @@ window.startSlopeTwoPointsRound = function() {
     const btn = document.getElementById('btnSlopeTwoPoints');
     if (btn) btn.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-    // Ana kutuyu aÃƒÂ§
+    // Ana kutuyu aç
     const container = document.getElementById('linearContainer');
     if (container) {
         container.classList.remove('hidden');
@@ -6788,7 +6735,7 @@ window.startSlopeTwoPointsRound = function() {
         if (document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     }
 
-    // Paneli oluÃ…Å¸tur
+    // Paneli oluştur
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
@@ -6813,10 +6760,10 @@ window.startSlopeTwoPointsRound = function() {
             pointer-events: auto !important;
         `;
 
-        // HTML Ã„Â°ÃƒÂ§eriÃ„Å¸i (DeÃ„Å¸erler deÃ„Å¸iÃ…Å¸ken)
+        // HTML İçeriği (Değerler değişken)
         panel.innerHTML = `
             <div class="absolute top-2 left-4 text-xs font-bold text-gray-400">Soru ${slopeState.twoPointsQuestionIndex + 1} / ${questions.length}</div>
-            <h3 class="text-xl font-bold text-indigo-900 mb-3">EÃ„Å¸imi Hesapla</h3>
+            <h3 class="text-xl font-bold text-indigo-900 mb-3">Eğimi Hesapla</h3>
             
             <div class="text-base text-gray-700 mb-4 text-center">
                 <span class="font-bold text-indigo-600">A(${p1.x}, ${p1.y})</span> ve 
@@ -6842,14 +6789,14 @@ window.startSlopeTwoPointsRound = function() {
             <div id="calcResultDisplay" class="h-8 text-2xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
         `;
 
-        // TÃ„Â±klama OlaylarÃ„Â± (DeÃ„Å¸iÃ…Å¸ken baÃ…Å¸lÃ„Â±klar)
-        setupInputClick('box_y2', 'y2', `yÃ¢â€šâ€š Giriniz (${p2.y})`);
-        setupInputClick('box_y1', 'y1', `yÃ¢â€šÂ Giriniz (${p1.y})`);
-        setupInputClick('box_x2', 'x2', `xÃ¢â€šâ€š Giriniz (${p2.x})`);
-        setupInputClick('box_x1', 'x1', `xÃ¢â€šÂ Giriniz (${p1.x})`);
+        // Tıklama Olayları (Değişken başlıklar)
+        setupInputClick('box_y2', 'y2', `y₂ Giriniz (${p2.y})`);
+        setupInputClick('box_y1', 'y1', `y₁ Giriniz (${p1.y})`);
+        setupInputClick('box_x2', 'x2', `x₂ Giriniz (${p2.x})`);
+        setupInputClick('box_x1', 'x1', `x₁ Giriniz (${p1.x})`);
     }
     
-    // Kontrol Butonunu SÃ„Â±fÃ„Â±rla
+    // Kontrol Butonunu Sıfırla
     const chk = document.getElementById('checkBtn');
     if(chk) {
         chk.disabled = true;
@@ -6858,14 +6805,14 @@ window.startSlopeTwoPointsRound = function() {
     }
 };
 
-// 2. KONTROL BUTONU (SIRADAKÃ„Â° SORUYA GEÃƒâ€¡ME MANTIÃ„ÂI EKLENDÃ„Â°)
+// 2. KONTROL BUTONU (SIRADAKİ SORUYA GEÇME MANTIĞI EKLENDİ)
 var checkBtn = document.getElementById('checkBtn');
 if (checkBtn) {
     var newCheckBtn = checkBtn.cloneNode(true);
     checkBtn.parentNode.replaceChild(newCheckBtn, checkBtn);
 
     newCheckBtn.addEventListener('click', function() {
-        // --- Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU Ã„Â°SE ---
+        // --- İKİ NOKTADAN EĞİM MODU İSE ---
         if (gameState.mode === 'slope_two_points') {
             const p1 = slopeState.currentTwoPoints.p1;
             const p2 = slopeState.currentTwoPoints.p2;
@@ -6882,10 +6829,10 @@ if (checkBtn) {
                 showFeedback(true);
                 playSuccessSound();
                 
-                // DOÃ„ÂRU BÃ„Â°LÃ„Â°NCE 2 SANÃ„Â°YE SONRA DÃ„Â°Ã„ÂER SORUYA GEÃƒâ€¡
+                // DOĞRU BİLİNCE 2 SANİYE SONRA DİĞER SORUYA GEÇ
                 setTimeout(() => {
-                    slopeState.twoPointsQuestionIndex++; // SÃ„Â±radaki soruya geÃƒÂ§
-                    startSlopeTwoPointsRound(); // Yeniden baÃ…Å¸lat
+                    slopeState.twoPointsQuestionIndex++; // Sıradaki soruya geç
+                    startSlopeTwoPointsRound(); // Yeniden başlat
                 }, 2000);
                 
             } else {
@@ -6893,7 +6840,7 @@ if (checkBtn) {
                 playErrorSound();
             }
         } 
-        // --- DÃ„Â°Ã„ÂER MODLAR Ã„Â°Ãƒâ€¡Ã„Â°N ESKÃ„Â° KODLARI KORUYALIM ---
+        // --- DİĞER MODLAR İÇİN ESKİ KODLARI KORUYALIM ---
         else if (gameState.mode === 'x_eq_a') { if(typeof checkVerticalLine === 'function') checkVerticalLine(); }
         else if (gameState.mode === 'y_eq_b') { if(typeof checkHorizontalLine === 'function') checkHorizontalLine(); }
         else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') { if(typeof checkStraightLine === 'function') checkStraightLine(); }
@@ -6905,35 +6852,35 @@ if (checkBtn) {
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡â‚¬ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (3. SORU EKLENDÃ„Â° - ORÃ„Â°JÃ„Â°N)
+// 🚀 İKİ NOKTADAN EĞİM MODU (3. SORU EKLENDİ - ORİJİN)
 // =================================================================
 window.startSlopeTwoPointsRound = function() {
-    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu: Soru YÃƒÂ¼kleniyor...");
+    console.log("📍 İki Noktadan Eğim Modu: Soru Yükleniyor...");
 
-    // --- 1. SORU LÃ„Â°STESÃ„Â° ---
+    // --- 1. SORU LİSTESİ ---
     const questions = [
         { p1: { x: 2, y: 3 }, p2: { x: -2, y: 7 } },     // 1. Soru
         { p1: { x: -3, y: -4 }, p2: { x: 2, y: -5 } },   // 2. Soru
-        { p1: { x: 3, y: -5 }, p2: { x: 0, y: 0 } }      // 3. Soru (YENÃ„Â°: Orijin)
+        { p1: { x: 3, y: -5 }, p2: { x: 0, y: 0 } }      // 3. Soru (YENİ: Orijin)
     ];
 
-    // Soru Ã„Â°ndeksini Kontrol Et
+    // Soru İndeksini Kontrol Et
     if (typeof slopeState.twoPointsQuestionIndex === 'undefined') {
         slopeState.twoPointsQuestionIndex = 0;
     }
 
-    // --- TÃƒÅ“M SORULAR BÃ„Â°TTÃ„Â° MÃ„Â°? ---
+    // --- TÜM SORULAR BİTTİ Mİ? ---
     if (slopeState.twoPointsQuestionIndex >= questions.length) {
-        // BitiÃ…Å¸ EkranÃ„Â±
+        // Bitiş Ekranı
         if (typeof clearAllScreens === 'function') clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('slopeSubButtons').style.display = 'flex';
         
         const feedback = document.getElementById('feedback');
         feedback.innerHTML = `
-            <div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div>
-            <div>Harika Ã„Â°Ã…Å¸!</div>
-            <div class="text-lg font-normal mt-1">TÃƒÂ¼m iki nokta sorularÃ„Â±nÃ„Â± bitirdin!</div>
+            <div class="text-4xl mb-2">🏆</div>
+            <div>Harika İş!</div>
+            <div class="text-lg font-normal mt-1">Tüm iki nokta sorularını bitirdin!</div>
         `;
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-2xl z-[99999] animate-bounce border-4 border-white';
         feedback.style.opacity = '1';
@@ -6941,13 +6888,13 @@ window.startSlopeTwoPointsRound = function() {
 
         setTimeout(() => {
             feedback.style.opacity = '0';
-            slopeState.twoPointsQuestionIndex = 0; // BaÃ…Å¸a sar
+            slopeState.twoPointsQuestionIndex = 0; // Başa sar
             setTimeout(() => { feedback.innerHTML = ''; }, 500);
         }, 4000);
         return;
     }
 
-    // --- SIRADAKÃ„Â° SORUYU AL ---
+    // --- SIRADAKİ SORUYU AL ---
     const currentQ = questions[slopeState.twoPointsQuestionIndex];
     const p1 = currentQ.p1;
     const p2 = currentQ.p2;
@@ -6955,10 +6902,10 @@ window.startSlopeTwoPointsRound = function() {
     // State'e kaydet
     slopeState.currentTwoPoints = { p1, p2 };
 
-    // --- 2. ARAYÃƒÅ“ZÃƒÅ“ HAZIRLA ---
+    // --- 2. ARAYÜZÜ HAZIRLA ---
     if (typeof clearAllScreens === 'function') clearAllScreens();
     
-    // MenÃƒÂ¼leri AÃƒÂ§
+    // Menüleri Aç
     const subButtons = document.getElementById('slopeSubButtons');
     if (subButtons) {
         subButtons.classList.remove('hidden');
@@ -6967,25 +6914,25 @@ window.startSlopeTwoPointsRound = function() {
     const btn = document.getElementById('btnSlopeTwoPoints');
     if (btn) btn.classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');
 
-    // Arka PlanÃ„Â± AÃƒÂ§
+    // Arka Planı Aç
     const container = document.getElementById('linearContainer');
     if (container) {
         container.classList.remove('hidden');
         container.style.display = 'block';
         container.style.pointerEvents = 'none';
-        // Ã„Â°ÃƒÂ§eridekileri gizle
+        // İçeridekileri gizle
         if (document.getElementById('linearCanvas')) document.getElementById('linearCanvas').style.display = 'none';
         if (document.getElementById('dataTable')) document.getElementById('dataTable').style.display = 'none';
         if (document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
     }
 
-    // --- 3. PANELÃ„Â° OLUÃ…ÂTUR ---
+    // --- 3. PANELİ OLUŞTUR ---
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
         panel.classList.remove('hidden');
         
-        // CSS KonumlandÃ„Â±rma
+        // CSS Konumlandırma
         panel.style.cssText = `
             position: fixed !important;
             top: 55% !important; 
@@ -7005,13 +6952,13 @@ window.startSlopeTwoPointsRound = function() {
             pointer-events: auto !important;
         `;
 
-        // Orijin KontrolÃƒÂ¼ (Metin GÃƒÂ¶sterimi Ã„Â°ÃƒÂ§in)
+        // Orijin Kontrolü (Metin Gösterimi İçin)
         let p2Text = `<span class="text-indigo-600">B(${p2.x}, ${p2.y})</span>`;
         if (p2.x === 0 && p2.y === 0) {
             p2Text = `<span class="text-pink-600 font-extrabold">Orijin (0,0)</span>`;
         }
 
-        // HTML Ã„Â°ÃƒÂ§eriÃ„Å¸i
+        // HTML İçeriği
         panel.innerHTML = `
             <div class="absolute top-3 left-4 text-xs font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">
                 Soru ${slopeState.twoPointsQuestionIndex + 1} / ${questions.length}
@@ -7021,7 +6968,7 @@ window.startSlopeTwoPointsRound = function() {
                 <div class="text-xl text-gray-700 mb-2">
                     <span class="font-bold text-indigo-600">A(${p1.x}, ${p1.y})</span> ve ${p2Text}
                 </div>
-                <div class="text-base text-gray-500">noktalarÃ„Â±ndan geÃƒÂ§en doÃ„Å¸runun eÃ„Å¸imi kaÃƒÂ§tÃ„Â±r?</div>
+                <div class="text-base text-gray-500">noktalarından geçen doğrunun eğimi kaçtır?</div>
             </div>
 
             <div class="flex items-center gap-4 bg-indigo-50 p-6 rounded-2xl border-2 border-indigo-100 mb-6">
@@ -7047,11 +6994,11 @@ window.startSlopeTwoPointsRound = function() {
             <div id="calcResultDisplay" class="h-10 text-3xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
         `;
 
-        // TÃ„Â±klama OlaylarÃ„Â±
-        setupInputClick('box_y2', 'y2', `yÃ¢â€šâ€š Giriniz (${p2.y})`);
-        setupInputClick('box_y1', 'y1', `yÃ¢â€šÂ Giriniz (${p1.y})`);
-        setupInputClick('box_x2', 'x2', `xÃ¢â€šâ€š Giriniz (${p2.x})`);
-        setupInputClick('box_x1', 'x1', `xÃ¢â€šÂ Giriniz (${p1.x})`);
+        // Tıklama Olayları
+        setupInputClick('box_y2', 'y2', `y₂ Giriniz (${p2.y})`);
+        setupInputClick('box_y1', 'y1', `y₁ Giriniz (${p1.y})`);
+        setupInputClick('box_x2', 'x2', `x₂ Giriniz (${p2.x})`);
+        setupInputClick('box_x1', 'x1', `x₁ Giriniz (${p1.x})`);
     }
     
     // Kontrol Butonu Reset
@@ -7063,47 +7010,47 @@ window.startSlopeTwoPointsRound = function() {
     }
 };
 
-// 2. KONTROL BUTONU GÃƒÅ“NCELLEMESÃ„Â° (ZATEN EKLÃ„Â° AMA GARANTÃ„Â° OLSUN)
-// Bu kÃ„Â±sÃ„Â±m, mevcut kodunda zaten var olan 'checkBtn' listener'Ã„Â± ile ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r.
-// Tekrar yapÃ„Â±Ã…Å¸tÃ„Â±rmana gerek yok ama emin olmak istersen aÃ…Å¸aÃ„Å¸Ã„Â±dadÃ„Â±r.
+// 2. KONTROL BUTONU GÜNCELLEMESİ (ZATEN EKLİ AMA GARANTİ OLSUN)
+// Bu kısım, mevcut kodunda zaten var olan 'checkBtn' listener'ı ile çalışır.
+// Tekrar yapıştırmana gerek yok ama emin olmak istersen aşağıdadır.
 // ...
 
 // =================================================================
-// ÄŸÅ¸Å¡â‚¬ Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (4. SORU: EÃ„ÂÃ„Â°M VERÃ„Â°LMÃ„Â°Ã…Â, C BULMA)
+// 🚀 İKİ NOKTADAN EĞİM MODU (4. SORU: EĞİM VERİLMİŞ, C BULMA)
 // =================================================================
 window.startSlopeTwoPointsRound = function() {
-    console.log("ÄŸÅ¸â€œÂ Ã„Â°ki Noktadan EÃ„Å¸im Modu YÃƒÂ¼kleniyor...");
+    console.log("📍 İki Noktadan Eğim Modu Yükleniyor...");
 
-    // 1. SORU LÃ„Â°STESÃ„Â°
+    // 1. SORU LİSTESİ
     const questions = [
         { type: 'standard', p1: { x: 2, y: 3 }, p2: { x: -2, y: 7 } },
         { type: 'standard', p1: { x: -3, y: -4 }, p2: { x: 2, y: -5 } },
         { type: 'standard', p1: { x: 3, y: -5 }, p2: { x: 0, y: 0 } },
         
-        // --- 4. YENÃ„Â° Ãƒâ€“ZEL SORU (c BULMA) ---
+        // --- 4. YENİ ÖZEL SORU (c BULMA) ---
         { 
             type: 'find_c_slope_given', // Yeni Tip
-            p1: { x: 0, y: 'c' },      // A NoktasÃ„Â± (Bilinmeyen)
-            p2: { x: -2, y: 3 },       // B NoktasÃ„Â± (Bilinen)
-            slope: 4,                  // Verilen EÃ„Å¸im
-            slopeFraction: { n: 4, d: 1 }, // 4/1 olarak yazÃ„Â±lacak
-            correctC: 11               // Ãƒâ€¡ÃƒÂ¶zÃƒÂ¼m: (c-3)/(0-(-2)) = 4 => c-3 = 8 => c=11
+            p1: { x: 0, y: 'c' },      // A Noktası (Bilinmeyen)
+            p2: { x: -2, y: 3 },       // B Noktası (Bilinen)
+            slope: 4,                  // Verilen Eğim
+            slopeFraction: { n: 4, d: 1 }, // 4/1 olarak yazılacak
+            correctC: 11               // Çözüm: (c-3)/(0-(-2)) = 4 => c-3 = 8 => c=11
         }
     ];
 
-    // Ã„Â°ndeks KontrolÃƒÂ¼
+    // İndeks Kontrolü
     if (typeof slopeState.twoPointsQuestionIndex === 'undefined') {
         slopeState.twoPointsQuestionIndex = 0;
     }
 
-    // BÃ„Â°TÃ„Â°Ã…Â KONTROLÃƒÅ“
+    // BİTİŞ KONTROLÜ
     if (slopeState.twoPointsQuestionIndex >= questions.length) {
         if (typeof clearAllScreens === 'function') clearAllScreens();
         document.getElementById('slopeSubButtons').classList.remove('hidden');
         document.getElementById('slopeSubButtons').style.display = 'flex';
         
         const feedback = document.getElementById('feedback');
-        feedback.innerHTML = `<div class="text-4xl mb-2">ÄŸÅ¸Ââ€ </div><div>MÃƒÂ¼kemmel!</div><div class="text-lg mt-1">Bu konunun uzmanÃ„Â± sensin!</div>`;
+        feedback.innerHTML = `<div class="text-4xl mb-2">🏆</div><div>Mükemmel!</div><div class="text-lg mt-1">Bu konunun uzmanı sensin!</div>`;
         feedback.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-12 py-10 rounded-2xl shadow-2xl font-bold text-center bg-purple-600 text-white text-2xl z-[99999] animate-bounce border-4 border-white';
         feedback.style.opacity = '1';
         playSuccessSound();
@@ -7118,7 +7065,7 @@ window.startSlopeTwoPointsRound = function() {
     const currentQ = questions[slopeState.twoPointsQuestionIndex];
     slopeState.currentTwoPointsQ = currentQ; 
 
-    // 2. TEMÃ„Â°ZLÃ„Â°K VE HAZIRLIK
+    // 2. TEMİZLİK VE HAZIRLIK
     if (typeof clearAllScreens === 'function') clearAllScreens();
     
     const subButtons = document.getElementById('slopeSubButtons');
@@ -7132,19 +7079,19 @@ window.startSlopeTwoPointsRound = function() {
     if(document.getElementById('dataTable')) document.getElementById('dataTable').style.display = 'none';
     if(document.getElementById('tableConfirmBtn')) document.getElementById('tableConfirmBtn').style.display = 'none';
 
-    // 3. PANELÃ„Â° OLUÃ…ÂTUR
+    // 3. PANELİ OLUŞTUR
     const panel = document.getElementById('slopeQuestionPanel');
     if (panel) {
         if (panel.parentElement !== document.body) document.body.appendChild(panel);
         panel.classList.remove('hidden');
         
-        // Bu soru tipi iÃƒÂ§in ÃƒÂ¶zel CSS (GrafiÃ„Å¸i kapatmamasÃ„Â± iÃƒÂ§in saÃ„Å¸a/yukarÃ„Â± alÃ„Â±yoruz)
+        // Bu soru tipi için özel CSS (Grafiği kapatmaması için sağa/yukarı alıyoruz)
         const isSpecial = (currentQ.type === 'find_c_slope_given');
         
         panel.style.cssText = `
             position: fixed !important;
             top: ${isSpecial ? '55%' : '55%'} !important; 
-            left: ${isSpecial ? '50%' : '50%'} !important; /* GrafiÃ„Å¸in saÃ„Å¸Ã„Â±na al */
+            left: ${isSpecial ? '50%' : '50%'} !important; /* Grafiğin sağına al */
             transform: translate(-50%, -50%) !important;
             z-index: 50 !important; 
             background-color: white !important;
@@ -7163,9 +7110,9 @@ window.startSlopeTwoPointsRound = function() {
         `;
 
         if (isSpecial) {
-            // --- 4. SORU (Ãƒâ€“ZEL ARAYÃƒÅ“Z: EÃ„ÂÃ„Â°M VERÃ„Â°LMÃ„Â°Ã…Â, C Ã„Â°STENÃ„Â°YOR) ---
+            // --- 4. SORU (ÖZEL ARAYÜZ: EĞİM VERİLMİŞ, C İSTENİYOR) ---
             
-            // GrafiÃ„Å¸i AÃƒÂ§ ve Ãƒâ€¡iz
+            // Grafiği Aç ve Çiz
             const canvas = document.getElementById('linearCanvas');
             canvas.style.display = 'block';
             drawSlopeUnknownGraph(currentQ); 
@@ -7175,8 +7122,8 @@ window.startSlopeTwoPointsRound = function() {
                 <h3 class="text-xl font-bold text-red-600 mb-2">Bilinmeyeni Bul (c)</h3>
                 
                 <div class="text-sm text-gray-700 mb-4 text-center leading-relaxed">
-                    DoÃ„Å¸runun EÃ„Å¸imi <span class="font-bold text-red-600">m = 4</span> ise,<br>
-                    A(0, <span class="font-bold text-red-600">c</span>) ve B(-2, 3) noktalarÃ„Â± iÃƒÂ§in 'c' kaÃƒÂ§tÃ„Â±r?
+                    Doğrunun Eğimi <span class="font-bold text-red-600">m = 4</span> ise,<br>
+                    A(0, <span class="font-bold text-red-600">c</span>) ve B(-2, 3) noktaları için 'c' kaçtır?
                 </div>
 
                 <div class="flex items-center gap-2 bg-red-50 p-3 rounded-xl border border-red-200 mb-4 scale-90 sm:scale-100">
@@ -7212,13 +7159,13 @@ window.startSlopeTwoPointsRound = function() {
                 </div>
             `;
             
-            // TÃ„Â±klama OlaylarÃ„Â± (DoÃ„Å¸ru deÃ„Å¸erler ile)
-            setupInputClick('box_y1', 'y1', 'yÃ¢â€šÂ DeÃ„Å¸eri (3)');     // B'nin y'si
-            setupInputClick('box_x2', 'x2', 'xÃ¢â€šâ€š DeÃ„Å¸eri (0)');     // A'nÃ„Â±n x'i
-            setupInputClick('box_x1', 'x1', 'xÃ¢â€šÂ DeÃ„Å¸eri (-2)');    // B'nin x'i
-            setupInputClick('box_slope_a', 'slope_a', 'EÃ„Å¸im PayÃ„Â± (4)');
-            setupInputClick('box_slope_b', 'slope_b', 'EÃ„Å¸im PaydasÃ„Â± (1)');
-            setupInputClick('box_final_c', 'final_c', 'BulduÃ„Å¸un c deÃ„Å¸eri?');
+            // Tıklama Olayları (Doğru değerler ile)
+            setupInputClick('box_y1', 'y1', 'y₁ Değeri (3)');     // B'nin y'si
+            setupInputClick('box_x2', 'x2', 'x₂ Değeri (0)');     // A'nın x'i
+            setupInputClick('box_x1', 'x1', 'x₁ Değeri (-2)');    // B'nin x'i
+            setupInputClick('box_slope_a', 'slope_a', 'Eğim Payı (4)');
+            setupInputClick('box_slope_b', 'slope_b', 'Eğim Paydası (1)');
+            setupInputClick('box_final_c', 'final_c', 'Bulduğun c değeri?');
 
         } else {
             // --- STANDART SORULAR (1, 2, 3) ---
@@ -7230,7 +7177,7 @@ window.startSlopeTwoPointsRound = function() {
 
             panel.innerHTML = `
                 <div class="absolute top-2 left-4 text-xs font-bold text-gray-400">Soru ${slopeState.twoPointsQuestionIndex + 1} / ${questions.length}</div>
-                <h3 class="text-xl font-bold text-indigo-900 mb-3">EÃ„Å¸imi Hesapla</h3>
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">Eğimi Hesapla</h3>
                 <div class="text-base text-gray-700 mb-4 text-center">
                     <span class="font-bold text-indigo-600">A(${currentQ.p1.x}, ${currentQ.p1.y})</span> ve ${p2Text}
                 </div>
@@ -7253,32 +7200,32 @@ window.startSlopeTwoPointsRound = function() {
                 <div id="calcResultDisplay" class="h-8 text-2xl font-bold text-green-600 opacity-0 transition-all">m = ...</div>
             `;
             
-            setupInputClick('box_y2', 'y2', `yÃ¢â€šâ€š Giriniz (${currentQ.p2.y})`);
-            setupInputClick('box_y1', 'y1', `yÃ¢â€šÂ Giriniz (${currentQ.p1.y})`);
-            setupInputClick('box_x2', 'x2', `xÃ¢â€šâ€š Giriniz (${currentQ.p2.x})`);
-            setupInputClick('box_x1', 'x1', `xÃ¢â€šÂ Giriniz (${currentQ.p1.x})`);
+            setupInputClick('box_y2', 'y2', `y₂ Giriniz (${currentQ.p2.y})`);
+            setupInputClick('box_y1', 'y1', `y₁ Giriniz (${currentQ.p1.y})`);
+            setupInputClick('box_x2', 'x2', `x₂ Giriniz (${currentQ.p2.x})`);
+            setupInputClick('box_x1', 'x1', `x₁ Giriniz (${currentQ.p1.x})`);
         }
     }
     
-    // Kontrol Butonunu SÃ„Â±fÃ„Â±rla
+    // Kontrol Butonunu Sıfırla
     const chk = document.getElementById('checkBtn');
     if(chk) { chk.disabled = true; chk.style.opacity = '0.5'; chk.classList.remove('animate-pulse', 'ring-4', 'ring-green-400'); }
 };
 
-// 4. Ãƒâ€“ZEL GRAFÃ„Â°K Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° (c HESAPLANARAK)
+// 4. ÖZEL GRAFİK ÇİZİMİ (c HESAPLANARAK)
 function drawSlopeUnknownGraph(q) {
     const canvas = document.getElementById('linearCanvas');
     canvas.innerHTML = '';
     canvas.setAttribute('viewBox', '0 0 600 600');
     
-    // c'yi hesapla (GÃƒÂ¶rsel ÃƒÂ§izim iÃƒÂ§in gerekli)
+    // c'yi hesapla (Görsel çizim için gerekli)
     const valC = q.correctC; // 11
     
-    // Ãƒâ€“lÃƒÂ§ek AyarÃ„Â±: c=11 ÃƒÂ§ok yÃƒÂ¼ksek, bu yÃƒÂ¼zden her kareyi kÃƒÂ¼ÃƒÂ§ÃƒÂ¼k tutuyoruz.
-    // Izgara 20 birim olsun. Orijin biraz aÃ…Å¸aÃ„Å¸Ã„Â±da olsun (400) ki 11 sÃ„Â±Ã„Å¸sÃ„Â±n.
+    // Ölçek Ayarı: c=11 çok yüksek, bu yüzden her kareyi küçük tutuyoruz.
+    // Izgara 20 birim olsun. Orijin biraz aşağıda olsun (400) ki 11 sığsın.
     const GRID = 25; 
     const CX = 300; // X Orijini (Biraz sola)
-    const CY = 400; // Y Orijini (AÃ…Å¸aÃ„Å¸Ã„Â±da, ÃƒÂ§ÃƒÂ¼nkÃƒÂ¼ c=11 yukarÃ„Â±da olacak)
+    const CY = 400; // Y Orijini (Aşağıda, çünkü c=11 yukarıda olacak)
 
     // Izgara
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -7302,7 +7249,7 @@ function drawSlopeUnknownGraph(q) {
     axes.appendChild(yAxis);
     canvas.appendChild(axes);
 
-    // NoktalarÃ„Â±n Piksel KarÃ…Å¸Ã„Â±lÃ„Â±klarÃ„Â±
+    // Noktaların Piksel Karşılıkları
     // A(0, c)
     const ax = CX + (0 * GRID);
     const ay = CY - (valC * GRID);
@@ -7311,17 +7258,17 @@ function drawSlopeUnknownGraph(q) {
     const bx = CX + (-2 * GRID);
     const by = CY - (3 * GRID);
 
-    // DoÃ„Å¸ruyu Ãƒâ€¡iz (UzatÃ„Â±lmÃ„Â±Ã…Å¸)
+    // Doğruyu Çiz (Uzatılmış)
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     const dx = ax - bx; const dy = ay - by;
-    // Ãƒâ€¡izgiyi iki taraftan uzat
+    // Çizgiyi iki taraftan uzat
     line.setAttribute('x1', bx - dx*0.5); line.setAttribute('y1', by - dy*0.5);
     line.setAttribute('x2', ax + dx*0.5); line.setAttribute('y2', ay + dy*0.5);
     line.setAttribute('stroke', '#ef4444'); 
     line.setAttribute('stroke-width', '4');
     canvas.appendChild(line);
 
-    // NoktalarÃ„Â± Ãƒâ€¡iz
+    // Noktaları Çiz
     const dotA = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dotA.setAttribute('cx', ax); dotA.setAttribute('cy', ay); dotA.setAttribute('r', 6); dotA.setAttribute('fill', '#4f46e5');
     canvas.appendChild(dotA);
@@ -7343,7 +7290,7 @@ function drawSlopeUnknownGraph(q) {
     canvas.appendChild(textB);
 }
 
-// 5. KONTROL MANTIÃ„ÂI (GÃƒÅ“NCELLENMÃ„Â°Ã…Â VERSÃ„Â°YON)
+// 5. KONTROL MANTIĞI (GÜNCELLENMİŞ VERSİYON)
 var checkBtn = document.getElementById('checkBtn');
 if (checkBtn) {
     var newCheckBtn = checkBtn.cloneNode(true);
@@ -7353,11 +7300,11 @@ if (checkBtn) {
         if (gameState.mode === 'slope_two_points') {
             const q = slopeState.currentTwoPointsQ;
 
-            // --- 4. SORU KONTROLÃƒÅ“ (c BULMA) ---
+            // --- 4. SORU KONTROLÜ (c BULMA) ---
             if (q.type === 'find_c_slope_given') {
                 const userC = parseFloat(document.getElementById('box_final_c').textContent);
                 
-                // AyrÃ„Â±ca ara adÃ„Â±mlarÃ„Â±n (formÃƒÂ¼lÃƒÂ¼n) dolu olup olmadÃ„Â±Ã„Å¸Ã„Â±na da bakabiliriz
+                // Ayrıca ara adımların (formülün) dolu olup olmadığına da bakabiliriz
                 const boxA = document.getElementById('box_slope_a').textContent;
                 const boxB = document.getElementById('box_slope_b').textContent;
 
@@ -7365,16 +7312,16 @@ if (checkBtn) {
                     showFeedback(true);
                     playSuccessSound();
                     
-                    // Ãƒâ€¡ÃƒÂ¶zÃƒÂ¼m AdÃ„Â±mlarÃ„Â±nÃ„Â± GÃƒÂ¶ster
+                    // Çözüm Adımlarını Göster
                     const steps = document.getElementById('solutionSteps');
                     steps.classList.remove('hidden');
                     steps.innerHTML = `
-                        <div>Ã¢Å“â€¦ <b>Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M ADIMLARI:</b></div>
-                        1. FormÃƒÂ¼l: (c - 3) / (0 - (-2)) = 4/1 <br>
+                        <div>✅ <b>ÇÖZÜM ADIMLARI:</b></div>
+                        1. Formül: (c - 3) / (0 - (-2)) = 4/1 <br>
                         2. Payda: 0 - (-2) = 2 <br>
                         3. Denklem: (c - 3) / 2 = 4 <br>
-                        4. Ã„Â°ÃƒÂ§ler DÃ„Â±Ã…Å¸lar: c - 3 = 8 <br>
-                        5. SonuÃƒÂ§: c = 8 + 3 = <b class="text-red-600">11</b>
+                        4. İçler Dışlar: c - 3 = 8 <br>
+                        5. Sonuç: c = 8 + 3 = <b class="text-red-600">11</b>
                     `;
                     
                     // 6 saniye sonra bitir
@@ -7410,7 +7357,7 @@ if (checkBtn) {
                 }
             }
         }
-        // DiÃ„Å¸er modlarÃ„Â±n kontrollerini koru...
+        // Diğer modların kontrollerini koru...
         else if (gameState.mode === 'x_eq_a') { if(typeof checkVerticalLine === 'function') checkVerticalLine(); }
         else if (gameState.mode === 'y_eq_b') { if(typeof checkHorizontalLine === 'function') checkHorizontalLine(); }
         else if (gameState.mode === 'y_eq_ax' || gameState.mode === 'y_eq_ax_plus_b') { if(typeof checkStraightLine === 'function') checkStraightLine(); }
@@ -7421,13 +7368,13 @@ if (checkBtn) {
     });
 }
 
-// 6. NUMPAD GÃƒÅ“NCELLEME (YENÃ„Â° KUTULARI TANIYAN VERSÃ„Â°YON)
+// 6. NUMPAD GÜNCELLEME (YENİ KUTULARI TANIYAN VERSİYON)
 // ==========================================
-// 2. "TAMAM" TUÃ…ÂU TAMÃ„Â°RÃ„Â° (KAPATMA VE HESAPLAMA)
+// 2. "TAMAM" TUŞU TAMİRİ (KAPATMA VE HESAPLAMA)
 // ==========================================
 const numPadCloseBtn = document.getElementById('numPadClose');
 if (numPadCloseBtn) {
-    // Ãƒâ€“nceki dinleyicileri temizlemek iÃƒÂ§in butonu klonluyoruz
+    // Önceki dinleyicileri temizlemek için butonu klonluyoruz
     const newNumPadCloseBtn = numPadCloseBtn.cloneNode(true);
     numPadCloseBtn.parentNode.replaceChild(newNumPadCloseBtn, numPadCloseBtn);
     
@@ -7437,26 +7384,26 @@ if (numPadCloseBtn) {
             const disp = document.getElementById('currentInput');
             if (disp && disp.textContent !== '') val = disp.textContent;
 
-            // TÃ„Â±klanan hedef bir tablo hÃƒÂ¼cresi ise (ÃƒÂ¶rn: table_input_y_0)
+            // Tıklanan hedef bir tablo hücresi ise (örn: table_input_y_0)
             if (activeInputTarget && activeInputTarget.startsWith('table_input_')) {
                 const parts = activeInputTarget.split('_');
                 const col = parts[2]; // 'x' veya 'y'
                 const row = parseInt(parts[3]);
 
-                // Ã„Â°Ã…ÂLEM Ãƒâ€“NCELÃ„Â°Ã„ÂÃ„Â°NE GÃƒâ€“RE OTOMATÃ„Â°K HESAPLAMA (Y SÃƒÂ¼tunu)
+                // İŞLEM ÖNCELİĞİNE GÖRE OTOMATİK HESAPLAMA (Y Sütunu)
                 if (col === 'y' && val !== '') {
-                    // x harfini ÃƒÂ§arpma iÃ…Å¸lemine (*) ÃƒÂ§evir
+                    // x harfini çarpma işlemine (*) çevir
                     let expression = val.replace(/x/g, '*').replace(/X/g, '*');
                     
                     try {
                         const calculatedValue = new Function('return ' + expression)();
                         val = calculatedValue.toString(); 
                     } catch (err) {
-                        console.log("Ã„Â°fade hesaplanamadÃ„Â±, girilen deÃ„Å¸er korundu:", err);
+                        console.log("İfade hesaplanamadı, girilen değer korundu:", err);
                     }
                 }
 
-                // TABLOYU VE EKRANI GÃƒÅ“NCELLE
+                // TABLOYU VE EKRANI GÜNCELLE
                 if (!linearState.tableData) linearState.tableData = [];
                 if (!linearState.tableData[row]) linearState.tableData[row] = { x: '', y: '' };
                 
@@ -7468,7 +7415,7 @@ if (numPadCloseBtn) {
                     targetBox.classList.remove('bg-indigo-100', 'border-indigo-500'); 
                 }
 
-                // SATIR TAMAMLANDIYSA NOKTAYI GRAFÃ„Â°Ã„ÂE Ãƒâ€¡Ã„Â°Z
+                // SATIR TAMAMLANDIYSA NOKTAYI GRAFİĞE ÇİZ
                 const currentRow = linearState.tableData[row];
                 if (currentRow.x !== '' && currentRow.y !== '') {
                     if (typeof refreshLinearGraphPoints === 'function') {
@@ -7478,7 +7425,7 @@ if (numPadCloseBtn) {
 
                 // TABLO TAMAMEN DOLDU MU KONTROL ET
                 let isTableFull = true;
-                const maxRows = 4; // Tablondaki varsayÃ„Â±lan satÃ„Â±r sayÃ„Â±sÃ„Â±
+                const maxRows = 4; // Tablondaki varsayılan satır sayısı
                 for (let i = 0; i < maxRows; i++) {
                     if (!linearState.tableData[i] || linearState.tableData[i].x === '' || linearState.tableData[i].y === '') {
                         isTableFull = false;
@@ -7486,7 +7433,7 @@ if (numPadCloseBtn) {
                     }
                 }
 
-                // Tablo tamamen dolduysa, tablonun altÃ„Â±ndaki onay butonunu gÃƒÂ¶ster
+                // Tablo tamamen dolduysa, tablonun altındaki onay butonunu göster
                 if (isTableFull) {
                     const tableConfirmBtn = document.getElementById('tableConfirmBtn'); 
                     if (tableConfirmBtn) {
@@ -7497,7 +7444,7 @@ if (numPadCloseBtn) {
                 }
             } 
             
-            // DiÃ„Å¸er modlar iÃƒÂ§in olan kodlarÃ„Â±n (EÃ„Å¸im vs.) ÃƒÂ§alÃ„Â±Ã…Å¸maya devam etmesi iÃƒÂ§in burayÃ„Â± koruyoruz
+            // Diğer modlar için olan kodların (Eğim vs.) çalışmaya devam etmesi için burayı koruyoruz
             else if (activeInputTarget === 'slope_intercept') { 
                 if(val) { 
                     const ansBox = document.getElementById('interceptAnswerBox');
@@ -7511,9 +7458,9 @@ if (numPadCloseBtn) {
             }
 
         } catch (e) {
-            console.error("NumPad Ã„Â°Ã…Å¸lem HatasÃ„Â±:", e);
+            console.error("NumPad İşlem Hatası:", e);
         } finally {
-            // Ã„Â°Ã…Å¸lem bitince NumPad'i gizle ve deÃ„Å¸erleri temizle
+            // İşlem bitince NumPad'i gizle ve değerleri temizle
             const numPadEl = document.getElementById('numberPad');
             if(numPadEl) numPadEl.classList.add('hidden');
             linearState.currentInputValue = '';
@@ -7525,28 +7472,28 @@ if (numPadCloseBtn) {
     });
 }
 // =================================================================
-// ÄŸÅ¸Å¡â€˜ ACÃ„Â°L DURUM: NUMPAD KAPATMA (CSS RESET YÃƒâ€“NTEMÃ„Â°)
+// 🚑 ACİL DURUM: NUMPAD KAPATMA (CSS RESET YÖNTEMİ)
 // =================================================================
 var confirmBtn = document.getElementById('numPadClose');
 
 if (confirmBtn) {
-    // 1. Butonu temizle ve yenisini oluÃ…Å¸tur
+    // 1. Butonu temizle ve yenisini oluştur
     var newConfirmBtn = confirmBtn.cloneNode(true);
     confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
 
-    // 2. Yeni TÃ„Â±klama OlayÃ„Â±
+    // 2. Yeni Tıklama Olayı
     newConfirmBtn.addEventListener('click', function(e) {
-        // TÃ„Â±klama olayÃ„Â±nÃ„Â±n yayÃ„Â±lmasÃ„Â±nÃ„Â± engelle (Ãƒâ€¡akÃ„Â±Ã…Å¸malarÃ„Â± ÃƒÂ¶nler)
+        // Tıklama olayının yayılmasını engelle (Çakışmaları önler)
         e.preventDefault();
         e.stopPropagation();
 
-        console.log("Ã¢Å“â€¦ Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er iÃ…Å¸leniyor ve KAPATILIYOR.");
+        console.log("✅ Tamam'a basıldı. Değer işleniyor ve KAPATILIYOR.");
         
         const val = linearState.currentInputValue;
 
-        // --- VERÃ„Â° Ã„Â°Ã…ÂLEME (KUTULARA YAZMA) ---
+        // --- VERİ İŞLEME (KUTULARA YAZMA) ---
         try {
-            // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU
+            // A) İKİ NOKTADAN EĞİM MODU
             if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
                 const role = activeInputTarget.replace('two_points_', ''); 
                 const boxId = 'box_' + role;
@@ -7556,13 +7503,13 @@ if (confirmBtn) {
                     box.textContent = val === '' ? '?' : val;
                     box.style.color = '#4338ca'; 
                     
-                    // 4. Soru KontrolÃƒÂ¼ (c deÃ„Å¸eri)
+                    // 4. Soru Kontrolü (c değeri)
                     if (role === 'final_c' && val !== '') {
                         const chk = document.getElementById('checkBtn');
                         if(chk) { chk.disabled = false; chk.style.opacity = '1'; }
                     }
                     
-                    // Standart Sorular iÃƒÂ§in Otomatik Hesaplama
+                    // Standart Sorular için Otomatik Hesaplama
                     if (!role.includes('final') && !role.includes('slope')) {
                          if(typeof checkTwoPointsComplete === 'function') checkTwoPointsComplete(); 
                     }
@@ -7584,7 +7531,7 @@ if (confirmBtn) {
                  }
             }
 
-            // C) ESKÃ„Â° EÃ„ÂÃ„Â°M MODLARI
+            // C) ESKİ EĞİM MODLARI
             else if (activeInputTarget === 'slope_simple') document.getElementById('slopeAnswerBox').textContent = val;
             else if (activeInputTarget === 'slope_unknown') document.getElementById('unknownBox').textContent = val;
             else if (activeInputTarget === 'slope_intercept') document.getElementById('interceptAnswerBox').textContent = val;
@@ -7593,20 +7540,20 @@ if (confirmBtn) {
             else if (activeInputTarget === 'eq_left_denom') document.getElementById('leftDenomBox').textContent = val;
 
         } catch (err) {
-            console.error("Veri iÃ…Å¸leme hatasÃ„Â±:", err);
+            console.error("Veri işleme hatası:", err);
         }
 
-        // --- KRÃ„Â°TÃ„Â°K BÃƒâ€“LÃƒÅ“M: ZORLA KAPATMA ---
+        // --- KRİTİK BÖLÜM: ZORLA KAPATMA ---
         const numPad = document.getElementById('numberPad');
         if (numPad) {
-            // 1. Ãƒâ€“nce ÃƒÂ¼zerindeki tÃƒÂ¼m inline stilleri (top, left, z-index, display:flex !important) SÃ„Â°LÃ„Â°YORUZ.
+            // 1. Önce üzerindeki tüm inline stilleri (top, left, z-index, display:flex !important) SİLİYORUZ.
             numPad.removeAttribute('style'); 
             
-            // 2. Sonra temiz bir Ã…Å¸ekilde gizliyoruz.
+            // 2. Sonra temiz bir şekilde gizliyoruz.
             numPad.classList.add('hidden');
         }
         
-        // --- TEMÃ„Â°ZLÃ„Â°K ---
+        // --- TEMİZLİK ---
         if (typeof linearState !== 'undefined') {
             linearState.currentInputValue = '';
         }
@@ -7616,16 +7563,16 @@ if (confirmBtn) {
 }
 
 // =================================================================
-// 1. EKRAN GÃƒÅ“NCELLEYÃ„Â°CÃ„Â° (Ã„Â°SÃ„Â°M AYRIÃ…ÂTIRMA DÃƒÅ“ZELTMESÃ„Â°)
+// 1. EKRAN GÜNCELLEYİCİ (İSİM AYRIŞTIRMA DÜZELTMESİ)
 // =================================================================
 window.updateActiveInputDisplay = function() {
     const val = linearState.currentInputValue;
 
-    // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (KapsamlÃ„Â± DÃƒÂ¼zeltme)
+    // A) İKİ NOKTADAN EĞİM MODU (Kapsamlı Düzeltme)
     if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
-        // HATA BURADAYDI: split('_')[2] sadece 'slope' alÃ„Â±yordu, 'a' kayboluyordu.
-        // DÃƒÅ“ZELTME: replace ile baÃ…Å¸taki etiketi siliyoruz, geriye tam isim kalÃ„Â±yor.
-        const role = activeInputTarget.replace('two_points_', ''); // Ãƒâ€“rn: 'slope_a'
+        // HATA BURADAYDI: split('_')[2] sadece 'slope' alıyordu, 'a' kayboluyordu.
+        // DÜZELTME: replace ile baştaki etiketi siliyoruz, geriye tam isim kalıyor.
+        const role = activeInputTarget.replace('two_points_', ''); // Örn: 'slope_a'
         const boxId = 'box_' + role; // -> 'box_slope_a'
         
         const box = document.getElementById(boxId);
@@ -7633,21 +7580,21 @@ window.updateActiveInputDisplay = function() {
             box.textContent = val === '' ? '?' : val;
             box.style.color = '#4338ca';
         }
-        return; // Bu moddaysak aÃ…Å¸aÃ„Å¸Ã„Â±ya devam etme
+        return; // Bu moddaysak aşağıya devam etme
     }
 
-    // B) DÃ„Â°Ã„ÂER MODLAR (ESKÃ„Â° KODLARIN KORUNMASI)
-    // Sol Alttaki Kutu (a'nÃ„Â±n altÃ„Â±)
+    // B) DİĞER MODLAR (ESKİ KODLARIN KORUNMASI)
+    // Sol Alttaki Kutu (a'nın altı)
     if (activeInputTarget === 'eq_left_denom') {
         const el = document.getElementById('leftDenomBox');
         if(el) el.textContent = val || '?';
     }
-    // SaÃ„Å¸ ÃƒÅ“st (Pay)
+    // Sağ Üst (Pay)
     else if (activeInputTarget === 'eq_right_num' || activeInputTarget === 'slope_conv_num') {
         const el = document.getElementById('slopeNumBox'); 
         if(el) el.textContent = val || '?';
     }
-    // SaÃ„Å¸ Alt (Payda)
+    // Sağ Alt (Payda)
     else if (activeInputTarget === 'eq_right_denom' || activeInputTarget === 'slope_conv_denom') {
         const el = document.getElementById('slopeDenomBox'); 
         if(el) el.textContent = val || '?';
@@ -7655,50 +7602,50 @@ window.updateActiveInputDisplay = function() {
 };
 
 // =================================================================
-// ÄŸÅ¸â€Â§ EKRAN GÃƒÅ“NCELLEME TAMÃ„Â°RÃ„Â° (ALT TÃ„Â°RE SORUNU Ãƒâ€¡Ãƒâ€“ZÃƒÅ“MÃƒÅ“)
+// 🔧 EKRAN GÜNCELLEME TAMİRİ (ALT TİRE SORUNU ÇÖZÜMÜ)
 // =================================================================
 window.updateActiveInputDisplay = function() {
     const val = linearState.currentInputValue;
 
-    // A) Ã„Â°KÃ„Â° NOKTADAN EÃ„ÂÃ„Â°M MODU (Ãƒâ€“ZEL DÃƒÅ“ZELTME)
+    // A) İKİ NOKTADAN EĞİM MODU (ÖZEL DÜZELTME)
     if (activeInputTarget && activeInputTarget.startsWith('two_points_')) {
-        // HATA BURADAYDI: split('_') kullanÃ„Â±nca "slope_a" parÃƒÂ§alanÃ„Â±yordu.
-        // Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M: replace() ile sadece baÃ…Å¸taki etiketi siliyoruz, gerisini olduÃ„Å¸u gibi alÃ„Â±yoruz.
+        // HATA BURADAYDI: split('_') kullanınca "slope_a" parçalanıyordu.
+        // ÇÖZÜM: replace() ile sadece baştaki etiketi siliyoruz, gerisini olduğu gibi alıyoruz.
         
-        const role = activeInputTarget.replace('two_points_', ''); // Ãƒâ€“rn: 'slope_a'
+        const role = activeInputTarget.replace('two_points_', ''); // Örn: 'slope_a'
         const boxId = 'box_' + role; // -> 'box_slope_a'
         
         const box = document.getElementById(boxId);
         if (box) {
-            // DeÃ„Å¸eri kutuya anlÃ„Â±k olarak yaz
+            // Değeri kutuya anlık olarak yaz
             box.textContent = val === '' ? '?' : val;
             box.style.color = '#4338ca';
         }
-        return; // Bu moddaysak iÃ…Å¸lemi bitir, aÃ…Å¸aÃ„Å¸Ã„Â±ya inme.
+        return; // Bu moddaysak işlemi bitir, aşağıya inme.
     }
 
-    // B) DÃ„Â°Ã„ÂER MODLAR (ESKÃ„Â° KODLARIN Ãƒâ€¡ALIÃ…ÂMAYA DEVAM ETMESÃ„Â° Ã„Â°Ãƒâ€¡Ã„Â°N)
+    // B) DİĞER MODLAR (ESKİ KODLARIN ÇALIŞMAYA DEVAM ETMESİ İÇİN)
     
-    // Sol Alttaki Kutu (a'nÃ„Â±n altÃ„Â± - EÃ…Å¸itlik Modu)
+    // Sol Alttaki Kutu (a'nın altı - Eşitlik Modu)
     if (activeInputTarget === 'eq_left_denom') {
         const el = document.getElementById('leftDenomBox');
         if(el) el.textContent = val || '?';
     }
     
-    // SaÃ„Å¸ ÃƒÅ“st (Pay - EÃ„Å¸im Modu)
+    // Sağ Üst (Pay - Eğim Modu)
     else if (activeInputTarget === 'eq_right_num' || activeInputTarget === 'slope_conv_num') {
         const el = document.getElementById('slopeNumBox'); 
         if(el) el.textContent = val || '?';
     }
     
-    // SaÃ„Å¸ Alt (Payda - EÃ„Å¸im Modu)
+    // Sağ Alt (Payda - Eğim Modu)
     else if (activeInputTarget === 'eq_right_denom' || activeInputTarget === 'slope_conv_denom') {
         const el = document.getElementById('slopeDenomBox'); 
         if(el) el.textContent = val || '?';
     }
 };
 
-// --- DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER MODÃƒÅ“LÃƒÅ“ (EKSÃ„Â°K FONKSÃ„Â°YONLAR) ---
+// --- DOĞRUSAL İLİŞKİLER MODÜLÜ (EKSİK FONKSİYONLAR) ---
 
 function showLinearQuestions() {
     gameState.mode = 'linear_questions';
@@ -7723,20 +7670,20 @@ function nextLinearQuestion() {
                     </button>
                 `).join('')}
             </div>
-            <button onclick="backToMenu()" class="w-full mt-4 text-xs text-gray-400">Geri DÃƒÂ¶n</button>
+            <button onclick="backToMenu()" class="w-full mt-4 text-xs text-gray-400">Geri Dön</button>
         </div>
     `;
     renderGrid();
 }
 
-// --- DOÃ„ÂRUSAL Ã„Â°LÃ„Â°Ã…ÂKÃ„Â°LER KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M MODÃƒÅ“LÃƒÅ“ ---
+// --- DOĞRUSAL İLİŞKİLER KESİN ÇÖZÜM MODÜLÜ ---
 
-// 1. BUTONU ZORLA BÃ„Â°ZÃ„Â°M SÃ„Â°STEME BAÃ„ÂLIYORUZ (Otomatik Kurulum)
+// 1. BUTONU ZORLA BİZİM SİSTEME BAĞLIYORUZ (Otomatik Kurulum)
 document.addEventListener('DOMContentLoaded', () => {
     // HTML'ndeki butonun ID'si bu
     const btn = document.getElementById('questionToGraphBtn');
     if (btn) {
-        // Senin eski kodu ezip, butona basÃ„Â±nca bizim sistemi aÃƒÂ§masÃ„Â±nÃ„Â± saÃ„Å¸lÃ„Â±yoruz
+        // Senin eski kodu ezip, butona basınca bizim sistemi açmasını sağlıyoruz
         btn.onclick = (e) => {
             e.preventDefault(); 
             showLinearGraphQuestion();
@@ -7744,7 +7691,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 2. MODU BAÃ…ÂLATAN ANA FONKSÃ„Â°YON
+// 2. MODU BAŞLATAN ANA FONKSİYON
 function showLinearGraphQuestion() {
     try {
         gameState.mode = 'linear_graph_table'; 
@@ -7779,17 +7726,17 @@ function showLinearGraphQuestion() {
         }
         
         if(questionsList.length === 0) {
-            panel.innerHTML = `<div class="bg-red-100 p-4 text-red-700 font-bold border-2 border-red-500 rounded text-center">Soru havuzu bulunamadÃ„Â±!</div>`;
+            panel.innerHTML = `<div class="bg-red-100 p-4 text-red-700 font-bold border-2 border-red-500 rounded text-center">Soru havuzu bulunamadı!</div>`;
             return;
         }
 
         const scenario = questionsList[Math.floor(Math.random() * questionsList.length)];
         linearState.currentScenario = scenario;
         
-        // Veri yapÃ„Â±sÃ„Â±nÃ„Â± esnek Ã…Å¸ekilde ÃƒÂ§ek
+        // Veri yapısını esnek şekilde çek
         let dataPoints = scenario.tableData || scenario.points || scenario.data || scenario.noktalar || (scenario.lines ? scenario.lines[0].points : null);
         
-        // Veri yoksa bile ÃƒÂ§ÃƒÂ¶kmeyi engelle, 3 tane boÃ…Å¸ satÃ„Â±r ekle
+        // Veri yoksa bile çökmeyi engelle, 3 tane boş satır ekle
         if (!dataPoints || dataPoints.length === 0) {
             dataPoints = [ {x:'?', y:'?'}, {x:'?', y:'?'}, {x:'?', y:'?'} ];
             linearState.isDummyData = true; 
@@ -7800,7 +7747,7 @@ function showLinearGraphQuestion() {
         linearState.currentDataPoints = dataPoints;
         renderLinearTable(scenario); 
         
-        // BoÃ…Å¸ grafiÃ„Å¸i (eksenlerle birlikte) ÃƒÂ§iz
+        // Boş grafiği (eksenlerle birlikte) çiz
         if (typeof initializeLinearCanvas === 'function') {
             initializeLinearCanvas();
         }
@@ -7814,10 +7761,10 @@ function showLinearGraphQuestion() {
     }
 }
 
-// 3. TABLOYU PANELE Ãƒâ€¡Ã„Â°ZEN FONKSÃ„Â°YON
+// 3. TABLOYU PANELE ÇİZEN FONKSİYON
 function renderLinearTable(scenario) {
     const panel = document.getElementById('linearQuestionPanel');
-    let questionText = scenario.question || scenario.soru || scenario.mainQuestion || scenario.text || "Soru metni bulunamadÃ„Â±.";
+    let questionText = scenario.question || scenario.soru || scenario.mainQuestion || scenario.text || "Soru metni bulunamadı.";
     let xLabel = scenario.xLabel || scenario.xAxisLabel || "x";
     let yLabel = scenario.yLabel || scenario.yAxisLabel || "y";
     let dataPoints = linearState.currentDataPoints;
@@ -7832,13 +7779,13 @@ function renderLinearTable(scenario) {
             </div>
     `;
 
-    // VERÃ„Â° BULUNAMAZSA EKRANA SARI UYARI KUTUSU BAS
+    // VERİ BULUNAMAZSA EKRANA SARI UYARI KUTUSU BAS
     if (linearState.isDummyData) {
         let jsonGosterim = JSON.stringify(scenario).substring(0, 150);
         html += `
             <div class="bg-yellow-50 border-l-4 border-yellow-500 p-3 mb-4 text-xs text-yellow-800">
-                <strong class="font-bold">UyarÃ„Â±:</strong> Bu sorunun iÃƒÂ§inde tablo verisi (points) tanÃ„Â±mlanmamÃ„Â±Ã…Å¸. 
-                <br><br>Sistemdeki ham veri Ã…Å¸u Ã…Å¸ekilde: <code class="bg-yellow-100 p-1 rounded font-mono">${jsonGosterim}...</code>
+                <strong class="font-bold">Uyarı:</strong> Bu sorunun içinde tablo verisi (points) tanımlanmamış. 
+                <br><br>Sistemdeki ham veri şu şekilde: <code class="bg-yellow-100 p-1 rounded font-mono">${jsonGosterim}...</code>
             </div>
         `;
     }
@@ -7883,7 +7830,7 @@ function renderLinearTable(scenario) {
             </button>
             <div id="drawMessageArea" class="hidden text-center mt-3">
                 <p class="font-bold text-emerald-700 bg-emerald-50 p-3 rounded-lg border border-emerald-300 animate-pulse text-sm shadow-sm">
-                    Ã¢Å“â€¦ Tablo DoÃ„Å¸ru!<br>Ã…Âimdi yandaki grafikte noktalarÃ„Â± iÃ…Å¸aretleyip birleÃ…Å¸tirin.
+                    ✅ Tablo Doğru!<br>Şimdi yandaki grafikte noktaları işaretleyip birleştirin.
                 </p>
             </div>
         </div>
@@ -7891,18 +7838,18 @@ function renderLinearTable(scenario) {
     panel.innerHTML = html;
 }
 
-// --- 1. MATEMATÃ„Â°KSEL Ã„Â°Ã…ÂLEM Ãƒâ€¡Ãƒâ€“ZÃƒÅ“CÃƒÅ“ (Ã„Â°Ã…Å¸lem Ãƒâ€“nceliÃ„Å¸i: BEDMAS/BODMAS) ---
+// --- 1. MATEMATİKSEL İŞLEM ÇÖZÜCÜ (İşlem Önceliği: BEDMAS/BODMAS) ---
 function evaluateMath(expr) {
     if (!expr || expr === '?') return NaN;
     
-    // Numpad'den gelen ÃƒÂ§arpÃ„Â± (x, X, Ãƒâ€”, *) ve bÃƒÂ¶lÃƒÂ¼ (ÃƒÂ·) iÃ…Å¸aretlerini koda ÃƒÂ§evir
-    let safeExpr = expr.toString().replace(/x|X|Ãƒâ€”/g, '*').replace(/ÃƒÂ·/g, '/');
+    // Numpad'den gelen çarpı (x, X, ×, *) ve bölü (÷) işaretlerini koda çevir
+    let safeExpr = expr.toString().replace(/x|X|×/g, '*').replace(/÷/g, '/');
     
-    // GÃƒÂ¼venlik iÃƒÂ§in sadece rakam ve operatÃƒÂ¶rleri bÃ„Â±rak
+    // Güvenlik için sadece rakam ve operatörleri bırak
     safeExpr = safeExpr.replace(/[^0-9\+\-\*\/\(\)\.]/g, '');
     
     try {
-        // Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸ine gÃƒÂ¶re hesapla (Ãƒâ€“rn: 200-1*15 = 185)
+        // İşlem önceliğine göre hesapla (Örn: 200-1*15 = 185)
         const result = Function('"use strict";return (' + safeExpr + ')')();
         return Number.isFinite(result) ? result : NaN;
     } catch (e) {
@@ -7910,11 +7857,11 @@ function evaluateMath(expr) {
     }
 }
 
-// --- 2. NUMPAD AÃƒâ€¡ICI VE TEMÃ„Â°ZLEYÃ„Â°CÃ„Â° (TÃƒÂ¼m satÃ„Â±rlarda ÃƒÂ§alÃ„Â±Ã…Å¸masÃ„Â±nÃ„Â± saÃ„Å¸lar) ---
+// --- 2. NUMPAD AÇICI VE TEMİZLEYİCİ (Tüm satırlarda çalışmasını sağlar) ---
 window.openTableInput = function(targetId) {
     activeInputTarget = targetId; 
     
-    // Tablodaki seÃƒÂ§ili kutuyu mavi yap
+    // Tablodaki seçili kutuyu mavi yap
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500');
     });
@@ -7923,11 +7870,11 @@ window.openTableInput = function(targetId) {
         activeEl.classList.add('bg-indigo-100', 'border-indigo-500');
     }
 
-    // Numpad'i aÃƒÂ§
+    // Numpad'i aç
     const np = document.getElementById('numberPad');
     if (np) np.classList.remove('hidden');
     
-    // Ãƒâ€“NEMLÃ„Â° DÃƒÅ“ZELTME: Her tÃ„Â±klamada Numpad gÃƒÂ¶stergesini sÃ„Â±fÃ„Â±rla ki ÃƒÂ¶nceki satÃ„Â±rÃ„Â±n sayÃ„Â±sÃ„Â± kalmasÃ„Â±n!
+    // ÖNEMLİ DÜZELTME: Her tıklamada Numpad göstergesini sıfırla ki önceki satırın sayısı kalmasın!
     const displayDiv = document.getElementById('currentInput');
     if (displayDiv) {
         displayDiv.textContent = ''; 
@@ -7935,7 +7882,7 @@ window.openTableInput = function(targetId) {
 };
 
 
-// --- 4. Ãƒâ€¡Ã„Â°FT TARAFLI VERÃ„Â° GÃ„Â°RÃ„Â°Ã…ÂLÃ„Â° TABLO Ãƒâ€¡Ã„Â°ZÃ„Â°MÃ„Â° ---
+// --- 4. ÇİFT TARAFLI VERİ GİRİŞLİ TABLO ÇİZİMİ ---
 function renderLinearTable(scenario) {
     const panel = document.getElementById('linearQuestionPanel');
     let questionText = scenario.question || scenario.soru || scenario.mainQuestion || scenario.text || "Grafik Yorumlama";
@@ -7990,7 +7937,7 @@ function renderLinearTable(scenario) {
             </button>
             <div id="drawMessageArea" class="hidden text-center mt-3">
                 <p class="font-bold text-emerald-700 bg-emerald-50 p-3 rounded-lg border border-emerald-300 animate-pulse text-sm shadow-sm">
-                    Ã¢Å“â€¦ Tablo DoÃ„Å¸ru!<br>Ã…Âimdi yandaki grafikte noktalarÃ„Â± iÃ…Å¸aretleyip birleÃ…Å¸tirin.
+                    ✅ Tablo Doğru!<br>Şimdi yandaki grafikte noktaları işaretleyip birleştirin.
                 </p>
             </div>
         </div>
@@ -8003,16 +7950,16 @@ function refreshLinearGraphPoints() {
     const linearSvg = document.getElementById('linearCanvas');
     if (!linearSvg) return;
 
-    // Arka planÃ„Â± temizle ve ViewBox'Ã„Â± sabitle
+    // Arka planı temizle ve ViewBox'ı sabitle
     linearSvg.innerHTML = '';
     linearSvg.setAttribute('viewBox', '0 0 500 500');
 
-    // OYUN MOTORUNUN ORÃ„Â°JÃ„Â°NAL SABÃ„Â°TLERÃ„Â° (Asla deÃ„Å¸iÃ…Å¸memeli)
+    // OYUN MOTORUNUN ORİJİNAL SABİTLERİ (Asla değişmemeli)
     const originX = 50;
     const originY = 450;
-    const grid = 50; // Orijinal motor 50 px ile ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r!
+    const grid = 50; // Orijinal motor 50 px ile çalışır!
 
-    // Ãƒâ€¡izimlerin yapÃ„Â±lacaÃ„Å¸Ã„Â± boÃ…Å¸ katman (Oyun motoru burayÃ„Â± arÃ„Â±yor olabilir)
+    // Çizimlerin yapılacağı boş katman (Oyun motoru burayı arıyor olabilir)
     const linesLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     linesLayer.setAttribute('id', 'drawingLayer');
     linearSvg.appendChild(linesLayer);
@@ -8021,7 +7968,7 @@ function refreshLinearGraphPoints() {
     const dataPoints = typeof linearState !== 'undefined' ? (linearState.tableData || linearState.currentDataPoints) : null; 
     if (!dataPoints) return;
 
-    // Ãƒâ€“lÃƒÂ§ek Hesaplama
+    // Ölçek Hesaplama
     let maxX = 0; let maxY = 0;
     for (let idx = 0; idx < 10; idx++) {
         const xDiv = document.getElementById('table_input_x_' + idx);
@@ -8046,13 +7993,13 @@ function refreshLinearGraphPoints() {
     let scaleY = 1;
     if (maxY > 8) { let step = maxY / 8; if(step<=2) scaleY=2; else if(step<=5) scaleY=5; else if(step<=10) scaleY=10; else if(step<=20) scaleY=20; else if(step<=25) scaleY=25; else if(step<=50) scaleY=50; else if(step<=100) scaleY=100; else scaleY=Math.ceil(step/50)*50; }
 
-    // HAYATÃ„Â°: Ãƒâ€¡izim motorunun farenin yerini doÃ„Å¸ru bulmasÃ„Â± iÃƒÂ§in ÃƒÂ¶lÃƒÂ§eÃ„Å¸i hafÃ„Â±zaya kaydet
+    // HAYATİ: Çizim motorunun farenin yerini doğru bulması için ölçeği hafızaya kaydet
     if (typeof linearState !== 'undefined') {
         linearState.yScale = scaleY;
         linearState.xScale = scaleX;
     }
 
-    // 1. BÃƒÂ¶lge Izgara (0'dan 8'e kadar, ÃƒÂ§ÃƒÂ¼nkÃƒÂ¼ 8*50=400px tam sÃ„Â±Ã„Å¸ar)
+    // 1. Bölge Izgara (0'dan 8'e kadar, çünkü 8*50=400px tam sığar)
     for (let i = 0; i <= 8; i++) {
         const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         vLine.setAttribute('x1', originX + (i * grid)); vLine.setAttribute('y1', originY);
@@ -8084,7 +8031,7 @@ function refreshLinearGraphPoints() {
     zeroText.setAttribute('text-anchor', 'end'); zeroText.setAttribute('font-size', '12'); zeroText.setAttribute('font-weight', 'bold'); zeroText.setAttribute('fill', '#6b7280');
     zeroText.textContent = '0'; linearSvg.appendChild(zeroText);
 
-    // NoktalarÃ„Â± Ãƒâ€¡iz
+    // Noktaları Çiz
     for (let idx = 0; idx < 10; idx++) {
         const xDiv = document.getElementById('table_input_x_' + idx);
         const yDiv = document.getElementById('table_input_y_' + idx);
@@ -8101,26 +8048,26 @@ function refreshLinearGraphPoints() {
                 const cx = originX + ((xV / scaleX) * grid);
                 const cy = originY - ((yV / scaleY) * grid);
 
-                // GÃƒâ€“RÃƒÅ“NMEZ TIKLAMA ALANI (Ãƒâ€“Ã„Å¸renci noktayÃ„Â± kolay tutabilsin diye)
+                // GÖRÜNMEZ TIKLAMA ALANI (Öğrenci noktayı kolay tutabilsin diye)
                 const hitArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 hitArea.setAttribute('cx', cx); hitArea.setAttribute('cy', cy); hitArea.setAttribute('r', '20');
                 hitArea.setAttribute('fill', 'transparent'); 
-                hitArea.setAttribute('class', `point point-${idx}`); // Motor bu class'Ã„Â± arÃ„Â±yor!
+                hitArea.setAttribute('class', `point point-${idx}`); // Motor bu class'ı arıyor!
                 hitArea.style.cursor = 'crosshair';
                 linearSvg.appendChild(hitArea);
 
-                // GÃƒâ€“RSEL MOR NOKTA
+                // GÖRSEL MOR NOKTA
                 const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 circle.setAttribute('cx', cx); circle.setAttribute('cy', cy); circle.setAttribute('r', '8');
                 circle.setAttribute('fill', '#8b5cf6'); circle.setAttribute('stroke', '#ffffff'); circle.setAttribute('stroke-width', '2');
-                circle.style.pointerEvents = 'none'; // Fare bunu deÃ„Å¸il gÃƒÂ¶rÃƒÂ¼nmez alanÃ„Â± tutsun
+                circle.style.pointerEvents = 'none'; // Fare bunu değil görünmez alanı tutsun
                 linearSvg.appendChild(circle);
 
                 // YAZI
                 const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 label.setAttribute('x', cx + 15); label.setAttribute('y', cy - 15);
                 label.setAttribute('font-size', '13'); label.setAttribute('font-weight', 'bold'); label.setAttribute('fill', '#4b5563');
-                label.style.pointerEvents = 'none'; // YazÃ„Â± farenin ÃƒÂ¶nÃƒÂ¼ne geÃƒÂ§mesin!
+                label.style.pointerEvents = 'none'; // Yazı farenin önüne geçmesin!
                 label.textContent = '(' + xV + ', ' + yV + ')';
                 linearSvg.appendChild(label);
             }
@@ -8130,7 +8077,7 @@ function refreshLinearGraphPoints() {
 
 
 // ==========================================
-// 7. TABLO KONTROL MOTORU (FÃ„Â°NAL DÃƒÅ“ZELTME - MATEMATÃ„Â°KSEL HESAPLAMA)
+// 7. TABLO KONTROL MOTORU (FİNAL DÜZELTME - MATEMATİKSEL HESAPLAMA)
 // ==========================================
 function confirmTableAndStartDrawing() {
     // 1. Senaryoyu ve Verileri Al
@@ -8138,17 +8085,17 @@ function confirmTableAndStartDrawing() {
     // Orijinal veriyi (soru verisini) baz al
     let rawPoints = scenario.tableData || scenario.points || scenario.data || (scenario.lines ? scenario.lines[0].points : []);
     
-    // 2. DOÃ„ÂRU DENKLEMÃ„Â° (m ve b) HESAPLA
-    // Tablodaki "?" olmayan, yani sayÃ„Â± olan en az 2 noktayÃ„Â± bulmalÃ„Â±yÃ„Â±z.
+    // 2. DOĞRU DENKLEMİ (m ve b) HESAPLA
+    // Tablodaki "?" olmayan, yani sayı olan en az 2 noktayı bulmalıyız.
     let validPoints = [];
     
     if (rawPoints) {
         rawPoints.forEach(p => {
-            // Veri yapÃ„Â±sÃ„Â± {x:.., y:..} veya [x, y] olabilir
+            // Veri yapısı {x:.., y:..} veya [x, y] olabilir
             let valX = (p.x !== undefined) ? p.x : p[0];
             let valY = (p.y !== undefined) ? p.y : p[1];
 
-            // EÃ„Å¸er deÃ„Å¸er sayÃ„Â±ysa veya sayÃ„Â±ya ÃƒÂ§evrilebiliyorsa listeye al
+            // Eğer değer sayıysa veya sayıya çevrilebiliyorsa listeye al
             let nx = parseFloat(valX);
             let ny = parseFloat(valY);
 
@@ -8158,12 +8105,12 @@ function confirmTableAndStartDrawing() {
         });
     }
 
-    // EÃ„Å¸im (m) ve Kesen (b) Hesapla
+    // Eğim (m) ve Kesen (b) Hesapla
     let m = null;
     let b = null;
-    let isVertical = false; // Dikey ÃƒÂ§izgi kontrolÃƒÂ¼ (x = a)
+    let isVertical = false; // Dikey çizgi kontrolü (x = a)
     let targetVerticalX = null;
-    let isHorizontal = false; // Yatay ÃƒÂ§izgi kontrolÃƒÂ¼ (y = b)
+    let isHorizontal = false; // Yatay çizgi kontrolü (y = b)
     let targetHorizontalY = null;
 
     if (validPoints.length >= 2) {
@@ -8181,35 +8128,35 @@ function confirmTableAndStartDrawing() {
             b = p1.y - (m * p1.x);
         }
     } else {
-        // EÃ„Å¸er tablodan bulamazsak, senaryonun iÃƒÂ§inde m/b var mÃ„Â± diye bak (Yedek Plan)
+        // Eğer tablodan bulamazsak, senaryonun içinde m/b var mı diye bak (Yedek Plan)
         if (scenario.m !== undefined && scenario.b !== undefined) {
             m = scenario.m;
             b = scenario.b;
         }
     }
 
-    // 3. KULLANICININ GÃ„Â°RDÃ„Â°Ã„ÂÃ„Â° DEÃ„ÂERLERÃ„Â° KONTROL ET
+    // 3. KULLANICININ GİRDİĞİ DEĞERLERİ KONTROL ET
     let allCorrect = true;
     let filledRowCount = 0;
 
-    // Tabloda en fazla 10 satÃ„Â±r olabilir, hepsini gez
+    // Tabloda en fazla 10 satır olabilir, hepsini gez
     for (let idx = 0; idx < 10; idx++) {
         const xDiv = document.getElementById('table_input_x_' + idx);
         const yDiv = document.getElementById('table_input_y_' + idx);
 
-        if (!xDiv || !yDiv) continue; // BÃƒÂ¶yle bir satÃ„Â±r yoksa geÃƒÂ§
+        if (!xDiv || !yDiv) continue; // Böyle bir satır yoksa geç
 
-        // Kutunun iÃƒÂ§indeki metni al (Soru iÃ…Å¸aretlerini temizle)
+        // Kutunun içindeki metni al (Soru işaretlerini temizle)
         let xStr = xDiv.textContent.replace(/\?/g, '').trim();
         let yStr = yDiv.textContent.replace(/\?/g, '').trim();
 
-        // EÃ„Å¸er satÃ„Â±r tamamen boÃ…Å¸sa, bu satÃ„Â±rÃ„Â± atla (Hata sayma)
+        // Eğer satır tamamen boşsa, bu satırı atla (Hata sayma)
         if (xStr === '' && yStr === '') continue;
 
         filledRowCount++;
 
-        // DeÃ„Å¸erleri sayÃ„Â±ya ÃƒÂ§evir
-        // evaluateMath fonksiyonu varsa kullan (iÃ…Å¸lemleri yapmak iÃƒÂ§in), yoksa parseFloat
+        // Değerleri sayıya çevir
+        // evaluateMath fonksiyonu varsa kullan (işlemleri yapmak için), yoksa parseFloat
         let userX = (typeof evaluateMath === 'function') ? evaluateMath(xStr) : parseFloat(xStr);
         let userY = (typeof evaluateMath === 'function') ? evaluateMath(yStr) : parseFloat(yStr);
 
@@ -8217,64 +8164,64 @@ function confirmTableAndStartDrawing() {
 
         if (!isNaN(userX) && !isNaN(userY)) {
             if (isVertical) {
-                // Dikey ÃƒÂ§izgi: X sabit olmalÃ„Â±, Y her Ã…Å¸ey olabilir
+                // Dikey çizgi: X sabit olmalı, Y her şey olabilir
                 if (Math.abs(userX - targetVerticalX) < 0.1) isRowCorrect = true;
             } 
             else if (isHorizontal) {
-                // Yatay ÃƒÂ§izgi: Y sabit olmalÃ„Â±, X her Ã…Å¸ey olabilir
+                // Yatay çizgi: Y sabit olmalı, X her şey olabilir
                 if (Math.abs(userY - targetHorizontalY) < 0.1) isRowCorrect = true;
             }
             else if (m !== null && b !== null) {
-                // Standart DoÃ„Å¸ru KontrolÃƒÂ¼: y = mx + b
-                // KullanÃ„Â±cÃ„Â±nÃ„Â±n X'ini formÃƒÂ¼le koy, olmasÃ„Â± gereken Y'yi bul
+                // Standart Doğru Kontrolü: y = mx + b
+                // Kullanıcının X'ini formüle koy, olması gereken Y'yi bul
                 let expectedY = (m * userX) + b;
                 
-                // Hata payÃ„Â± (float toleransÃ„Â±) ile karÃ…Å¸Ã„Â±laÃ…Å¸tÃ„Â±r
-                // 0.1 tolerans iyidir (yuvarlama hatalarÃ„Â± iÃƒÂ§in)
+                // Hata payı (float toleransı) ile karşılaştır
+                // 0.1 tolerans iyidir (yuvarlama hataları için)
                 if (Math.abs(userY - expectedY) < 0.1) {
                     isRowCorrect = true;
                 }
             } else {
-                // EÃ„Å¸er formÃƒÂ¼l ÃƒÂ§Ã„Â±karamadÃ„Â±ysak, sadece havuza bak (Eski yÃƒÂ¶ntem - Son Ãƒâ€¡are)
+                // Eğer formül çıkaramadıysak, sadece havuza bak (Eski yöntem - Son Çare)
                 let inPool = validPoints.some(p => Math.abs(p.x - userX) < 0.1 && Math.abs(p.y - userY) < 0.1);
                 if (inPool) isRowCorrect = true;
             }
         }
 
-        // SONUCU GÃƒâ€“RSELLEÃ…ÂTÃ„Â°R (YEÃ…ÂÃ„Â°L / KIRMIZI)
+        // SONUCU GÖRSELLEŞTİR (YEŞİL / KIRMIZI)
         if (isRowCorrect) {
-            // DoÃ„Å¸ru ise kutuyu yeÃ…Å¸il yap ve kilitli hale getir (tekrar tÃ„Â±klanamaz)
+            // Doğru ise kutuyu yeşil yap ve kilitli hale getir (tekrar tıklanamaz)
             xDiv.className = "table-input-cell bg-emerald-100 border-2 border-emerald-500 rounded p-1 flex items-center justify-center font-bold text-emerald-800 text-lg cursor-default w-full shadow-inner";
             yDiv.className = "table-input-cell bg-emerald-100 border-2 border-emerald-500 rounded p-1 flex items-center justify-center font-bold text-emerald-800 text-lg cursor-default w-full shadow-inner";
             
-            // TÃ„Â±klama olaylarÃ„Â±nÃ„Â± kaldÃ„Â±r (input'u kilitle)
+            // Tıklama olaylarını kaldır (input'u kilitle)
             xDiv.onclick = null;
             yDiv.onclick = null;
             
-            // DoÃ„Å¸ru bilinen noktalarÃ„Â± "linearState" iÃƒÂ§ine kaydet ki ÃƒÂ§izimde kullanÃ„Â±labilsin
+            // Doğru bilinen noktaları "linearState" içine kaydet ki çizimde kullanılabilsin
             if (!linearState.userCorrectPoints) linearState.userCorrectPoints = [];
-            // Bu noktayÃ„Â± daha ÃƒÂ¶nce eklemediysek ekle
+            // Bu noktayı daha önce eklemediysek ekle
             if (!linearState.userCorrectPoints.some(p => p.x === userX && p.y === userY)) {
                 linearState.userCorrectPoints.push({x: userX, y: userY});
             }
 
         } else {
-            // YanlÃ„Â±Ã…Å¸ ise kÃ„Â±rmÃ„Â±zÃ„Â± yap ve titret
+            // Yanlış ise kırmızı yap ve titret
             xDiv.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
             yDiv.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
             allCorrect = false;
         }
     }
 
-    // 4. BAÃ…ÂARI DURUMU
+    // 4. BAŞARI DURUMU
     if (allCorrect && filledRowCount > 0) {
         playSuccessSound();
 
-        // Ãƒâ€¡izim Modunu Aktif Et
+        // Çizim Modunu Aktif Et
         gameState.mode = 'linear_graph_draw';
-        gameState.userClicks = []; // TÃ„Â±klamalarÃ„Â± sÃ„Â±fÃ„Â±rla
+        gameState.userClicks = []; // Tıklamaları sıfırla
         
-        // Ãƒâ€¡izim aracÃ„Â± (setupStraightLineDrawing) varsa ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±r
+        // Çizim aracı (setupStraightLineDrawing) varsa çalıştır
         if (typeof setupStraightLineDrawing === 'function') {
             setupStraightLineDrawing();
         }
@@ -8283,27 +8230,27 @@ function confirmTableAndStartDrawing() {
         const btnTamam = document.getElementById('btnTamamCst');
         if (btnTamam) btnTamam.classList.add('hidden');
 
-        // Bildirim GÃƒÂ¶ster
+        // Bildirim Göster
         const msgArea = document.getElementById('drawMessageArea');
         if (msgArea) {
             msgArea.classList.remove('hidden');
             msgArea.innerHTML = `
                 <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-lg animate-bounce">
-                    <p class="font-bold">MÃƒÂ¼kemmel! Tablo DoÃ„Å¸ru. ÄŸÅ¸Ââ€°</p>
-                    <p class="text-sm">Ã…Âimdi grafikte noktalarÃ„Â± iÃ…Å¸aretle ve doÃ„Å¸ruyu ÃƒÂ§iz.</p>
+                    <p class="font-bold">Mükemmel! Tablo Doğru. 🎉</p>
+                    <p class="text-sm">Şimdi grafikte noktaları işaretle ve doğruyu çiz.</p>
                 </div>
             `;
         }
 
-        // GrafiÃ„Å¸i gÃƒÂ¼ncelle (NoktalarÃ„Â± netleÃ…Å¸tir)
+        // Grafiği güncelle (Noktaları netleştir)
         if (typeof refreshLinearGraphPoints === 'function') refreshLinearGraphPoints();
 
     } else {
         playErrorSound();
-        // Hata mesajÃ„Â± (Toast veya basit alert)
+        // Hata mesajı (Toast veya basit alert)
         const feedback = document.getElementById('feedback');
         if (feedback) {
-            feedback.textContent = "BazÃ„Â± deÃ„Å¸erler yanlÃ„Â±Ã…Å¸. KÃ„Â±rmÃ„Â±zÃ„Â± kutularÃ„Â± kontrol et!";
+            feedback.textContent = "Bazı değerler yanlış. Kırmızı kutuları kontrol et!";
             feedback.style.opacity = '1';
             feedback.className = "fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full shadow-xl font-bold z-[99999]";
             setTimeout(() => { feedback.style.opacity = '0'; }, 3000);
@@ -8312,15 +8259,15 @@ function confirmTableAndStartDrawing() {
 }
 
 // ==========================================
-// 1. SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡MA (HEDEFÃ„Â° KÃ„Â°LÃ„Â°TLEME)
+// 1. SAYI PANELİNİ AÇMA (HEDEFİ KİLİTLEME)
 // ==========================================
 window.openTableInput = function(targetId) {
-    console.log("Kutuya tÃ„Â±klandÃ„Â±, Hedef:", targetId); // Konsoldan takip et
+    console.log("Kutuya tıklandı, Hedef:", targetId); // Konsoldan takip et
     
     // 1. Hedefi Kaydet
     activeInputTarget = targetId; 
     
-    // 2. DiÃ„Å¸er kutularÃ„Â±n mavi Ã„Â±Ã…Å¸Ã„Â±Ã„Å¸Ã„Â±nÃ„Â± sÃƒÂ¶ndÃƒÂ¼r, buna yak
+    // 2. Diğer kutuların mavi ışığını söndür, buna yak
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500');
     });
@@ -8328,30 +8275,30 @@ window.openTableInput = function(targetId) {
     if (activeEl) {
         activeEl.classList.add('bg-indigo-100', 'border-indigo-500');
         
-        // EÃ„Å¸er kutuda zaten bir sayÃ„Â± varsa, numpad ekranÃ„Â±na taÃ…Å¸Ã„Â±
+        // Eğer kutuda zaten bir sayı varsa, numpad ekranına taşı
         const currentVal = activeEl.textContent.replace('?', '').trim();
         const displayDiv = document.getElementById('currentInput');
         if (displayDiv) displayDiv.textContent = currentVal;
         if (typeof linearState !== 'undefined') linearState.currentInputValue = currentVal;
     }
 
-    // 3. Paneli AÃƒÂ§
+    // 3. Paneli Aç
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
-        np.style.display = 'flex'; // Zorla gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap
+        np.style.display = 'flex'; // Zorla görünür yap
     }
 };
 
 // ==========================================
-// 2. TUÃ…ÂLARI CANLANDIRMA (0-9, Sil, -, .)
+// 2. TUŞLARI CANLANDIRMA (0-9, Sil, -, .)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Numpad iÃƒÂ§indeki tÃƒÂ¼m butonlarÃ„Â± bul
+    // Numpad içindeki tüm butonları bul
     const padButtons = document.querySelectorAll('#numberPad button');
     
     padButtons.forEach(btn => {
-        // Ãƒâ€“nce temizle, sonra ekle (Ãƒâ€¡ift basmayÃ„Â± ÃƒÂ¶nler)
+        // Önce temizle, sonra ekle (Çift basmayı önler)
         const newBtn = btn.cloneNode(true);
         btn.parentNode.replaceChild(newBtn, btn);
         
@@ -8360,10 +8307,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const val = newBtn.textContent.trim();
             const display = document.getElementById('currentInput');
             
-            // EÃ„Å¸er "Tamam" veya "Ã„Â°ptal" deÃ„Å¸ilse (yani sayÃ„Â± ise)
+            // Eğer "Tamam" veya "İptal" değilse (yani sayı ise)
             if (newBtn.id !== 'numPadClose' && newBtn.id !== 'numPadCancel') {
                 
-                // Silme TuÃ…Å¸u
+                // Silme Tuşu
                 if (val === 'Sil' || newBtn.querySelector('.fa-backspace')) {
                     display.textContent = display.textContent.slice(0, -1);
                 } 
@@ -8371,12 +8318,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (val === 'C') {
                     display.textContent = '';
                 }
-                // SayÃ„Â±lar ve Nokta
+                // Sayılar ve Nokta
                 else {
                     display.textContent += val;
                 }
                 
-                // State'i gÃƒÂ¼ncelle
+                // State'i güncelle
                 if (typeof linearState !== 'undefined') {
                     linearState.currentInputValue = display.textContent;
                 }
@@ -8384,49 +8331,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // TAMAM ve Ã„Â°PTAL butonlarÃ„Â±nÃ„Â± ayrÃ„Â±ca baÃ„Å¸layacaÃ„Å¸Ã„Â±z (AÃ…Å¸aÃ„Å¸Ã„Â±da)
+    // TAMAM ve İPTAL butonlarını ayrıca bağlayacağız (Aşağıda)
 });
 
 // ==========================================
-// 3. TAMAM BUTONU (VERÃ„Â°YÃ„Â° TABLOYA AKTARMA)
+// 3. TAMAM BUTONU (VERİYİ TABLOYA AKTARMA)
 // ==========================================
 const btnTamam = document.getElementById('numPadClose');
 if (btnTamam) {
-    // Temiz bir buton oluÃ…Å¸tur
+    // Temiz bir buton oluştur
     const newBtnTamam = btnTamam.cloneNode(true);
     btnTamam.parentNode.replaceChild(newBtnTamam, btnTamam);
 
     newBtnTamam.addEventListener('click', function(e) {
         e.preventDefault();
         
-        // 1. Veriyi Numpad EkranÃ„Â±ndan Al
+        // 1. Veriyi Numpad Ekranından Al
         const displayDiv = document.getElementById('currentInput');
         let val = displayDiv ? displayDiv.textContent.trim() : '';
         
-        console.log("Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", val, "Hedef:", activeInputTarget);
+        console.log("Tamam'a basıldı. Değer:", val, "Hedef:", activeInputTarget);
 
-        // 2. Hedef Kutu Var mÃ„Â±?
+        // 2. Hedef Kutu Var mı?
         if (activeInputTarget) {
             const targetBox = document.getElementById(activeInputTarget);
             
             if (targetBox) {
-                // DeÃ„Å¸er boÃ…Å¸sa soru iÃ…Å¸areti koy
+                // Değer boşsa soru işareti koy
                 if (val === '') val = '?';
                 
-                // --- KRÃ„Â°TÃ„Â°K NOKTA: Ekrana Yaz ---
+                // --- KRİTİK NOKTA: Ekrana Yaz ---
                 targetBox.textContent = val;
                 
-                // Mavi seÃƒÂ§imi kaldÃ„Â±r
+                // Mavi seçimi kaldır
                 targetBox.classList.remove('bg-indigo-100', 'border-indigo-500');
 
-                // --- STATE GÃƒÅ“NCELLEME (Tablo KontrolÃƒÂ¼ Ã„Â°ÃƒÂ§in Ã…Âart) ---
-                // ID'den satÃ„Â±r ve sÃƒÂ¼tunu bul (Ãƒâ€“rn: table_input_x_2)
+                // --- STATE GÜNCELLEME (Tablo Kontrolü İçin Şart) ---
+                // ID'den satır ve sütunu bul (Örn: table_input_x_2)
                 if (activeInputTarget.startsWith('table_input_')) {
                     const parts = activeInputTarget.split('_');
                     const col = parts[2]; // x veya y
                     const row = parseInt(parts[3]); // 0, 1, 2...
                     
-                    // State dizisini hazÃ„Â±rla
+                    // State dizisini hazırla
                     if (!linearState.tableData) linearState.tableData = [];
                     if (!linearState.tableData[row]) linearState.tableData[row] = { x: '?', y: '?' };
                     
@@ -8441,12 +8388,12 @@ if (btnTamam) {
         if (displayDiv) displayDiv.textContent = '';
         activeInputTarget = null;
         
-        // 4. "Tamam" butonu gÃƒÂ¶rÃƒÂ¼nsÃƒÂ¼n mÃƒÂ¼ kontrol et (Tablo dolduysa)
+        // 4. "Tamam" butonu görünsün mü kontrol et (Tablo dolduysa)
         checkIfTableFull();
     });
 }
 
-// YARDIMCI: Ã„Â°ptal Butonu
+// YARDIMCI: İptal Butonu
 const btnIptal = document.getElementById('numPadCancel');
 if (btnIptal) {
     const newBtnIptal = btnIptal.cloneNode(true);
@@ -8460,12 +8407,12 @@ if (btnIptal) {
     });
 }
 
-// YARDIMCI: Tablo Dolu mu KontrolÃƒÂ¼
+// YARDIMCI: Tablo Dolu mu Kontrolü
 function checkIfTableFull() {
     let isFull = true;
     let hasRows = false;
     
-    // TÃƒÂ¼m input hÃƒÂ¼crelerini gez
+    // Tüm input hücrelerini gez
     const cells = document.querySelectorAll('.table-input-cell');
     if (cells.length === 0) return;
 
@@ -8477,7 +8424,7 @@ function checkIfTableFull() {
         hasRows = true;
     });
 
-    // EÃ„Å¸er hepsi doluysa alttaki "Tabloyu Kontrol Et" butonunu aÃƒÂ§
+    // Eğer hepsi doluysa alttaki "Tabloyu Kontrol Et" butonunu aç
     const confirmBtn = document.getElementById('btnTamamCst'); // ID'si tableConfirmBtn de olabilir, kontrol et
     const confirmBtn2 = document.getElementById('tableConfirmBtn');
     
@@ -8488,117 +8435,117 @@ function checkIfTableFull() {
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡â€˜ ACÃ„Â°L DURUM: NUMPAD SÃ„Â°STEMÃ„Â° (TAMÃ„Â°R KÃ„Â°TÃ„Â° - SIFIRDAN KURULUM)
+// 🚑 ACİL DURUM: NUMPAD SİSTEMİ (TAMİR KİTİ - SIFIRDAN KURULUM)
 // =================================================================
 
-// 1. GLOBAL DEÃ„ÂÃ„Â°Ã…ÂKENLER (HafÃ„Â±za)
+// 1. GLOBAL DEĞİŞKENLER (Hafıza)
 
-// 2. SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡MA FONKSÃ„Â°YONU
+// 2. SAYI PANELİNİ AÇMA FONKSİYONU
 window.openTableInput = function(targetId) {
-    console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Kutuya tÃ„Â±klandÃ„Â±:", targetId);
+    console.log("🖱️ Kutuya tıklandı:", targetId);
     
-    // Hedefi HafÃ„Â±zaya Al
+    // Hedefi Hafızaya Al
     activeInputTarget = targetId;
 
-    // TÃƒÂ¼m kutularÃ„Â±n mavi Ã„Â±Ã…Å¸Ã„Â±Ã„Å¸Ã„Â±nÃ„Â± sÃƒÂ¶ndÃƒÂ¼r
+    // Tüm kutuların mavi ışığını söndür
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500');
     });
 
-    // TÃ„Â±klanan kutuyu mavi yap
+    // Tıklanan kutuyu mavi yap
     const targetBox = document.getElementById(targetId);
     if (targetBox) {
         targetBox.classList.add('bg-indigo-100', 'border-indigo-500');
         
-        // Kutuda zaten sayÃ„Â± varsa, panel ekranÃ„Â±na taÃ…Å¸Ã„Â±
+        // Kutuda zaten sayı varsa, panel ekranına taşı
         const currentVal = targetBox.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = currentVal;
     }
 
-    // Paneli GÃƒÂ¶ster
+    // Paneli Göster
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
-        np.style.display = 'flex'; // GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼rlÃƒÂ¼Ã„Å¸ÃƒÂ¼ zorla
+        np.style.display = 'flex'; // Görünürlüğü zorla
     }
 };
 
-// 3. TUÃ…ÂLARI VE PANELÃ„Â° Ãƒâ€¡ALIÃ…ÂTIRAN ANA MOTOR
-// (Bu fonksiyon sayfa yÃƒÂ¼klendiÃ„Å¸inde otomatik ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r)
+// 3. TUŞLARI VE PANELİ ÇALIŞTIRAN ANA MOTOR
+// (Bu fonksiyon sayfa yüklendiğinde otomatik çalışır)
 setTimeout(function() {
-    console.log("ÄŸÅ¸â€Â§ Numpad Motoru BaÃ…Å¸latÃ„Â±lÃ„Â±yor...");
+    console.log("🔧 Numpad Motoru Başlatılıyor...");
 
-    // Paneldeki butonlarÃ„Â± bulalÃ„Â±m
+    // Paneldeki butonları bulalım
     const keys = document.querySelectorAll('#numberPad button');
     
-    // Eski olaylarÃ„Â± temizlemek iÃƒÂ§in butonlarÃ„Â± yenile
+    // Eski olayları temizlemek için butonları yenile
     keys.forEach(oldBtn => {
         const newBtn = oldBtn.cloneNode(true);
         oldBtn.parentNode.replaceChild(newBtn, oldBtn);
 
-        // --- TUÃ…ÂLARA TIKLAMA OLAYI ---
+        // --- TUŞLARA TIKLAMA OLAYI ---
         newBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // SayfanÃ„Â±n zÃ„Â±plamasÃ„Â±nÃ„Â± engelle
+            e.preventDefault(); // Sayfanın zıplamasını engelle
             
             const btnText = newBtn.textContent.trim();
             const display = document.getElementById('currentInput');
             
-            // A) "TAMAM" veya "TÃ„Â°K" TUÃ…ÂU Ã„Â°SE
+            // A) "TAMAM" veya "TİK" TUŞU İSE
             if (newBtn.id === 'numPadClose' || newBtn.querySelector('.fa-check') || btnText === 'Tamam') {
                 handleConfirm();
             }
-            // B) "Ã„Â°PTAL" veya "Ãƒâ€¡ARPI" TUÃ…ÂU Ã„Â°SE
-            else if (newBtn.id === 'numPadCancel' || newBtn.querySelector('.fa-times') || btnText === 'Ã„Â°ptal') {
+            // B) "İPTAL" veya "ÇARPI" TUŞU İSE
+            else if (newBtn.id === 'numPadCancel' || newBtn.querySelector('.fa-times') || btnText === 'İptal') {
                 handleCancel();
             }
-            // C) SÃ„Â°LME (BACKSPACE) TUÃ…ÂU Ã„Â°SE
+            // C) SİLME (BACKSPACE) TUŞU İSE
             else if (btnText === 'Sil' || newBtn.querySelector('.fa-backspace')) {
                 display.textContent = display.textContent.slice(0, -1);
             }
-            // D) TEMÃ„Â°ZLEME (C) TUÃ…ÂU Ã„Â°SE
+            // D) TEMİZLEME (C) TUŞU İSE
             else if (btnText === 'C') {
                 display.textContent = '';
             }
-            // E) NORMAL RAKAMLAR VE Ã„Â°Ã…ÂARETLER
+            // E) NORMAL RAKAMLAR VE İŞARETLER
             else {
-                // Sadece rakam, nokta, eksi ve x iÃ…Å¸aretine izin ver
+                // Sadece rakam, nokta, eksi ve x işaretine izin ver
                 display.textContent += btnText;
             }
         });
     });
 
-}, 1000); // Sayfa yÃƒÂ¼klendikten 1 saniye sonra devreye girer (Garanti olsun diye)
+}, 1000); // Sayfa yüklendikten 1 saniye sonra devreye girer (Garanti olsun diye)
 
 
-// 4. "TAMAM" TUÃ…ÂU MANTIÃ„ÂI (VERÃ„Â°YÃ„Â° AKTARMA)
+// 4. "TAMAM" TUŞU MANTIĞI (VERİYİ AKTARMA)
 function handleConfirm() {
     const display = document.getElementById('currentInput');
     let val = display.textContent.trim();
 
-    console.log("Ã¢Å“â€¦ Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", val);
+    console.log("✅ Tamam'a basıldı. Değer:", val);
 
-    // Hedef kutu var mÃ„Â±?
+    // Hedef kutu var mı?
     if (activeInputTarget) {
         const targetBox = document.getElementById(activeInputTarget);
         if (targetBox) {
-            // BoÃ…Å¸sa soru iÃ…Å¸areti yap
+            // Boşsa soru işareti yap
             if (val === '') val = '?';
 
             // TABLOYA YAZ!
             targetBox.textContent = val;
             
-            // Mavi seÃƒÂ§imi kaldÃ„Â±r
+            // Mavi seçimi kaldır
             targetBox.classList.remove('bg-indigo-100', 'border-indigo-500');
 
-            // --- TABLO VERÃ„Â°SÃ„Â°NÃ„Â° GÃƒÅ“NCELLE (KONTROL Ã„Â°Ãƒâ€¡Ã„Â°N Ã…ÂART) ---
+            // --- TABLO VERİSİNİ GÜNCELLE (KONTROL İÇİN ŞART) ---
             if (activeInputTarget.startsWith('table_input_')) {
-                // ID'den satÃ„Â±r ve sÃƒÂ¼tunu bul (table_input_x_0)
+                // ID'den satır ve sütunu bul (table_input_x_0)
                 const parts = activeInputTarget.split('_');
                 const col = parts[2]; // x veya y
                 const row = parseInt(parts[3]);
 
-                // linearState hafÃ„Â±zasÃ„Â±nÃ„Â± gÃƒÂ¼ncelle
+                // linearState hafızasını güncelle
                 if (typeof linearState !== 'undefined') {
                     if (!linearState.tableData) linearState.tableData = [];
                     if (!linearState.tableData[row]) linearState.tableData[row] = {x:'?', y:'?'};
@@ -8612,14 +8559,14 @@ function handleConfirm() {
     // Paneli Kapat
     closeNumpad();
 
-    // Tablo doldu mu diye bak (Onay butonu iÃƒÂ§in)
+    // Tablo doldu mu diye bak (Onay butonu için)
     checkIfTableIsFull();
 }
 
-// 5. "Ã„Â°PTAL" TUÃ…ÂU MANTIÃ„ÂI
+// 5. "İPTAL" TUŞU MANTIĞI
 function handleCancel() {
-    console.log("Ã¢ÂÅ’ Ã„Â°ptal'e basÃ„Â±ldÃ„Â±.");
-    // SeÃƒÂ§imi kaldÃ„Â±r
+    console.log("❌ İptal'e basıldı.");
+    // Seçimi kaldır
     if (activeInputTarget) {
         const box = document.getElementById(activeInputTarget);
         if (box) box.classList.remove('bg-indigo-100', 'border-indigo-500');
@@ -8627,7 +8574,7 @@ function handleCancel() {
     closeNumpad();
 }
 
-// 6. PANELÃ„Â° KAPATMA VE TEMÃ„Â°ZLEME
+// 6. PANELİ KAPATMA VE TEMİZLEME
 function closeNumpad() {
     const np = document.getElementById('numberPad');
     if (np) np.classList.add('hidden');
@@ -8638,7 +8585,7 @@ function closeNumpad() {
     activeInputTarget = null;
 }
 
-// 7. TABLO DOLULUK KONTROLÃƒÅ“
+// 7. TABLO DOLULUK KONTROLÜ
 function checkIfTableIsFull() {
     let isFull = true;
     const cells = document.querySelectorAll('.table-input-cell');
@@ -8651,7 +8598,7 @@ function checkIfTableIsFull() {
     });
 
     if (isFull) {
-        // "Tamam" butonunu gÃƒÂ¶ster (ID'ler deÃ„Å¸iÃ…Å¸ebiliyor, ikisini de dene)
+        // "Tamam" butonunu göster (ID'ler değişebiliyor, ikisini de dene)
         const btn1 = document.getElementById('btnTamamCst');
         const btn2 = document.getElementById('tableConfirmBtn');
         if (btn1) btn1.classList.remove('hidden');
@@ -8660,20 +8607,20 @@ function checkIfTableIsFull() {
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡â‚¬ FÃ„Â°NAL TAMÃ„Â°R KÃ„Â°TÃ„Â° (Ãƒâ€¡AKIÃ…ÂMA Ãƒâ€“NLEYÃ„Â°CÃ„Â° VERSÃ„Â°YON)
+// 🚀 FİNAL TAMİR KİTİ (ÇAKIŞMA ÖNLEYİCİ VERSİYON)
 // =================================================================
 
-// 1. GLOBAL DEÃ„ÂÃ„Â°Ã…ÂKEN (Hata vermemesi iÃƒÂ§in window ÃƒÂ¼zerinden kontrol)
+// 1. GLOBAL DEĞİŞKEN (Hata vermemesi için window üzerinden kontrol)
 if (typeof window.activeInputTarget === 'undefined') {
     window.activeInputTarget = null;
 }
 
-// 2. KUTUYA TIKLAMA FONKSÃ„Â°YONU
+// 2. KUTUYA TIKLAMA FONKSİYONU
 window.openTableInput = function(targetId) {
-    console.log("ÄŸÅ¸ÂÂ¯ Hedef Kutu:", targetId);
+    console.log("🎯 Hedef Kutu:", targetId);
     window.activeInputTarget = targetId;
 
-    // GÃƒÂ¶rsel temizlik
+    // Görsel temizlik
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
     });
@@ -8681,13 +8628,13 @@ window.openTableInput = function(targetId) {
     const box = document.getElementById(targetId);
     if (box) {
         box.classList.add('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
-        // Varsa eski deÃ„Å¸eri ekrana taÃ…Å¸Ã„Â±
+        // Varsa eski değeri ekrana taşı
         const val = box.textContent.replace('?', '').trim();
         const disp = document.getElementById('currentInput');
         if (disp) disp.textContent = val;
     }
 
-    // Paneli AÃƒÂ§
+    // Paneli Aç
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -8695,16 +8642,16 @@ window.openTableInput = function(targetId) {
     }
 };
 
-// 3. BUTONLARI BAÃ„ÂLA (1 Saniye Bekleyip Ãƒâ€¡alÃ„Â±Ã…Å¸Ã„Â±r - Garanti YÃƒÂ¶ntem)
+// 3. BUTONLARI BAĞLA (1 Saniye Bekleyip Çalışır - Garanti Yöntem)
 setTimeout(function() {
-    console.log("ÄŸÅ¸â€Â§ Butonlar Yeniden BaÃ„Å¸lanÃ„Â±yor...");
+    console.log("🔧 Butonlar Yeniden Bağlanıyor...");
 
     // --- TAMAM BUTONU ---
-    // DeÃ„Å¸iÃ…Å¸ken ismini 'btnTamam_Fix' yaptÃ„Â±k ki eskisiyle ÃƒÂ§akÃ„Â±Ã…Å¸masÃ„Â±n
+    // Değişken ismini 'btnTamam_Fix' yaptık ki eskisiyle çakışmasın
     var btnTamam_Fix = document.getElementById('numPadClose');
     
     if (btnTamam_Fix) {
-        // Klonlayarak eski bozuk ÃƒÂ¶zellikleri temizle
+        // Klonlayarak eski bozuk özellikleri temizle
         var newTamam = btnTamam_Fix.cloneNode(true);
         btnTamam_Fix.parentNode.replaceChild(newTamam, btnTamam_Fix);
 
@@ -8712,7 +8659,7 @@ setTimeout(function() {
             e.preventDefault(); 
             e.stopPropagation();
 
-            // DeÃ„Å¸eri Al
+            // Değeri Al
             const disp = document.getElementById('currentInput');
             let val = disp ? disp.textContent.trim() : '';
             if (val === '') val = '?';
@@ -8724,7 +8671,7 @@ setTimeout(function() {
                     targetBox.textContent = val;
                     targetBox.classList.remove('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
                     
-                    // Veriyi HafÃ„Â±zaya (linearState) Ã„Â°Ã…Å¸le
+                    // Veriyi Hafızaya (linearState) İşle
                     if (window.activeInputTarget.startsWith('table_input_')) {
                         const parts = window.activeInputTarget.split('_'); // table, input, x, 0
                         const col = parts[2]; 
@@ -8742,13 +8689,13 @@ setTimeout(function() {
             // Kapat
             closeNumpad_Fix();
             
-            // Tablo dolduysa kontrol butonunu aÃƒÂ§
+            // Tablo dolduysa kontrol butonunu aç
             checkFull_Fix();
         });
     }
 
-    // --- Ã„Â°PTAL BUTONU ---
-    // DeÃ„Å¸iÃ…Å¸ken ismini 'btnIptal_Fix' yaptÃ„Â±k ki hatayÃ„Â± ÃƒÂ¶nleyelim
+    // --- İPTAL BUTONU ---
+    // Değişken ismini 'btnIptal_Fix' yaptık ki hatayı önleyelim
     var btnIptal_Fix = document.getElementById('numPadCancel');
     
     if (btnIptal_Fix) {
@@ -8763,7 +8710,7 @@ setTimeout(function() {
 
 }, 1000);
 
-// YARDIMCI FONKSÃ„Â°YONLAR (Ãƒâ€¡akÃ„Â±Ã…Å¸masÃ„Â±n diye _Fix ekledim)
+// YARDIMCI FONKSİYONLAR (Çakışmasın diye _Fix ekledim)
 function closeNumpad_Fix() {
     const np = document.getElementById('numberPad');
     if (np) np.classList.add('hidden');
@@ -8771,7 +8718,7 @@ function closeNumpad_Fix() {
     const disp = document.getElementById('currentInput');
     if (disp) disp.textContent = '';
     
-    // SeÃƒÂ§im renklerini temizle
+    // Seçim renklerini temizle
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.classList.remove('bg-indigo-100', 'border-indigo-500', 'ring-2', 'ring-indigo-400');
     });
@@ -8795,21 +8742,21 @@ function checkFull_Fix() {
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡â‚¬ NÃ„Â°HAÃ„Â° BAÃ„ÂLANTI MODÃƒÅ“LÃƒÅ“ (Ãƒâ€¡AKIÃ…ÂMA Ãƒâ€“NLEYÃ„Â°CÃ„Â° v3)
+// 🚀 NİHAİ BAĞLANTI MODÜLÜ (ÇAKIŞMA ÖNLEYİCİ v3)
 // =================================================================
-// Bu kod, ÃƒÂ¶nceki hatalarÃ„Â± bypass edip "Tamam" tuÃ…Å¸unu zorla ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±rÃ„Â±r.
+// Bu kod, önceki hataları bypass edip "Tamam" tuşunu zorla çalıştırır.
 
-// 1. GLOBAL HEDEF DEÃ„ÂÃ„Â°Ã…ÂKENÃ„Â° (Window seviyesinde tanÃ„Â±mladÃ„Â±k ki kaybolmasÃ„Â±n)
+// 1. GLOBAL HEDEF DEĞİŞKENİ (Window seviyesinde tanımladık ki kaybolmasın)
 window.CURRENT_TARGET_ID = null;
 
-// 2. KUTUYA TIKLAMA (SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡AR)
+// 2. KUTUYA TIKLAMA (SAYI PANELİNİ AÇAR)
 window.openTableInput = function(targetId) {
-    console.log("ÄŸÅ¸Å¸Â¢ Kutu SeÃƒÂ§ildi:", targetId);
+    console.log("🟢 Kutu Seçildi:", targetId);
     
     // Hedefi kaydet
     window.CURRENT_TARGET_ID = targetId;
 
-    // GÃƒÂ¶rsel temizlik (Ãƒâ€“nceki mavi kutularÃ„Â± normale ÃƒÂ§evir)
+    // Görsel temizlik (Önceki mavi kutuları normale çevir)
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.style.backgroundColor = "white";
         el.style.borderColor = "#e0e7ff"; // indigo-100
@@ -8821,13 +8768,13 @@ window.openTableInput = function(targetId) {
         box.style.backgroundColor = "#e0e7ff"; // indigo-50
         box.style.borderColor = "#6366f1"; // indigo-500
         
-        // Kutudaki eski deÃ„Å¸eri panele taÃ…Å¸Ã„Â±
+        // Kutudaki eski değeri panele taşı
         let val = box.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = val;
     }
 
-    // Paneli AÃƒÂ§
+    // Paneli Aç
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -8835,25 +8782,25 @@ window.openTableInput = function(targetId) {
     }
 };
 
-// 3. TAMAM VE Ã„Â°PTAL BUTONLARINI BAÃ„ÂLA (100ms Gecikmeli - Garanti Olsun)
+// 3. TAMAM VE İPTAL BUTONLARINI BAĞLA (100ms Gecikmeli - Garanti Olsun)
 setTimeout(function() {
-    console.log("ÄŸÅ¸â€Å’ Butonlar BaÃ„Å¸lanÃ„Â±yor...");
+    console.log("🔌 Butonlar Bağlanıyor...");
 
     // --- TAMAM BUTONU ---
     const oldBtn = document.getElementById('numPadClose');
     if (oldBtn) {
-        // Eski tÃƒÂ¼m ÃƒÂ¶zellikleri silmek iÃƒÂ§in klonluyoruz
+        // Eski tüm özellikleri silmek için klonluyoruz
         const btnTamam_Final_v3 = oldBtn.cloneNode(true);
         oldBtn.parentNode.replaceChild(btnTamam_Final_v3, oldBtn);
 
-        // Yeni TÃ„Â±klama OlayÃ„Â±
+        // Yeni Tıklama Olayı
         btnTamam_Final_v3.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // A. DeÃ„Å¸eri Al
+            // A. Değeri Al
             const display = document.getElementById('currentInput');
             let val = display ? display.textContent.trim() : '';
-            console.log("Ã¢Å“â€¦ Tamam BasÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", val, "Hedef:", window.CURRENT_TARGET_ID);
+            console.log("✅ Tamam Basıldı. Değer:", val, "Hedef:", window.CURRENT_TARGET_ID);
 
             // B. Hedefe Yaz
             if (window.CURRENT_TARGET_ID) {
@@ -8862,15 +8809,15 @@ setTimeout(function() {
                 if (targetBox) {
                     if (val === '') val = '?';
                     
-                    // 1. Ekrana Yaz (GÃƒÂ¶rsel)
+                    // 1. Ekrana Yaz (Görsel)
                     targetBox.textContent = val;
                     
-                    // 2. Rengi DÃƒÂ¼zelt
+                    // 2. Rengi Düzelt
                     targetBox.style.backgroundColor = "white";
                     targetBox.style.borderColor = "#e0e7ff";
 
-                    // 3. Veriyi HafÃ„Â±zaya (linearState) Kaydet
-                    // ID formatÃ„Â±: table_input_x_0
+                    // 3. Veriyi Hafızaya (linearState) Kaydet
+                    // ID formatı: table_input_x_0
                     if (window.CURRENT_TARGET_ID.startsWith('table_input_')) {
                         const parts = window.CURRENT_TARGET_ID.split('_');
                         const col = parts[2]; // x veya y
@@ -8889,12 +8836,12 @@ setTimeout(function() {
             // C. Paneli Kapat
             closeNumpad_Final();
 
-            // D. Tablo Doldu mu? (Kontrol Butonu AÃƒÂ§)
+            // D. Tablo Doldu mu? (Kontrol Butonu Aç)
             checkTableFull_Final();
         });
     }
 
-    // --- Ã„Â°PTAL BUTONU ---
+    // --- İPTAL BUTONU ---
     const oldCancel = document.getElementById('numPadCancel');
     if (oldCancel) {
         const btnIptal_Final_v3 = oldCancel.cloneNode(true);
@@ -8906,9 +8853,9 @@ setTimeout(function() {
         });
     }
 
-}, 500); // YarÃ„Â±m saniye bekle ve ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±r
+}, 500); // Yarım saniye bekle ve çalıştır
 
-// YARDIMCI FONKSÃ„Â°YONLAR
+// YARDIMCI FONKSİYONLAR
 function closeNumpad_Final() {
     const np = document.getElementById('numberPad');
     if (np) np.classList.add('hidden');
@@ -8935,7 +8882,7 @@ function checkTableFull_Final() {
     });
 
     if (isFull && hasCells) {
-        // Ã„Â°ki olasÃ„Â± ID'yi de dene
+        // İki olası ID'yi de dene
         const btn1 = document.getElementById('btnTamamCst');
         const btn2 = document.getElementById('tableConfirmBtn');
         if (btn1) btn1.classList.remove('hidden');
@@ -8944,39 +8891,39 @@ function checkTableFull_Final() {
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡â€˜ ACÃ„Â°L KURTARMA PAKETÃ„Â° (Ãƒâ€¡AKIÃ…ÂMAYI AÃ…ÂAN SÃƒÅ“RÃƒÅ“M)
+// 🚑 ACİL KURTARMA PAKETİ (ÇAKIŞMAYI AŞAN SÜRÜM)
 // =================================================================
 
-// 1. Yeni ve Benzersiz Bir Hedef DeÃ„Å¸iÃ…Å¸keni TanÃ„Â±mlÃ„Â±yoruz
-// (Eski activeInputTarget deÃ„Å¸iÃ…Å¸kenini kullanmÃ„Â±yoruz ki hata vermesin)
+// 1. Yeni ve Benzersiz Bir Hedef Değişkeni Tanımlıyoruz
+// (Eski activeInputTarget değişkenini kullanmıyoruz ki hata vermesin)
 window.HEDEF_KUTU_ID = null; 
 
-// 2. Tablo Kutusuna TÃ„Â±klayÃ„Â±nca Ãƒâ€¡alÃ„Â±Ã…Å¸an Fonksiyonu "Eziyoruz"
+// 2. Tablo Kutusuna Tıklayınca Çalışan Fonksiyonu "Eziyoruz"
 window.openTableInput = function(tiklananId) {
-    console.log("ÄŸÅ¸Å¸Â¢ Yeni Sistem: Kutu SeÃƒÂ§ildi ->", tiklananId);
+    console.log("🟢 Yeni Sistem: Kutu Seçildi ->", tiklananId);
     
-    // Hedefi yeni deÃ„Å¸iÃ…Å¸kene kaydet
+    // Hedefi yeni değişkene kaydet
     window.HEDEF_KUTU_ID = tiklananId;
 
-    // GÃƒÂ¶rsel: Eski mavilikleri temizle
+    // Görsel: Eski mavilikleri temizle
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         kutu.style.backgroundColor = "white"; 
         kutu.style.borderColor = "#e0e7ff";
     });
 
-    // GÃƒÂ¶rsel: TÃ„Â±klananÃ„Â± mavi yap
+    // Görsel: Tıklananı mavi yap
     const kutu = document.getElementById(tiklananId);
     if (kutu) {
-        kutu.style.backgroundColor = "#dbeafe"; // AÃƒÂ§Ã„Â±k mavi
+        kutu.style.backgroundColor = "#dbeafe"; // Açık mavi
         kutu.style.borderColor = "#2563eb";     // Koyu mavi
         
-        // Kutudaki deÃ„Å¸eri panele taÃ…Å¸Ã„Â±
+        // Kutudaki değeri panele taşı
         let eskiDeger = kutu.textContent.replace('?', '').trim();
         const ekran = document.getElementById('currentInput');
         if (ekran) ekran.textContent = eskiDeger;
     }
 
-    // Paneli AÃƒÂ§
+    // Paneli Aç
     const panel = document.getElementById('numberPad');
     if (panel) {
         panel.classList.remove('hidden');
@@ -8984,24 +8931,24 @@ window.openTableInput = function(tiklananId) {
     }
 };
 
-// 3. "Tamam" Butonunu Zorla Yeniden YaratÃ„Â±yoruz (1 saniye sonra)
+// 3. "Tamam" Butonunu Zorla Yeniden Yaratıyoruz (1 saniye sonra)
 setTimeout(function() {
-    console.log("ÄŸÅ¸â€ºÂ Ã¯Â¸Â Tamam Butonu Tamir Ediliyor...");
+    console.log("🛠️ Tamam Butonu Tamir Ediliyor...");
 
     const eskiButon = document.getElementById('numPadClose');
     if (eskiButon) {
-        // Eski butonu kopyala (BÃƒÂ¶ylece eski hatalÃ„Â± kodlardan kurtuluruz)
+        // Eski butonu kopyala (Böylece eski hatalı kodlardan kurtuluruz)
         const yeniButon = eskiButon.cloneNode(true);
         eskiButon.parentNode.replaceChild(yeniButon, eskiButon);
 
-        // YENÃ„Â° TIKLAMA GÃƒâ€“REVÃ„Â°
+        // YENİ TIKLAMA GÖREVİ
         yeniButon.addEventListener('click', function(olay) {
             olay.preventDefault();
             olay.stopPropagation();
 
-            console.log("Ã¢Å“â€¦ Tamam'a BasÃ„Â±ldÃ„Â±! Hedef:", window.HEDEF_KUTU_ID);
+            console.log("✅ Tamam'a Basıldı! Hedef:", window.HEDEF_KUTU_ID);
 
-            // A. Ekranda ne yazÃ„Â±yor?
+            // A. Ekranda ne yazıyor?
             const ekran = document.getElementById('currentInput');
             let yazilanDeger = ekran ? ekran.textContent.trim() : '';
             if (yazilanDeger === '') yazilanDeger = '?';
@@ -9011,23 +8958,21 @@ setTimeout(function() {
                 const hedefKutu = document.getElementById(window.HEDEF_KUTU_ID);
                 
                 if (hedefKutu) {
-                    // 1. EKRANA YAZ (En ÃƒÂ¶nemlisi bu)
+                    // 1. EKRANA YAZ (En önemlisi bu)
                     hedefKutu.textContent = yazilanDeger;
                     
-                    // 2. Rengi dÃƒÂ¼zelt
-                    // 2. Rengi dÃ¼zelt
+                    // 2. Rengi düzelt
                     hedefKutu.style.backgroundColor = "white";
                     hedefKutu.style.borderColor = "#e0e7ff";
 
-                    // 3. Veriyi HafÄ±zaya Kaydet (Grafik kontrolÃ¼ iÃ§in)
-                    // ID Ã¶rneÄŸi: table_input_x_0
+                    // 3. Veriyi Hafızaya Kaydet (Grafik kontrolü için)
+                    // ID örneği: table_input_x_0
                     if (window.HEDEF_KUTU_ID.startsWith('table_input_')) {
                         const parcalar = window.HEDEF_KUTU_ID.split('_');
-                        const sutun = parcalar[2];
+                        const sutun = parcalar[2]; // 'x' veya 'y'
                         const satir = parseInt(parcalar[3]);
 
-
-
+                        // linearState nesnesini güncelle
                         if (typeof linearState !== 'undefined') {
                             if (!linearState.tableData) linearState.tableData = [];
                             if (!linearState.tableData[satir]) linearState.tableData[satir] = {x:'?', y:'?'};
@@ -9036,10 +8981,10 @@ setTimeout(function() {
                         }
                     }
                 } else {
-                    console.log("Ã¢ÂÅ’ Hedef kutu HTML'de bulunamadÃ„Â±!");
+                    console.log("❌ Hedef kutu HTML'de bulunamadı!");
                 }
             } else {
-                console.log("Ã¢Å¡Â Ã¯Â¸Â Hedef seÃƒÂ§ili deÃ„Å¸il!");
+                console.log("⚠️ Hedef seçili değil!");
             }
 
             // C. Paneli Kapat
@@ -9047,16 +8992,16 @@ setTimeout(function() {
             if (panel) panel.classList.add('hidden');
             if (ekran) ekran.textContent = '';
             
-            // D. SeÃƒÂ§imi SÃ„Â±fÃ„Â±rla
+            // D. Seçimi Sıfırla
             window.HEDEF_KUTU_ID = null;
 
-            // E. Tablo dolduysa kontrol butonunu aÃƒÂ§
+            // E. Tablo dolduysa kontrol butonunu aç
             kontrolTabloDoluMu();
         });
     }
-}, 1000); // 1 saniye bekleme sÃƒÂ¼resi
+}, 1000); // 1 saniye bekleme süresi
 
-// YardÃ„Â±mcÃ„Â±: Tablo Dolu mu?
+// Yardımcı: Tablo Dolu mu?
 function kontrolTabloDoluMu() {
     let doluMu = true;
     let kutuVarMi = false;
@@ -9076,26 +9021,26 @@ function kontrolTabloDoluMu() {
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡Âª PANEL KAPATMA TAMÃ„Â°RCÃ„Â°SÃ„Â° (KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M)
+// 🚪 PANEL KAPATMA TAMİRCİSİ (KESİN ÇÖZÜM)
 // =================================================================
 setTimeout(function() {
-    console.log("ÄŸÅ¸Å¡Âª Kapatma MekanizmasÃ„Â± GÃƒÂ¼ncelleniyor...");
+    console.log("🚪 Kapatma Mekanizması Güncelleniyor...");
 
-    // 1. TAMAM BUTONU (Kapanma Ãƒâ€“zelliÃ„Å¸i Ekleniyor)
+    // 1. TAMAM BUTONU (Kapanma Özelliği Ekleniyor)
     const btnTamam = document.getElementById('numPadClose');
     if (btnTamam) {
-        // Mevcut iÃ…Å¸levi bozmadan ÃƒÂ¼zerine ekleme yapÃ„Â±yoruz
+        // Mevcut işlevi bozmadan üzerine ekleme yapıyoruz
         const eskiTiklama = btnTamam.onclick; 
         
-        // Yeni, daha gÃƒÂ¼ÃƒÂ§lÃƒÂ¼ bir dinleyici ekliyoruz
+        // Yeni, daha güçlü bir dinleyici ekliyoruz
         btnTamam.addEventListener('click', function(e) {
-            // Ãƒâ€“nce veriyi yazma iÃ…Å¸ini yapsÃ„Â±n (zaten ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±yor dedin)
-            // Sonra zorla kapatsÃ„Â±n:
+            // Önce veriyi yazma işini yapsın (zaten çalışıyor dedin)
+            // Sonra zorla kapatsın:
             forceClosePanel();
         });
     }
 
-    // 2. Ã„Â°PTAL BUTONU (Kapanma Ãƒâ€“zelliÃ„Å¸i Ekleniyor)
+    // 2. İPTAL BUTONU (Kapanma Özelliği Ekleniyor)
     const btnIptal = document.getElementById('numPadCancel');
     if (btnIptal) {
         const yeniIptal = btnIptal.cloneNode(true);
@@ -9103,9 +9048,9 @@ setTimeout(function() {
 
         yeniIptal.addEventListener('click', function(e) {
             e.preventDefault();
-            // Ã„Â°ptal'e basÃ„Â±nca hedefi de unut
+            // İptal'e basınca hedefi de unut
             window.HEDEF_KUTU_ID = null;
-            // GÃƒÂ¶rsel seÃƒÂ§imleri kaldÃ„Â±r
+            // Görsel seçimleri kaldır
             document.querySelectorAll('.table-input-cell').forEach(kutu => {
                 kutu.style.backgroundColor = "white"; 
                 kutu.style.borderColor = "#e0e7ff";
@@ -9114,57 +9059,57 @@ setTimeout(function() {
         });
     }
 
-}, 1500); // DiÃ„Å¸er kodlardan sonra ÃƒÂ§alÃ„Â±Ã…Å¸sÃ„Â±n diye biraz gecikmeli
+}, 1500); // Diğer kodlardan sonra çalışsın diye biraz gecikmeli
 
-// 3. ZORLA KAPATMA FONKSÃ„Â°YONU
+// 3. ZORLA KAPATMA FONKSİYONU
 function forceClosePanel() {
     const panel = document.getElementById('numberPad');
     if (panel) {
-        // Hem CSS sÃ„Â±nÃ„Â±fÃ„Â± ekle
+        // Hem CSS sınıfı ekle
         panel.removeAttribute('style');
         panel.classList.add('hidden');
     }
 
-    // EkranÃ„Â± temizle
+    // Ekranı temizle
     const ekran = document.getElementById('currentInput');
     if (ekran) ekran.textContent = '';
 }
 
 // =================================================================
-// ÄŸÅ¸Å¡â‚¬ FÃ„Â°NAL SÃ„Â°STEM: CANLI GRAFÃ„Â°K VE MATEMATÃ„Â°KSEL KONTROL
+// 🚀 FİNAL SİSTEM: CANLI GRAFİK VE MATEMATİKSEL KONTROL
 // =================================================================
 
-// 1. GLOBAL DEÃ„ÂÃ„Â°Ã…ÂKENLER
+// 1. GLOBAL DEĞİŞKENLER
 window.HEDEF_KUTU = null;
 
 // ---------------------------------------------------------
-// A. KUTUYA TIKLAMA (SAYI PANELÃ„Â°NÃ„Â° AÃƒâ€¡AR)
+// A. KUTUYA TIKLAMA (SAYI PANELİNİ AÇAR)
 // ---------------------------------------------------------
 window.openTableInput = function(tiklananId) {
-    console.log("ÄŸÅ¸â€“Â±Ã¯Â¸Â Kutu SeÃƒÂ§ildi:", tiklananId);
+    console.log("🖱️ Kutu Seçildi:", tiklananId);
     window.HEDEF_KUTU = tiklananId;
 
-    // GÃƒÂ¶rsel Temizlik
+    // Görsel Temizlik
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         kutu.style.backgroundColor = "white"; 
         kutu.style.borderColor = "#e0e7ff";
         kutu.style.boxShadow = "none";
     });
 
-    // SeÃƒÂ§ili Kutuyu Ã„Â°Ã…Å¸aretle
+    // Seçili Kutuyu İşaretle
     const kutu = document.getElementById(tiklananId);
     if (kutu) {
         kutu.style.backgroundColor = "#dbeafe"; // Mavi
         kutu.style.borderColor = "#3b82f6";
         kutu.style.boxShadow = "0 0 0 3px rgba(59, 130, 246, 0.3)";
         
-        // DeÃ„Å¸eri panele taÃ…Å¸Ã„Â±
+        // Değeri panele taşı
         let val = kutu.textContent.replace('?', '').trim();
         const ekran = document.getElementById('currentInput');
         if (ekran) ekran.textContent = val;
     }
 
-    // Paneli AÃƒÂ§
+    // Paneli Aç
     const panel = document.getElementById('numberPad');
     if (panel) {
         panel.classList.remove('hidden');
@@ -9173,7 +9118,7 @@ window.openTableInput = function(tiklananId) {
 };
 
 // ---------------------------------------------------------
-// B. NUMPAD BUTONLARINI BAÃ„ÂLA (OTOMATÃ„Â°K VE ANLIK)
+// B. NUMPAD BUTONLARINI BAĞLA (OTOMATİK VE ANLIK)
 // ---------------------------------------------------------
 setTimeout(function() {
     // TAMAM BUTONU
@@ -9185,7 +9130,7 @@ setTimeout(function() {
         yeniTamam.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // 1. DeÃ„Å¸eri Al
+            // 1. Değeri Al
             const ekran = document.getElementById('currentInput');
             let deger = ekran ? ekran.textContent.trim() : '';
             if (deger === '') deger = '?';
@@ -9199,23 +9144,23 @@ setTimeout(function() {
                     kutu.style.borderColor = "#e0e7ff";
                     kutu.style.boxShadow = "none";
                     
-                    // State'i GÃƒÂ¼ncelle (HafÃ„Â±zaya Al)
+                    // State'i Güncelle (Hafızaya Al)
                     kaydetState(window.HEDEF_KUTU, deger);
                 }
             }
 
-            // 3. GRAFÃ„Â°Ã„ÂÃ„Â° ANINDA GÃƒÅ“NCELLE (Ã„Â°Ã…Å¸te eksik olan parÃƒÂ§a buydu!)
+            // 3. GRAFİĞİ ANINDA GÜNCELLE (İşte eksik olan parça buydu!)
             canliGrafikCiz();
 
             // 4. Paneli Kapat
             kapatPanel();
 
-            // 5. Tablo Dolduysa Kontrol Butonunu AÃƒÂ§
+            // 5. Tablo Dolduysa Kontrol Butonunu Aç
             kontrolButonunuAc();
         });
     }
 
-    // Ã„Â°PTAL BUTONU
+    // İPTAL BUTONU
     const btnIptal = document.getElementById('numPadCancel');
     if (btnIptal) {
         const yeniIptal = btnIptal.cloneNode(true);
@@ -9228,30 +9173,30 @@ setTimeout(function() {
 }, 1000);
 
 // ---------------------------------------------------------
-// C. CANLI GRAFÃ„Â°K Ãƒâ€¡Ã„Â°ZCÃ„Â° (HER SAYI GÃ„Â°RÃ„Â°Ã…ÂÃ„Â°NDE Ãƒâ€¡ALIÃ…ÂIR)
+// C. CANLI GRAFİK ÇİZCİ (HER SAYI GİRİŞİNDE ÇALIŞIR)
 // ---------------------------------------------------------
 function canliGrafikCiz() {
     if (typeof gameState !== 'undefined' && gameState.mode && gameState.mode.startsWith('slope_')) return;
-    console.log("ÄŸÅ¸ÂÂ¨ Grafik GÃƒÂ¼ncelleniyor (refreshLinearGraphPoints'e yÃƒÂ¶nlendirildi)...");
+    console.log("🎨 Grafik Güncelleniyor (refreshLinearGraphPoints'e yönlendirildi)...");
     if (typeof refreshLinearGraphPoints === 'function') {
         refreshLinearGraphPoints();
     }
 }
 
 // ---------------------------------------------------------
-// D. TABLO KONTROL (MATEMATÃ„Â°KSEL FORMÃƒÅ“L Ã„Â°LE)
+// D. TABLO KONTROL (MATEMATİKSEL FORMÜL İLE)
 // ---------------------------------------------------------
 window.confirmTableAndStartDrawing = function() {
-    console.log("ÄŸÅ¸Â§Â  Tablo Kontrol Ediliyor (Matematiksel)...");
+    console.log("🧠 Tablo Kontrol Ediliyor (Matematiksel)...");
     
-    // 1. DoÃ„Å¸ru FormÃƒÂ¼lÃƒÂ¼nÃƒÂ¼ Bul (y = mx + b)
+    // 1. Doğru Formülünü Bul (y = mx + b)
     let m = null;
     let b = null;
     
     const scenario = (typeof linearState !== 'undefined') ? linearState.currentScenario : null;
     
     if (scenario) {
-        // A) Senaryoda aÃƒÂ§Ã„Â±kÃƒÂ§a verilmiÃ…Å¸se al
+        // A) Senaryoda açıkça verilmişse al
         if (scenario.m !== undefined && scenario.b !== undefined) {
             m = scenario.m;
             b = scenario.b;
@@ -9260,10 +9205,10 @@ window.confirmTableAndStartDrawing = function() {
             m = scenario.rate;
             b = scenario.initialValue;
         }
-        // B) VerilmemiÃ…Å¸se, senaryodaki "Points" listesinden hesapla
+        // B) Verilmemişse, senaryodaki "Points" listesinden hesapla
         else {
             let rawData = scenario.points || scenario.tableData || (scenario.lines ? scenario.lines[0].points : []);
-            // Soru iÃ…Å¸areti olmayan temiz verileri al
+            // Soru işareti olmayan temiz verileri al
             let cleanPoints = [];
             if(rawData) {
                 rawData.forEach(p => {
@@ -9274,7 +9219,7 @@ window.confirmTableAndStartDrawing = function() {
             }
 
             if (cleanPoints.length >= 2) {
-                // Ã„Â°ki noktadan eÃ„Å¸im bul
+                // İki noktadan eğim bul
                 let p1 = cleanPoints[0];
                 let p2 = cleanPoints[1];
                 if (p2.x - p1.x !== 0) {
@@ -9285,12 +9230,12 @@ window.confirmTableAndStartDrawing = function() {
         }
     }
 
-    console.log(`ÄŸÅ¸â€œÂ Bulunan FormÃƒÂ¼l: y = ${m}x + ${b}`);
+    console.log(`📏 Bulunan Formül: y = ${m}x + ${b}`);
     if (m !== null && typeof linearState !== 'undefined') {
         linearState.correctM = m;
     }
 
-    // 2. Tablodaki DeÃ„Å¸erleri Kontrol Et
+    // 2. Tablodaki Değerleri Kontrol Et
     let hepsiDogru = true;
     let doluSatirSayisi = 0;
 
@@ -9312,17 +9257,17 @@ window.confirmTableAndStartDrawing = function() {
         let userY = parseFloat(txtY);
         let rowCorrect = false;
 
-        // FormÃƒÂ¼l KontrolÃƒÂ¼
+        // Formül Kontrolü
         if (m !== null && b !== null) {
             let expectedY = (m * userX) + b;
-            // KÃƒÂ¼ÃƒÂ§ÃƒÂ¼k yuvarlama hatalarÃ„Â±nÃ„Â± tolere et (0.1)
+            // Küçük yuvarlama hatalarını tolere et (0.1)
             if (Math.abs(userY - expectedY) < 0.1) {
                 rowCorrect = true;
             }
         } else {
-            // FormÃƒÂ¼l bulunamadÃ„Â±ysa (Ãƒâ€¡ok nadir), eski yÃƒÂ¶ntemle havuza bak
-            // Ama yukarÃ„Â±daki kod %99 formÃƒÂ¼lÃƒÂ¼ bulur.
-            rowCorrect = true; // Hata vermemek iÃƒÂ§in geÃƒÂ§ici true (Senaryo bozuksa ÃƒÂ¶Ã„Å¸renci ÃƒÂ¼zÃƒÂ¼lmesin)
+            // Formül bulunamadıysa (Çok nadir), eski yöntemle havuza bak
+            // Ama yukarıdaki kod %99 formülü bulur.
+            rowCorrect = true; // Hata vermemek için geçici true (Senaryo bozuksa öğrenci üzülmesin)
         }
 
         // Renklendirme
@@ -9334,11 +9279,11 @@ window.confirmTableAndStartDrawing = function() {
         }
     }
 
-    // 3. SonuÃƒÂ§
+    // 3. Sonuç
     if (hepsiDogru && doluSatirSayisi > 0) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
         
-        // Ãƒâ€¡izim modunu aÃƒÂ§
+        // Çizim modunu aç
         if(typeof gameState !== 'undefined') gameState.mode = 'linear_graph_draw';
         if(typeof setupStraightLineDrawing === 'function') setupStraightLineDrawing();
 
@@ -9350,12 +9295,12 @@ window.confirmTableAndStartDrawing = function() {
         const msg = document.getElementById('drawMessageArea');
         if(msg) {
             msg.classList.remove('hidden');
-            msg.innerHTML = `<div class="bg-green-100 p-4 rounded text-green-700 font-bold border-l-4 border-green-500">Ã¢Å“â€¦ Harika! Tablo doÃ„Å¸ru. Ã…Âimdi noktalarÃ„Â± birleÃ…Å¸tir.</div>`;
+            msg.innerHTML = `<div class="bg-green-100 p-4 rounded text-green-700 font-bold border-l-4 border-green-500">✅ Harika! Tablo doğru. Şimdi noktaları birleştir.</div>`;
         }
         
-        // NoktalarÃ„Â± YeÃ…Å¸ile Ãƒâ€¡evir (KalÃ„Â±cÃ„Â± Yap)
+        // Noktaları Yeşile Çevir (Kalıcı Yap)
         const noktalar = document.getElementById('linearCanvas').querySelectorAll('.user-preview-dot');
-        noktalar.forEach(n => n.setAttribute('fill', '#059669')); // YeÃ…Å¸il
+        noktalar.forEach(n => n.setAttribute('fill', '#059669')); // Yeşil
 
     } else {
         if(typeof playErrorSound === 'function') playErrorSound();
@@ -9363,7 +9308,7 @@ window.confirmTableAndStartDrawing = function() {
 };
 
 // ---------------------------------------------------------
-// YARDIMCI FONKSÃ„Â°YONLAR
+// YARDIMCI FONKSİYONLAR
 // ---------------------------------------------------------
 function kapatPanel() {
     const p = document.getElementById('numberPad');
@@ -9375,9 +9320,9 @@ function kapatPanel() {
     const ekr = document.getElementById('currentInput');
     if(ekr) ekr.textContent = '';
     
-    // Mavi seÃƒÂ§imleri temizle
+    // Mavi seçimleri temizle
     document.querySelectorAll('.table-input-cell').forEach(k => {
-        if(!k.classList.contains('bg-emerald-100')) { // DoÃ„Å¸ru olanlarÃ„Â± bozma
+        if(!k.classList.contains('bg-emerald-100')) { // Doğru olanları bozma
             k.style.backgroundColor = "white";
             k.style.borderColor = "#e0e7ff";
             k.style.boxShadow = "none";
@@ -9421,17 +9366,17 @@ function styleWrong(el) {
     el.className = "table-input-cell bg-red-50 border-2 border-red-500 rounded p-1 flex items-center justify-center font-bold text-red-700 text-lg w-full animate-pulse";
 }
 
-// DiÃ„Å¸er canliGrafikCiz fonksiyonlarÃ„Â± temizlendi. ÃƒÅ“stteki nihai versiyon kullanÃ„Â±lacak.
+// Diğer canliGrafikCiz fonksiyonları temizlendi. Üstteki nihai versiyon kullanılacak.
 
 // ==========================================
-// ÄŸÅ¸ÂÂ¯ SVG MATRIX COORDINATE SYSTEM (v5 - KESÃ„Â°N Ãƒâ€¡Ãƒâ€“ZÃƒÅ“M)
+// 🎯 SVG MATRIX COORDINATE SYSTEM (v5 - KESİN ÇÖZÜM)
 // ==========================================
 
 window.setupStraightLineDrawing = function() {
     const canvas = document.getElementById('linearCanvas');
     if (!canvas) return;
 
-    console.log("Ã¢Å“ÂÃ¯Â¸Â Ãƒâ€¡izim Modu: SVG Matrix sistemi aktif.");
+    console.log("✏️ Çizim Modu: SVG Matrix sistemi aktif.");
     
     // Temizle
     canvas.onmousedown = null;
@@ -9444,7 +9389,7 @@ window.setupStraightLineDrawing = function() {
     let isDrawing = false;
     let tempLine = null;
 
-    // --- ENERJÃ„Â° TASARRUFLU VE HASSAS KOORDÃ„Â°NAT SÃ„Â°STEMÃ„Â° ---
+    // --- ENERJİ TASARRUFLU VE HASSAS KOORDİNAT SİSTEMİ ---
     function getPointOnSvg(e) {
         const pt = canvas.createSVGPoint();
         
@@ -9460,7 +9405,7 @@ window.setupStraightLineDrawing = function() {
             pt.y = e.clientY;
         }
 
-        // Bu bÃƒÂ¼yÃƒÂ¼: Ekran koordinatlarÃ„Â±nÃ„Â± doÃ„Å¸rudan SVG'nin iÃƒÂ§ koordinatlarÃ„Â±na ÃƒÂ§evirir
+        // Bu büyü: Ekran koordinatlarını doğrudan SVG'nin iç koordinatlarına çevirir
         const cursorPoint = pt.matrixTransform(canvas.getScreenCTM().inverse());
         
         return { x: cursorPoint.x, y: cursorPoint.y };
@@ -9477,7 +9422,7 @@ window.setupStraightLineDrawing = function() {
             window.sendP2PDrawEvent({ action: 'start', coords: coords });
         }
 
-        // Eski ÃƒÂ§izgiyi temizle
+        // Eski çizgiyi temizle
         const oldLine = document.getElementById('rubber-line');
         if (oldLine) oldLine.remove();
 
@@ -9546,7 +9491,7 @@ window.setupStraightLineDrawing = function() {
         }
     };
 
-    // P2P'den gelen ÃƒÂ§izim verilerini iÃ…Å¸leyecek fonksiyon
+    // P2P'den gelen çizim verilerini işleyecek fonksiyon
     window.p2pDrawHandle = function(payload) {
         if (payload.action === 'start') {
             isDrawing = true;
@@ -9580,7 +9525,7 @@ window.setupStraightLineDrawing = function() {
                 y: parseFloat(tempLine.getAttribute('y1'))
             };
             
-            // Senkronizasyon KaymalarÃ„Â±nÃ„Â± (Ãƒâ€“lÃƒÂ§ek, Denklem farkÃ„Â± vb.) Gidermek Ã„Â°ÃƒÂ§in Tabletten Gelen DoÃ„Å¸rularÃ„Â± Zorla
+            // Senkronizasyon Kaymalarını (Ölçek, Denklem farkı vb.) Gidermek İçin Tabletten Gelen Doğruları Zorla
             if (payload.scale !== undefined) linearState.axisScale = payload.scale;
             if (payload.tSlope !== undefined) gameState.targetSlope = payload.tSlope;
             if (payload.tIntercept !== undefined) gameState.targetIntercept = payload.tIntercept;
@@ -9614,19 +9559,19 @@ window.setupStraightLineDrawing = function() {
 
 
 // ==========================================
-// Ã¢Å“Â¨ ÃƒÅ“ST BUTON AKTÃ„Â°FLEÃ…ÂTÃ„Â°RÃ„Â°CÃ„Â° (v6)
+// ✨ ÜST BUTON AKTİFLEŞTİRİCİ (v6)
 // ==========================================
 
 function checkDrawingLogic(start, end) {
-    // Mevcut dinamik ÃƒÂ¶lÃƒÂ§eÃ„Å¸i al
+    // Mevcut dinamik ölçeği al
     const stepY = (typeof linearState !== 'undefined') ? (linearState.yScale || 1) : 1;
     const stepX = (typeof linearState !== 'undefined') ? (linearState.xScale || 1) : 1;
     
-    // Ãƒâ€¡izgi noktalarÃ„Â±nÃ„Â± matematiksel deÃ„Å¸ere ÃƒÂ§evir
+    // Çizgi noktalarını matematiksel değere çevir
     const v1 = { x: (start.x - 50) / 50 * stepX, y: (450 - start.y) / 50 * stepY };
     const v2 = { x: (end.x - 50) / 50 * stepX, y: (450 - end.y) / 50 * stepY };
 
-    // Senaryodaki gerÃƒÂ§ek eÃ„Å¸imi hesapla
+    // Senaryodaki gerçek eğimi hesapla
     let correctM = (typeof linearState !== 'undefined') ? linearState.correctM : undefined;
     
     if (correctM === undefined) {
@@ -9646,43 +9591,43 @@ function checkDrawingLogic(start, end) {
     
     const userM = (v2.y - v1.y) / (v2.x - v1.x);
 
-    // EÃ„ÂÃ„Â°M KONTROLÃƒÅ“
+    // EĞİM KONTROLÜ
     if (correctM !== undefined && !isNaN(correctM) && Math.abs(userM - correctM) < 0.4) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
-        document.getElementById('rubber-line').setAttribute('stroke', '#10b981'); // YeÃ…Å¸il
+        document.getElementById('rubber-line').setAttribute('stroke', '#10b981'); // Yeşil
 
-        // --- BUTONU BUL VE ZORLA AKTÃ„Â°F ET ---
-        // Senin projendeki tÃƒÂ¼m olasÃ„Â± ID'leri kontrol ediyoruz
+        // --- BUTONU BUL VE ZORLA AKTİF ET ---
+        // Senin projendeki tüm olası ID'leri kontrol ediyoruz
         const btn = document.getElementById('checkBtn') || document.getElementById('btn_kontrol_et');
         
         if (btn) {
-            console.log("ÄŸÅ¸Å¡â‚¬ Kontrol butonu aktif ediliyor!");
+            console.log("🚀 Kontrol butonu aktif ediliyor!");
             
-            // 1. GÃƒÂ¶rÃƒÂ¼nÃƒÂ¼rlÃƒÂ¼k Engellerini KaldÃ„Â±r
+            // 1. Görünürlük Engellerini Kaldır
             btn.classList.remove('hidden', 'opacity-50', 'cursor-not-allowed');
             btn.disabled = false;
             btn.style.display = 'block';
             btn.style.opacity = '1';
             btn.style.pointerEvents = 'auto';
 
-            // 2. GÃƒÂ¶rsel Efekt Ekle (YanÃ„Â±p SÃƒÂ¶nme)
+            // 2. Görsel Efekt Ekle (Yanıp Sönme)
             btn.style.animation = "pulse 1.5s infinite";
             btn.classList.add('bg-orange-500', 'hover:bg-orange-600', 'ring-4', 'ring-orange-200');
-            btn.innerHTML = "Ãƒâ€¡izimi Onayla Ã¢Å“Â¨";
+            btn.innerHTML = "Çizimi Onayla ✨";
 
-            // 3. TÃ„Â±klama GÃƒÂ¶revini Ata (EÃ„Å¸er atanmamÃ„Â±Ã…Å¸sa)
+            // 3. Tıklama Görevini Ata (Eğer atanmamışsa)
             btn.onclick = function() {
-                // Final onayÃ„Â± fonksiyonunu ÃƒÂ§alÃ„Â±Ã…Å¸tÃ„Â±r
+                // Final onayı fonksiyonunu çalıştır
                 if(typeof finalDogrulamaYap === 'function') finalDogrulamaYap();
             };
         }
     } else {
         if(typeof playErrorSound === 'function') playErrorSound();
-        document.getElementById('rubber-line').setAttribute('stroke', '#ef4444'); // KÃ„Â±rmÃ„Â±zÃ„Â±
+        document.getElementById('rubber-line').setAttribute('stroke', '#ef4444'); // Kırmızı
     }
 }
 
-// Butonun yanÃ„Â±p sÃƒÂ¶nmesi iÃƒÂ§in gerekli olan CSS animasyonu
+// Butonun yanıp sönmesi için gerekli olan CSS animasyonu
 if (!document.getElementById('pulse-style')) {
     const style = document.createElement('style');
     style.id = 'pulse-style';
@@ -9698,32 +9643,32 @@ if (!document.getElementById('pulse-style')) {
 
 
 // =================================================================
-// Ã¢Å“â€¦ FÃ„Â°NAL ONAY VE KONTROL MEKANÃ„Â°ZMASI
+// ✅ FİNAL ONAY VE KONTROL MEKANİZMASI
 // =================================================================
 
-// 1. Ãƒâ€¡izgi DoÃ„Å¸ruysa ÃƒÅ“stteki Butonu Hareketlendir
+// 1. Çizgi Doğruysa Üstteki Butonu Hareketlendir
 function animasyonuBaslatKontrolButonu() {
-    const kontrolBtn = document.getElementById('btn_kontrol_et'); // Senin ÃƒÂ¼stteki butonunun ID'si
+    const kontrolBtn = document.getElementById('btn_kontrol_et'); // Senin üstteki butonunun ID'si
     if (kontrolBtn) {
         kontrolBtn.classList.remove('hidden');
-        // YanÃ„Â±p sÃƒÂ¶nme ve bÃƒÂ¼yÃƒÂ¼me efekti (Tailwind sÃ„Â±nÃ„Â±flarÃ„Â± veya CSS)
+        // Yanıp sönme ve büyüme efekti (Tailwind sınıfları veya CSS)
         kontrolBtn.style.animation = "pulse 1.5s infinite";
         kontrolBtn.classList.add('bg-emerald-600', 'scale-110', 'shadow-2xl');
-        kontrolBtn.innerHTML = "Ã¢Å“Â¨ Ã…Âimdi Ãƒâ€¡izimi Onayla";
+        kontrolBtn.innerHTML = "✨ Şimdi Çizimi Onayla";
         
-        // Butona son kontrol gÃƒÂ¶revini ata
+        // Butona son kontrol görevini ata
         kontrolBtn.onclick = finalDogrulamaYap;
     }
 }
 
-// 2. Kontrol Et Butonuna BasÃ„Â±nca YapÃ„Â±lacak Son Kontrol
+// 2. Kontrol Et Butonuna Basınca Yapılacak Son Kontrol
 function finalDogrulamaYap() {
-    console.log("ÄŸÅ¸ÂÂ Final KontrolÃƒÂ¼ YapÃ„Â±lÃ„Â±yor...");
+    console.log("🏁 Final Kontrolü Yapılıyor...");
     
     const userLine = document.getElementById('rubber-line');
     if (!userLine) return;
 
-    // Tablodaki tÃƒÂ¼m noktalarÃ„Â± al
+    // Tablodaki tüm noktaları al
     const noktalar = [];
     document.querySelectorAll('.table-input-cell').forEach(kutu => {
         if (kutu.id.startsWith('table_input_y_')) {
@@ -9738,7 +9683,7 @@ function finalDogrulamaYap() {
         }
     });
 
-    // Ãƒâ€¡izginin matematiksel eÃ„Å¸imini ve sabitini (y = mx + b) bul
+    // Çizginin matematiksel eğimini ve sabitini (y = mx + b) bul
     const stepY = (typeof linearState !== 'undefined') ? (linearState.yScale || 1) : 1;
     const stepX = (typeof linearState !== 'undefined') ? (linearState.xScale || 1) : 1;
     const ORJIN_X = 50; const ORJIN_Y = 450; const KARE = 50;
@@ -9751,11 +9696,11 @@ function finalDogrulamaYap() {
     const m = (y2 - y1) / (x2 - x1);
     const b = y1 - (m * x1);
 
-    // Her nokta bu ÃƒÂ§izginin ÃƒÂ¼zerinde mi? (0.5 tolerans ile)
+    // Her nokta bu çizginin üzerinde mi? (0.5 tolerans ile)
     let herNoktaUygun = true;
     noktalar.forEach(p => {
         const beklenenY = (m * p.x) + b;
-        if (Math.abs(p.y - beklenenY) > 0.8) { // Biraz esneklik payÃ„Â±
+        if (Math.abs(p.y - beklenenY) > 0.8) { // Biraz esneklik payı
             herNoktaUygun = false;
         }
     });
@@ -9763,98 +9708,98 @@ function finalDogrulamaYap() {
     if (herNoktaUygun && noktalar.length > 0) {
         if(typeof playSuccessSound === 'function') playSuccessSound();
         
-        // BaÃ…Å¸arÃ„Â± EkranÃ„Â±
+        // Başarı Ekranı
         document.getElementById('drawMessageArea').innerHTML = `
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6 rounded-2xl shadow-2xl text-center">
-                <h2 class="text-2xl font-black mb-2">ÄŸÅ¸Ââ€  TEBRÃ„Â°KLER!</h2>
-                <p>Tabloyu doldurdun, grafiÃ„Å¸i ÃƒÂ§izdin ve tÃƒÂ¼m noktalarÃ„Â± birleÃ…Å¸tirdin!</p>
+                <h2 class="text-2xl font-black mb-2">🏆 TEBRİKLER!</h2>
+                <p>Tabloyu doldurdun, grafiği çizdin ve tüm noktaları birleştirdin!</p>
             </div>`;
             
-        // Butonun animasyonunu durdur ve yeÃ…Å¸il yap
+        // Butonun animasyonunu durdur ve yeşil yap
         const btn = document.getElementById('btn_kontrol_et');
         btn.style.animation = "none";
         btn.className = "bg-green-600 text-white px-8 py-3 rounded-full font-bold";
-        btn.innerHTML = "Ã¢Å“â€¦ SORU TAMAMLANDI";
+        btn.innerHTML = "✅ SORU TAMAMLANDI";
         
-        // 3 saniye sonra diÃ„Å¸er soruya geÃƒÂ§iÃ…Å¸ (isteÃ„Å¸e baÃ„Å¸lÃ„Â±)
+        // 3 saniye sonra diğer soruya geçiş (isteğe bağlı)
         // setTimeout(nextQuestion, 3000);
     } else {
         if(typeof playErrorSound === 'function') playErrorSound();
-        alert("Ãƒâ€¡izgi tÃƒÂ¼m noktalardan geÃƒÂ§miyor, lÃƒÂ¼tfen tekrar dene!");
+        alert("Çizgi tüm noktalardan geçmiyor, lütfen tekrar dene!");
     }
 }
 
 // 3. Eski checkDrawingLogic fonksiyonuna tetikleyici ekle
-// (Ãƒâ€“nceki yazdÃ„Â±Ã„Å¸Ã„Â±mÃ„Â±z fonksiyonun iÃƒÂ§ine Ã…Å¸u satÃ„Â±rÃ„Â± ekliyoruz)
+// (Önceki yazdığımız fonksiyonun içine şu satırı ekliyoruz)
 
 
 // ==========================================
-// ÄŸÅ¸Â§Âª MATEMATÃ„Â°KSEL Ã„Â°FADE Ãƒâ€¡Ãƒâ€“ZÃƒÅ“CÃƒÅ“
+// 🧪 MATEMATİKSEL İFADE ÇÖZÜCÜ
 // ==========================================
 function solveMathExpression(inputStr) {
     try {
-        // 1. "x" veya "X" iÃ…Å¸aretlerini "*" (ÃƒÂ§arpma) ile deÃ„Å¸iÃ…Å¸tir
+        // 1. "x" veya "X" işaretlerini "*" (çarpma) ile değiştir
         let cleanedInput = inputStr.toLowerCase().replace(/x/g, '*');
         
-        // 2. Sadece gÃƒÂ¼venli karakterlere izin ver (sayÃ„Â±lar ve + - * /)
-        // Bu gÃƒÂ¼venlik iÃƒÂ§in ÃƒÂ¶nemlidir
+        // 2. Sadece güvenli karakterlere izin ver (sayılar ve + - * /)
+        // Bu güvenlik için önemlidir
         cleanedInput = cleanedInput.replace(/[^0-9+\-*/().]/g, '');
 
-        // 3. Ã„Â°Ã…Å¸lemi hesapla (Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸ine gÃƒÂ¶re)
-        // Function constructor, eval'den daha gÃƒÂ¼venlidir
+        // 3. İşlemi hesapla (İşlem önceliğine göre)
+        // Function constructor, eval'den daha güvenlidir
         const result = new Function(`return ${cleanedInput}`)();
         
         return result;
     } catch (e) {
-        console.error("HatalÃ„Â± iÃ…Å¸lem formatÃ„Â±:", e);
+        console.error("Hatalı işlem formatı:", e);
         return null;
     }
 }
 
-// Tablodaki Y hÃƒÂ¼cresine tÃ„Â±klandÃ„Â±Ã„Å¸Ã„Â±nda veya veri girildiÃ„Å¸inde ÃƒÂ§alÃ„Â±Ã…Å¸Ã„Â±r
+// Tablodaki Y hücresine tıklandığında veya veri girildiğinde çalışır
 function finalizeCellInput(cellId) {
     const cell = document.getElementById(cellId);
     let rawValue = cell.textContent.trim();
 
-    // EÃ„Å¸er hÃƒÂ¼crede iÃ…Å¸lem iÃ…Å¸areti (+, -, x, /) varsa ÃƒÂ§ÃƒÂ¶zÃƒÂ¼cÃƒÂ¼ye gÃƒÂ¶nder
+    // Eğer hücrede işlem işareti (+, -, x, /) varsa çözücüye gönder
     if (/[+\-x*/]/.test(rawValue)) {
         const calculatedResult = solveMathExpression(rawValue);
         
         if (calculatedResult !== null) {
-            // HÃƒÂ¼credeki metni sonucun kendisiyle deÃ„Å¸iÃ…Å¸tir (Ãƒâ€“rn: 185)
+            // Hücredeki metni sonucun kendisiyle değiştir (Örn: 185)
             cell.textContent = calculatedResult;
             
-            // GrafiÃ„Å¸i gÃƒÂ¼ncellemek iÃƒÂ§in mevcut fonksiyonunu tetikle
+            // Grafiği güncellemek için mevcut fonksiyonunu tetikle
             if (typeof canliGrafikCiz === 'function') {
                 canliGrafikCiz(); 
             }
             
-            console.log(`Ã¢Å“â€¦ Ã„Â°Ã…Å¸lem ÃƒÂ§ÃƒÂ¶zÃƒÂ¼ldÃƒÂ¼: ${rawValue} = ${calculatedResult}`);
+            console.log(`✅ İşlem çözüldü: ${rawValue} = ${calculatedResult}`);
         }
     }
 }
 
 // ==========================================
-// ÄŸÅ¸ÂÂ¯ Ã„Â°Ã…ÂLEMÃ„Â° Ãƒâ€¡Ãƒâ€“ZÃƒÅ“P SONUCU AKTARAN MOTOR (v11)
+// 🎯 İŞLEMİ ÇÖZÜP SONUCU AKTARAN MOTOR (v11)
 // ==========================================
 
 window.hucreyiOnayla = function() {
-    // 1. YazÃ„Â±lan hÃƒÂ¼creyi bul (aktifHucreId ÃƒÂ¼zerinden)
+    // 1. Yazılan hücreyi bul (aktifHucreId üzerinden)
     const hucre = document.getElementById(window.aktifHucreId);
     
     if (!hucre) {
-        console.log("Ã¢Å¡Â Ã¯Â¸Â Ãƒâ€“nce bir hÃƒÂ¼creye tÃ„Â±klamalÃ„Â±sÃ„Â±n hocam.");
+        console.log("⚠️ Önce bir hücreye tıklamalısın hocam.");
         return;
     }
 
     let hamVeri = hucre.textContent.trim();
 
-    // HÃƒÂ¼cre boÃ…Å¸sa veya sadece "?" varsa iÃ…Å¸lem yapma
+    // Hücre boşsa veya sadece "?" varsa işlem yapma
     if (hamVeri === "" || hamVeri === "?") return;
 
     try {
-        // 2. MATEMATÃ„Â°KSEL TEMÃ„Â°ZLÃ„Â°K (Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸i hazÃ„Â±rlÃ„Â±Ã„Å¸Ã„Â±)
-        // 'x' iÃ…Å¸aretini '*' yapÃ„Â±yoruz, diÃ„Å¸er gereksiz karakterleri temizliyoruz
+        // 2. MATEMATİKSEL TEMİZLİK (İşlem önceliği hazırlığı)
+        // 'x' işaretini '*' yapıyoruz, diğer gereksiz karakterleri temizliyoruz
         let temizVeri = hamVeri.toLowerCase()
                                .replace(/x/g, '*')
                                .replace(/,/g, '.')
@@ -9865,47 +9810,47 @@ window.hucreyiOnayla = function() {
 
         if (typeof sonuc === 'number' && !isNaN(sonuc)) {
             
-            // --- KRÃ„Â°TÃ„Â°K ADIM: Ã„Â°Ã…Å¸lemi sil, sonucu yaz ---
+            // --- KRİTİK ADIM: İşlemi sil, sonucu yaz ---
             hucre.textContent = sonuc; 
             
-            // GÃƒÂ¶rsel onay (Hafif yeÃ…Å¸il yanÃ„Â±p sÃƒÂ¶ner)
+            // Görsel onay (Hafif yeşil yanıp söner)
             hucre.style.backgroundColor = "#d1fae5"; 
             setTimeout(() => { hucre.style.backgroundColor = "white"; }, 1000);
             
-            console.log(`Ã¢Å“Â¨ Hesaplama BaÃ…Å¸arÃ„Â±lÃ„Â±: ${sonuc}`);
+            console.log(`✨ Hesaplama Başarılı: ${sonuc}`);
 
-            // 4. GRAFÃ„Â°Ã„ÂÃ„Â° GÃƒÅ“NCELLE
-            // Bu fonksiyon tablodaki yeni sayÃ„Â±yÃ„Â± okuyup grafiÃ„Å¸e noktayÃ„Â± koyar
+            // 4. GRAFİĞİ GÜNCELLE
+            // Bu fonksiyon tablodaki yeni sayıyı okuyup grafiğe noktayı koyar
             if (typeof canliGrafikCiz === 'function') {
                 canliGrafikCiz(); 
             }
 
         } else {
-            throw new Error("HesaplanamadÃ„Â±");
+            throw new Error("Hesaplanamadı");
         }
 
     } catch (e) {
-        console.error("Ã¢ÂÅ’ HatalÃ„Â± Ã„Â°Ã…Å¸lem:", e);
-        hucre.style.backgroundColor = "#fee2e2"; // Hata durumunda kÃ„Â±rmÃ„Â±zÃ„Â±
+        console.error("❌ Hatalı İşlem:", e);
+        hucre.style.backgroundColor = "#fee2e2"; // Hata durumunda kırmızı
     }
 };
 
-// 1. Ãƒâ€“NCE HESAPLAMA MANTIÃ„ÂINI OLUÃ…ÂTURALIM
+// 1. ÖNCE HESAPLAMA MANTIĞINI OLUŞTURALIM
 function matematikselCozucu(ifade) {
     try {
-        // 'x' iÃ…Å¸aretini '*' yap, 'ÃƒÂ·' iÃ…Å¸aretini '/' yap
+        // 'x' işaretini '*' yap, '÷' işaretini '/' yap
         let temiz = ifade.toLowerCase()
                          .replace(/x/g, '*')
-                         .replace(/Ãƒâ€”/g, '*')
-                         .replace(/ÃƒÂ·/g, '/')
+                         .replace(/×/g, '*')
+                         .replace(/÷/g, '/')
                          .replace(/,/g, '.');
 
-        // Sadece sayÃ„Â±lar ve iÃ…Å¸lem iÃ…Å¸aretleri kalsÃ„Â±n (GÃƒÂ¼venlik iÃƒÂ§in)
+        // Sadece sayılar ve işlem işaretleri kalsın (Güvenlik için)
         temiz = temiz.replace(/[^0-9+\-*/().]/g, '');
 
         if (temiz === "") return null;
 
-        // Ã„Â°Ã…Å¸lem ÃƒÂ¶nceliÃ„Å¸ine gÃƒÂ¶re hesapla (PEMDAS/BODMAS kuralÃ„Â±)
+        // İşlem önceliğine göre hesapla (PEMDAS/BODMAS kuralı)
         const sonuc = new Function(`return ${temiz}`)();
         
         return sonuc;
@@ -9914,32 +9859,32 @@ function matematikselCozucu(ifade) {
     }
 }
 
-// 2. SAYI PANELÃ„Â°NDEKÃ„Â° "TAMAM" BUTONUNA BU GÃƒâ€“REVÃ„Â° BAÃ„ÂLAYALIM
+// 2. SAYI PANELİNDEKİ "TAMAM" BUTONUNA BU GÖREVİ BAĞLAYALIM
 const tamamButonu = document.getElementById('numPadClose');
 
 if (tamamButonu) {
     tamamButonu.addEventListener('click', function() {
-        const ekran = document.getElementById('currentInput'); // Paneldeki yazÃ„Â± alanÃ„Â±
+        const ekran = document.getElementById('currentInput'); // Paneldeki yazı alanı
         const hamYazi = ekran.innerText.trim();
         
         if (hamYazi !== "" && window.aktifHucreId) {
             const hedefHucre = document.getElementById(window.aktifHucreId);
             
-            // HESAPLAMA BURADA DEVREYE GÃ„Â°RÃ„Â°YOR
+            // HESAPLAMA BURADA DEVREYE GİRİYOR
             const sonuc = matematikselCozucu(hamYazi);
 
             if (sonuc !== null) {
-                // HÃƒÂ¼creye "150-0x15" deÃ„Å¸il, sadece sonucu (150) yaz
+                // Hücreye "150-0x15" değil, sadece sonucu (150) yaz
                 hedefHucre.innerText = sonuc;
                 
-                // GrafiÃ„Å¸i gÃƒÂ¼ncellemek iÃƒÂ§in sizin ana fonksiyonunuzu ÃƒÂ§aÃ„Å¸Ã„Â±rÃ„Â±yoruz
+                // Grafiği güncellemek için sizin ana fonksiyonunuzu çağırıyoruz
                 if (typeof canliGrafikCiz === 'function') {
                     canliGrafikCiz();
                 }
                 
-                console.log("Ã¢Å“â€¦ Ã„Â°Ã…Å¸lem baÃ…Å¸arÃ„Â±yla sonuca dÃƒÂ¶nÃƒÂ¼Ã…Å¸tÃƒÂ¼rÃƒÂ¼ldÃƒÂ¼.");
+                console.log("✅ İşlem başarıyla sonuca dönüştürüldü.");
             } else {
-                // EÃ„Å¸er hesaplanamazsa olduÃ„Å¸u gibi aktar (hata vermemesi iÃƒÂ§in)
+                // Eğer hesaplanamazsa olduğu gibi aktar (hata vermemesi için)
                 hedefHucre.innerText = hamYazi;
             }
         }
@@ -9951,15 +9896,15 @@ if (tamamButonu) {
 }
 
 // ==========================================
-// 1. SÃ„Â°STEMÃ„Â°N YENÃ„Â° BEYNÃ„Â° (UNIFIED INPUT)
+// 1. SİSTEMİN YENİ BEYNİ (UNIFIED INPUT)
 // ==========================================
 window.activeInputTarget = null; 
 
 window.openTableInput = function(targetId) {
-    console.log("ÄŸÅ¸ÂÂ¯ Yeni Hedef Kilitlendi:", targetId);
+    console.log("🎯 Yeni Hedef Kilitlendi:", targetId);
     window.activeInputTarget = targetId;
 
-    // Ãƒâ€“nceki seÃƒÂ§im gÃƒÂ¶rsellerini temizle
+    // Önceki seçim görsellerini temizle
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.style.backgroundColor = "white";
         el.style.borderColor = "#e0e7ff";
@@ -9972,13 +9917,13 @@ window.openTableInput = function(targetId) {
         box.style.borderColor = "#6366f1";     // indigo-500
         box.classList.add('ring-2', 'ring-indigo-400');
         
-        // Kutudaki mevcut deÃ„Å¸eri Numpad ekranÃ„Â±na taÃ…Å¸Ã„Â±
+        // Kutudaki mevcut değeri Numpad ekranına taşı
         let currentVal = box.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = currentVal;
     }
 
-    // Numpad'i gÃƒÂ¶rÃƒÂ¼nÃƒÂ¼r yap ve en ÃƒÂ¼ste taÃ…Å¸Ã„Â±
+    // Numpad'i görünür yap ve en üste taşı
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -9988,14 +9933,14 @@ window.openTableInput = function(targetId) {
 };
 
 // ==========================================
-// 2. MATEMATÃ„Â°KSEL MOTOR VE TAMAM BUTONU
+// 2. MATEMATİKSEL MOTOR VE TAMAM BUTONU
 // ==========================================
 function solveMathExpression(input) {
     try {
-        // 'x' ve 'Ãƒâ€”' iÃ…Å¸aretlerini '*' yap, virgÃƒÂ¼lÃƒÂ¼ noktaya ÃƒÂ§evir
+        // 'x' ve '×' işaretlerini '*' yap, virgülü noktaya çevir
         let clean = input.toLowerCase()
-                         .replace(/x|Ãƒâ€”/g, '*')
-                         .replace(/ÃƒÂ·/g, '/')
+                         .replace(/x|×/g, '*')
+                         .replace(/÷/g, '/')
                          .replace(/,/g, '.')
                          .replace(/[^0-9+\-*/().]/g, '');
         if (clean === "") return null;
@@ -10003,7 +9948,7 @@ function solveMathExpression(input) {
     } catch (e) { return null; }
 }
 
-// Tamam butonunu bul ve gÃƒÂ¶revini yeniden tanÃ„Â±mla
+// Tamam butonunu bul ve görevini yeniden tanımla
 (function() {
     const btnTamam = document.getElementById('numPadClose');
     if (btnTamam) {
@@ -10015,7 +9960,7 @@ function solveMathExpression(input) {
             if (window.activeInputTarget && rawVal !== "") {
                 const targetBox = document.getElementById(window.activeInputTarget);
                 if (targetBox) {
-                    // Ã„Â°Ã…ÂLEMÃ„Â° Ãƒâ€¡Ãƒâ€“Z
+                    // İŞLEMİ ÇÖZ
                     let result = solveMathExpression(rawVal);
                     let finalVal = (result !== null && !isNaN(result)) ? result : rawVal;
 
@@ -10023,7 +9968,7 @@ function solveMathExpression(input) {
                     targetBox.textContent = finalVal;
                     targetBox.style.backgroundColor = "white";
 
-                    // 2. HafÃ„Â±zaya (linearState) Kaydet
+                    // 2. Hafızaya (linearState) Kaydet
                     if (window.activeInputTarget.startsWith('table_input_')) {
                         const parts = window.activeInputTarget.split('_');
                         const col = parts[2]; // x veya y
@@ -10036,7 +9981,7 @@ function solveMathExpression(input) {
                     }
                 }
             }
-            // 3. Paneli Kapat ve GrafiÃ„Å¸i GÃƒÂ¼ncelle
+            // 3. Paneli Kapat ve Grafiği Güncelle
             if (typeof forceClosePanel === 'function') forceClosePanel();
             if (typeof canliGrafikCiz === 'function') canliGrafikCiz();
             if (typeof checkTableFull_Final === 'function') checkTableFull_Final();
@@ -10045,23 +9990,23 @@ function solveMathExpression(input) {
 })();
 
 // ==========================================
-// 3. AKILLI GRAFÃ„Â°K VE Y-EKSENÃ„Â° Ãƒâ€“LÃƒâ€¡EÃ„ÂÃ„Â° (YEDEK VE SÃ„Â°LÃ„Â°NDÃ„Â°)
+// 3. AKILLI GRAFİK VE Y-EKSENİ ÖLÇEĞİ (YEDEK VE SİLİNDİ)
 // ==========================================
-// window.canliGrafikCiz fonksiyonu silindi ÃƒÂ§ÃƒÂ¼nkÃƒÂ¼ yukarÃ„Â±daki asÃ„Â±l canliGrafikCiz ile ÃƒÂ§akÃ„Â±Ã…Å¸Ã„Â±yordu.
+// window.canliGrafikCiz fonksiyonu silindi çünkü yukarıdaki asıl canliGrafikCiz ile çakışıyordu.
 
 // ==========================================
-// ÄŸÅ¸ÂÂ¯ MASTER OVERRIDE: SAYI AKTARMA TAMÃ„Â°RCÃ„Â°SÃ„Â°
+// 🎯 MASTER OVERRIDE: SAYI AKTARMA TAMİRCİSİ
 // ==========================================
 
-// 1. TEK VE GERÃƒâ€¡EK HEDEF DEÃ„ÂÃ„Â°Ã…ÂKENÃ„Â°
+// 1. TEK VE GERÇEK HEDEF DEĞİŞKENİ
 window.MASTER_TARGET = null;
 
-// 2. KUTUYA TIKLAMA FONKSÃ„Â°YONUNU SIFIRDAN KUR
+// 2. KUTUYA TIKLAMA FONKSİYONUNU SIFIRDAN KUR
 window.openTableInput = function(targetId) {
-    console.log("ÄŸÅ¸â€œÂ Kutu SeÃƒÂ§ildi:", targetId);
+    console.log("📍 Kutu Seçildi:", targetId);
     window.MASTER_TARGET = targetId;
 
-    // GÃƒÂ¶rsel efekt: DiÃ„Å¸erlerini sÃƒÂ¶ndÃƒÂ¼r, seÃƒÂ§ileni yak
+    // Görsel efekt: Diğerlerini söndür, seçileni yak
     document.querySelectorAll('.table-input-cell').forEach(el => {
         el.style.backgroundColor = "white";
         el.style.borderColor = "#e0e7ff";
@@ -10069,16 +10014,16 @@ window.openTableInput = function(targetId) {
 
     const box = document.getElementById(targetId);
     if (box) {
-        box.style.backgroundColor = "#dbeafe"; // SeÃƒÂ§ili mavi
+        box.style.backgroundColor = "#dbeafe"; // Seçili mavi
         box.style.borderColor = "#2563eb";
         
-        // Kutuda ÃƒÂ¶nceden yazan bir Ã…Å¸ey varsa Numpad ekranÃ„Â±na al
+        // Kutuda önceden yazan bir şey varsa Numpad ekranına al
         let existingVal = box.textContent.replace('?', '').trim();
         const display = document.getElementById('currentInput');
         if (display) display.textContent = existingVal;
     }
 
-    // Paneli AÃƒÂ§ (TÃƒÂ¼m engelleri aÃ…Å¸arak)
+    // Paneli Aç (Tüm engelleri aşarak)
     const np = document.getElementById('numberPad');
     if (np) {
         np.classList.remove('hidden');
@@ -10087,13 +10032,13 @@ window.openTableInput = function(targetId) {
     }
 };
 
-// 3. TAMAM (ONAY) BUTONUNU ZORLA YENÃ„Â°DEN BAÃ„ÂLA
+// 3. TAMAM (ONAY) BUTONUNU ZORLA YENİDEN BAĞLA
 (function() {
     const checkAndFixButton = () => {
         const btnTamam = document.getElementById('numPadClose');
         if (!btnTamam) return;
 
-        // Eski tÃƒÂ¼m olaylarÃ„Â± (click) temizleyip yenisini takÃ„Â±yoruz
+        // Eski tüm olayları (click) temizleyip yenisini takıyoruz
         const masterConfirm = btnTamam.cloneNode(true);
         btnTamam.parentNode.replaceChild(masterConfirm, btnTamam);
 
@@ -10104,24 +10049,24 @@ window.openTableInput = function(targetId) {
             const display = document.getElementById('currentInput');
             let rawValue = display ? display.textContent.trim() : '';
             
-            console.log("Ã¢Å“â€¦ Tamam'a basÃ„Â±ldÃ„Â±. DeÃ„Å¸er:", rawValue, "Hedef:", window.MASTER_TARGET);
+            console.log("✅ Tamam'a basıldı. Değer:", rawValue, "Hedef:", window.MASTER_TARGET);
 
             if (window.MASTER_TARGET) {
                 const targetBox = document.getElementById(window.MASTER_TARGET);
                 if (targetBox) {
-                    // SayÃ„Â± veya Ã„Â°Ã…Å¸lem KontrolÃƒÂ¼ (200-15*2 gibi)
+                    // Sayı veya İşlem Kontrolü (200-15*2 gibi)
                     let finalValue = "?";
                     if (rawValue !== "") {
                         try {
-                            // Basit matematik ÃƒÂ§ÃƒÂ¶zÃƒÂ¼cÃƒÂ¼
-                            let cleanExpr = rawValue.replace(/x|Ãƒâ€”/g, '*').replace(/ÃƒÂ·/g, '/').replace(/,/g, '.');
+                            // Basit matematik çözücü
+                            let cleanExpr = rawValue.replace(/x|×/g, '*').replace(/÷/g, '/').replace(/,/g, '.');
                             let solved = new Function(`return ${cleanExpr}`)();
                             if (solved !== null && !isNaN(solved)) {
-                                // OndalÃ„Â±k kÃ„Â±smÃ„Â± varsa en fazla 2 basamak gÃƒÂ¶ster
+                                // Ondalık kısmı varsa en fazla 2 basamak göster
                                 if (solved % 1 !== 0) {
                                     solved = parseFloat(solved.toFixed(2));
                                 }
-                                // Sadece bir sayÃ„Â± deÃ„Å¸ilse ve iÃƒÂ§inde iÃ…Å¸lem karakteri varsa '= X' ekle
+                                // Sadece bir sayı değilse ve içinde işlem karakteri varsa '= X' ekle
                                 if (/[+\-*/]/.test(cleanExpr) && rawValue !== solved.toString()) {
                                     finalValue = `${rawValue} = ${solved}`;
                                 } else {
@@ -10133,12 +10078,12 @@ window.openTableInput = function(targetId) {
                         } catch(err) { finalValue = rawValue; }
                     }
 
-                    // --- KRÃ„Â°TÃ„Â°K ADIM: TABLOYA YAZ ---
+                    // --- KRİTİK ADIM: TABLOYA YAZ ---
                     targetBox.textContent = finalValue;
                     targetBox.style.backgroundColor = "white";
                     targetBox.style.borderColor = "#e0e7ff";
 
-                    // --- YAMA: KONTROL BUTONUNU AÃƒâ€¡ (EÃ„Å¸ik DÃƒÂ¼zlem KutularÃ„Â± Ã„Â°ÃƒÂ§in) ---
+                    // --- YAMA: KONTROL BUTONUNU AÇ (Eğik Düzlem Kutuları İçin) ---
                     if (['slopeAnswerBox', 'unknownBox', 'slopeNumBox', 'slopeDenomBox', 'leftDenomBox'].includes(window.MASTER_TARGET)) {
                         const checkBtn = document.getElementById('checkBtn');
                         if (checkBtn) {
@@ -10147,7 +10092,7 @@ window.openTableInput = function(targetId) {
                         }
                     }
 
-                    // --- HAFIZAYA (State) Ã„Â°Ã…ÂLE ---
+                    // --- HAFIZAYA (State) İŞLE ---
                     if (window.MASTER_TARGET.startsWith('table_input_')) {
                         const parts = window.MASTER_TARGET.split('_');
                         const col = parts[2]; // x veya y
@@ -10161,7 +10106,7 @@ window.openTableInput = function(targetId) {
                 }
             }
 
-            // Paneli Kapat ve GrafiÃ„Å¸i GÃƒÂ¼ncelle
+            // Paneli Kapat ve Grafiği Güncelle
             if (typeof forceClosePanel === 'function') forceClosePanel();
             else {
                 const np = document.getElementById('numberPad');
@@ -10172,18 +10117,18 @@ window.openTableInput = function(targetId) {
                 if (display) display.textContent = '';
             }
             
-            // CanlÃ„Â± grafiÃ„Å¸i tetikle (EÃ„Å¸ik dÃƒÂ¼zlemde canvasÃ„Â± bozmamak iÃƒÂ§in kÃ„Â±sÃ„Â±tlandÃ„Â±)
+            // Canlı grafiği tetikle (Eğik düzlemde canvası bozmamak için kısıtlandı)
             if (typeof canliGrafikCiz === 'function' && gameState.mode !== 'slope_incline') {
                 canliGrafikCiz();
             }
-            // Tablo doluluk kontrolÃƒÂ¼
+            // Tablo doluluk kontrolü
             if (typeof checkTableFull_Final === 'function' && gameState.mode !== 'slope_incline') {
                 checkTableFull_Final();
             }
         });
     };
 
-    // Sayfa yÃƒÂ¼klendiÃ„Å¸inde ve her saniye kontrol et (ID'ler dinamik deÃ„Å¸iÃ…Å¸irse diye)
+    // Sayfa yüklendiğinde ve her saniye kontrol et (ID'ler dinamik değişirse diye)
     setTimeout(checkAndFixButton, 500);
     setInterval(checkAndFixButton, 3000); 
 })();

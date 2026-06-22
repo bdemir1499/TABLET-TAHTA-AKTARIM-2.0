@@ -9030,9 +9030,8 @@ function forceClosePanel() {
     const panel = document.getElementById('numberPad');
     if (panel) {
         // Hem CSS sınıfı ekle
+        panel.removeAttribute('style');
         panel.classList.add('hidden');
-        // Hem de stili zorla 'none' yap (Kilit nokta burası)
-        panel.style.display = 'none';
     }
 
     // Ekranı temizle
@@ -9276,7 +9275,10 @@ window.confirmTableAndStartDrawing = function() {
 // ---------------------------------------------------------
 function kapatPanel() {
     const p = document.getElementById('numberPad');
-    if(p) { p.classList.add('hidden'); p.style.display = 'none'; }
+    if(p) { 
+        p.removeAttribute('style');
+        p.classList.add('hidden'); 
+    }
     window.HEDEF_KUTU = null;
     const ekr = document.getElementById('currentInput');
     if(ekr) ekr.textContent = '';
@@ -10071,7 +10073,10 @@ window.openTableInput = function(targetId) {
             if (typeof forceClosePanel === 'function') forceClosePanel();
             else {
                 const np = document.getElementById('numberPad');
-                if (np) { np.classList.add('hidden'); np.style.display = 'none'; }
+                if (np) { 
+                    np.removeAttribute('style');
+                    np.classList.add('hidden'); 
+                }
                 if (display) display.textContent = '';
             }
             

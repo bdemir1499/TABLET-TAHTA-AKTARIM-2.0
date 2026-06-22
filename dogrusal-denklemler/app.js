@@ -5490,7 +5490,12 @@ function startSlopeGraphRound() {
             linearState.currentInputValue = ''; 
             box.textContent = '?'; box.style.color = '';
             document.getElementById('currentInput').textContent = '';
-            document.getElementById('numberPad').classList.remove('hidden');
+            const pad = document.getElementById('numberPad');
+            if (pad) {
+                pad.classList.remove('hidden');
+                pad.style.display = 'flex';
+                pad.style.zIndex = '999999';
+            }
         });
     }
 
@@ -5612,6 +5617,31 @@ function drawSlopeGraph() {
     yAxis.setAttribute('x1', CENTER_X); yAxis.setAttribute('y1', 0); yAxis.setAttribute('x2', CENTER_X); yAxis.setAttribute('y2', 500);
     yAxis.setAttribute('stroke', '#374151'); yAxis.setAttribute('stroke-width', '2');
     gridGroup.appendChild(yAxis);
+
+    // Eksen Numaraları (Her kare 1 birim)
+    for(let i = -10; i <= 10; i++) {
+        if(i !== 0) {
+            // X Ekseni Numaraları
+            const xText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            xText.setAttribute('x', CENTER_X + (i * GRID));
+            xText.setAttribute('y', CENTER_Y + 15);
+            xText.setAttribute('font-size', '12');
+            xText.setAttribute('text-anchor', 'middle');
+            xText.setAttribute('fill', '#6b7280');
+            xText.textContent = i;
+            gridGroup.appendChild(xText);
+
+            // Y Ekseni Numaraları
+            const yText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            yText.setAttribute('x', CENTER_X - 8);
+            yText.setAttribute('y', CENTER_Y - (i * GRID) + 4);
+            yText.setAttribute('font-size', '12');
+            yText.setAttribute('text-anchor', 'end');
+            yText.setAttribute('fill', '#6b7280');
+            yText.textContent = i;
+            gridGroup.appendChild(yText);
+        }
+    }
     
     canvas.appendChild(gridGroup);
 

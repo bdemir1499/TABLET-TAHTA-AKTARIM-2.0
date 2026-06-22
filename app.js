@@ -8048,8 +8048,18 @@ window.addEventListener('DOMContentLoaded', () => {
     if (window.location.href.includes('returnFromGame=true')) {
         setTimeout(() => {
             if (typeof setLanguage === 'function') setLanguage('tr');
-            const o = document.getElementById('language-overlay');
-            if(o) o.style.display = 'none';
+            
+            // Tüm açılış ekranlarını ve popupları gizle
+            ['language-overlay', 'disclaimer-modal', 'footer-container', 'disclaimer-container', 'install-popup'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            
+            // Ekstra garantili kapatma (özellikle ebeveyn div için)
+            const kvkk = document.getElementById('kvkk-bilgi');
+            if (kvkk && kvkk.parentElement) kvkk.parentElement.style.display = 'none';
+
+            window.acilisPenceresiKapatildi = true;
             
             // Parametreyi URL'den temizle ki sayfayı yenileyince tekrar tetiklenmesin
             const url = new URL(window.location.href);

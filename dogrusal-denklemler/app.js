@@ -4127,6 +4127,7 @@ window.updateLinearCanvas = function(row, col, value) {
         guideX.setAttribute('x2', pixelX); guideX.setAttribute('y2', CENTER_Y);
         guideX.setAttribute('stroke', '#ef4444'); guideX.setAttribute('stroke-width', '2');
         guideX.setAttribute('stroke-dasharray', '4,4');
+        guideX.style.pointerEvents = 'none'; // Tıklama hatasını engelle
         linearCanvas.appendChild(guideX);
 
         const guideY = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -4134,6 +4135,7 @@ window.updateLinearCanvas = function(row, col, value) {
         guideY.setAttribute('x2', CENTER_X); guideY.setAttribute('y2', pixelY);
         guideY.setAttribute('stroke', '#ef4444'); guideY.setAttribute('stroke-width', '2');
         guideY.setAttribute('stroke-dasharray', '4,4');
+        guideY.style.pointerEvents = 'none'; // Tıklama hatasını engelle
         linearCanvas.appendChild(guideY);
 
         // Nokta
@@ -4142,6 +4144,7 @@ window.updateLinearCanvas = function(row, col, value) {
         circle.setAttribute('r', 8); 
         circle.setAttribute('fill', '#8b5cf6');
         circle.setAttribute('stroke', 'white'); circle.setAttribute('stroke-width', '2');
+        circle.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI İÇİN EKLENDİ
         linearCanvas.appendChild(circle);
 
         // Etiket
@@ -4153,6 +4156,7 @@ window.updateLinearCanvas = function(row, col, value) {
         const displayX = decimalToFraction(p.x);
         const displayY = decimalToFraction(p.y);
         label.textContent = `(${displayX}, ${displayY})`;
+        label.style.pointerEvents = 'none'; // TABLET TIKLAMA HATASI İÇİN EKLENDİ
         linearCanvas.appendChild(label);
     });
 
@@ -4192,7 +4196,12 @@ function setupStraightLineDrawing() {
         if (document.getElementById('drawInstructionText').classList.contains('hidden')) return;
 
         isDragging = true;
-        newCanvas.setPointerCapture(e.pointerId);
+        try {
+            newCanvas.setPointerCapture(e.pointerId);
+        } catch(err) {
+            console.warn("Pointer capture hatası:", err);
+            // Tablette hata verse bile çizime devam et
+        }
         const pt = newCanvas.createSVGPoint();
         pt.x = e.clientX; pt.y = e.clientY;
         const svgP = pt.matrixTransform(newCanvas.getScreenCTM().inverse());
@@ -4217,7 +4226,9 @@ function setupStraightLineDrawing() {
     newCanvas.onpointerup = function(e) {
         if (!isDragging || !previewLine) return;
         isDragging = false;
-        newCanvas.releasePointerCapture(e.pointerId);
+        try {
+            newCanvas.releasePointerCapture(e.pointerId);
+        } catch(err) {}
         
         const pt = newCanvas.createSVGPoint();
         pt.x = e.clientX; pt.y = e.clientY;

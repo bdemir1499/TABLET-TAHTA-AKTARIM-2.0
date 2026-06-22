@@ -7,6 +7,14 @@ if (kacakKullanimMi && mevcutAdres !== "") {
     throw new Error("Korsan kullanım tespit edildi, sistem durduruldu!");
 }
 
+// --- SAYFAYI YENİLEYİNCE (F5) ANA UYGULAMAYA DÖN (ARTİSTLİK YAPMASIN) ---
+const navEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+const isReload = (navEntry && navEntry.type === "reload") || (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+
+if (isReload) {
+    window.location.href = '../index.html';
+}
+
 // En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
 window.feedbackTimer = null; // Global zamanlayıcı
 

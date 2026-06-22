@@ -5471,9 +5471,10 @@ function startSlopeGraphRound() {
         box.addEventListener('click', () => {
             activeInputTarget = targetName;
             currentActiveBoxId = boxId;
+            window.MASTER_TARGET = boxId;
             linearState.currentInputValue = ''; 
             box.textContent = '?'; box.style.color = '';
-            document.getElementById('currentInput').textContent = title;
+            document.getElementById('currentInput').textContent = '';
             document.getElementById('numberPad').classList.remove('hidden');
         });
     }
@@ -10046,7 +10047,7 @@ window.openTableInput = function(targetId) {
                     targetBox.style.borderColor = "#e0e7ff";
 
                     // --- YAMA: KONTROL BUTONUNU AÇ (Eğik Düzlem Kutuları İçin) ---
-                    if (['slopeAnswerBox', 'unknownBox', 'slopeNumBox', 'slopeDenomBox'].includes(window.MASTER_TARGET)) {
+                    if (['slopeAnswerBox', 'unknownBox', 'slopeNumBox', 'slopeDenomBox', 'leftDenomBox'].includes(window.MASTER_TARGET)) {
                         const checkBtn = document.getElementById('checkBtn');
                         if (checkBtn) {
                             checkBtn.disabled = false;

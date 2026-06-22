@@ -9410,7 +9410,13 @@ window.setupStraightLineDrawing = function() {
         const end = getPointOnSvg(e);
 
         if (typeof window.sendP2PDrawEvent === 'function') {
-            window.sendP2PDrawEvent({ action: 'end', coords: end });
+            window.sendP2PDrawEvent({ 
+                action: 'end', 
+                coords: end,
+                scale: linearState.axisScale,
+                tSlope: gameState.targetSlope,
+                tIntercept: gameState.targetIntercept
+            });
         }
 
         tempLine.removeAttribute('stroke-dasharray'); 
@@ -9466,6 +9472,12 @@ window.setupStraightLineDrawing = function() {
                 x: parseFloat(tempLine.getAttribute('x1')),
                 y: parseFloat(tempLine.getAttribute('y1'))
             };
+            
+            // Senkronizasyon Kaymalarını (Ölçek, Denklem farkı vb.) Gidermek İçin Tabletten Gelen Doğruları Zorla
+            if (payload.scale !== undefined) linearState.axisScale = payload.scale;
+            if (payload.tSlope !== undefined) gameState.targetSlope = payload.tSlope;
+            if (payload.tIntercept !== undefined) gameState.targetIntercept = payload.tIntercept;
+            
             if (['x_eq_a', 'y_eq_b', 'y_eq_ax', 'y_eq_ax_plus_b'].includes(gameState.mode)) {
                 linearState.drawnPoints = [start, payload.coords];
                 const checkBtn = document.getElementById('checkBtn');

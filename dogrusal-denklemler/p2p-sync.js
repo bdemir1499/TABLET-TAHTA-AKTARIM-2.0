@@ -175,7 +175,7 @@ function handleIncomingData(data) {
     if (!data) return;
 
     if (data.type === 'go_back') {
-        window.location.href = '../index.html';
+        window.location.href = '../index.html?returnFromGame=true';
     } 
     else if (data.type === 'sync_seed') {
         if (typeof window.setGameSeed === 'function') {

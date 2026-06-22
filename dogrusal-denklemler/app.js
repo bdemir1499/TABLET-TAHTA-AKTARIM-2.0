@@ -15,6 +15,18 @@ if (isReload) {
     window.location.href = '../index.html';
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('closeGameBtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            if (typeof myConnection !== 'undefined' && myConnection && isConnected) {
+                myConnection.send({ type: 'go_back' });
+            }
+            window.location.href = '../index.html?returnFromGame=true';
+        });
+    }
+});
+
 // En tepeye, diğer değişkenlerin (gameState vb.) yanına ekle:
 window.feedbackTimer = null; // Global zamanlayıcı
 

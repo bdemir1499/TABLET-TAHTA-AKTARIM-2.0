@@ -8050,6 +8050,11 @@ window.addEventListener('DOMContentLoaded', () => {
             if (typeof setLanguage === 'function') setLanguage('tr');
             const o = document.getElementById('language-overlay');
             if(o) o.style.display = 'none';
+            
+            // Parametreyi URL'den temizle ki sayfayı yenileyince tekrar tetiklenmesin
+            const url = new URL(window.location.href);
+            url.searchParams.delete('returnFromGame');
+            window.history.replaceState({}, document.title, url.toString() || window.location.pathname);
         }, 300);
     }
 });

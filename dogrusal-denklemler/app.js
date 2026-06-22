@@ -4934,6 +4934,7 @@ function startSlopeInclineRound() {
 
     // 2. EKRAN TEMİZLİĞİ
     clearAllScreens();
+    resetLinearQuestionPanel();
 
     document.getElementById('slopeSubButtons').classList.remove('hidden');
     document.getElementById('btnSlopeIncline').classList.add('ring-2', 'ring-offset-1', 'ring-orange-500');

@@ -5402,7 +5402,7 @@ function startSlopeGraphRound() {
             if (val === 'Tamam' || btn.id === 'confirmInputBtn') { closePanelAndEnableCheck(); return; }
             const isDelete = btn.querySelector('.fa-backspace') || val === 'Sil' || val === 'C';
             if (isDelete) linearState.currentInputValue = linearState.currentInputValue.slice(0, -1);
-            else if (!isNaN(val) || val === '-') linearState.currentInputValue += val;
+            else if (!isNaN(val) || ['-', '+', '*', 'x', '÷', '/', ',', '.'].includes(val)) linearState.currentInputValue += val;
 
             if (currentActiveBoxId) {
                 const box = document.getElementById(currentActiveBoxId);

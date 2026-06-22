@@ -10072,10 +10072,14 @@ window.openTableInput = function(targetId) {
                 if (display) display.textContent = '';
             }
             
-            // Canlı grafiği tetikle
-            if (typeof canliGrafikCiz === 'function') canliGrafikCiz();
+            // Canlı grafiği tetikle (Eğik düzlemde canvası bozmamak için kısıtlandı)
+            if (typeof canliGrafikCiz === 'function' && gameState.mode !== 'slope_incline') {
+                canliGrafikCiz();
+            }
             // Tablo doluluk kontrolü
-            if (typeof checkTableFull_Final === 'function') checkTableFull_Final();
+            if (typeof checkTableFull_Final === 'function' && gameState.mode !== 'slope_incline') {
+                checkTableFull_Final();
+            }
         });
     };
 

@@ -4281,10 +4281,15 @@ function checkStraightLine() {
     const drawnSlope = (y2 - y1) / (x2 - x1);
     const drawnIntercept = y1 - (drawnSlope * x1); 
     
-    // Kontroller (Toleranslı)
-    // Ölçek büyüdükçe toleransı biraz artırmak gerekebilir ama 0.5 genellikle iyidir.
-    const isSlopeCorrect = Math.abs(drawnSlope - targetSlope) < 0.5;
-    const isInterceptCorrect = Math.abs(drawnIntercept - targetIntercept) < 0.5;
+    // Kontroller (Çok Daha Geniş Toleranslı - Tablet Parmak Çizimi İçin)
+    let slopeTolerance = 1.0;
+    if (Math.abs(targetSlope) >= 2) slopeTolerance = 1.5;
+    if (Math.abs(targetSlope) >= 3) slopeTolerance = 2.0;
+    
+    let interceptTolerance = 1.5 * currentScale; // Ölçek arttıkça hata payı artar
+    
+    const isSlopeCorrect = Math.abs(drawnSlope - targetSlope) <= slopeTolerance;
+    const isInterceptCorrect = Math.abs(drawnIntercept - targetIntercept) <= interceptTolerance;
     
     // Uzunluk kontrolü (Piksel bazında yapalım ki ölçekten etkilenmesin)
     // En az 40 piksel (1 kare) uzunluk olsun

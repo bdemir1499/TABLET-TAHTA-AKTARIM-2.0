@@ -9466,7 +9466,7 @@ window.setupStraightLineDrawing = function() {
                 x: parseFloat(tempLine.getAttribute('x1')),
                 y: parseFloat(tempLine.getAttribute('y1'))
             };
-            if (['x_eq_a', 'y_eq_b', 'y_eq_ax'].includes(gameState.mode)) {
+            if (['x_eq_a', 'y_eq_b', 'y_eq_ax', 'y_eq_ax_plus_b'].includes(gameState.mode)) {
                 linearState.drawnPoints = [start, payload.coords];
                 const checkBtn = document.getElementById('checkBtn');
                 if (checkBtn) {

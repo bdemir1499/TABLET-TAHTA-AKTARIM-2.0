@@ -5568,19 +5568,19 @@ function startSlopeGraphRound() {
             let unit = -(i - cy) / scale;
             if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, cx - 6, i);
         }
-        // 3.5 Eksen Numaraları
-        ctx.fillStyle = '#6b7280';
-        ctx.font = '10px Arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        for(let i = 0; i <= w; i += scale) {
-            let unit = (i - cx) / scale;
-            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, i, cy + 12);
-        }
-        ctx.textAlign = 'right';
-        for(let i = 0; i <= h; i += scale) {
-            let unit = -(i - cy) / scale;
-            if (unit !== 0 && unit % 2 === 0) ctx.fillText(unit, cx - 6, i);
+
+
+
+
+
+
+
+
+
+
+
+
+
         // b noktasÃ„Â± (Y ekseni, aÃ…Å¸aÃ„Å¸Ã„Â±da) -> cy + 15*scale
         // 5 noktasÃ„Â± (X ekseni, saÃ„Å¸da) -> cx + 5*scale
         

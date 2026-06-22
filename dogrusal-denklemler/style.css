@@ -1,0 +1,223 @@
+﻿body {
+    box-sizing: border-box;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.grid-canvas {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+
+
+.axis-line {
+    stroke: #374151;
+    stroke-width: 2;
+}
+
+
+.original-shape {
+    fill: rgba(59, 130, 246, 0.3);
+    stroke: #2563eb;
+    stroke-width: 2;
+}
+
+
+.transformed-shape {
+    fill: rgba(16, 185, 129, 0.3);
+    stroke: #059669;
+    stroke-width: 2;
+    stroke-dasharray: 5, 5;
+}
+
+
+.point {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+
+.point:hover {
+    transform: scale(1.2);
+}
+
+
+.grid-point {
+    cursor: crosshair;
+}
+
+
+.selected-button {
+    transform: scale(0.95);
+}
+
+
+button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+@keyframes slideShape {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.animated-shape {
+    animation: slideShape 0.8s ease-out forwards;
+}
+
+
+.shape-clone {
+    transition: none;
+}
+
+
+@keyframes successPulse {
+    0% {
+        transform: translate(-50%, 0) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, 0) scale(1.15);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+
+.success-animation {
+    animation: successPulse 0.6s ease-out forwards !important;
+}
+
+
+.option-button {
+    transition: all 0.3s ease;
+}
+
+
+.option-button:hover {
+    transform: scale(1.02);
+}
+
+
+.option-button.selected {
+    background-color: #3b82f6;
+    color: white;
+    transform: scale(1.05);
+}
+
+
+.option-button.correct {
+    background-color: #10b981;
+    color: white;
+}
+
+
+.option-button.wrong {
+    background-color: #ef4444;
+    color: white;
+}
+
+
+@view-transition {
+    navigation: auto;
+}
+
+/* --- EĞİM (SLOPE) BUTONU STİLİ --- */
+
+/* Not: HTML tarafında butona class="slope-button" eklemeyi unutmayın 
+   veya bu ismi HTML'deki ID/Class ile değiştirin (#slope-btn gibi) */
+
+.slope-button {
+    /* Temel özellikler */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    touch-action: manipulation;
+    
+    /* Renkler (Diğer mavi butonlarla aynı ton) */
+    background-color: #3b82f6; 
+    color: white;
+    
+    /* İnceltilmiş Boyutlar (Tailwind 'py-1.5 px-3' ve 'text-xs' karşılığı) */
+    border: none;
+    padding: 6px 12px;  /* 10px'ten 6px'e düşürdük */
+    border-radius: 8px;
+    font-size: 12px;    /* Yazı boyutunu küçülttük */
+    font-weight: 600;   /* Yazı kalınlığını eşitledik */
+    
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.slope-button:hover {
+    transform: scale(1.02); /* Çok hafif büyüme */
+    background-color: #2563eb;
+}
+
+.slope-button:active {
+    transform: scale(0.95);
+}
+
+/* --- EĞİM ALT BUTONLARI (KİBAR VERSİYON) --- */
+.slope-sub-button {
+    /* Renkler (Ana butonla aynı mavi ama daha mat durması için border ekledik) */
+    background-color: #3b82f6; 
+    color: white;
+    border: 1px solid #2563eb; /* Hafif bir çerçeve detayı */
+    
+    /* Boyutlar - Daha narin olması için küçültüldü */
+    padding: 4px 10px; /* Boşluklar azaltıldı */
+    font-size: 11px;   /* Yazı bir tık küçüldü */
+    border-radius: 6px; /* Köşeler biraz daha az yuvarlak (daha net) */
+    font-weight: 500;   /* Çok kalın olmasın diye font inceltildi */
+    
+    /* Düzen */
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Emoji ile yazı arası yakınlaştırıldı */
+    
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Gölge hafifletildi */
+}
+
+/* Hover Efekti */
+.slope-sub-button:hover {
+    background-color: #2563eb; 
+    transform: translateY(-1px); /* Çok hafif yukarı kalkma efekti */
+}
+
+/* Emoji/İkon Boyutu */
+.slope-sub-button span {
+    font-size: 12px; /* Emojiler de yazıyla orantılı küçüldü */
+}
+
+/* --- EKSİK ANİMASYON --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}

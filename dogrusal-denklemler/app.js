@@ -2202,6 +2202,8 @@ function startYeqAXplusBRound() {
     document.getElementById('linearContainer').classList.remove('hidden');
     document.getElementById('linearContainer').style.display = 'flex';
     document.getElementById('dataTable').parentElement.style.display = 'flex';
+    document.getElementById('dataTable').classList.remove('hidden');
+    document.getElementById('dataTable').style.display = 'block';
     document.getElementById('drawInstructionText').classList.add('hidden');
     
     const sign = newIntercept > 0 ? '+' : ''; 
@@ -4537,6 +4539,8 @@ function startYeqAXRound() {
     document.getElementById('linearContainer').classList.remove('hidden');
     document.getElementById('linearContainer').style.display = 'flex';
     document.getElementById('dataTable').parentElement.style.display = 'flex';
+    document.getElementById('dataTable').classList.remove('hidden');
+    document.getElementById('dataTable').style.display = 'block';
     document.getElementById('drawInstructionText').classList.add('hidden');
     
     document.getElementById('questionText').textContent = `Denklem: y = ${newSlope}x. Tabloyu doldurarak grafiği çiziniz.`;

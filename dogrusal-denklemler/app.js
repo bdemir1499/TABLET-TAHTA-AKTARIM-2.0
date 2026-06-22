@@ -5409,12 +5409,12 @@ function startSlopeGraphRound() {
                     linearState.currentInputValue += inputChar;
                 }
             }
-            } else if (val !== 'Ä°ptal') {
-                let inputChar = btn.getAttribute('data-value') || val;
-                if (inputChar && inputChar !== '=' && inputChar !== 'X' && inputChar !== 'Y' && inputChar !== 'Tamam' && inputChar !== 'Ä°ptal') {
-                    linearState.currentInputValue += inputChar;
-                }
-            }
+
+
+
+
+
+
 
             if (currentActiveBoxId) {
                 const box = document.getElementById(currentActiveBoxId);
